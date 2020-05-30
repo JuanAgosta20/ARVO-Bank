@@ -15,7 +15,7 @@ public class App {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		User user = new User();
-		user.setIdUser(123);
+		user.setIdUser(222);
 		user.setPassword("123456");
 		user.setState((byte)1);
 		user.setUserType("Cliente");
