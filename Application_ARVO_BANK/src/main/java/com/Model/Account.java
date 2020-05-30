@@ -98,7 +98,7 @@ public class Account implements Serializable {
 		return transactionHistory;
 	}
 
-	public void setTransactionHistory(List<Transaction> transactionHistory) {
+	public void setTransactionHistory(ArrayList<Transaction> transactionHistory) {
 		this.transactionHistory = transactionHistory;
 	}
 

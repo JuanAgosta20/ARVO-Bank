@@ -1,6 +1,5 @@
 package com.main;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,6 +7,7 @@ import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.Controller.Utilities;
 import com.Model.Account;
 import com.Model.Administrative;
 import com.Model.Client;
@@ -20,65 +20,39 @@ public class App {
 
 	public static void main(String[] args) {
 
+		Utilities ut = new Utilities();
 		SessionFactory sf = Connection.getInstance();
 		Session session = sf.openSession();
 		session.beginTransaction();
 
 		// USUARIO
-		User user = new User();
-		user.setUserName("Carlos");
-		user.setPassword("123456");
-		user.setState((byte) 1);
-		user.setUserType("Cliente");
-		
-		User admin = new User();
-		user.setUserName("Juanchiturro");
-		user.setPassword("123456");
-		user.setState((byte) 1);
-		user.setUserType("Admin");
+		User user = ut.createUser("123456", "Carlos", "Cliente", (byte) 1);
+
+		User admin = ut.createUser("123456", "Juanchiturre", "Admin", (byte) 1);
 
 		// TRANSACCION
-		Transaction trans = new Transaction();
-		trans.setAmmount(200F);
-		trans.setConcept("Pagos");
 		Calendar cal = Calendar.getInstance();
 		cal.set(2020, 5, 12);
 		cal.set(Calendar.HOUR_OF_DAY, 12);
 		cal.set(Calendar.MINUTE, 12);
 		cal.set(Calendar.SECOND, 33);
-		trans.setDate(cal.getTime());
+		Transaction trans = ut.createTransaction(200F, "Pagos", cal.getTime(), 4564, 2323, (byte) 1);
+
 		ArrayList<Transaction> hisTrans = new ArrayList<Transaction>();
 		hisTrans.add(trans);
 
 		// CUENTA
-		Account acc = new Account();
-		acc.setCBU("12321323213");
-		acc.setCreationDate(new Date());
-		acc.setFunds(32323.4F);
-		acc.setNameAccount("Cuenta 1");
-		acc.setState((byte) 1);
-		acc.setTypeAccount("Caja de ahorro");
-		acc.setTransactionHistory(hisTrans);
+		Account acc = ut.createAccount("12321323213", new Date(), 32323.4F, "Cuenta 1", (byte) 1, hisTrans,
+				"Caja de ahorro");
 
 		ArrayList<Account> lista = new ArrayList<Account>();
 		lista.add(acc);
 
 		// CLIENTE
-		Client client = new Client();
-		client.setBirthdate(new Date());
-		client.setCity("Beccar");
-		client.setDni("111111");
-		client.setEmail("carlos@gmail.com");
-		client.setFirstName("Carlos");
-		client.setLastName("Rodriguez");
-		client.setNationality("Argentina");
-		client.setProvince("Buenos Aires");
-		client.setSex(true);
-		client.setState((byte) 1);
-		client.setBankAccounts(lista);
-		client.setUser(user);
+		Client client = ut.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos", "Rodriguez",
+				"Argentina", "Buenos Aires", true, (byte) 1, user, lista);
 
-		//USUARIO BANCO
+		// USUARIO BANCO
 		Administrative adm = new Administrative();
 		adm.setDni("22365986");
 		adm.setEmail("Juancho@hotmail.es");
@@ -86,12 +60,12 @@ public class App {
 		adm.setLast_name("Acosta");
 		adm.setState(Byte.parseByte("1"));
 		adm.setUser(admin);
-		
-		//CUOTAs
+
+		// CUOTAs
 		FeePayment fp = new FeePayment();
 		fp.setDate(new Date());
 		fp.setLoanId(1);
-		
+
 		session.save(client);
 		session.save(fp);
 		session.save(adm);
