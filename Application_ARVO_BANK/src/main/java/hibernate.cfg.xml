@@ -15,5 +15,7 @@
         <mapping class="com.Model.Client"/>
         <mapping class="com.Model.Account"/>
         <mapping class="com.Model.Transaction"/>
+        <mapping class="com.Model.FeePayment"/>
+        <mapping class="com.Model.Administrative"/>
     </session-factory>
 </hibernate-configuration>

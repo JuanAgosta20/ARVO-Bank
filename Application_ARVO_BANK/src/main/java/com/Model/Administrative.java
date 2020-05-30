@@ -1,13 +1,26 @@
 package com.Model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Administratives")
 public class Administrative {
-	User user = new User();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id_administrative;
+	@Column
 	String first_name;
+	@Column
 	String last_name;
+	@Column(unique = true)
 	String dni;
+	@Column(unique = true)
 	String email;
+	@Column
 	Byte state;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idUser")
+	private User user;
 
 	public Administrative() {
 		super();

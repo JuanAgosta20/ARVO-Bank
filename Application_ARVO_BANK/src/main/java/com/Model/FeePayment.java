@@ -1,10 +1,16 @@
 package com.Model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Feepayment")
 public class FeePayment {
+	@Id
 	Integer loanId;
-	LocalDateTime date;
+	@Column(columnDefinition="datetime not null")
+	Date date;
 
 	public FeePayment() {
 		super();
@@ -18,11 +24,11 @@ public class FeePayment {
 		this.loanId = loanId;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
