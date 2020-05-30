@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,16 +15,13 @@ public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column
-	Integer idUser;
-	@Column
-	String userName;
-	@Column
-	String password;
-	@Column
-	String userType;
-	@Column
-	Byte state;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idUser;
+	@Column(unique = true)
+	private String userName;
+	private String password;
+	private String userType;
+	private Byte state;
 
 	public User() {
 		super();

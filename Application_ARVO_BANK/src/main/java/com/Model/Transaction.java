@@ -1,14 +1,25 @@
 package com.Model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Transactions")
 public class Transaction {
-	Float ammount;
-	LocalDateTime date;
-	Integer originAccount;
-	Integer destinationAccount;
-	String concept;
-	Byte state;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idTrans;
+	private Float ammount;
+	private Date date;
+	private Integer originAccount;
+	private Integer destinationAccount;
+	private String concept;
+	private Byte state;
 
 	public Transaction() {
 		super();
@@ -22,11 +33,11 @@ public class Transaction {
 		this.ammount = ammount;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -60,6 +71,14 @@ public class Transaction {
 
 	public void setConcept(String concept) {
 		this.concept = concept;
+	}
+
+	public Integer getIdTrans() {
+		return idTrans;
+	}
+
+	public void setIdTrans(Integer idTrans) {
+		this.idTrans = idTrans;
 	}
 
 }

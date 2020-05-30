@@ -1,17 +1,38 @@
 package com.Model;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-public class Account {
-	Integer idAccount;
-	String CBU;
-	String typeAccount;
-	String nameAccount;
-	Float funds;
-	LocalDateTime creationDate;
-	ArrayList<Transaction> transactionHistory = new ArrayList<Transaction>();
-	Byte state;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Accounts")
+public class Account implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idAccount;
+	@Column(unique = true)
+	private String CBU;
+	private String typeAccount;
+	private String nameAccount;
+	private Float funds;
+	private Date creationDate;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idAccount")
+	private List<Transaction> transactionHistory = new ArrayList<Transaction>();
+	private Byte state;
 
 	public Account() {
 		super();
@@ -57,20 +78,12 @@ public class Account {
 		this.funds = funds;
 	}
 
-	public LocalDateTime getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(LocalDateTime creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
-	}
-
-	public ArrayList<Transaction> getTransactionHistory() {
-		return transactionHistory;
-	}
-
-	public void setTransactionHistory(ArrayList<Transaction> transactionHistory) {
-		this.transactionHistory = transactionHistory;
 	}
 
 	public Byte getState() {
@@ -79,6 +92,14 @@ public class Account {
 
 	public void setState(Byte state) {
 		this.state = state;
+	}
+
+	public List<Transaction> getTransactionHistory() {
+		return transactionHistory;
+	}
+
+	public void setTransactionHistory(List<Transaction> transactionHistory) {
+		this.transactionHistory = transactionHistory;
 	}
 
 }
