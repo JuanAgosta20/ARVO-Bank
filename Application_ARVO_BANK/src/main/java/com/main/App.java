@@ -22,55 +22,59 @@ public class App {
 
 		Utilities ut = new Utilities();
 		SessionFactory sf = Connection.getInstance();
-		Session session = sf.openSession();
-		session.beginTransaction();
+		try {
+			Session session = sf.openSession();
+			session.beginTransaction();
 
-		// USUARIO
-		User user = ut.createUser("123456", "Carlos", "Cliente", (byte) 1);
+			// USUARIO
+			User user = ut.createUser("123456", "Carlos", "Cliente", (byte) 1);
 
-		User admin = ut.createUser("123456", "Juanchiturre", "Admin", (byte) 1);
+			User admin = ut.createUser("123456", "Juanchiturre", "Admin", (byte) 1);
 
-		// TRANSACCION
-		Calendar cal = Calendar.getInstance();
-		cal.set(2020, 5, 12);
-		cal.set(Calendar.HOUR_OF_DAY, 12);
-		cal.set(Calendar.MINUTE, 12);
-		cal.set(Calendar.SECOND, 33);
-		Transaction trans = ut.createTransaction(200F, "Pagos", cal.getTime(), 4564, 2323, (byte) 1);
+			// TRANSACCION
+			Calendar cal = Calendar.getInstance();
+			cal.set(2020, 5, 12);
+			cal.set(Calendar.HOUR_OF_DAY, 12);
+			cal.set(Calendar.MINUTE, 12);
+			cal.set(Calendar.SECOND, 33);
+			Transaction trans = ut.createTransaction(200F, "Pagos", cal.getTime(), 4564, 2323, (byte) 1);
 
-		ArrayList<Transaction> hisTrans = new ArrayList<Transaction>();
-		hisTrans.add(trans);
+			ArrayList<Transaction> hisTrans = new ArrayList<Transaction>();
+			hisTrans.add(trans);
 
-		// CUENTA
-		Account acc = ut.createAccount("12321323213", new Date(), 32323.4F, "Cuenta 1", (byte) 1, hisTrans,
-				"Caja de ahorro");
+			// CUENTA
+			Account acc = ut.createAccount("12321323213", new Date(), 32323.4F, "Cuenta 1", (byte) 1, hisTrans,
+					"Caja de ahorro");
 
-		ArrayList<Account> lista = new ArrayList<Account>();
-		lista.add(acc);
+			ArrayList<Account> lista = new ArrayList<Account>();
+			lista.add(acc);
 
-		// CLIENTE
-		Client client = ut.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos", "Rodriguez",
-				"Argentina", "Buenos Aires", true, (byte) 1, user, lista);
+			// CLIENTE
+			Client client = ut.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos", "Rodriguez",
+					"Argentina", "Buenos Aires", true, (byte) 1, user, lista);
 
-		// USUARIO BANCO
-		Administrative adm = new Administrative();
-		adm.setDni("22365986");
-		adm.setEmail("Juancho@hotmail.es");
-		adm.setFirst_name("Juan");
-		adm.setLast_name("Acosta");
-		adm.setState(Byte.parseByte("1"));
-		adm.setUser(admin);
+			// USUARIO BANCO
+			Administrative adm = new Administrative();
+			adm.setDni("22365986");
+			adm.setEmail("Juancho@hotmail.es");
+			adm.setFirst_name("Juan");
+			adm.setLast_name("Acosta");
+			adm.setState(Byte.parseByte("1"));
+			adm.setUser(admin);
 
-		// CUOTAs
-		FeePayment fp = new FeePayment();
-		fp.setDate(new Date());
-		fp.setLoanId(1);
+			// CUOTAs
+			FeePayment fp = new FeePayment();
+			fp.setDate(new Date());
+			fp.setLoanId(1);
 
-		session.save(client);
-		session.save(fp);
-		session.save(adm);
-		session.getTransaction().commit();
-		session.close();
-		sf.close();
+			session.save(client);
+			session.save(fp);
+			session.save(adm);
+			session.getTransaction().commit();
+			session.close();
+			sf.close();
+		} catch (Exception ex) {
+			System.err.println("Problem in Open Session." + ex);
+		}
 	}
 }

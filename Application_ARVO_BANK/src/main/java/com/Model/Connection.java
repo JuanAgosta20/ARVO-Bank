@@ -17,9 +17,12 @@ public class Connection {
 			Configuration cf = new Configuration();
 			cf.configure();
 			ServiceRegistry sr = new ServiceRegistryBuilder().applySettings(cf.getProperties()).buildServiceRegistry();
-			sf = cf.buildSessionFactory(sr);
+			try {
+				sf = cf.buildSessionFactory(sr);
+			} catch (Throwable ex) {
+				System.err.println("Session Factory could not be created." + ex);
+			}
 		}
 		return sf;
 	}
-
 }
