@@ -14,15 +14,16 @@ public class Utilities {
 		super();
 	}
 
-	public Account createAccount(String cbu, Date date, Float funds, String name, Byte state, ArrayList<Transaction> th,
-			String type) {
+	public Account createAccount(String cbu, Date date, Float funds, String name, Byte state, ArrayList<Transaction> tm,
+			ArrayList<Transaction> tr, String type) {
 		Account acc = new Account();
 		acc.setCBU(cbu);
 		acc.setCreationDate(date);
 		acc.setFunds(funds);
 		acc.setNameAccount(name);
 		acc.setState(state);
-		acc.setTransactionHistory(th);
+		acc.setTransactionMade(tm);
+		acc.setTransactionReceived(tr);
 		acc.setTypeAccount(type);
 
 		return acc;
@@ -59,16 +60,14 @@ public class Utilities {
 		return user;
 	}
 
-	public Transaction createTransaction(Float amm, String concept, Date date, Integer destinationAccount,
-			Integer originAccount, Byte state) {
+	public Transaction createTransaction(Float amm, String concept, Date date, Byte state, Account da) {
 		Transaction trans = new Transaction();
 
 		trans.setAmmount(amm);
 		trans.setConcept(concept);
 		trans.setDate(date);
-		trans.setDestinationAccount(destinationAccount);
-		trans.setOriginAccount(originAccount);
 		trans.setState(state);
+		trans.setDestinationAccount(da);
 
 		return trans;
 	}

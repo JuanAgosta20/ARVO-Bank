@@ -31,28 +31,40 @@ public class App {
 
 			User admin = ut.createUser("123456", "Juanchiturre", "Admin", (byte) 1);
 
+			
+			// CUENTA
+			Account acc = ut.createAccount("12321323213", new Date(), 32323.4F, "Cuenta 1", (byte) 1, null, null,
+					"Caja de ahorro");
+
+			
+			
 			// TRANSACCION
 			Calendar cal = Calendar.getInstance();
 			cal.set(2020, 5, 12);
 			cal.set(Calendar.HOUR_OF_DAY, 12);
 			cal.set(Calendar.MINUTE, 12);
 			cal.set(Calendar.SECOND, 33);
-			Transaction trans = ut.createTransaction(200F, "Pagos", cal.getTime(), 4564, 2323, (byte) 1);
-
+			Transaction trans = ut.createTransaction(200F, "Pagos", cal.getTime(), (byte) 1, null);
+			trans.setDestinationAccount(acc);
 			ArrayList<Transaction> hisTrans = new ArrayList<Transaction>();
 			hisTrans.add(trans);
 
-			// CUENTA
-			Account acc = ut.createAccount("12321323213", new Date(), 32323.4F, "Cuenta 1", (byte) 1, hisTrans,
-					"Caja de ahorro");
-
+			
+			//CUENTAS
 			ArrayList<Account> lista = new ArrayList<Account>();
+			//Aca agrego las transacciones
+			acc.setTransactionMade(hisTrans);
 			lista.add(acc);
+			
 
+			
+			
 			// CLIENTE
 			Client client = ut.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos", "Rodriguez",
 					"Argentina", "Buenos Aires", true, (byte) 1, user, lista);
 
+			
+			
 			// USUARIO BANCO
 			Administrative adm = new Administrative();
 			adm.setDni("22365986");
@@ -62,11 +74,16 @@ public class App {
 			adm.setState(Byte.parseByte("1"));
 			adm.setUser(admin);
 
+			
+			
 			// CUOTAs
 			FeePayment fp = new FeePayment();
 			fp.setDate(new Date());
 			fp.setLoanId(1);
 
+			
+			
+			// GUARDAR
 			session.save(client);
 			session.save(fp);
 			session.save(adm);
