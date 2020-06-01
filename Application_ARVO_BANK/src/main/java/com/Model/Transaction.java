@@ -20,6 +20,9 @@ public class Transaction {
 	private Float ammount;
 	private Date date;
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "originAccount")
+	private Account originAccount;
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "destinationAccount")
 	private Account destinationAccount;
 	private String concept;
@@ -76,5 +79,14 @@ public class Transaction {
 	public void setDestinationAccount(Account destinationAccount) {
 		this.destinationAccount = destinationAccount;
 	}
+
+	public Account getOriginAccount() {
+		return originAccount;
+	}
+
+	public void setOriginAccount(Account originAccount) {
+		this.originAccount = originAccount;
+	}
+	
 
 }

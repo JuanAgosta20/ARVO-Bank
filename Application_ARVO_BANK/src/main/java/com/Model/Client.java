@@ -106,7 +106,7 @@ public class Client implements Serializable {
 		this.state = state;
 	}
 
-	public void setBankAccounts(ArrayList<Account> bankAccounts) {
+	public void setBankAccounts(List<Account> bankAccounts) {
 		this.bankAccounts = bankAccounts;
 	}
 
