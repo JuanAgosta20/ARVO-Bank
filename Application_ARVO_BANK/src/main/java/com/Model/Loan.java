@@ -1,6 +1,7 @@
 package com.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class Loan implements Serializable{
 	Float monthAmmount;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "loanId")
-	List<FeePayment> payments;
+	List<FeePayment> payments = new ArrayList<FeePayment>();
 
 	public Loan() {
 		super();

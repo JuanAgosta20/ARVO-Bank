@@ -15,6 +15,7 @@ public class FeePayment implements Serializable {
 	private Integer feePaymentId;
 	@Column(columnDefinition = "datetime not null")
 	private Date date;
+	Float ammount;
 
 	public FeePayment() {
 		super();
@@ -35,5 +36,14 @@ public class FeePayment implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public Float getAmmount() {
+		return ammount;
+	}
+
+	public void setAmmount(Float ammount) {
+		this.ammount = ammount;
+	}
+	
 
 }

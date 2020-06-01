@@ -96,6 +96,7 @@ public class App {
 			FeePayment fp = new FeePayment();
 			fp.setDate(new Date());
 			ArrayList<FeePayment> fpList = new ArrayList<FeePayment>();
+			fpList.add(fp);
 			loan.setPayments(fpList);
 
 			
