@@ -53,7 +53,7 @@ exit_to_app</span> Cerrar Sesión</button></form>
         <a class="nav-link text-light ml-3" href="transfers.jsp">Transferencias </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light ml-3" href="loans.jsp">Préstamos</a>
+        <a class="nav-link text-light ml-3" href="loans.jsp?view=pageMyLoans">Préstamos</a>
       </li>
     </ul>
   </div>

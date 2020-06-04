@@ -29,13 +29,12 @@ position: absolute;
  transform: translate(-10%,-45%);
 }
 
-.material-icons {
-  vertical-align: middle;
-}
+.hide{display: none;}
 
-.text-blue{
-	color: var(--main-blue);
-	}
+
+.material-icons {vertical-align: middle;}
+
+.text-blue{	color: var(--main-blue);}
 	
 .btn-orange{
 	background-color: var(--orange);
@@ -44,6 +43,4 @@ position: absolute;
 	width: 250px;
 }	
 
-.bkg-orange{
-	background-color: var(--orange);
-}
+.bkg-orange{background-color: var(--orange);}

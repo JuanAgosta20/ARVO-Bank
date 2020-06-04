@@ -16,7 +16,7 @@
    <div class="list-group">
    <a class="list-group-item list-group-item-action" data-toggle="modal" href="#modalNewAccount">  <i class="material-icons">work_outline</i> Solicitar una cuenta</a>
   <a href="transfers.jsp" class="list-group-item list-group-item-action"><i class="material-icons">compare_arrows</i> Realizar Transferencia</a>
-  <a href="#" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i>  Solicitar Préstamo</a>
+  <a href="loans.jsp?view=pageNewLoan" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i>  Solicitar Préstamo</a>
   <a href="#" class="list-group-item list-group-item-action"><i class="material-icons">payment</i>  Pagos</a>
 </div>
     </div>
