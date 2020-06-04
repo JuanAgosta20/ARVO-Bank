@@ -26,6 +26,7 @@
      
           <div id="Views">
 
+<!-- Tabla Préstamos -->
     <div class="view hide" id="pageMyLoans">
              <h4 class="text-blue mb-3">Mis préstamos</h4>
              <table class="table table-hover">
@@ -65,8 +66,41 @@
              
         </div>
         
+        <!-- Solicitar Préstamo -->
+        
     <div class="view hide" id="pageNewLoan">
             <h4 class="text-blue">Solicitar Préstamo</h4>
+            <form action="" name="frmNewLoan" class="container mt-3">
+          
+     <div class="row mt-3">
+      <div class="col">
+      Monto deseado: </div>
+         <div class="col">
+       <input type="number" name="txtAmmount" class="form-control" placeholder="$"></div>
+     </div>
+  <div class="row mt-3">
+      <div class="col">
+      Cuenta Destino: </div>
+         <div class="col">
+           <select id="inputAccType" name="cmbAccount" class="form-control">
+        <option selected>Seleccione la cuenta</option>
+        <option>...</option>
+      </select>
+     </div>
+     </div>
+      <div class="row mt-3">
+      <div class="col">
+      Cantidad de cuotas: </div>
+         <div class="col">
+       <input type="number" name="txtConcept" class="form-control"></div>
+     </div>
+       <div class="row mt-4 justify-content-md-center">
+        
+      <div class="col-6 align-self-end">
+      <input type="submit" class="btn btn-orange" name="btnSolitar" value="Solicitar">
+      </div>
+      </div>
+            </form>
         </div>
 
 
