@@ -43,3 +43,7 @@ position: absolute;
 	color: white;
 	width: 250px;
 }	
+
+.bkg-orange{
+	background-color: var(--orange);
+}

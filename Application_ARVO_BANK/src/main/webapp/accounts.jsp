@@ -14,7 +14,7 @@
 <div class="row">
  <div class="col">
    <div class="list-group">
-   <a href="#" class="list-group-item list-group-item-action">  <i class="material-icons">work_outline</i> Solicitar una cuenta</a>
+   <a class="list-group-item list-group-item-action" data-toggle="modal" href="#modalNewAccount">  <i class="material-icons">work_outline</i> Solicitar una cuenta</a>
   <a href="transfers.jsp" class="list-group-item list-group-item-action"><i class="material-icons">compare_arrows</i> Realizar Transferencia</a>
   <a href="#" class="list-group-item list-group-item-action"><i class="material-icons">local_atm</i>  Solicitar Préstamo</a>
   <a href="#" class="list-group-item list-group-item-action"><i class="material-icons">payment</i>  Pagos</a>
@@ -93,6 +93,37 @@
 </div>
     </div>
     <!-- Fin lista cuentas -->
+    
+    <!-- Modal Solicitar cuenta -->
+    <div class="modal fade" id="modalNewAccount" tabindex="-1" role="dialog" aria-labelledby="modalNewAccount" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-blue" id="modalTitle">Solicitar Cuenta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <div class="row my-3">
+     <div class="col">Seleccione el tipo de cuenta: </div>
+     <div class="col">
+    <select name="cmbAccounts" id="cmbAccounts">
+    <option value="">Cuenta Corriente especial</option>
+   
+</select>
+     </div>
+    </div>
+   
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn bkg-orange text-light" name="btnNewAccount">Enviar solicitud</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" name="btnCancel">Cancelar</button>
+             </div>
+    </div>
+  </div>
+</div>
+    
     
     <div class="col">
       <!-- Columna vacía derecha -->
