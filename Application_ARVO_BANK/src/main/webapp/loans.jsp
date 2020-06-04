@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="Include.html"></jsp:include>
-<title>ARVO Bank - Cuentas</title>
+<title>ARVO Bank - Préstamos</title>
 <script src="Resources/js/custom.js"></script>
 </head>
 <body>
@@ -31,7 +31,7 @@
              <table class="table table-hover">
   <thead>
     <tr class="table-warning">
-      c      <th scope="col">Fecha</th>
+        <th scope="col">Fecha</th>
       <th scope="col">Monto Total</th>
       <th scope="col">Cant Cuotas</th>
        <th scope="col">Monto Cuota</th>
