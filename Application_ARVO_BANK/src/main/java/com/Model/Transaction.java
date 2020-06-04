@@ -3,9 +3,12 @@ package com.Model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,12 @@ public class Transaction {
 	private Integer idTrans;
 	private Float ammount;
 	private Date date;
-	private Integer originAccount;
-	private Integer destinationAccount;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "originAccount")
+	private Account originAccount;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "destinationAccount")
+	private Account destinationAccount;
 	private String concept;
 	private Byte state;
 
@@ -39,22 +46,6 @@ public class Transaction {
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public Integer getOriginAccount() {
-		return originAccount;
-	}
-
-	public void setOriginAccount(Integer originAccount) {
-		this.originAccount = originAccount;
-	}
-
-	public Integer getDestinationAccount() {
-		return destinationAccount;
-	}
-
-	public void setDestinationAccount(Integer destinationAccount) {
-		this.destinationAccount = destinationAccount;
 	}
 
 	public Byte getState() {
@@ -80,5 +71,22 @@ public class Transaction {
 	public void setIdTrans(Integer idTrans) {
 		this.idTrans = idTrans;
 	}
+
+	public Account getDestinationAccount() {
+		return destinationAccount;
+	}
+
+	public void setDestinationAccount(Account destinationAccount) {
+		this.destinationAccount = destinationAccount;
+	}
+
+	public Account getOriginAccount() {
+		return originAccount;
+	}
+
+	public void setOriginAccount(Account originAccount) {
+		this.originAccount = originAccount;
+	}
+	
 
 }

@@ -14,21 +14,22 @@ public class Utilities {
 		super();
 	}
 
-	public Account createAccount(String cbu, Date date, Float funds, String name, Byte state, ArrayList<Transaction> th,
-			String type) {
+	public static Account createAccount(String cbu, Date date, Float funds, String name, Byte state, ArrayList<Transaction> tm,
+			ArrayList<Transaction> tr, String type) {
 		Account acc = new Account();
 		acc.setCBU(cbu);
 		acc.setCreationDate(date);
 		acc.setFunds(funds);
 		acc.setNameAccount(name);
 		acc.setState(state);
-		acc.setTransactionHistory(th);
+		acc.setTransactionMade(tm);
+		acc.setTransactionReceived(tr);
 		acc.setTypeAccount(type);
 
 		return acc;
 	}
 
-	public Client createClient(Date birthdate, String city, String dni, String email, String fName, String lName,
+	public static Client createClient(Date birthdate, String city, String dni, String email, String fName, String lName,
 			String nationality, String province, boolean sex, Byte state, User user, ArrayList<Account> bankAccounts) {
 		Client cl = new Client();
 
@@ -48,7 +49,7 @@ public class Utilities {
 		return cl;
 	}
 
-	public User createUser(String pass, String uName, String userType, Byte state) {
+	public static User createUser(String pass, String uName, String userType, Byte state) {
 		User user = new User();
 
 		user.setPassword(pass);
@@ -59,16 +60,15 @@ public class Utilities {
 		return user;
 	}
 
-	public Transaction createTransaction(Float amm, String concept, Date date, Integer destinationAccount,
-			Integer originAccount, Byte state) {
+	public static Transaction createTransaction(Float amm, String concept, Date date, Byte state, Account oa, Account da) {
 		Transaction trans = new Transaction();
 
 		trans.setAmmount(amm);
 		trans.setConcept(concept);
 		trans.setDate(date);
-		trans.setDestinationAccount(destinationAccount);
-		trans.setOriginAccount(originAccount);
 		trans.setState(state);
+		trans.setOriginAccount(oa);
+		trans.setDestinationAccount(da);
 
 		return trans;
 	}

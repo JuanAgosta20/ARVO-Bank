@@ -1,27 +1,32 @@
 package com.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Feepayment")
-public class FeePayment {
+public class FeePayment implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	@Id
-	Integer loanId;
-	@Column(columnDefinition="datetime not null")
-	Date date;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer feePaymentId;
+	@Column(columnDefinition = "datetime not null")
+	private Date date;
+	Float ammount;
 
 	public FeePayment() {
 		super();
 	}
 
-	public Integer getLoanId() {
-		return loanId;
+	public Integer getFeePaymentId() {
+		return feePaymentId;
 	}
 
-	public void setLoanId(Integer loanId) {
-		this.loanId = loanId;
+	public void setFeePaymentId(Integer feePaymentId) {
+		this.feePaymentId = feePaymentId;
 	}
 
 	public Date getDate() {
@@ -31,5 +36,14 @@ public class FeePayment {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public Float getAmmount() {
+		return ammount;
+	}
+
+	public void setAmmount(Float ammount) {
+		this.ammount = ammount;
+	}
+	
 
 }

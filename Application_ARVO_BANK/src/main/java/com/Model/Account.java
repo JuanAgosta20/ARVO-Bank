@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,9 +28,10 @@ public class Account implements Serializable {
 	private String nameAccount;
 	private Float funds;
 	private Date creationDate;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idAccount")
-	private List<Transaction> transactionHistory = new ArrayList<Transaction>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "originAccount")
+	private List<Transaction> transactionMade = new ArrayList<Transaction>();
+	@OneToMany(mappedBy = "destinationAccount")
+	private List<Transaction> transactionReceived = new ArrayList<Transaction>();
 	private Byte state;
 
 	public Account() {
@@ -94,12 +94,20 @@ public class Account implements Serializable {
 		this.state = state;
 	}
 
-	public List<Transaction> getTransactionHistory() {
-		return transactionHistory;
+	public List<Transaction> getTransactionMade() {
+		return transactionMade;
 	}
 
-	public void setTransactionHistory(ArrayList<Transaction> transactionHistory) {
-		this.transactionHistory = transactionHistory;
+	public void setTransactionMade(List<Transaction> transactionMade) {
+		this.transactionMade = transactionMade;
+	}
+
+	public List<Transaction> getTransactionReceived() {
+		return transactionReceived;
+	}
+
+	public void setTransactionReceived(List<Transaction> transactionReceived) {
+		this.transactionReceived = transactionReceived;
 	}
 
 }
