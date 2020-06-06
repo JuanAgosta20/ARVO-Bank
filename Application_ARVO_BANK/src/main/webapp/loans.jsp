@@ -22,7 +22,7 @@
     </div>
     
     
-    <div class="col-6">
+    <div class="col-7">
      
           <div id="Views">
 
@@ -35,6 +35,7 @@
         <th scope="col">Fecha</th>
       <th scope="col">Monto Total</th>
       <th scope="col">Cant Cuotas</th>
+      <th scope="col">Estado</th>
        <th scope="col">Monto Cuota</th>
         <th scope="col">Pagos</th>
     </tr>
@@ -44,6 +45,7 @@
       <td>02/05/2020</td>
       <td>$40000</td>
       <td>20</td>
+        <td>Activo</td>
       <td>$2000</td>
       <td><a>Ver Pagos</a></td>
     </tr>
@@ -51,15 +53,17 @@
      <td>05/01/2019</td>
       <td>$5000</td>
       <td>10</td>
+       <td class="text-success">Pagado</td>
       <td>$500</td>
       <td><a>Ver Pagos</a></td>
     </tr>
     <tr>
   <td>02/02/2019</td>
-      <td>$12000</td>
-      <td>6</td>
-      <td>$2000</td>
-      <td><a>Ver Pagos</a></td>
+      <td>$120000</td>
+      <td>30</td>
+       <td class="text-danger">Rechazado</td>
+      <td>-</td>
+      <td><a>-</a></td>
     </tr>
   </tbody>
 </table>
@@ -97,7 +101,7 @@
        <div class="row mt-4 justify-content-md-center">
         
       <div class="col-6 align-self-end">
-      <input type="submit" class="btn btn-orange" name="btnSolitar" value="Solicitar">
+      <input type="submit" class="btn btn-orange" name="btnSolicitar" value="Solicitar">
       </div>
       </div>
             </form>
@@ -105,7 +109,7 @@
 
 
     <div class="view hide" id="page3">
-           <!-- Por si hay que hacer una pag de pagos -->>
+           <!-- Por si hay que hacer una pag de pagos -->
         </div>
 
     </div>
