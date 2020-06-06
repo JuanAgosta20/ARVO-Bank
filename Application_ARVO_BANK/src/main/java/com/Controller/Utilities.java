@@ -30,7 +30,7 @@ public class Utilities {
 	}
 
 	public static Client createClient(Date birthdate, String city, String dni, String email, String fName, String lName,
-			String nationality, String province, boolean sex, Byte state, User user, ArrayList<Account> bankAccounts) {
+			String nationality, String province, boolean sex, User user, ArrayList<Account> bankAccounts) {
 		Client cl = new Client();
 
 		cl.setBirthdate(birthdate);
@@ -42,7 +42,7 @@ public class Utilities {
 		cl.setNationality(nationality);
 		cl.setProvince(province);
 		cl.setSex(sex);
-		cl.setState(state);
+		cl.setState((byte) 1);
 		cl.setUser(user);
 		cl.setBankAccounts(bankAccounts);
 
