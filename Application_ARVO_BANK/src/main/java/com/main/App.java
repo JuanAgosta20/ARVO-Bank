@@ -27,11 +27,19 @@ public class App {
 			Session session = sf.openSession();
 			session.beginTransaction();
 
-			// USUARIO
-			User user = Utilities.createUser("123456", "Carlos", "Cliente", (byte) 1);
-			User user2 = Utilities.createUser("123456", "Pablo", "Cliente", (byte) 1);
+			// USUARIOs
+			User user = Utilities.createUser("123456", "Carlos", "Cliente");
+			User user2 = Utilities.createUser("123456", "Pablo", "Cliente");
+			User user3 = Utilities.createUser("123456", "Ellen", "Cliente");
+			User user4 = Utilities.createUser("123456", "Sundar", "Cliente");
+			User user5 = Utilities.createUser("123456", "David", "Cliente");
+			User user6 = Utilities.createUser("123456", "Hermann", "Cliente");
+			User user7 = Utilities.createUser("123456", "Alexis", "Cliente");
+			User user8 = Utilities.createUser("123456", "Alberto", "Cliente");
+			User user9 = Utilities.createUser("123456", "Curtis", "Cliente");
+			User user10 = Utilities.createUser("123456", "Kevin", "Cliente");
 
-			User admin = Utilities.createUser("123456", "Juanchiturre", "Admin", (byte) 1);
+			User admin = Utilities.createUser("123456", "Juanc", "Admin");
 
 			
 			// CUENTA
@@ -63,6 +71,7 @@ public class App {
 			ArrayList<Account> lista2 = new ArrayList<Account>();
 			lista2.add(acc2);
 			
+			ArrayList<Account> def = new ArrayList<Account>();
 			
 
 			
@@ -71,33 +80,33 @@ public class App {
 			Client client = Utilities.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos", "Rodriguez",
 					"Argentina", "Buenos Aires", true, user, lista);
 			Client client2 = Utilities.createClient(new Date(), "Escobar", "23232323", "pablo@gmail.com", "Pablo", "Escobar",
-					"Medellin", "Colombia", true, user2, lista2);
-			/*
+					"Colombia", "Medellin", true, user2, lista2);
+			
 
 			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), "Escobar", "18654923", "Eabel@gmail.com", "Ellen", "Abel",
-			"Buenos Aires", "Argentina", true, null, lista2);
+			"Argentina", "Buenos Aires", true, user3, def);
 
 			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), "Tigre", "23654956", "Sande@gmail.com", "Sundar", "Ande",
-			"Buenos Aires", "Argentina", true, null, lista2);
+			"Argentina", "Buenos Aires", true, user4, def);
 					
 			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), "Garin", "24632589", "daustin@gmail.com", "David", "Austin",
-			"Buenos Aires", "Argentina", true, null, lista2);
+			"Argentina", "Buenos Aires", true, user5, def);
 					
 			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), "Congreso", "30652987", "hbaer@gmail.com", "Hermann", "Baer",
-			"Buenos Aires", "Argentina", true, null, lista2);
+			"Argentina", "Buenos Aires", true, user6, def);
 					
 			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), "Tigre", "35621785", "abull@gmail.com", "Alexis", "Bull",
-			"Buenos Aires", "Argentina", true, null, lista2);
+			"Argentina", "Buenos Aires", true, user7, def);
 			
 			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), "Córdoba", "39632541", "aerrazur@gmail.com", "Alberto", "Errazuriz",
-			"Córdoba", "Argentina", true, null, lista2);
+			"Argentina", "Córdoba", true, user8, def);
 			
 			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), "Formosa", "35621478", "cdavies@gmail.com", "Curtis", "Davies",
-			"Formosa", "Argentina", true, null, lista2);
+			"Argentina", "Formosa", true, user9, def);
 			
 			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), "Santa Rosa", "40654951", "kfeeney@gmail.com", "Kevin", "Feeney",
-			"La Pampa", "Argentina", true, null, lista2);
-			*/
+			"Argentina", "La Pampa", true, user10, def);
+			
 			
 			// USUARIO BANCO
 			Administrative adm = new Administrative();
@@ -131,8 +140,18 @@ public class App {
 			
 			// GUARDAR
 			session.save(trans);
+			//Guardando clientes
 			session.save(client);
 			session.save(client2);
+			session.save(client3);
+			session.save(client4);
+			session.save(client5);
+			session.save(client6);
+			session.save(client7);
+			session.save(client8);
+			session.save(client9);
+			session.save(client10);
+			//--
 			session.save(loan);
 			session.save(adm);
 			

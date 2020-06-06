@@ -49,13 +49,13 @@ public class Utilities {
 		return cl;
 	}
 
-	public static User createUser(String pass, String uName, String userType, Byte state) {
+	public static User createUser(String pass, String uName, String userType) {
 		User user = new User();
 
 		user.setPassword(pass);
 		user.setUserName(uName);
 		user.setUserType(userType);
-		user.setState(state);
+		user.setState((byte) 1);
 
 		return user;
 	}
