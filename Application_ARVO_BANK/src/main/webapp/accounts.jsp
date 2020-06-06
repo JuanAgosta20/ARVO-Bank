@@ -35,7 +35,7 @@
      <b>CBU: </b>3000000000
     </div>
     <div class="col">
-    <b>Monto: </b>$2000
+    <b>Monto: </b>$20000
     </div>
     <div class="col">
      <button type="button" class="btn btn-success mb-3">Ver Movimientos</button>
