@@ -13,7 +13,7 @@ public class FeePayment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer feePaymentId;
-	@Column(columnDefinition = "datetime not null")
+	@Column
 	private Date date;
 	Float ammount;
 
