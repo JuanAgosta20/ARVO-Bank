@@ -3,7 +3,6 @@ package com.main;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +16,7 @@ import com.Model.FeePayment;
 import com.Model.Loan;
 import com.Model.Transaction;
 import com.Model.User;
+import com.Model.Cmd;
 
 public class App {
 
@@ -26,6 +26,7 @@ public class App {
 		try {
 			Session session = sf.openSession();
 			session.beginTransaction();
+
 
 			// USUARIO
 			User users[] = new User[10];
@@ -65,30 +66,43 @@ public class App {
 			lista.add(acc);
 			ArrayList<Account> lista2 = new ArrayList<Account>();
 			lista2.add(acc2);
+			
+			ArrayList<Account> def = new ArrayList<Account>();
+			
+
 
 			// CLIENTE
-			Client clients[] = new Client[10];
-			clients[0] = Utilities.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos",
-					"Rodriguez", "Argentina", "Buenos Aires", true, (byte) 1, users[0], lista);
-			clients[1] = Utilities.createClient(new Date(), "Escobar", "23232323", "pablo@gmail.com", "Pablo",
-					"Escobar", "Medellin", "Colombia", true, (byte) 1, users[1], lista2);
-			clients[2] = Utilities.createClient(new Date(), "Beccar", "32235422", "marcelo@gmail.com", "Marcelo",
-					"Fernandez", "Argentina", "Buenos Aires", true, (byte) 1, users[2], lista);
-			clients[3] = Utilities.createClient(new Date(), "Escobar", "23232323", "jorge@gmail.com", "Jorge",
-					"Gomez", "Medellin", "Colombia", true, (byte) 1, users[3], lista2);
-			clients[4] = Utilities.createClient(new Date(), "Beccar", "32235422", "carolina@gmail.com", "Carolina",
-					"Gutierrez", "Argentina", "Buenos Aires", true, (byte) 1, users[4], lista);
-			clients[5] = Utilities.createClient(new Date(), "Escobar", "23232323", "fernanda@gmail.com", "Fernanda",
-					"Coloccinni", "Medellin", "Colombia", true, (byte) 1, users[5], lista2);
-			clients[6] = Utilities.createClient(new Date(), "Beccar", "32235422", "mateo@gmail.com", "Mateo",
-					"Ituzaing�", "Argentina", "Buenos Aires", true, (byte) 1, users[6], lista);
-			clients[7] = Utilities.createClient(new Date(), "Escobar", "23232323", "laura@gmail.com", "Laura",
-					"Gonzales", "Medellin", "Colombia", true, (byte) 1, users[7], lista2);
-			clients[8] = Utilities.createClient(new Date(), "Beccar", "32235422", "cecilia@gmail.com", "Cecilia",
-					"Lotbrok", "Argentina", "Buenos Aires", true, (byte) 1, users[8], lista);
-			clients[9] = Utilities.createClient(new Date(), "Escobar", "23232323", "pablo@gmail.com", "Pablo",
-					"Escobar", "Medellin", "Colombia", true, (byte) 1, users[9], lista2);
+			Client client = Utilities.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos", "Rodriguez",
+					"Argentina", "Buenos Aires", true, user, lista);
+			Client client2 = Utilities.createClient(new Date(), "Escobar", "23232323", "pablo@gmail.com", "Pablo", "Escobar",
+					"Colombia", "Medellin", true, user2, lista2);
+			
 
+			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), "Escobar", "18654923", "Eabel@gmail.com", "Ellen", "Abel",
+			"Argentina", "Buenos Aires", true, user3, def);
+
+			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), "Tigre", "23654956", "Sande@gmail.com", "Sundar", "Ande",
+			"Argentina", "Buenos Aires", true, user4, def);
+					
+			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), "Garin", "24632589", "daustin@gmail.com", "David", "Austin",
+			"Argentina", "Buenos Aires", true, user5, def);
+					
+			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), "Congreso", "30652987", "hbaer@gmail.com", "Hermann", "Baer",
+			"Argentina", "Buenos Aires", true, user6, def);
+					
+			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), "Tigre", "35621785", "abull@gmail.com", "Alexis", "Bull",
+			"Argentina", "Buenos Aires", true, user7, def);
+			
+			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), "Córdoba", "39632541", "aerrazur@gmail.com", "Alberto", "Errazuriz",
+			"Argentina", "Córdoba", true, user8, def);
+			
+			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), "Formosa", "35621478", "cdavies@gmail.com", "Curtis", "Davies",
+			"Argentina", "Formosa", true, user9, def);
+			
+			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), "Santa Rosa", "40654951", "kfeeney@gmail.com", "Kevin", "Feeney",
+			"Argentina", "La Pampa", true, user10, def);
+			
+			
 			// USUARIO BANCO
 			Administrative adm = new Administrative();
 			adm.setDni("22365986");
@@ -122,8 +136,18 @@ public class App {
 
 			// GUARDAR
 			session.save(trans);
+			//Guardando clientes
 			session.save(client);
 			session.save(client2);
+			session.save(client3);
+			session.save(client4);
+			session.save(client5);
+			session.save(client6);
+			session.save(client7);
+			session.save(client8);
+			session.save(client9);
+			session.save(client10);
+			//--
 			session.save(loan);
 			session.save(adm);
 

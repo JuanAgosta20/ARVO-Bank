@@ -1,0 +1,46 @@
+:root {
+	--main-blue: #1761a0;
+	--orange: #FF8C00;
+}
+
+.city{
+
+  background: url("../images/pexels2.jpeg") no-repeat center center fixed;
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.form-center{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+ background: rgba(233, 233, 235, 0.6);
+ border-radius: 3px;
+ 
+}
+
+.logo{
+position: absolute;
+ top: 10%;
+ left: 45%;
+ transform: translate(-10%,-45%);
+}
+
+.hide{display: none;}
+
+
+.material-icons {vertical-align: middle;}
+
+.text-blue{	color: var(--main-blue);}
+	
+.btn-orange{
+	background-color: var(--orange);
+	font-weight: bold;
+	color: white;
+	width: 250px;
+}	
+
+.bkg-orange{background-color: var(--orange);}
