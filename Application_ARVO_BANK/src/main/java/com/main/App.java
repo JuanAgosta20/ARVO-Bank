@@ -27,26 +27,29 @@ public class App {
 			Session session = sf.openSession();
 			session.beginTransaction();
 
+			// USUARIOs
+			User user = Utilities.createUser("123456", "Carlos", "Cliente");
+			User user2 = Utilities.createUser("123456", "Pablo", "Cliente");
+			User user3 = Utilities.createUser("123456", "Ellen", "Cliente");
+			User user4 = Utilities.createUser("123456", "Sundar", "Cliente");
+			User user5 = Utilities.createUser("123456", "David", "Cliente");
+			User user6 = Utilities.createUser("123456", "Hermann", "Cliente");
+			User user7 = Utilities.createUser("123456", "Alexis", "Cliente");
+			User user8 = Utilities.createUser("123456", "Alberto", "Cliente");
+			User user9 = Utilities.createUser("123456", "Curtis", "Cliente");
+			User user10 = Utilities.createUser("123456", "Kevin", "Cliente");
 
-			// USUARIO
-			User users[] = new User[10];
-			users[0] = Utilities.createUser("123456", "Carlos", "Cliente", (byte) 1);
-			users[1] = Utilities.createUser("123456", "Pablo", "Cliente", (byte) 1);
-			users[2] = Utilities.createUser("123456", "Marcelo", "Cliente", (byte) 1);
-			users[3] = Utilities.createUser("123456", "Jorge", "Cliente", (byte) 1);
-			users[4] = Utilities.createUser("123456", "Carolina", "Cliente", (byte) 1);
-			users[5] = Utilities.createUser("123456", "Fernanda", "Cliente", (byte) 1);
-			users[6] = Utilities.createUser("123456", "Mateo", "Cliente", (byte) 1);
-			users[7] = Utilities.createUser("123456", "Laura", "Cliente", (byte) 1);
-			users[8] = Utilities.createUser("123456", "Cecilia", "Cliente", (byte) 1);
-			users[9] = Utilities.createUser("123456", "Juanchiturre", "Admin", (byte) 1); // admin
+			User admin = Utilities.createUser("123456", "Juanc", "Admin");
 
+			
 			// CUENTA
 			Account acc = Utilities.createAccount("12321323213", new Date(), 32323.4F, "Cuenta 1", (byte) 1, null, null,
 					"Caja de ahorro");
-			Account acc2 = Utilities.createAccount("53574435353", new Date(), 32323.4F, "Cuenta 2", (byte) 1, null,
-					null, "Caja de ahorro");
+			Account acc2 = Utilities.createAccount("53574435353", new Date(), 32323.4F, "Cuenta 2", (byte) 1, null, null,
+					"Caja de ahorro");
 
+			
+			
 			// TRANSACCION
 			Calendar cal = Calendar.getInstance();
 			cal.set(2020, 5, 12);
@@ -59,9 +62,10 @@ public class App {
 			ArrayList<Transaction> hisTrans = new ArrayList<Transaction>();
 			hisTrans.add(trans);
 
-			// CUENTAS
+			
+			//CUENTAS
 			ArrayList<Account> lista = new ArrayList<Account>();
-			// Aca agrego las transaccion
+			//Aca agrego las transaccion
 			acc.setTransactionMade(hisTrans);
 			lista.add(acc);
 			ArrayList<Account> lista2 = new ArrayList<Account>();
@@ -70,7 +74,8 @@ public class App {
 			ArrayList<Account> def = new ArrayList<Account>();
 			
 
-
+			
+			
 			// CLIENTE
 			Client client = Utilities.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos", "Rodriguez",
 					"Argentina", "Buenos Aires", true, user, lista);
@@ -93,8 +98,8 @@ public class App {
 			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), "Tigre", "35621785", "abull@gmail.com", "Alexis", "Bull",
 			"Argentina", "Buenos Aires", true, user7, def);
 			
-			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), "CÃ³rdoba", "39632541", "aerrazur@gmail.com", "Alberto", "Errazuriz",
-			"Argentina", "CÃ³rdoba", true, user8, def);
+			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), "Córdoba", "39632541", "aerrazur@gmail.com", "Alberto", "Errazuriz",
+			"Argentina", "Córdoba", true, user8, def);
 			
 			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), "Formosa", "35621478", "cdavies@gmail.com", "Curtis", "Davies",
 			"Argentina", "Formosa", true, user9, def);
@@ -112,14 +117,14 @@ public class App {
 			adm.setState(Byte.parseByte("1"));
 			adm.setUser(admin);
 
-			// PRESTAMO
+			//PRESTAMO
 			Loan loan = new Loan();
 			loan.setAmmount(2323f);
 			loan.setClient(client);
 			loan.setDate(new Date());
 			loan.setFees(12);
 			loan.setMonthAmmount(2323f);
-
+			
 			// CUOTAs
 			FeePayment fp = new FeePayment();
 			fp.setDate(new Date());
@@ -127,13 +132,12 @@ public class App {
 			fpList.add(fp);
 			loan.setPayments(fpList);
 
-			// TEST AGREGAR CUENTA
-			/*
-			 * Client cliente = (Client) session.get(Client.class, 1);
-			 * ((List<Account>)cliente.getBankAccounts()).add(acc2);
-			 * session.update(cliente);
-			 */
-
+			
+			//TEST AGREGAR CUENTA
+			/* Client cliente = (Client) session.get(Client.class, 1);
+			((List<Account>)cliente.getBankAccounts()).add(acc2);
+			session.update(cliente);*/
+			
 			// GUARDAR
 			session.save(trans);
 			//Guardando clientes
@@ -150,7 +154,7 @@ public class App {
 			//--
 			session.save(loan);
 			session.save(adm);
-
+			
 			session.getTransaction().commit();
 			session.close();
 			sf.close();
