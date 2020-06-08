@@ -1,6 +1,7 @@
 :root {
 	--main-blue: #1761a0;
 	--orange: #FF8C00;
+	--lightGrey: #E8E8E8;
 }
 
 .city{
@@ -44,3 +45,15 @@ position: absolute;
 }	
 
 .bkg-orange{background-color: var(--orange);}
+
+#userAvatar{
+width: 120px;
+height: 120px;	
+
+}
+
+#tbUserProfile{
+background-color: var(--lightGrey);	
+}
+
+#tbUserProfile td,th{padding: 5px;}
