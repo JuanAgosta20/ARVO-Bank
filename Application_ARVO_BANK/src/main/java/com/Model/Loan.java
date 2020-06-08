@@ -29,13 +29,13 @@ public class Loan implements Serializable{
 	Client client;
 	Date date;
 	Float ammount;
-	// Consultar a tamara cuotas y plazo de pago en meses;
 	Integer fees;
 	Float monthAmmount;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "loanId")
 	List<FeePayment> payments = new ArrayList<FeePayment>();
-
+	private Byte state;
+		
 	public Loan() {
 		super();
 	}
@@ -46,6 +46,14 @@ public class Loan implements Serializable{
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Byte getState() {
+		return state;
+	}
+
+	public void setState(Byte state) {
+		this.state = state;
 	}
 
 	public Date getDate() {
