@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <jsp:include page="Include.html"></jsp:include>
-<title>ARVO Bank - Prï¿½stamos</title>
+<title>ARVO Bank - Préstamos</title>
 <script src="Resources/js/custom.js"></script>
 <script src="Resources/js/loansHandler.js"></script>
 </head>
@@ -19,10 +19,10 @@
 				<div class="list-group">
 					<a href="" class="list-group-item list-group-item-action"
 						data-launch-view="pageNewLoan"><i class="material-icons">local_atm</i>
-						Solicitar Prï¿½stamo</a> <a href=""
+						Solicitar Préstamo</a> <a href=""
 						class="list-group-item list-group-item-action"
 						data-launch-view="pageMyLoans"><i class="material-icons">payments</i>
-						Ver Prï¿½stamos</a>
+						Ver Préstamos</a>
 				</div>
 			</div>
 
@@ -68,21 +68,21 @@
 											<tbody>
 												<tr>
 													<td>1</td>
-													<td>$40000</td>
 													<td>02/05/2020</td>
+													<td>$2000</td>
 													<td class="text-success">Pagado</td>
 												</tr>
 												<tr>
 													<td>2</td>
-													<td>$40000</td>
 													<td>02/06/2020</td>
+													<td>$2000</td>
 													<td><button onclick="payment()"
 															class="btn btn-sm btn-primary">Pagar</button></td>
 												</tr>
 												<tr>
 													<td>2</td>
-													<td>$40000</td>
 													<td>02/07/2020</td>
+													<td>$2000</td>
 													<td><button onclick="payment()"
 															class="btn btn-sm btn-primary">Pagar</button></td>
 												</tr>
