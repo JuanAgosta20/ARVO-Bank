@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ARVO-BANK</groupId>
-  <artifactId>Application_ARVO_BANK</artifactId>
+  <groupId>TP_L5_GRUPO_3</groupId>
+  <artifactId>TP_L5_GRUPO_3</artifactId>
   <packaging>war</packaging>
   <version>0.0.1</version>
-  <name>Application_ARVO_BANK Maven Webapp</name>
+  <name>TP_L5_GRUPO_3 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   
@@ -58,6 +58,6 @@
   </dependencies>
   
   <build>
-    <finalName>Application_ARVO_BANK</finalName>
+    <finalName>Application_TP_L5_GRUPO_3</finalName>
   </build>
 </project>
