@@ -18,43 +18,47 @@
     <div class="col-6">
       <h4 class="text-blue">Autorizar Préstamos</h4>
       
- <h3>Falta modificar tabla</h3>
       <table class="table table-hover">
   <thead>
     <tr class="table-info">
-    <th scope="col"></th>
-        <th scope="col">Fecha</th>
-      <th scope="col">Cliente</th>
+    <th scope="col">Fecha</th>
+      <th scope="col">Nombre y Apellido</th>
       <th scope="col">DNI</th>
       <th scope="col">Monto</th>
-       <th scope="col">Cant Cuotas</th>
-        <th scope="col"></th>
+      <th scope="col">Cuotas</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Perfil</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>02/05/2020</td>
-      <td>$40000</td>
-      <td>20</td>
-        <td>Activo</td>
-      <td>$2000</td>
-      <td><a>Ver Pagos</a></td>
+      <td>Ragnar Lotbrok</td>
+      <td>20202020</td>
+      <td>$500000</td>
+      <td>24</td>
+      <td>Aceptado</td>
+      <td><a class="btn btn-success" href="#" role="button">Ver</a></td>
     </tr>
     <tr>
      <td>05/01/2019</td>
-      <td>$5000</td>
-      <td>10</td>
-       <td class="text-success">Pagado</td>
-      <td>$500</td>
-      <td><a>Ver Pagos</a></td>
+     <td>Jorge Diaz</td>
+     <td>30303030</td>
+     <td>$900000</td>
+     <td>48</td>
+     <td>Pendiente</td>
+     <td><a class="btn btn-success" href="#" role="button">Ver</a></td>
+     <td><button class="btn btn-outline-success btn-sm">Aceptar</button><button class="btn btn-outline-warning btn-sm">Rechazar</button></td>
     </tr>
     <tr>
   <td>02/02/2019</td>
-      <td>$120000</td>
-      <td>30</td>
-       <td class="text-danger">Rechazado</td>
-      <td>-</td>
-      <td><a>-</a></td>
+      <td>Homero Simpson</td>
+      <td>40404040</td>
+      <td>$1000000</td>
+      <td>64</td>
+      <td>Rechazado</td>
+      <td><a class="btn btn-success" href="#" role="button">Ver</a></td>
     </tr>
   </tbody>
 </table>

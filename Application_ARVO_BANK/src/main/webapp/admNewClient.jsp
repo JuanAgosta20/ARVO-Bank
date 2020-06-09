@@ -74,7 +74,11 @@
       <div class="col">
      Nacionalidad: </div>
          <div class="col">
-       <input type="text" name="txtNacionality" class="form-control"></div>
+       <select id="country" name="cmbProvinces" class="form-control">
+        <option selected>Seleccione Pais</option>
+        <option>Argentina</option>
+        <option>Uruguay</option>
+        </select>
      </div>
          
   <div class="row mt-2">
@@ -93,7 +97,11 @@
       <div class="col">
       Ciudad: </div>
          <div class="col">
-       <input type="text" name="txtCity" class="form-control"></div>
+               <select id="city" name="cmbProvinces" class="form-control">
+        <option selected>Seleccione ciudad</option>
+        <option>Tigre</option>
+        <option>San Fernando</option>
+      </select>
      </div>
        <div class="row mt-4 justify-content-md-center">
         

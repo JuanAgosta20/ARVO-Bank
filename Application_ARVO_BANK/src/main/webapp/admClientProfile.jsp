@@ -40,31 +40,31 @@
    <tr>
    
     <td><b>DNI:</b></td>
-     <td>20000000</td>
+     <td><input type="text" style="width: 100px;"></input></td>
     </tr> 
     <tr>
      <tr> 
    <td> <b>Género:</b> </td>
-    <td>Masculino</td>
+    <td><input type="text" style="width: 100px;"></input></td>
     </tr> 
     <td><b>Email:</b></td>
-    <td>jorgediaz@arvomail.com</td> 
+    <td><input type="text" style="width: 100px;"></input></td>
     </tr>
       <tr>
     <td><b>Fecha Nac:</b></td>
-    <td>04/04/1970</td> 
+    <td><input type="text" style="width: 100px;"></input></td> 
     </tr> 
     <tr>
     <td><b>Nacionalidad:</b></td>
-    <td>Argentino</td> 
+    <td><input type="text" style="width: 100px;"></input></td>
     </tr> 
      <tr>
     <td><b>Provincia:</b></td>
-    <td>Buenos Aires</td> 
+    <td><input type="text" style="width: 100px;"></input></td> 
     </tr> 
      <tr>
     <td><b>Ciudad:</b></td>
-    <td>Tigre</td> 
+    <td><input type="text" style="width: 100px;"></input></td>
     </tr> 
 </table> 
      
@@ -102,6 +102,7 @@
       <td>Cuenta Corriente</td>
       <td>$20000</td>
       <td>Activa</td>
+      <td><button class="btn btn-danger">Baja</button></td>
     </tr>
     <tr>
       <td>08/08/2008</td>
@@ -110,6 +111,7 @@
       <td>Caja Ahorro en $</td>
       <td>$30000</td>
       <td>Activa</td>
+      <td><button class="btn btn-danger">Baja</button></td>
     </tr>
     <tr>
       <td>08/08/2008</td>
@@ -118,6 +120,7 @@
       <td>Caja Ahorro en US$</td>
       <td>USD 500</td>
       <td>Activa</td>
+      <td><button class="btn btn-danger">Baja</button></td>
     </tr>
   </tbody>
 </table>

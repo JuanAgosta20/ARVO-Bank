@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="Include.html"></jsp:include>
 <title>ARVO Bank - Préstamos</title>
 <script src="Resources/js/custom.js"></script>
@@ -30,7 +30,7 @@
 				<div id="Views">
 					<!-- Tabla Prï¿½stamos -->
 					<div class="view hide" id="pageMyLoans">
-						<h4 class="text-blue mb-3">Mis prÃ©stamos</h4>
+						<h4 class="text-blue mb-3">Mis préstamos</h4>
 						<table class="table table-hover">
 							<thead>
 								<tr class="table-warning">
@@ -115,7 +115,7 @@
 					<!-- Solicitar Prï¿½stamo -->
 
 					<div class="view hide" id="pageNewLoan">
-						<h4 class="text-blue">Solicitar Prï¿½stamo</h4>
+						<h4 class="text-blue">Solicitar Préstamo</h4>
 						<form action="" name="frmNewLoan" class="container mt-3">
 							<div class="row mt-3">
 								<div class="col">Monto deseado:</div>
