@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.Model.Account;
+import com.Model.Administrative;
 import com.Model.Client;
+import com.Model.FeePayment;
+import com.Model.Loan;
 import com.Model.Transaction;
 import com.Model.User;
 
@@ -14,8 +17,8 @@ public class Utilities {
 		super();
 	}
 
-	public static Account createAccount(String cbu, Date date, Float funds, String name, Byte state, ArrayList<Transaction> tm,
-			ArrayList<Transaction> tr, String type) {
+	public static Account createAccount(String cbu, Date date, Float funds, String name, Byte state,
+			ArrayList<Transaction> tm, ArrayList<Transaction> tr, String type) {
 		Account acc = new Account();
 		acc.setCBU(cbu);
 		acc.setCreationDate(date);
@@ -49,6 +52,19 @@ public class Utilities {
 		return cl;
 	}
 
+	public static Administrative createAdministrative(String dni, String email, String fn, String ln, User user) {
+		Administrative adm = new Administrative();
+
+		adm.setDni(dni);
+		adm.setEmail(email);
+		adm.setFirst_name(fn);
+		adm.setLast_name(ln);
+		adm.setState((byte) 1);
+		adm.setUser(user);
+
+		return adm;
+	}
+
 	public static User createUser(String pass, String uName, String userType) {
 		User user = new User();
 
@@ -60,16 +76,37 @@ public class Utilities {
 		return user;
 	}
 
-	public static Transaction createTransaction(Float amm, String concept, Date date, Byte state, Account oa, Account da) {
+	public static Transaction createTransaction(Float amm, String concept, Date date, Account oa, Account da) {
 		Transaction trans = new Transaction();
 
 		trans.setAmmount(amm);
 		trans.setConcept(concept);
 		trans.setDate(date);
-		trans.setState(state);
+		trans.setState((byte) 1);
 		trans.setOriginAccount(oa);
 		trans.setDestinationAccount(da);
 
 		return trans;
+	}
+
+	public static Loan createLoan(Client client, Float ammount, Date date, Integer fees, Float monthAmmount) {
+		Loan loan = new Loan();
+		loan.setClient(client);
+		loan.setAmmount(ammount);
+		loan.setDate(date);
+		loan.setFees(fees);
+		loan.setState((byte) 1);
+		loan.setMonthAmmount(monthAmmount);
+
+		return loan;
+	}
+
+	public static FeePayment creatFeePayment(Float ammount, Date date) {
+		FeePayment fp = new FeePayment();
+		fp.setAmmount(ammount);
+		fp.setDate(date);
+		fp.setState((byte) 1);
+
+		return fp;
 	}
 }
