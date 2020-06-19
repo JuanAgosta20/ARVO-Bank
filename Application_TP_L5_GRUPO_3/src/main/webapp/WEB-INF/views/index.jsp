@@ -2,7 +2,8 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<jsp:include page="Include.html"></jsp:include>
+<!--<jsp:include page="Include.html"></jsp:include>-->
+<%@ include file="Include.html" %>
 <title>Iniciar Sesión</title>
 </head>
 

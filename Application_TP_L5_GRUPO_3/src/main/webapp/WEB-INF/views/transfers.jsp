@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<jsp:include page="Include.html"></jsp:include>
-<title>ARVO Bank - Transferencias</title>
+<!--<jsp:include page="Include.html"></jsp:include>-->
+<%@ include file="Include.html" %>
 </head>
 <body>
 <jsp:include page="masterMenuClient.jsp"></jsp:include>
