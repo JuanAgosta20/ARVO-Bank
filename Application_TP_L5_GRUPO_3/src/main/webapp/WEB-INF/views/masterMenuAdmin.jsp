@@ -47,16 +47,16 @@ exit_to_app</span> Cerrar Sesión</button></form>
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link text-light" href="admClients.jsp">Clientes</a>
+        <a class="nav-link text-light" href="clients.do">Clientes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="admAccounts.jsp">Cuentas</a>
+        <a class="nav-link text-light" href="accounts.do">Cuentas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="admLoans.jsp">Préstamos</a>
+        <a class="nav-link text-light" href="loans.do">Préstamos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="admReports.jsp">Informes</a>
+        <a class="nav-link text-light" href="reports.do">Informes</a>
       </li>
     </ul>
   </div>
