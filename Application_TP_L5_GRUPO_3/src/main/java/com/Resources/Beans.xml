@@ -6,5 +6,11 @@
 
     <bean id="client" class="com.Model.Client">
     </bean>
+    <bean id="user" class="com.Model.User">
+    </bean>
+    <bean id="LogInDaoImpl" class="com.Dao.LogInDaoImpl">
+    </bean>
+    <bean id="ClientDaoImpl" class="com.Dao.ClientDaoImpl">
+    </bean>
 
 </beans>

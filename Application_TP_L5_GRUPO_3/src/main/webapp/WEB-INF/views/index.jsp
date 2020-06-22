@@ -21,7 +21,7 @@
   <div class="form-row">
     
       <label class="font-weight-bold text-secondary">Usuario</label>
-      <input type="email" class="form-control" id="txtUsername" required>
+      <input type="text" class="form-control" id="txtUsername" required>
     
       </div>
   <div class="form-row">

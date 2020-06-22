@@ -48,5 +48,9 @@ public class SessionHandler {
 		sessionFact.close();
 	}
 	
+	public Session getSession() {
+		return session;
+	}
+	
 	
 }
