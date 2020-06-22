@@ -3,6 +3,7 @@ package com.Dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.Model.Client;
 import com.Model.Connection;
 
 public class SessionHandler {
@@ -38,8 +39,9 @@ public class SessionHandler {
 		session.merge(object);
 	}
 	
-	public void get(Integer id) {
-		session.get("Clients",id);
+	public Client get(Integer id) {
+		Client client = (Client)session.get("Clients",id);
+		return client;
 	}
 	
 	public void close() {
