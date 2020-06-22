@@ -42,5 +42,9 @@ public class SessionHandler {
 		session.get("Clients",id);
 	}
 	
+	public void close() {
+		sessionFact.close();
+	}
+	
 	
 }
