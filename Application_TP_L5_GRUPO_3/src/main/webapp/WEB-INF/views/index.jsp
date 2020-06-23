@@ -16,7 +16,7 @@
 <img alt="logo" src="Resources/images/logo.png">
 </div>
 
-<form class="form-center px-4 py-5" id="frmLogin" >
+<form class="form-center px-4 py-5" id="frmLogin" action="login.do" method="Post">
 
   <div class="form-row">
     

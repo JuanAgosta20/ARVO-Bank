@@ -7,7 +7,7 @@
 	<display-name>Application_TP_L5_GRUPO_3</display-name>
 
 	<welcome-file-list>
-		<welcome-file>redirectIndex.html</welcome-file>
+		<welcome-file>redirectIndex.do</welcome-file>
 	</welcome-file-list>
 
 	<servlet>

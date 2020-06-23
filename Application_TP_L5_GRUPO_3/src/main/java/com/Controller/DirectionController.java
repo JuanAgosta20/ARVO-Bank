@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class DirectionController {
 	
-	@RequestMapping("redirectIndex.html")
+	@RequestMapping("redirectIndex.do")
 	public ModelAndView redirectIndex() {
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("index");
