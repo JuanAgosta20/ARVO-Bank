@@ -1,21 +1,26 @@
 package com.Controller;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.User;
 import com.Services.UserService;
 
+@Controller
 @SessionAttributes("user")
 public class LogInController {
-	ApplicationContext appContext = new ClassPathXmlApplicationContext("com/Resources/Beans.xml");
-	UserService us = (UserService) appContext.getBean("UserSericeImpl");
+	
+	BeanFactory bf = new BeanFactory();
+	UserService us = bf.createUserServiceImpl();
 
-	@RequestMapping("login.do")
+	@RequestMapping(value ="login.do", method = RequestMethod.POST)
 	public ModelAndView redirectTransfers(String txtUsername, String txtPass) {
 		ModelAndView MV = new ModelAndView();
 		

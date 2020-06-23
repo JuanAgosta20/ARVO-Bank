@@ -21,13 +21,13 @@
   <div class="form-row">
     
       <label class="font-weight-bold text-secondary">Usuario</label>
-      <input type="text" class="form-control" id="txtUsername" required>
+      <input type="text" class="form-control" id="txtUsername" name="txtUsername" required>
     
       </div>
   <div class="form-row">
     
       <label class="font-weight-bold text-secondary">Contraseña</label>
-      <input type="password" class="form-control" id="txtPass" required>
+      <input type="password" class="form-control" id="txtPass"  name="txtPass" required>
     
     </div>
     <div class="form-row mt-3">
