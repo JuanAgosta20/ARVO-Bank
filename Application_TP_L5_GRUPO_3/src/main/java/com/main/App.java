@@ -209,8 +209,8 @@ public class App {
 			// USUARIO BANCO
 			Administrative adm = Utilities.createAdministrative("22365986", "Juancho@hotmail.es", "Juan", "Acosta",
 					admin);
-			Administrative adm2 = Utilities.createAdministrative("33009922", "jony@hotmail.es", "Jonathan", "Aceite",
-					admin);
+			//Administrative adm2 = Utilities.createAdministrative("33009922", "jony@hotmail.es", "Jonathan", "Aceite",
+			//		admin);
 
 			// PRESTAMO
 			Loan loan = Utilities.createLoan(client, 2323F, date, 3, 774.33F);
@@ -298,7 +298,7 @@ public class App {
 			session.save(loan9);
 			session.save(loan10);
 			session.save(adm);
-			session.save(adm2);
+			//session.save(adm2);
 
 			session.getTransaction().commit();
 			session.close();

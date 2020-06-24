@@ -1,15 +1,18 @@
 package com.Dao;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.Model.Client;
 import com.Model.Connection;
+import com.Model.User;
 
 public class ClientDaoImpl implements ClientDao {
 
 	SessionFactory sFactory = Connection.getInstance();
-	SessionHandler sHand; 
+	SessionHandler sHand = new SessionHandler(); 
+	Session session;
 
 	
 	public Boolean insertClient(Client client) {
@@ -49,6 +52,20 @@ public class ClientDaoImpl implements ClientDao {
 	public Client getClient(String dni) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Client getClient(User user) {
+		session =  sHand.getSession();
+		Client client;
+		try {
+			client = (Client) session.get(Client.class, user.getIdUser().intValue());
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			session.close();
+		}
+		return client;
 	}
 
 }

@@ -4,6 +4,7 @@ package com.Model;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.LogInDaoImpl;
 import com.Services.UserServiceImpl;
@@ -25,8 +26,11 @@ public class BeanFactory{
 	//DAO
 
 	public LogInDaoImpl createLogInDaoImpl() {
-		// TODO Auto-generated method stub
 		return (LogInDaoImpl) appContext.getBean("LogInDaoImpl");
+	}
+	
+	public AdministrativeDao createAdminDaoImpl() {
+		return (AdministrativeDao) appContext.getBean("AdministrativeDaoImpl");
 	}
 
 	public ClientDaoImpl createClientDaoImpl() {

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Model.Administrative;
 import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.User;
@@ -26,9 +27,9 @@ public class LogInController {
 		
 		User user = us.getUser(txtUsername, txtPass);
 
-		if (user.getUserType() == "Admin") {
-			// Administrative adm = (AdmintDaoImpl) appContext.getBean("AdminDaoImpl");
-			// MV.addObject("user", adm);
+		if (user.getUserType().equals("Admin")) {
+			Administrative adm = us.getAdmin(user);
+			MV.addObject("user", adm);
 			MV.setViewName("admClients");
 		} else {
 			

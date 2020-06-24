@@ -8,13 +8,14 @@
 	</bean>
 	<bean id="user" class="com.Model.User">
 	</bean>
-	
-	
+
+	<!-- DAO -->
 	<bean id="LogInDaoImpl" class="com.Dao.LogInDaoImpl">
 	</bean>
 	<bean id="ClientDaoImpl" class="com.Dao.ClientDaoImpl">
 	</bean>
-
+	<bean id="AdministrativeDaoImpl" class="com.Dao.AdministrativeDaoImpl">
+	</bean>
 	<!--SERVICES -->
 	<bean id="UserServiceImpl" class="com.Services.UserServiceImpl">
 	</bean>

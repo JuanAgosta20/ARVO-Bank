@@ -1,8 +1,7 @@
 package com.Services;
 
 
-import org.hibernate.Session;
-
+import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.LogInDaoImpl;
 import com.Dao.SessionHandler;
@@ -15,7 +14,7 @@ public class UserServiceImpl implements UserService {
 
 	BeanFactory bf = new BeanFactory();
 	SessionHandler sHand = new SessionHandler();
-	Session session;
+	
 
 	public User getUser(String userName, String pass) {
 		User user = bf.createUser();
@@ -25,22 +24,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public Client getClient(User user) {
-		session =  sHand.getSession();
-		Client client;
-		try {
-			client = (Client) session.get(Client.class, user.getIdUser().intValue());
-		}catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}finally {
-			session.close();
-		}
-		return client;
+		ClientDaoImpl cliDao = bf.createClientDaoImpl();
+		return cliDao.getClient(user);
 	}
 
 	public Administrative getAdmin(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		AdministrativeDao admDao = bf.createAdminDaoImpl();
+		return admDao.getAdministrative(user);
 	}
 
 }

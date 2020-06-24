@@ -3,7 +3,9 @@ package com.Model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Administratives")
+@Table(name = "Administratives", uniqueConstraints={
+	       @UniqueConstraint(name="const", columnNames={"idUser"})
+	   })
 public class Administrative {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
