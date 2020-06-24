@@ -4,6 +4,7 @@ package com.Model;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.Dao.AccountDaoImpl;
 import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.LogInDaoImpl;
@@ -13,10 +14,13 @@ public class BeanFactory{
 	
 	static ApplicationContext appContext = new ClassPathXmlApplicationContext("com/Resources/Beans.xml");
 	
-
 	//MODEL
 	public User createUser() {
 		return (User) appContext.getBean("user");
+	}
+	
+	public Account createAccount() {
+		return (Account) appContext.getBean("account");
 	}
 	
 	public Administrative createAdministrative() {
@@ -35,6 +39,10 @@ public class BeanFactory{
 
 	public ClientDaoImpl createClientDaoImpl() {
 		return (ClientDaoImpl) appContext.getBean("ClientDaoImpl");
+	}
+	
+	public AccountDaoImpl getAccountDaoImpl() {
+		return (AccountDaoImpl) appContext.getBean("AccountDaoImpl");
 	}
 	
 	//SERVICES

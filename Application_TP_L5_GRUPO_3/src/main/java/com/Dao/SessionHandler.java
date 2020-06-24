@@ -39,7 +39,7 @@ public class SessionHandler {
 		session.merge(object);
 	}
 	
-	public Client get(Integer id) {
+	public Client get(Integer id) { // Esto esta raraso
 		Client client = (Client)session.get("Clients",id);
 		return client;
 	}
