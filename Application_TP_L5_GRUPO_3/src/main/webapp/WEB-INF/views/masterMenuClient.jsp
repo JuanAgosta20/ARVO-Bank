@@ -47,13 +47,13 @@ exit_to_app</span> Cerrar Sesión</button></form>
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mx-auto">
            <li class="nav-item">
-        <a class="nav-link text-light ml-4" href="accounts.jsp">Cuentas  </a>
+        <a class="nav-link text-light ml-4" href="clAccounts.do">Cuentas  </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light ml-3" href="transfers.jsp">Transferencias </a>
+        <a class="nav-link text-light ml-3" href="clTransfers.do">Transferencias </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light ml-3" href="loans.jsp?view=pageMyLoans">Préstamos</a>
+        <a class="nav-link text-light ml-3" href="clLoans.do" <%-- href="loans.jsp?view=pageMyLoans" --%> >Préstamos</a>
       </li>
     </ul>
   </div>

@@ -7,22 +7,22 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdministrativeController {
 
-	@RequestMapping("clients")
+	@RequestMapping("admClients")
 	public ModelAndView Clients(){
 		return new ModelAndView("admClients");
 	}
 	
-	@RequestMapping("accounts")
+	@RequestMapping("admAccounts")
 	public ModelAndView Accounts(){
 		return new ModelAndView("admAccounts");
 	}
 	
-	@RequestMapping("loans")
+	@RequestMapping("admLoans")
 	public ModelAndView Loans(){
 		return new ModelAndView("admLoans");
 	}
 	
-	@RequestMapping("reports")
+	@RequestMapping("admReports")
 	public ModelAndView Reports(){
 		return new ModelAndView("admReports");
 	}

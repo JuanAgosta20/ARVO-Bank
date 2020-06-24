@@ -52,13 +52,13 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav mx-auto">
 				<li class="nav-item"><a class="nav-link text-light"
-					href="clients.do">Clientes</a></li>
+					href="admClients.do">Clientes</a></li>
 				<li class="nav-item"><a class="nav-link text-light"
-					href="accounts.do">Cuentas</a></li>
+					href="admAccounts.do">Cuentas</a></li>
 				<li class="nav-item"><a class="nav-link text-light"
-					href="loans.do">Préstamos</a></li>
+					href="admLoans.do">Préstamos</a></li>
 				<li class="nav-item"><a class="nav-link text-light"
-					href="reports.do">Informes</a></li>
+					href="admReports.do">Informes</a></li>
 			</ul>
 		</div>
 		<div class="text-light font-weight-normal">
