@@ -1,5 +1,7 @@
 package com.Dao;
 
+import java.io.Serializable;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -39,9 +41,9 @@ public class SessionHandler {
 		session.merge(object);
 	}
 	
-	public Client get(Integer id) { // Esto esta raraso
-		Client client = (Client)session.get("Clients",id);
-		return client;
+	public Object get(Class<?> model,Serializable id) { 
+		Object obj = session.get(model,id);
+		return obj;
 	}
 	
 	public void close() {
