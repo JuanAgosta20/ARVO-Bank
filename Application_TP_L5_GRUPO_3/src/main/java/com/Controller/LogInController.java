@@ -34,7 +34,7 @@ public class LogInController {
 			
 			Client client = us.getClient(user);
 			MV.addObject("user", client);
-			MV.addObject("accounts", client.getBankAccounts());
+			//MV.addObject("accounts", client.getBankAccounts());
 			MV.setViewName("accounts");
 		}
 		return MV;
