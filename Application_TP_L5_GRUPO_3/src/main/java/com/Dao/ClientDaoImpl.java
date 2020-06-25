@@ -1,5 +1,7 @@
 package com.Dao;
 
+import java.util.ArrayList;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +12,6 @@ import com.Model.User;
 
 public class ClientDaoImpl implements ClientDao {
 
-	SessionFactory sFactory = Connection.getInstance();
 	SessionHandler sHand = new SessionHandler(); 
 	Session session;
 
@@ -41,7 +42,7 @@ public class ClientDaoImpl implements ClientDao {
 
 	public Client getClient(Integer id) {
 		try {
-			Client client = sHand.get(id);
+			Client client = (Client)sHand.get(Client.class,id);
 			return client;
 		}catch(HibernateException ex) {
 			ex.printStackTrace();
@@ -67,5 +68,12 @@ public class ClientDaoImpl implements ClientDao {
 		}
 		return client;
 	}
+
+	public ArrayList<Client> getClients() {
+		ArrayList<Client> client = (ArrayList<Client>) sHand.getAllData(Client.class);
+		return client;
+	}
+	
+	
 
 }

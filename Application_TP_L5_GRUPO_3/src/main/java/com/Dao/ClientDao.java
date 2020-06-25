@@ -1,5 +1,7 @@
 package com.Dao;
 
+import java.util.ArrayList;
+
 import com.Model.Client;
 import com.Model.User;
 
@@ -9,4 +11,5 @@ public interface ClientDao{
 	public Client getClient(Integer id);
 	public Client getClient(User user);
 	public Client getClient(String dni);
+	public ArrayList<Client> getClients();
 }
