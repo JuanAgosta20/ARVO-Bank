@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="com.Model.Administrative"%>
 
 <!DOCTYPE HTML>
+
+<%
+	if(session.getAttribute("user") == null || !(session.getAttribute("user").getClass().equals(Administrative.class))) response.sendRedirect("redirectIndex.do");
+%>
 <html>
 <head>
 
