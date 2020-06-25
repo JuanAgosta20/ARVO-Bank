@@ -17,6 +17,8 @@ import com.Model.Genre;
 import com.Model.Loan;
 import com.Model.Transaction;
 import com.Model.User;
+import com.Model.typeAccount;
+import com.Model.typeMove;
 import com.Model.Cmd;
 
 public class App {
@@ -41,60 +43,74 @@ public class App {
 			User user10 = Utilities.createUser("123456", "Kevin", "Cliente");
 
 			User admin = Utilities.createUser("123456", "Juanc", "Admin");
+			
+			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos");
+			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dólares");
+			typeAccount ta3 = Utilities.createTypeAccount("Cuenta Corriente");
+			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos");
+			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dólares");
 
 			// CUENTA
 			Date fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
 			Account acc = Utilities.createAccount("12321323213", fecha, 32323.4F, "Cuenta 1", (byte) 1, null, null,
-					"Caja de ahorro");
+					ta);
 			fecha = Cmd.crearFechaHora(10, 1, 2019, 10, 22, 12);
 			Account acc2 = Utilities.createAccount("68686868686545", fecha, 45000F, "Cuenta 2", (byte) 1, null, null,
-					"Cuenta Corriente");
+					ta3);
 			fecha = Cmd.crearFechaHora(22, 2, 2020, 31, 2, 12);
 			Account acc3 = Utilities.createAccount("5473767373356", fecha, 333.03F, "Cuenta 3", (byte) 1, null, null,
-					"Caja de ahorro");
+					ta4);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
 			Account acc4 = Utilities.createAccount("59598123156651", fecha, 90000.50F, "Cuenta 1", (byte) 1, null, null,
-					"Cuenta Corriente");
+					ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
 			Account acc5 = Utilities.createAccount("323269444845261", fecha, 10000000F, "Cuenta 2", (byte) 1, null,
-					null, "Caja de ahorro");
+					null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
 			Account acc6 = Utilities.createAccount("2215198431218912", fecha, 51510F, "Cuenta 3", (byte) 1, null, null,
-					"Cuenta Corriente");
+					ta2);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
 			Account acc7 = Utilities.createAccount("454612354984561", fecha, 100000F, "Cuenta 1", (byte) 1, null, null,
-					"Caja de ahorro");
+					ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
 			Account acc8 = Utilities.createAccount("5954841631566", fecha, 45.5F, "Cuenta 1", (byte) 1, null, null,
-					"Caja de ahorro");
+					ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
 			Account acc9 = Utilities.createAccount("88451231561231", fecha, 102000.3F, "Cuenta 1", (byte) 1, null, null,
-					"Cuenta Corriente");
+					ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
 			Account acc10 = Utilities.createAccount("99218913621", fecha, 5.5F, "Cuenta 1", (byte) 1, null, null,
-					"Caja de ahorro");
+					ta);
+			
+			
+			//TIPOS DE MOVIMIENTO
+			typeMove tm = Utilities.createTypeMove("Alta de Cuenta", true);
+			typeMove tm2 = Utilities.createTypeMove("Alta de Prestamo", true);
+			typeMove tm3 = Utilities.createTypeMove("Pago de Prestamo", false);
+			typeMove tm4 = Utilities.createTypeMove("Transferencia Realizada", false);
+			typeMove tm5 = Utilities.createTypeMove("Transferencia Recibida", true);
 
 			// TRANSACCION
 			Date date = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
-			Transaction trans = Utilities.createTransaction(2000F, "Pagos", date, null, null);
+			Transaction trans = Utilities.createTransaction(2000F, "Pagos", date, null, null, tm3);
 			date = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Transaction trans2 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null);
+			Transaction trans2 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
 			date = Cmd.crearFechaHora(25, 3, 2019, 11, 42, 12);
-			Transaction trans3 = Utilities.createTransaction(2500F, "Alquiler", date, null, null);
+			Transaction trans3 = Utilities.createTransaction(2500F, "Alquiler", date, null, null, tm4);
 			date = Cmd.crearFechaHora(15, 4, 2020, 18, 45, 12);
-			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null);
+			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null,tm2);
 			date = Cmd.crearFechaHora(30, 1, 2020, 10, 45, 45);
-			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null);
+			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null,tm5);
 			date = Cmd.crearFechaHora(18, 5, 2019, 12, 12, 23);
-			Transaction trans6 = Utilities.createTransaction(2666F, "Pago cuota", date, null, null);
+			Transaction trans6 = Utilities.createTransaction(2666F, "Pago cuota", date, null, null, tm3);
 			date = Cmd.crearFechaHora(10, 2, 2020, 19, 46, 22);
-			Transaction trans7 = Utilities.createTransaction(25000F, "Transaccion", date, null, null);
+			Transaction trans7 = Utilities.createTransaction(25000F, "Transaccion", date, null, null, tm5);
 			date = Cmd.crearFechaHora(10, 3, 2020, 11, 45, 12);
-			Transaction trans8 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null);
+			Transaction trans8 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
 			date = Cmd.crearFechaHora(10, 4, 2020, 10, 00, 12);
-			Transaction trans9 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null);
+			Transaction trans9 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
 			date = Cmd.crearFechaHora(10, 5, 2020, 19, 00, 01);
-			Transaction trans10 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null);
+			Transaction trans10 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
 
 			trans.setDestinationAccount(acc);
 			trans.setOriginAccount(acc2);
@@ -281,6 +297,19 @@ public class App {
 			session.save(gen);
 			session.save(gen2);
 			session.save(gen3);
+			
+			session.save(ta);
+			session.save(ta2);
+			session.save(ta3);
+			session.save(ta4);
+			session.save(ta5);
+			
+
+			session.save(ta);
+			session.save(tm2);
+			session.save(tm3);
+			session.save(tm4);
+			session.save(tm5);
 
 			// GUARDAR
 			session.save(trans);

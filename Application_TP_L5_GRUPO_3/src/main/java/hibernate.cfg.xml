@@ -19,5 +19,7 @@
         <mapping class="com.Model.FeePayment"/>
         <mapping class="com.Model.Administrative"/>
         <mapping class="com.Model.Genre"/>
+        <mapping class="com.Model.typeAccount"/>
+        <mapping class="com.Model.typeMove"/>
     </session-factory>
 </hibernate-configuration>

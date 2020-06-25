@@ -9,23 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Genres")
-public class Genre implements Serializable{
+@Table(name="typeAccounts")
+public class typeAccount  implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer idGenre;
+	Integer idTypeAccount;
 	String description;
-	
-	public Genre() {
+	public typeAccount() {
 		super();
 	}
-	public int getIdGenre() {
-		return idGenre;
+	public Integer getIdTypeAccount() {
+		return idTypeAccount;
 	}
-	public void setIdGenre(int idGenre) {
-		this.idGenre = idGenre;
+	public void setIdTypeAccount(Integer idTypeAccount) {
+		this.idTypeAccount = idTypeAccount;
 	}
 	public String getDescription() {
 		return description;
@@ -34,4 +33,5 @@ public class Genre implements Serializable{
 		this.description = description;
 	}
 	
+
 }

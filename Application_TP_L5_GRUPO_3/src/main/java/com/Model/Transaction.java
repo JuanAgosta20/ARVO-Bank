@@ -1,5 +1,6 @@
 package com.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Transactions")
-public class Transaction {
+public class Transaction implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idTrans;
@@ -27,6 +30,9 @@ public class Transaction {
 	private Account destinationAccount;
 	private String concept;
 	private Byte state;
+	@ManyToOne()
+	@JoinColumn(name = "idTypeMove")
+	private typeMove tm;
 
 	public Transaction() {
 		super();
@@ -87,6 +93,15 @@ public class Transaction {
 	public void setOriginAccount(Account originAccount) {
 		this.originAccount = originAccount;
 	}
+
+	public typeMove getTm() {
+		return tm;
+	}
+
+	public void setTm(typeMove tm) {
+		this.tm = tm;
+	}
+	
 	
 
 }

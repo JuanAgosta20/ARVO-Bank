@@ -11,6 +11,8 @@ import com.Model.Genre;
 import com.Model.Loan;
 import com.Model.Transaction;
 import com.Model.User;
+import com.Model.typeAccount;
+import com.Model.typeMove;
 
 public class Utilities {
 
@@ -19,7 +21,7 @@ public class Utilities {
 	}
 
 	public static Account createAccount(String cbu, Date date, Float funds, String name, Byte state,
-			ArrayList<Transaction> tm, ArrayList<Transaction> tr, String type) {
+			ArrayList<Transaction> tm, ArrayList<Transaction> tr, typeAccount type) {
 		Account acc = new Account();
 		acc.setCBU(cbu);
 		acc.setCreationDate(date);
@@ -28,9 +30,22 @@ public class Utilities {
 		acc.setState(state);
 		acc.setTransactionMade(tm);
 		acc.setTransactionReceived(tr);
-		acc.setTypeAccount(type);
+		acc.setTypeAcc(type);
 
 		return acc;
+	}
+	
+	public static typeAccount createTypeAccount(String desc) {
+		typeAccount ta = new typeAccount();
+		ta.setDescription(desc);
+		return ta;
+	}
+	
+	public static typeMove createTypeMove(String desc, Boolean credit) {
+		typeMove tm = new typeMove();
+		tm.setCredit(credit);
+		tm.setDescription(desc);
+		return tm;
 	}
 
 	public static Client createClient(Date birthdate, String city, String dni, String email, String fName, String lName,
@@ -83,7 +98,7 @@ public class Utilities {
 		return user;
 	}
 
-	public static Transaction createTransaction(Float amm, String concept, Date date, Account oa, Account da) {
+	public static Transaction createTransaction(Float amm, String concept, Date date, Account oa, Account da, typeMove tm) {
 		Transaction trans = new Transaction();
 
 		trans.setAmmount(amm);
@@ -92,6 +107,7 @@ public class Utilities {
 		trans.setState((byte) 1);
 		trans.setOriginAccount(oa);
 		trans.setDestinationAccount(da);
+		trans.setTm(tm);
 
 		return trans;
 	}

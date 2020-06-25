@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +26,9 @@ public class Account implements Serializable {
 	private Integer idAccount;
 	@Column(unique = true)
 	private String CBU;
-	private String typeAccount;
+	@ManyToOne()
+	@JoinColumn(name = "idTypeAcc")
+	private typeAccount typeAcc;
 	private String nameAccount;
 	private Float funds;
 	private Date creationDate;
@@ -54,12 +58,14 @@ public class Account implements Serializable {
 		CBU = cBU;
 	}
 
-	public String getTypeAccount() {
-		return typeAccount;
+
+
+	public typeAccount getTypeAcc() {
+		return typeAcc;
 	}
 
-	public void setTypeAccount(String typeAccount) {
-		this.typeAccount = typeAccount;
+	public void setTypeAcc(typeAccount typeAcc) {
+		this.typeAcc = typeAcc;
 	}
 
 	public String getNameAccount() {
