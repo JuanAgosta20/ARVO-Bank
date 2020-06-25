@@ -25,7 +25,7 @@ public class Loan implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer loanId;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idCliente")
+	@JoinColumn(name = "idClient")
 	Client client;
 	Date date;
 	Float ammount;

@@ -9,10 +9,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,14 +34,16 @@ public class Client implements Serializable {
 	private Date birthdate;
 	@Column(unique = true)
 	private String email;
-	private Boolean sex;
+	@ManyToOne()
+	@JoinColumn(name = "idGenre")
+	private Genre genre;
 	//
 	private String nationality;
 	private String province;
 	private String city;
 	//
-	@OneToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "idCliente")
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "idClient")
 	private List<Account> bankAccounts = new ArrayList<Account>(4);
 	private Byte state;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -118,12 +122,12 @@ public class Client implements Serializable {
 		this.birthdate = birthdate;
 	}
 
-	public Boolean getSex() {
-		return sex;
+	public Genre getGenre() {
+		return genre;
 	}
 
-	public void setSex(Boolean sex) {
-		this.sex = sex;
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
 
 	public String getNationality() {

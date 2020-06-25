@@ -7,6 +7,7 @@ import com.Model.Account;
 import com.Model.Administrative;
 import com.Model.Client;
 import com.Model.FeePayment;
+import com.Model.Genre;
 import com.Model.Loan;
 import com.Model.Transaction;
 import com.Model.User;
@@ -33,7 +34,7 @@ public class Utilities {
 	}
 
 	public static Client createClient(Date birthdate, String city, String dni, String email, String fName, String lName,
-			String nationality, String province, boolean sex, User user, ArrayList<Account> bankAccounts) {
+			String nationality, String province, Genre genre, User user, ArrayList<Account> bankAccounts) {
 		Client cl = new Client();
 
 		cl.setBirthdate(birthdate);
@@ -44,12 +45,18 @@ public class Utilities {
 		cl.setLastName(lName);
 		cl.setNationality(nationality);
 		cl.setProvince(province);
-		cl.setSex(sex);
+		cl.setGenre(genre);
 		cl.setState((byte) 1);
 		cl.setUser(user);
 		cl.setBankAccounts(bankAccounts);
 
 		return cl;
+	}
+	
+	public static Genre createGenre(String desc) {
+		Genre gen = new Genre();
+		gen.setDescription(desc);
+		return gen;
 	}
 
 	public static Administrative createAdministrative(String dni, String email, String fn, String ln, User user) {
