@@ -44,11 +44,11 @@ public class App {
 
 			User admin = Utilities.createUser("123456", "Juanc", "Admin");
 			
-			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos");
-			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dólares");
-			typeAccount ta3 = Utilities.createTypeAccount("Cuenta Corriente");
-			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos");
-			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dólares");
+			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos", true);
+			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dólares", false);
+			typeAccount ta3 = Utilities.createTypeAccount("Cuenta Corriente", true);
+			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos", true);
+			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dólares", false);
 
 			// CUENTA
 			Date fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);

@@ -35,9 +35,10 @@ public class Utilities {
 		return acc;
 	}
 	
-	public static typeAccount createTypeAccount(String desc) {
+	public static typeAccount createTypeAccount(String desc, Boolean ars) {
 		typeAccount ta = new typeAccount();
 		ta.setDescription(desc);
+		ta.setArs(ars);
 		return ta;
 	}
 	
