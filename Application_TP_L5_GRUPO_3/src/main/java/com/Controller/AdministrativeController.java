@@ -17,6 +17,11 @@ public class AdministrativeController {
 		return new ModelAndView("admAccounts");
 	}
 	
+	@RequestMapping("admClientProfile")
+	public ModelAndView ClientProfile(){
+		return new ModelAndView("admClientProfile");
+	}
+	
 	@RequestMapping("admLoans")
 	public ModelAndView Loans(){
 		return new ModelAndView("admLoans");

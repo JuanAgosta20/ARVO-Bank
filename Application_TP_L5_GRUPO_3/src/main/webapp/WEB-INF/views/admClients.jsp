@@ -80,7 +80,7 @@
       <td>Buenos Aires</td>
       <td>Tigre</td>
       <td>Activo</td>
-      <td><a class="btn btn-success" href="admClientProfile.jsp" role="button">Ver</a></td>
+      <td><a class="btn btn-success" href="admClientProfile.do" role="button">Ver</a></td>
           </tr>
       <tr>
       <td>Perez</td>
