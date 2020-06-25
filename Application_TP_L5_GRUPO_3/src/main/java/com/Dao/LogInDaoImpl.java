@@ -22,7 +22,7 @@ public class LogInDaoImpl implements LogInDao {
 		}catch (Exception e) {
 			return null;
 		}
-		session.close();
+		//session.close();
 		return user;
 	}
 

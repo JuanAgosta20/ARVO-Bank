@@ -25,7 +25,7 @@ public class AdministrativeDaoImpl implements AdministrativeDao {
 			e.printStackTrace();
 			return null;
 		}
-		session.close();
+		//session.close();
 		return adm;
 	}
 
