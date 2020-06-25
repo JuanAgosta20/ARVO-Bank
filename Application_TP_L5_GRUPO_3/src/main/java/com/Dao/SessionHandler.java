@@ -1,11 +1,11 @@
 package com.Dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.Model.Client;
 import com.Model.Connection;
 
 public class SessionHandler {
@@ -52,6 +52,10 @@ public class SessionHandler {
 	
 	public Session getSession() {
 		return session;
+	}
+	
+	public List<?> getAllData(Class<?> clas){
+		return session.createCriteria(clas).list();
 	}
 	
 	
