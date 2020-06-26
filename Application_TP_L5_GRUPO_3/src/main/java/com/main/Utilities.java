@@ -1,14 +1,17 @@
-package com.Controller;
+package com.main;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.Model.Account;
 import com.Model.Administrative;
+import com.Model.City;
 import com.Model.Client;
+import com.Model.Countrie;
 import com.Model.FeePayment;
 import com.Model.Genre;
 import com.Model.Loan;
+import com.Model.Province;
 import com.Model.Transaction;
 import com.Model.User;
 import com.Model.typeAccount;
@@ -42,6 +45,24 @@ public class Utilities {
 		return ta;
 	}
 	
+	public static Countrie createCountrie(String name) {
+		Countrie c = new Countrie();
+		c.setName(name);
+		return c;
+	}
+	
+	public static Province createProvince(String name) {
+		Province p = new Province();
+		p.setName(name);
+		return p;
+	}
+	
+	public static City createCity(String name) {
+		City i = new City();
+		i.setName(name);
+		return i;
+	}
+	
 	public static typeMove createTypeMove(String desc, Boolean credit) {
 		typeMove tm = new typeMove();
 		tm.setCredit(credit);
@@ -49,8 +70,8 @@ public class Utilities {
 		return tm;
 	}
 
-	public static Client createClient(Date birthdate, String city, String dni, String email, String fName, String lName,
-			String nationality, String province, Genre genre, User user, ArrayList<Account> bankAccounts) {
+	public static Client createClient(Date birthdate, City city, String dni, String email, String fName, String lName,
+			Countrie nationality, Province province, Genre genre, User user, ArrayList<Account> bankAccounts) {
 		Client cl = new Client();
 
 		cl.setBirthdate(birthdate);

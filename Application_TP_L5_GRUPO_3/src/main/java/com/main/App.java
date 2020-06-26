@@ -7,14 +7,16 @@ import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.Controller.Utilities;
 import com.Model.Account;
 import com.Model.Administrative;
+import com.Model.City;
 import com.Model.Client;
 import com.Model.Connection;
+import com.Model.Countrie;
 import com.Model.FeePayment;
 import com.Model.Genre;
 import com.Model.Loan;
+import com.Model.Province;
 import com.Model.Transaction;
 import com.Model.User;
 import com.Model.typeAccount;
@@ -30,6 +32,337 @@ public class App {
 			Session session = sf.openSession();
 			session.beginTransaction();
 
+			//LOCACIONES
+			Countrie countries[] = {
+					Utilities.createCountrie("Afganistán"), // 0
+					Utilities.createCountrie("Albania"), // 1
+					Utilities.createCountrie("Alemania"), // 2
+					Utilities.createCountrie("Algeria"), // 3
+					Utilities.createCountrie("Andorra"), // 4
+					Utilities.createCountrie("Angola"), // 5
+					Utilities.createCountrie("Anguila"), // 6
+					Utilities.createCountrie("Antártida"), // 7
+					Utilities.createCountrie("Antigua y Barbuda"), // 8
+					Utilities.createCountrie("Antillas Neerlandesas"), // 9
+					Utilities.createCountrie("Arabia Saudita"), // 10
+					Utilities.createCountrie("Argentina"), // 11
+					Utilities.createCountrie("Armenia"), // 12
+					Utilities.createCountrie("Aruba"), // 13
+					Utilities.createCountrie("Australia"), // 14
+					Utilities.createCountrie("Austria"), // 15
+					Utilities.createCountrie("Azerbayán"), // 16
+					Utilities.createCountrie("Bélgica"), // 17
+					Utilities.createCountrie("Bahamas"), // 18
+					Utilities.createCountrie("Bahrein"), // 19
+					Utilities.createCountrie("Bangladesh"), // 20
+					Utilities.createCountrie("Barbados"), // 21
+					Utilities.createCountrie("Belice"), // 22
+					Utilities.createCountrie("Benín"), // 23
+					Utilities.createCountrie("Bhután"), // 24
+					Utilities.createCountrie("Bielorrusia"), // 25
+					Utilities.createCountrie("Birmania"), // 26
+					Utilities.createCountrie("Bolivia"), // 27
+					Utilities.createCountrie("Bosnia y Herzegovina"), // 28
+					Utilities.createCountrie("Botsuana"), // 29
+					Utilities.createCountrie("Brasil"), // 30
+					Utilities.createCountrie("Brunéi"), // 31
+					Utilities.createCountrie("Bulgaria"), // 32
+					Utilities.createCountrie("Burkina Faso"), // 33
+					Utilities.createCountrie("Burundi"), // 34
+					Utilities.createCountrie("Cabo Verde"), // 35
+					Utilities.createCountrie("Camboya"), // 36
+					Utilities.createCountrie("Camerún"), // 37
+					Utilities.createCountrie("Canadá"), // 38
+					Utilities.createCountrie("Chad"), // 39
+					Utilities.createCountrie("Chile"), // 40
+					Utilities.createCountrie("China"), // 41
+					Utilities.createCountrie("Chipre"), // 42
+					Utilities.createCountrie("Ciudad del Vaticano"), // 43
+					Utilities.createCountrie("Colombia"), // 44
+					Utilities.createCountrie("Comoras"), // 45
+					Utilities.createCountrie("Congo"), // 46
+					Utilities.createCountrie("Congo"), // 47
+					Utilities.createCountrie("Corea del Norte"), // 48
+					Utilities.createCountrie("Corea del Sur"), // 49
+					Utilities.createCountrie("Costa de Marfil"), // 50
+					Utilities.createCountrie("Costa Rica"), // 51
+					Utilities.createCountrie("Croacia"), // 52
+					Utilities.createCountrie("Cuba"), // 53
+					Utilities.createCountrie("Dinamarca"), // 54
+					Utilities.createCountrie("Dominica"), // 55
+					Utilities.createCountrie("Ecuador"), // 56
+					Utilities.createCountrie("Egipto"), // 57
+					Utilities.createCountrie("El Salvador"), // 58
+					Utilities.createCountrie("Emiratos Árabes Unidos"), // 59
+					Utilities.createCountrie("Eritrea"), // 60
+					Utilities.createCountrie("Eslovaquia"), // 61
+					Utilities.createCountrie("Eslovenia"), // 62
+					Utilities.createCountrie("España"), // 63
+					Utilities.createCountrie("Estados Unidos de América"), // 64
+					Utilities.createCountrie("Estonia"), // 65
+					Utilities.createCountrie("Etiopía"), // 66
+					Utilities.createCountrie("Filipinas"), // 67
+					Utilities.createCountrie("Finlandia"), // 68
+					Utilities.createCountrie("Fiyi"), // 69
+					Utilities.createCountrie("Francia"), // 70
+					Utilities.createCountrie("Gabón"), // 71
+					Utilities.createCountrie("Gambia"), // 72
+					Utilities.createCountrie("Georgia"), // 73
+					Utilities.createCountrie("Ghana"), // 74
+					Utilities.createCountrie("Gibraltar"), // 75
+					Utilities.createCountrie("Granada"), // 76
+					Utilities.createCountrie("Grecia"), // 77
+					Utilities.createCountrie("Groenlandia"), // 78
+					Utilities.createCountrie("Guadalupe"), // 79
+					Utilities.createCountrie("Guam"), // 80
+					Utilities.createCountrie("Guatemala"), // 81
+					Utilities.createCountrie("Guayana Francesa"), // 82
+					Utilities.createCountrie("Guernsey"), // 83
+					Utilities.createCountrie("Guinea"), // 84
+					Utilities.createCountrie("Guinea Ecuatorial"), // 85
+					Utilities.createCountrie("Guinea-Bissau"), // 86
+					Utilities.createCountrie("Guyana"), // 87
+					Utilities.createCountrie("Haití"), // 88
+					Utilities.createCountrie("Honduras"), // 89
+					Utilities.createCountrie("Hong kong"), // 90
+					Utilities.createCountrie("Hungría"), // 91
+					Utilities.createCountrie("India"), // 92
+					Utilities.createCountrie("Indonesia"), // 93
+					Utilities.createCountrie("Irán"), // 94
+					Utilities.createCountrie("Irak"), // 95
+					Utilities.createCountrie("Irlanda"), // 96
+					Utilities.createCountrie("Isla Bouvet"), // 97
+					Utilities.createCountrie("Isla de Man"), // 98
+					Utilities.createCountrie("Isla de Navidad"), // 99
+					Utilities.createCountrie("Isla Norfolk"), // 100
+					Utilities.createCountrie("Islandia"), // 101
+					Utilities.createCountrie("Islas Bermudas"), // 102
+					Utilities.createCountrie("Islas Caimán"), // 103
+					Utilities.createCountrie("Islas Cocos (Keeling)"), // 104
+					Utilities.createCountrie("Islas Cook"), // 105
+					Utilities.createCountrie("Islas de Åland"), // 106
+					Utilities.createCountrie("Islas Feroe"), // 107
+					Utilities.createCountrie("Islas Georgias del Sur y Sandwich del Sur"), // 108
+					Utilities.createCountrie("Islas Heard y McDonald"), // 109
+					Utilities.createCountrie("Islas Maldivas"), // 110
+					Utilities.createCountrie("Islas Malvinas"), // 111
+					Utilities.createCountrie("Islas Marianas del Norte"), // 112
+					Utilities.createCountrie("Islas Marshall"), // 113
+					Utilities.createCountrie("Islas Pitcairn"), // 114
+					Utilities.createCountrie("Islas Salomón"), // 115
+					Utilities.createCountrie("Islas Turcas y Caicos"), // 116
+					Utilities.createCountrie("Islas Ultramarinas Menores de Estados Unidos"), // 117
+					Utilities.createCountrie("Islas Vírgenes Británicas"), // 118
+					Utilities.createCountrie("Islas Vírgenes de los Estados Unidos"), // 119
+					Utilities.createCountrie("Israel"), // 120
+					Utilities.createCountrie("Italia"), // 121
+					Utilities.createCountrie("Jamaica"), // 122
+					Utilities.createCountrie("Japón"), // 123
+					Utilities.createCountrie("Jersey"), // 124
+					Utilities.createCountrie("Jordania"), // 125
+					Utilities.createCountrie("Kazajistán"), // 126
+					Utilities.createCountrie("Kenia"), // 127
+					Utilities.createCountrie("Kirgizstán"), // 128
+					Utilities.createCountrie("Kiribati"), // 129
+					Utilities.createCountrie("Kuwait"), // 130
+					Utilities.createCountrie("Líbano"), // 131
+					Utilities.createCountrie("Laos"), // 132
+					Utilities.createCountrie("Lesoto"), // 133
+					Utilities.createCountrie("Letonia"), // 134
+					Utilities.createCountrie("Liberia"), // 135
+					Utilities.createCountrie("Libia"), // 136
+					Utilities.createCountrie("Liechtenstein"), // 137
+					Utilities.createCountrie("Lituania"), // 138
+					Utilities.createCountrie("Luxemburgo"), // 139
+					Utilities.createCountrie("México"), // 140
+					Utilities.createCountrie("Mónaco"), // 141
+					Utilities.createCountrie("Macao"), // 142
+					Utilities.createCountrie("Macedônia"), // 143
+					Utilities.createCountrie("Madagascar"), // 144
+					Utilities.createCountrie("Malasia"), // 145
+					Utilities.createCountrie("Malawi"), // 146
+					Utilities.createCountrie("Mali"), // 147
+					Utilities.createCountrie("Malta"), // 148
+					Utilities.createCountrie("Marruecos"), // 149
+					Utilities.createCountrie("Martinica"), // 150
+					Utilities.createCountrie("Mauricio"), // 151
+					Utilities.createCountrie("Mauritania"), // 152
+					Utilities.createCountrie("Mayotte"), // 153
+					Utilities.createCountrie("Micronesia"), // 154
+					Utilities.createCountrie("Moldavia"), // 155
+					Utilities.createCountrie("Mongolia"), // 156
+					Utilities.createCountrie("Montenegro"), // 157
+					Utilities.createCountrie("Montserrat"), // 158
+					Utilities.createCountrie("Mozambique"), // 159
+					Utilities.createCountrie("Namibia"), // 160
+					Utilities.createCountrie("Nauru"), // 161
+					Utilities.createCountrie("Nepal"), // 162
+					Utilities.createCountrie("Nicaragua"), // 163
+					Utilities.createCountrie("Niger"), // 164
+					Utilities.createCountrie("Nigeria"), // 165
+					Utilities.createCountrie("Niue"), // 166
+					Utilities.createCountrie("Noruega"), // 167
+					Utilities.createCountrie("Nueva Caledonia"), // 168
+					Utilities.createCountrie("Nueva Zelanda"), // 169
+					Utilities.createCountrie("Omán"), // 170
+					Utilities.createCountrie("Países Bajos"), // 171
+					Utilities.createCountrie("Pakistán"), // 172
+					Utilities.createCountrie("Palau"), // 173
+					Utilities.createCountrie("Palestina"), // 174
+					Utilities.createCountrie("Panamá"), // 175
+					Utilities.createCountrie("Papúa Nueva Guinea"), // 176
+					Utilities.createCountrie("Paraguay"), // 177
+					Utilities.createCountrie("Perú"), // 178
+					Utilities.createCountrie("Polinesia Francesa"), // 179
+					Utilities.createCountrie("Polonia"), // 180
+					Utilities.createCountrie("Portugal"), // 181
+					Utilities.createCountrie("Puerto Rico"), // 182
+					Utilities.createCountrie("Qatar"), // 183
+					Utilities.createCountrie("Reino Unido"), // 184
+					Utilities.createCountrie("República Centroafricana"), // 185
+					Utilities.createCountrie("República Checa"), // 186
+					Utilities.createCountrie("República Dominicana"), // 187
+					Utilities.createCountrie("Reunión"), // 188
+					Utilities.createCountrie("Ruanda"), // 189
+					Utilities.createCountrie("Rumanía"), // 190
+					Utilities.createCountrie("Rusia"), // 191
+					Utilities.createCountrie("Sahara Occidental"), // 192
+					Utilities.createCountrie("Samoa"), // 193
+					Utilities.createCountrie("Samoa Americana"), // 194
+					Utilities.createCountrie("San Bartolomé"), // 195
+					Utilities.createCountrie("San Cristóbal y Nieves"), // 196
+					Utilities.createCountrie("San Marino"), // 197
+					Utilities.createCountrie("San Martín (Francia)"), // 198
+					Utilities.createCountrie("San Pedro y Miquelón"), // 199
+					Utilities.createCountrie("San Vicente y las Granadinas"), // 200
+					Utilities.createCountrie("Santa Elena"), // 201
+					Utilities.createCountrie("Santa Lucía"), // 202
+					Utilities.createCountrie("Santo Tomé y Príncipe"), // 203
+					Utilities.createCountrie("Senegal"), // 204
+					Utilities.createCountrie("Serbia"), // 205
+					Utilities.createCountrie("Seychelles"), // 206
+					Utilities.createCountrie("Sierra Leona"), // 207
+					Utilities.createCountrie("Singapur"), // 208
+					Utilities.createCountrie("Siria"), // 209
+					Utilities.createCountrie("Somalia"), // 210
+					Utilities.createCountrie("Sri lanka"), // 211
+					Utilities.createCountrie("Sudáfrica"), // 212
+					Utilities.createCountrie("Sudán"), // 213
+					Utilities.createCountrie("Suecia"), // 214
+					Utilities.createCountrie("Suiza"), // 215
+					Utilities.createCountrie("Surinám"), // 216
+					Utilities.createCountrie("Svalbard y Jan Mayen"), // 217
+					Utilities.createCountrie("Swazilandia"), // 218
+					Utilities.createCountrie("Tadjikistán"), // 219
+					Utilities.createCountrie("Tailandia"), // 220
+					Utilities.createCountrie("Taiwán"), // 221
+					Utilities.createCountrie("Tanzania"), // 222
+					Utilities.createCountrie("Territorio Británico del Océano Índico"), // 223
+					Utilities.createCountrie("Territorios Australes y Antárticas Franceses"), // 224
+					Utilities.createCountrie("Timor Oriental"), // 225
+					Utilities.createCountrie("Togo"), // 226
+					Utilities.createCountrie("Tokelau"), // 227
+					Utilities.createCountrie("Tonga"), // 228
+					Utilities.createCountrie("Trinidad y Tobago"), // 229
+					Utilities.createCountrie("Tunez"), // 230
+					Utilities.createCountrie("Turkmenistán"), // 231
+					Utilities.createCountrie("Turquía"), // 232
+					Utilities.createCountrie("Tuvalu"), // 233
+					Utilities.createCountrie("Ucrania"), // 234
+					Utilities.createCountrie("Uganda"), // 235
+					Utilities.createCountrie("Uruguay"), // 236
+					Utilities.createCountrie("Uzbekistán"), // 237
+					Utilities.createCountrie("Vanuatu"), // 238
+					Utilities.createCountrie("Venezuela"), // 239
+					Utilities.createCountrie("Vietnam"), // 240
+					Utilities.createCountrie("Wallis y Futuna"), // 241
+					Utilities.createCountrie("Yemen"), // 242
+					Utilities.createCountrie("Yibuti"), // 243
+					Utilities.createCountrie("Zambia"), // 244
+					Utilities.createCountrie("Zimbabue"), // 245
+			};
+			
+			Province provs[] = {
+					Utilities.createProvince("Misiones"), // 0
+					Utilities.createProvince("San Luis"), // 1
+					Utilities.createProvince("San Juan"), // 2
+					Utilities.createProvince("Entre Ríos"), // 3
+					Utilities.createProvince("Santa Cruz"), // 4
+					Utilities.createProvince("Río Negro"), // 5
+					Utilities.createProvince("Chubut"), // 6
+					Utilities.createProvince("Córdoba"), // 7
+					Utilities.createProvince("Mendoza"), // 8
+					Utilities.createProvince("La Rioja"), // 9
+					Utilities.createProvince("Catamarca"), // 10
+					Utilities.createProvince("La Pampa"), // 11
+					Utilities.createProvince("Santiago del Estero"), // 12
+					Utilities.createProvince("Corrientes"), // 13
+					Utilities.createProvince("Santa Fe"), // 14
+					Utilities.createProvince("Tucumán"), // 15
+					Utilities.createProvince("Neuquén"), // 16
+					Utilities.createProvince("Salta"), // 17
+					Utilities.createProvince("Chaco"), // 18
+					Utilities.createProvince("Formosa"), // 19
+					Utilities.createProvince("Jujuy"), // 20
+					Utilities.createProvince("Buenos Aires"), // 21
+					Utilities.createProvince("Tierra del Fuego"), // 22
+			};
+			
+			City cities[] = {
+					Utilities.createCity("CIUDAD"), // 0 (GENERICO)
+					
+					Utilities.createCity("CIUDAD DE BUENOS AIRES"), // 1
+					Utilities.createCity("CONSTITUCION"), // 2
+					Utilities.createCity("MONSERRAT"), // 3
+					Utilities.createCity("PUERTO MADERO"), // 4
+					Utilities.createCity("RETIRO"), // 5
+					Utilities.createCity("SAN NICOLAS"), // 6
+					Utilities.createCity("SAN TELMO"), // 7
+					Utilities.createCity("RECOLETA"), // 8
+					Utilities.createCity("BALVANERA"), // 9
+					Utilities.createCity("SAN CRISTOBAL"), // 10
+					Utilities.createCity("BARRACAS"), // 11
+					Utilities.createCity("BOCA"), // 12
+					Utilities.createCity("NUEVA POMPEYA"), // 13
+					Utilities.createCity("PARQUE PATRICIOS"), // 14
+					Utilities.createCity("ALMAGRO"), // 15
+					Utilities.createCity("BOEDO"), // 16
+					Utilities.createCity("CABALLITO"), // 17
+					Utilities.createCity("FLORES"), // 18
+					Utilities.createCity("PARQUE CHACABUCO"), // 19
+					Utilities.createCity("VILLA LUGANO"), // 20
+					Utilities.createCity("VILLA RIACHUELO"), // 21
+					Utilities.createCity("VILLA SOLDATI"), // 22
+					Utilities.createCity("LINIERS"), // 23
+					Utilities.createCity("MATADEROS"), // 24
+					Utilities.createCity("PARQUE AVELLANEDA"), // 25
+					Utilities.createCity("FLORESTA"), // 26
+					Utilities.createCity("MONTE CASTRO"), // 27
+					Utilities.createCity("VELEZ SARSFIELD"), // 28
+					Utilities.createCity("VERSALLES"), // 29
+					Utilities.createCity("VILLA LURO"), // 30
+					Utilities.createCity("VILLA REAL"), // 31
+					Utilities.createCity("VILLA DEL PARQUE"), // 32
+					Utilities.createCity("VILLA DEVOTO"), // 33
+					Utilities.createCity("VILLA GENERAL MITRE"), // 34
+					Utilities.createCity("VILLA SANTA RITA"), // 35
+					Utilities.createCity("COGHLAN"), // 36
+					Utilities.createCity("SAAVEDRA"), // 37
+					Utilities.createCity("VILLA PUEYRREDON"), // 38
+					Utilities.createCity("VILLA URQUIZA"), // 39
+					Utilities.createCity("BELGRANO"), // 40
+					Utilities.createCity("COLEGIALES"), // 41
+					Utilities.createCity("NUÑEZ"), // 42
+					Utilities.createCity("PALERMO"), // 43
+					Utilities.createCity("AGRONOMIA"), // 44
+					Utilities.createCity("CHACARITA"), // 45
+					Utilities.createCity("PARQUE CHAS"), // 46
+					Utilities.createCity("PATERNAL"), // 47
+					Utilities.createCity("VILLA CRESPO"), // 48
+					Utilities.createCity("VILLA ORTUZAR"), // 49
+			};
+			//
+			
 			// USUARIOs
 			User user = Utilities.createUser("123456", "Carlos", "Cliente");
 			User user2 = Utilities.createUser("123456", "Pablo", "Cliente");
@@ -198,34 +531,34 @@ public class App {
 			Genre gen3 = Utilities.createGenre("Undefined");
 
 			// CLIENTE
-			Client client = Utilities.createClient(new Date(), "Beccar", "32235422", "carlos@gmail.com", "Carlos",
-					"Rodriguez", "Argentina", "Buenos Aires", gen3, user, lista);
-			Client client2 = Utilities.createClient(new Date(), "Escobar", "23232323", "pablo@gmail.com", "Pablo",
-					"Escobar", "Colombia", "Medellin", gen2, user2, lista2);
+			Client client = Utilities.createClient(new Date(), cities[22], "32235422", "carlos@gmail.com", "Carlos",
+					"Rodriguez", countries[11], provs[21], gen3, user, lista);
+			Client client2 = Utilities.createClient(new Date(), cities[39], "23232323", "pablo@gmail.com", "Pablo",
+					"Escobar", countries[44], provs[21], gen2, user2, lista2);
 
-			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), "Escobar", "18654923",
-					"Eabel@gmail.com", "Ellen", "Abel", "Argentina", "Buenos Aires", gen, user3, lista3);
+			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), cities[15], "18654923",
+					"Eabel@gmail.com", "Ellen", "Abel", countries[11], provs[21], gen, user3, lista3);
 
-			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), "Tigre", "23654956", "Sande@gmail.com",
-					"Sundar", "Ande", "Argentina", "Buenos Aires", gen3, user4, lista4);
+			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), cities[8], "23654956", "Sande@gmail.com",
+					"Sundar", "Ande", countries[11], provs[21], gen3, user4, lista4);
 
-			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), "Garin", "24632589",
-					"daustin@gmail.com", "David", "Austin", "Argentina", "Buenos Aires", gen2, user5, lista5);
+			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), cities[1], "24632589",
+					"daustin@gmail.com", "David", "Austin", countries[11], provs[21], gen2, user5, lista5);
 
-			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), "Congreso", "30652987",
-					"hbaer@gmail.com", "Hermann", "Baer", "Argentina", "Buenos Aires", gen2, user6, lista6);
+			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), cities[41], "30652987",
+					"hbaer@gmail.com", "Hermann", "Baer", countries[11], provs[21], gen2, user6, lista6);
 
-			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), "Tigre", "35621785", "abull@gmail.com",
-					"Alexis", "Bull", "Argentina", "Buenos Aires", gen, user7, def);
+			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), cities[33], "35621785", "abull@gmail.com",
+					"Alexis", "Bull", countries[11], provs[21], gen, user7, def);
 
-			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), "Córdoba", "39632541",
-					"aerrazur@gmail.com", "Alberto", "Errazuriz", "Argentina", "Córdoba", gen2, user8, def);
+			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), cities[0], "39632541",
+					"aerrazur@gmail.com", "Alberto", "Errazuriz", countries[11], provs[7], gen2, user8, def);
 
-			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), "Formosa", "35621478",
-					"cdavies@gmail.com", "Curtis", "Davies", "Argentina", "Formosa", gen2, user9, def);
+			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), cities[0], "35621478",
+					"cdavies@gmail.com", "Curtis", "Davies", countries[11], provs[19], gen2, user9, def);
 
-			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), "Santa Rosa", "40654951",
-					"kfeeney@gmail.com", "Kevin", "Feeney", "Argentina", "La Pampa", gen3, user10, def);
+			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), cities[0], "40654951",
+					"kfeeney@gmail.com", "Kevin", "Feeney", countries[11], provs[11], gen3, user10, def);
 
 			// USUARIO BANCO
 			Administrative adm = Utilities.createAdministrative("22365986", "Juancho@hotmail.es", "Juan", "Acosta",
@@ -294,6 +627,18 @@ public class App {
 			 * session.update(cliente);
 			 */
 			//
+			for(Countrie c : countries) {
+				session.save(c);
+			}
+			
+			for (Province p : provs) {
+				session.save(p);
+			}
+			
+			for (City c : cities) {
+				session.save(c);
+			}
+			
 			session.save(gen);
 			session.save(gen2);
 			session.save(gen3);

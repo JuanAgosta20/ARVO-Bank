@@ -37,11 +37,17 @@ public class Client implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "idGenre")
 	private Genre genre;
-	//
-	private String nationality;
-	private String province;
-	private String city;
-	//
+
+	@ManyToOne()
+	@JoinColumn(name = "idCountrie")
+	private Countrie nationality;
+	@ManyToOne()
+	@JoinColumn(name = "idProvince")
+	private Province province;
+	@ManyToOne()
+	@JoinColumn(name = "idCity")
+	private City city;
+
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idClient")
 	private List<Account> bankAccounts = new ArrayList<Account>(4);
@@ -130,27 +136,27 @@ public class Client implements Serializable {
 		this.genre = genre;
 	}
 
-	public String getNationality() {
+	public Countrie getNationality() {
 		return nationality;
 	}
 
-	public void setNationality(String nationality) {
+	public void setNationality(Countrie nationality) {
 		this.nationality = nationality;
 	}
 
-	public String getProvince() {
+	public Province getProvince() {
 		return province;
 	}
 
-	public void setProvince(String province) {
+	public void setProvince(Province province) {
 		this.province = province;
 	}
 
-	public String getCity() {
+	public City getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 

@@ -21,5 +21,8 @@
         <mapping class="com.Model.Genre"/>
         <mapping class="com.Model.typeAccount"/>
         <mapping class="com.Model.typeMove"/>
+        <mapping class="com.Model.Countrie"/>
+        <mapping class="com.Model.Province"/>
+        <mapping class="com.Model.City"/>
     </session-factory>
 </hibernate-configuration>
