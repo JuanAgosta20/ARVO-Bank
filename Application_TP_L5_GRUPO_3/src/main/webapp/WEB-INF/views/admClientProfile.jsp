@@ -83,9 +83,16 @@
 										<select name="drpCountry" id="drpCountry"
 										style="display: none; width: 200px;">
 											<c:forEach var="country" items="${countries}">
-												<option value="${country.idCountrie }">
-												${country.name }
-												<option>
+												<c:if
+													test="${country.idCountrie.equals(client.nationality.idCountrie)}">
+													<option selected value="${country.idCountrie}">
+														${country.name }</option>
+												</c:if>
+												<c:if
+													test="${!(country.idCountrie.equals(client.nationality.idCountrie))}">
+													<option value="${country.idCountrie }">
+														${country.name }</option>
+												</c:if>
 											</c:forEach>
 									</select></td>
 								</tr>
@@ -95,10 +102,15 @@
 										<select name="drpProvince" id="drpProvince"
 										style="display: none; width: 200px;" onchange="getCities()">
 											<c:forEach var="p" items="${provinces}">
-											${System.out.println(p.name)}
-												<option value="${p.idProvinceApi }">
-												${p.name }
-												<option>
+												<c:if
+													test="${p.idProvinceApi.equals(client.province.idProvinceApi)}">
+													<option selected value="${p.idProvinceApi }">
+														${p.name }</option>
+												</c:if>
+												<c:if
+													test="${!(p.idProvinceApi.equals(client.province.idProvinceApi))}">
+													<option value="${p.idProvinceApi }">${p.name }</option>
+												</c:if>
 											</c:forEach>
 									</select></td>
 								</tr>
@@ -107,7 +119,7 @@
 									<td><label style="width: 100px;" id="lblCity"></label> <select
 										name="drpCity" id="drpCity"
 										style="display: none; width: 200px;">
-											<option value="null">Ciudad</option>
+											<option value="${client.city.name}">${client.city.name}</option>
 									</select></td>
 								</tr>
 							</table>

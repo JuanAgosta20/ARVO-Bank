@@ -1,5 +1,7 @@
 package com.Controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Dao.ClientDao;
 import com.Dao.ClientDaoImpl;
+import com.Model.Client;
+import com.Model.Province;
 import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
 
@@ -30,10 +34,12 @@ public class AdministrativeController {
 		LocationService ls = new LocationServiceImpl();
 		
 		try{
-			MV.addObject("client",cd.getClient(id));
+			Client client = cd.getClient(id);
+			MV.addObject("client",client);
 			MV.addObject("countries",ls.getAllCountries());
 			//ls.getAllProvince().forEach(e->{System.out.println(e.getName());});
-			MV.addObject("provinces",ls.getAllProvince());
+			ArrayList<Province> provs =ls.getAllProvince();
+;			MV.addObject("provinces", provs);
 		}catch (Exception e) {
 			e.printStackTrace();
 			return MV;
