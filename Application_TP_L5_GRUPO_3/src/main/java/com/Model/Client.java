@@ -9,7 +9,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +28,7 @@ public class Client implements Serializable {
 	private Integer idClient;
 	private String firstName;
 	private String lastName;
-	@Column(unique = true)
+	@Column(unique = true, length = 10)
 	private String dni;
 	private Date birthdate;
 	@Column(unique = true)

@@ -7,7 +7,6 @@ import org.hibernate.Session;
 
 import com.Model.Countrie;
 import com.Model.Province;
-import com.Model.User;
 
 public class LocationDaoImpl implements LocationDao {
 	

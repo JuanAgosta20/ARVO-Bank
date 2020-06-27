@@ -1,10 +1,13 @@
 package com.Dao;
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.Model.Account;
 import com.Model.Connection;
+import com.Model.typeAccount;
 
 public class AccountDaoImpl implements AccountDao{
 
@@ -40,6 +43,11 @@ public class AccountDaoImpl implements AccountDao{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<typeAccount> getAllTypes() {
+		return (ArrayList<typeAccount>)sHand.getAllData(typeAccount.class);
 	}
 
 }

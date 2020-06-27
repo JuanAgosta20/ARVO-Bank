@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@page import="com.Model.Account"%>
+<%@page import="com.Model.typeAccount"%>
+<%@page import="com.Model.Client"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -125,26 +128,32 @@
 							</button>
 						</div>
 						<form action="clRequestAccount.do" method="POST">
-						<div class="modal-body">
-							<div class="row my-3">
-								<div class="col">Seleccione el tipo de cuenta:</div>
-								<div class="col">
-									<select name="cmbAccounts" id="cmbAccounts">
-										<option value="">Cuenta Corriente especial</option>
-									</select>
+							<div class="modal-body">
+								<div class="row my-2">
+									<div class="form-group text-center">
+										<label for="cmbAccounts" class="m-1 ">Seleccione el tipo de cuenta:
+										</label> 
+										<select name="cmbAccounts" id="cmbAccounts" class="m-1 p-1">
+											<c:forEach var="atype" items="${ acccountTypes }">
+												<option value="${atype.getIdTypeAccount()}">${atype.getDescription()}</option>
+											</c:forEach>
+										</select>
+									</div>
+
 								</div>
+								<p class="font-weight-light mb-0 mt-3" style="font-size: 12px">
+									Al completar los datos aquí requeridos y avanzar, realiza una
+									solicitud a ARVO BANK S.A. La información proporcionada por el
+									cliente reviste carácter de declaración jurada y el Banco podrá
+									rechazar la solicitud de apertura.</p>
+								<input type="hidden" value="${idClient}" name="idClient">
 							</div>
-						<p class="font-weight-light mb-0 mt-3" style="font-size: 12px">
-						Al completar los datos aquí requeridos y avanzar,  realiza una solicitud a ARVO BANK S.A.
-						 La información proporcionada por el cliente reviste carácter de declaración jurada y el Banco podrá rechazar la solicitud de apertura.  
-						</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn bkg-orange text-light btn-sm"
-								name="btnNewAccount">Enviar solicitud</button>
-							<button type="button" class="btn btn-secondary btn-sm"
-								data-dismiss="modal" name="btnCancel">Cancelar</button>
-						</div>
+							<div class="modal-footer">
+								<button class="btn bkg-orange text-light btn-sm"
+									name="btnNewAccount">Enviar solicitud</button>
+								<button type="button" class="btn btn-secondary btn-sm"
+									data-dismiss="modal" name="btnCancel">Cancelar</button>
+							</div>
 						</form>
 					</div>
 				</div>
