@@ -15,16 +15,28 @@
 	</bean>
 	<bean id="ClientDaoImpl" class="com.Dao.ClientDaoImpl">
 	</bean>
+	<bean id="GenreDaoImpl" class="com.Dao.GenreDaoImpl">
+	</bean>
+	<bean id="LocationDaoImpl" class="com.Dao.LocationDaoImpl">
+	</bean>
 	<bean id="AccountDaoImpl" class="com.Dao.AccountDaoImpl"
 		destroy-method="Destroy">
 	</bean>
 	<bean id="AdministrativeDaoImpl"
 		class="com.Dao.AdministrativeDaoImpl">
 	</bean>
+	
+	
 	<!--SERVICES -->
 	<bean id="UserServiceImpl" class="com.Services.UserServiceImpl">
 	</bean>
 	<bean id="AccountServiceImpl" class="com.Services.AccountServiceImpl">
 	</bean>
+	<!-- 
+	<bean id="LocationServiceImpl" class="com.Services.LocationServiceImpl">
+	</bean>
+	<bean id="GenreServiceImpl" class="com.Services.GenreServiceImpl">
+	</bean> -->
+	
 
 </beans>

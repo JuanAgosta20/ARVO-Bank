@@ -7,8 +7,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.Dao.AccountDaoImpl;
 import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
+import com.Dao.GenreDaoImpl;
+import com.Dao.LocationDaoImpl;
 import com.Dao.LogInDaoImpl;
 import com.Services.AccountServiceImpl;
+import com.Services.GenreServiceImpl;
+import com.Services.LocationServiceImpl;
 import com.Services.UserServiceImpl;
 
 public class BeanFactory{
@@ -28,6 +32,8 @@ public class BeanFactory{
 		return (Administrative) appContext.getBean("client");
 	}
 	
+	
+	
 	//DAO
 
 	public LogInDaoImpl createLogInDaoImpl() {
@@ -46,7 +52,17 @@ public class BeanFactory{
 		return (AccountDaoImpl) appContext.getBean("AccountDaoImpl");
 	}
 	
+	public LocationDaoImpl createLocationDaoImpl() {
+		return (LocationDaoImpl) appContext.getBean("LocationDaoImpl");
+	}
+	
+	public GenreDaoImpl createGenreDaoImpl() {
+		return (GenreDaoImpl) appContext.getBean("GenreDaoImpl");
+	}
+	
+	
 	//SERVICES
+	
 	public UserServiceImpl createUserServiceImpl() {
 		return (UserServiceImpl) appContext.getBean("UserServiceImpl");
 	}
@@ -54,5 +70,13 @@ public class BeanFactory{
 	public AccountServiceImpl getAccountServiceImpl() {
 		return (AccountServiceImpl) appContext.getBean("AccountServiceImpl");
 	}
+	/*public LocationServiceImpl createLocationServiceImpl() {
+		return (LocationServiceImpl) appContext.getBean("LocationServiceImpl");
+	}
+	
+	public GenreServiceImpl createGenreServiceImpl() {
+		return (GenreServiceImpl) appContext.getBean("GenreServiceImpl");
+	}*/
+
 	
 }
