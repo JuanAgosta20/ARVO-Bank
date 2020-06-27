@@ -8,13 +8,14 @@ import com.Dao.AccountDaoImpl;
 import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.LogInDaoImpl;
+import com.Services.AccountServiceImpl;
 import com.Services.UserServiceImpl;
 
 public class BeanFactory{
 	
 	static ApplicationContext appContext = new ClassPathXmlApplicationContext("com/Resources/Beans.xml");
 	
-	//MODEL
+	//MODEL esto no va
 	public User createUser() {
 		return (User) appContext.getBean("user");
 	}
@@ -49,6 +50,9 @@ public class BeanFactory{
 	public UserServiceImpl createUserServiceImpl() {
 		return (UserServiceImpl) appContext.getBean("UserServiceImpl");
 	}
-
+	
+	public AccountServiceImpl getAccountServiceImpl() {
+		return (AccountServiceImpl) appContext.getBean("AccountServiceImpl");
+	}
 	
 }
