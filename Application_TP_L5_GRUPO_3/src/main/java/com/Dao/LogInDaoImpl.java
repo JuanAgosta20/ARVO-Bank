@@ -13,7 +13,7 @@ public class LogInDaoImpl implements LogInDao {
 	public User loginUser(String userName, String pass) {
 		User user;
 		session = sHand.getSession();
-		String hql = "From User u WHERE u.userName =:userName AND u.password =:pass";
+		String hql = "From User u WHERE u.userName =:userName AND u.password =:pass AND u.state = 1";
 		Query query = (Query) session.createQuery(hql);
 		query.setParameter("userName", userName);
 		query.setParameter("pass", pass);
