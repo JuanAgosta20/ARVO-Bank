@@ -283,29 +283,30 @@ public class App {
 			};
 			
 			Province provs[] = {
-					Utilities.createProvince("Misiones"), // 0
-					Utilities.createProvince("San Luis"), // 1
-					Utilities.createProvince("San Juan"), // 2
-					Utilities.createProvince("Entre Ríos"), // 3
-					Utilities.createProvince("Santa Cruz"), // 4
-					Utilities.createProvince("Río Negro"), // 5
-					Utilities.createProvince("Chubut"), // 6
-					Utilities.createProvince("Córdoba"), // 7
-					Utilities.createProvince("Mendoza"), // 8
-					Utilities.createProvince("La Rioja"), // 9
-					Utilities.createProvince("Catamarca"), // 10
-					Utilities.createProvince("La Pampa"), // 11
-					Utilities.createProvince("Santiago del Estero"), // 12
-					Utilities.createProvince("Corrientes"), // 13
-					Utilities.createProvince("Santa Fe"), // 14
-					Utilities.createProvince("Tucumán"), // 15
-					Utilities.createProvince("Neuquén"), // 16
-					Utilities.createProvince("Salta"), // 17
-					Utilities.createProvince("Chaco"), // 18
-					Utilities.createProvince("Formosa"), // 19
-					Utilities.createProvince("Jujuy"), // 20
-					Utilities.createProvince("Buenos Aires"), // 21
-					Utilities.createProvince("Tierra del Fuego"), // 22
+					Utilities.createProvince("Misiones", 54), // 1
+					Utilities.createProvince("San Luis", 74), // 2
+					Utilities.createProvince("San Juan", 70), // 3
+					Utilities.createProvince("Entre Ríos", 30), // 4
+					Utilities.createProvince("Santa Cruz", 78), // 5
+					Utilities.createProvince("Río Negro", 62), // 6
+					Utilities.createProvince("Chubut", 26), // 7
+					Utilities.createProvince("Córdoba", 14), // 8
+					Utilities.createProvince("Mendoza", 50), // 9
+					Utilities.createProvince("La Rioja", 46), // 10
+					Utilities.createProvince("Catamarca", 10), // 11
+					Utilities.createProvince("La Pampa", 42), // 12
+					Utilities.createProvince("Santiago del Estero", 86), // 13
+					Utilities.createProvince("Corrientes", 18), // 14
+					Utilities.createProvince("Santa Fe", 82), // 15
+					Utilities.createProvince("Tucumán", 90), // 16
+					Utilities.createProvince("Neuquén", 58), // 17
+					Utilities.createProvince("Salta", 66), // 18
+					Utilities.createProvince("Chaco", 22), // 19
+					Utilities.createProvince("Formosa", 34), // 20
+					Utilities.createProvince("Jujuy", 38), // 21
+					Utilities.createProvince("Ciudad Autónoma de Buenos Aires", 02), // 22
+					Utilities.createProvince("Buenos Aires", 06), // 23
+					Utilities.createProvince("Tierra del Fuego", 94), // 24
 			};
 			
 			City cities[] = {

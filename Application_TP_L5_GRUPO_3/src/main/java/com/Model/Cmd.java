@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class Cmd {
 
@@ -21,5 +22,17 @@ public class Cmd {
 		Date date = cal.getTime();
 		
 		return date;
+	}
+	
+	public static String crearCBU(String dni, int countAcc) {
+		StringBuilder strbuild = new StringBuilder("45072230");
+		Random rng = new Random(Integer.parseInt(dni));
+		for (int i = 0; i < 13; i++) {
+			int num = rng.nextInt(10);
+			System.out.println(num);
+			strbuild.append(num);
+		}
+		strbuild.append(countAcc + 1);
+		return strbuild.toString();
 	}
 }

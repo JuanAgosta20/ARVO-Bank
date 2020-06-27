@@ -51,9 +51,10 @@ public class Utilities {
 		return c;
 	}
 	
-	public static Province createProvince(String name) {
+	public static Province createProvince(String name, int idProvinceApi) {
 		Province p = new Province();
 		p.setName(name);
+		p.setIdProvinceApi(idProvinceApi);
 		return p;
 	}
 	

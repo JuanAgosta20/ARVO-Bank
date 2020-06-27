@@ -134,7 +134,10 @@
 									</select>
 								</div>
 							</div>
-
+						<p class="font-weight-light mb-0 mt-3" style="font-size: 12px">
+						Al completar los datos aquí requeridos y avanzar,  realiza una solicitud a ARVO BANK S.A.
+						 La información proporcionada por el cliente reviste carácter de declaración jurada y el Banco podrá rechazar la solicitud de apertura.  
+						</p>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn bkg-orange text-light btn-sm"

@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 import com.Model.Client;
-import com.Model.Connection;
 import com.Model.User;
 
 public class ClientDaoImpl implements ClientDao {

@@ -14,11 +14,19 @@ public class Province implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idProvince;
-	
+	int idProvinceApi;
 	String name;
 	
 	public Province() {
 		super();
+	}
+
+	public int getIdProvinceApi() {
+		return idProvinceApi;
+	}
+
+	public void setIdProvinceApi(int idProvinceApi) {
+		this.idProvinceApi = idProvinceApi;
 	}
 
 	public String getName() {
