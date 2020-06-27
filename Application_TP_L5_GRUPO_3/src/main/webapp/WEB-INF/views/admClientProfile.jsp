@@ -1,7 +1,11 @@
+<%@page import="com.Model.Client"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.Model.Administrative"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 
@@ -54,32 +58,44 @@
 
 								<tr>
 									<td><b>DNI:</b></td>
-									<td><label style="width: 100px;" id="lblDni"></label><input
-										id="txtDni" type="text" style="display: none; width: 200px;"></input></td>
+									<td><label style="width: 100px;" id="lblDni">${client.dni}</label>
+										<input value="${client.dni}" id="txtDni" type="text"
+										style="display: none; width: 200px;"></input></td>
 								</tr>
 								<tr>
 									<td><b>Género:</b></td>
-									<td><label style="width: 100px;" id="lblGenre"></label> <select
-										name="drpGenre" id="drpGenre"
+									<td><label style="width: 100px;" id="lblGenre">${client.genre.description}</label>
+										<select name="drpGenre" id="drpGenre"
 										style="display: none; width: 200px;">
-											<option value="null">Generos</option>
-											<option value="2">Masculino</option>
+											<c:forEach var="genre" items="${genres}">
+												<c:if test="${genre.idGenre.equals(client.genre.idGenre)}">
+													<option selected value="${genre.idGenre}">
+														${genre.description }</option>
+												</c:if>
+												<c:if
+													test="${!(genre.idGenre.equals(client.genre.idGenre))}">
+													<option value="${genre.idGenre }">
+														${genre.description}</option>
+												</c:if>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr>
 									<td><b>Email:</b></td>
-									<td><label style="width: 100px;" id="lblEmail"></label> <input
-										id="txtEmail" type="email"
+									<td><label style="width: 100px;" id="lblEmail">${client.email}</label>
+										<input value="${client.email}" id="txtEmail" type="email"
 										style="display: none; width: 200px;"></input></td>
 								</tr>
 								<tr>
 									<td><b>Fecha Nac:</b></td>
-									<td><label style="width: 100px;" id="lblDate"></label> <input
+									<td><label style="width: 100px;" id="lblDate"><fmt:formatDate
+												value="${client.birthdate }" pattern="dd-MM-yyyy" /></label> <input
+										value="<fmt:formatDate value="${client.birthdate }" pattern = "yyyy-MM-dd"  />"
 										id="txtDate" type="date" style="display: none; width: 200px;"></input></td>
 								</tr>
 								<tr>
 									<td><b>Nacionalidad:</b></td>
-									<td><label style="width: 100px;" id="lblCountry"></label>
+									<td><label style="width: 100px;" id="lblCountry">${client.nationality.name}</label>
 										<select name="drpCountry" id="drpCountry"
 										style="display: none; width: 200px;">
 											<c:forEach var="country" items="${countries}">
@@ -98,7 +114,7 @@
 								</tr>
 								<tr>
 									<td><b>Provincia:</b></td>
-									<td><label style="width: 100px;" id="lblProvince"></label>
+									<td><label style="width: 100px;" id="lblProvince">${client.province.name}</label>
 										<select name="drpProvince" id="drpProvince"
 										style="display: none; width: 200px;" onchange="getCities()">
 											<c:forEach var="p" items="${provinces}">
@@ -116,11 +132,20 @@
 								</tr>
 								<tr>
 									<td><b>Ciudad:</b></td>
-									<td><label style="width: 100px;" id="lblCity"></label> <select
-										name="drpCity" id="drpCity"
+									<td><label style="width: 100px;" id="lblCity">${client.city.name}</label>
+										<select name="drpCity" id="drpCity"
 										style="display: none; width: 200px;">
 											<option value="${client.city.name}">${client.city.name}</option>
 									</select></td>
+								</tr>
+								<tr>
+									<td class="text-center"><a
+										href="http://localhost:8081/Application_TP_L5_GRUPO_3/admClientProfile.do?id=${client.idClient }"
+										name="btnCancel" id="btnCancel" type="button"
+										class="btn btn-secondary" style="display: none">Cancelar</a></td>
+									<td class="text-center"><button name="btnConfirm"
+											id="btnConfirm" type="button" class="btn btn-secondary "
+											style="display: none">Confirmar</button></td>
 								</tr>
 							</table>
 
@@ -267,6 +292,9 @@
 
 		document.getElementById('lblCity').style.display = 'none';
 		document.getElementById('drpCity').style.display = 'inline-block';
+
+		document.getElementById('btnCancel').style.display = 'inline-block';
+		document.getElementById('btnConfirm').style.display = 'inline-block';
 	}
 </script>
 </html>
