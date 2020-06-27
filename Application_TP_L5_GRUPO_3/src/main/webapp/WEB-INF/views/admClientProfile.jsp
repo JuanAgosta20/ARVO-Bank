@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.Model.Administrative"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 
@@ -13,6 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="Include.html"></jsp:include>
+<script src="Resources/js/getCities.js"></script>
 <title>ARVO Bank - Perfil Cliente</title>
 </head>
 <body>
@@ -36,14 +38,15 @@
 										alt="userAvatar" src="Resources/images/user.png"></td>
 								</tr>
 								<tr>
-									<td colspan="2" class="text-center"><h4>Díaz Jorge</h4></td>
+									<td colspan="2" class="text-center"><h4>${client.firstName }
+											${client.lastName}</h4></td>
 								</tr>
 								<tr class="mb-3">
 									<td class="text-right">
 										<button name="btnDelete" type="button" class="btn btn-danger">Eliminar</button>
 									</td>
 									<td class="text-center"><button name="btnModify"
-											type="button" class="btn btn-success" onclick="Ocultar()">Modificar</button></td>
+											type="button" class="btn btn-success" onclick="Hide()">Modificar</button></td>
 								</tr>
 								<tr>
 									<td></td>
@@ -52,45 +55,58 @@
 								<tr>
 									<td><b>DNI:</b></td>
 									<td><label style="width: 100px;" id="lblDni"></label><input
-										id="txtDni" type="text" style="display:none; width: 200px;"></input></td>
+										id="txtDni" type="text" style="display: none; width: 200px;"></input></td>
 								</tr>
 								<tr>
 									<td><b>Género:</b></td>
-									<td><label style="width: 100px;" id="lblGenre"></label>
-									<select name="drpGenre" id="drpGenre" style="display:none; width: 200px;">
+									<td><label style="width: 100px;" id="lblGenre"></label> <select
+										name="drpGenre" id="drpGenre"
+										style="display: none; width: 200px;">
 											<option value="null">Generos</option>
 											<option value="2">Masculino</option>
 									</select></td>
 								</tr>
 								<tr>
 									<td><b>Email:</b></td>
-									<td><label style="width: 100px;" id="lblEmail"></label>
-									<input id="txtEmail" type="email" style="display:none; width: 200px;"></input></td>
+									<td><label style="width: 100px;" id="lblEmail"></label> <input
+										id="txtEmail" type="email"
+										style="display: none; width: 200px;"></input></td>
 								</tr>
 								<tr>
 									<td><b>Fecha Nac:</b></td>
-									<td><label style="width: 100px;" id="lblDate"></label>
-									<input id="txtDate"  type="date" style="display:none; width: 200px;"></input></td>
+									<td><label style="width: 100px;" id="lblDate"></label> <input
+										id="txtDate" type="date" style="display: none; width: 200px;"></input></td>
 								</tr>
 								<tr>
 									<td><b>Nacionalidad:</b></td>
 									<td><label style="width: 100px;" id="lblCountry"></label>
-									<select name="drpCountry" id="drpCountry" style="display:none; width: 200px;">
-											<option value="null">Paises</option>
-									</select>
-									</td>
+										<select name="drpCountry" id="drpCountry"
+										style="display: none; width: 200px;">
+											<c:forEach var="country" items="${countries}">
+												<option value="${country.idCountrie }">
+												${country.name }
+												<option>
+											</c:forEach>
+									</select></td>
 								</tr>
 								<tr>
 									<td><b>Provincia:</b></td>
 									<td><label style="width: 100px;" id="lblProvince"></label>
-									<select name="drpProvince" id="drpProvince" style="display:none; width: 200px;">
-											<option value="null">Provincia</option>
+										<select name="drpProvince" id="drpProvince"
+										style="display: none; width: 200px;" onchange="getCities()">
+											<c:forEach var="p" items="${provinces}">
+											${System.out.println(p.name)}
+												<option value="${p.idProvinceApi }">
+												${p.name }
+												<option>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr>
 									<td><b>Ciudad:</b></td>
-									<td><label style="width: 100px;" id="lblCity"></label>
-									<select name="drpCity" id="drpCity" style="display:none; width: 200px;">
+									<td><label style="width: 100px;" id="lblCity"></label> <select
+										name="drpCity" id="drpCity"
+										style="display: none; width: 200px;">
 											<option value="null">Ciudad</option>
 									</select></td>
 								</tr>
@@ -100,15 +116,15 @@
 
 						<div class="col">
 							<nav>
-							<div class="nav nav-tabs" id="nav-tab" role="tablist">
-								<a class="nav-item nav-link active" id="nav-accounts-tab"
-									data-toggle="tab" href="#nav-accounts" role="tab"
-									aria-controls="nav-accounts" aria-selected="true">Cuentas</a> <a
-									class="nav-item nav-link" id="nav-loans-tab" data-toggle="tab"
-									href="#nav-loans" role="tab" aria-controls="nav-loans"
-									aria-selected="false">Préstamos</a>
+								<div class="nav nav-tabs" id="nav-tab" role="tablist">
+									<a class="nav-item nav-link active" id="nav-accounts-tab"
+										data-toggle="tab" href="#nav-accounts" role="tab"
+										aria-controls="nav-accounts" aria-selected="true">Cuentas</a>
+									<a class="nav-item nav-link" id="nav-loans-tab"
+										data-toggle="tab" href="#nav-loans" role="tab"
+										aria-controls="nav-loans" aria-selected="false">Préstamos</a>
 
-							</div>
+								</div>
 							</nav>
 							<div class="tab-content" id="nav-tabContent">
 
@@ -217,30 +233,28 @@
 </body>
 
 <script type="text/javascript">
+	function Hide() {
 
-function Ocultar() {
+		document.getElementById('lblDni').style.display = 'none';
+		document.getElementById('txtDni').style.display = 'inline-block';
 
-	document.getElementById('lblDni').style.display='none';
-	document.getElementById('txtDni').style.display='inline-block';
-	
-	document.getElementById('lblGenre').style.display='none';
-	document.getElementById('drpGenre').style.display='inline-block';
-	
-	document.getElementById('lblEmail').style.display='none';
-	document.getElementById('txtEmail').style.display='inline-block';
-	
-	document.getElementById('lblDate').style.display='none';
-	document.getElementById('txtDate').style.display='inline-block';
-	
-	document.getElementById('lblCountry').style.display='none';
-	document.getElementById('drpCountry').style.display='inline-block';
-		
-	document.getElementById('lblProvince').style.display='none';
-	document.getElementById('drpProvince').style.display='inline-block';
-	
-	document.getElementById('lblCity').style.display='none';
-	document.getElementById('drpCity').style.display='inline-block';
-}
+		document.getElementById('lblGenre').style.display = 'none';
+		document.getElementById('drpGenre').style.display = 'inline-block';
 
+		document.getElementById('lblEmail').style.display = 'none';
+		document.getElementById('txtEmail').style.display = 'inline-block';
+
+		document.getElementById('lblDate').style.display = 'none';
+		document.getElementById('txtDate').style.display = 'inline-block';
+
+		document.getElementById('lblCountry').style.display = 'none';
+		document.getElementById('drpCountry').style.display = 'inline-block';
+
+		document.getElementById('lblProvince').style.display = 'none';
+		document.getElementById('drpProvince').style.display = 'inline-block';
+
+		document.getElementById('lblCity').style.display = 'none';
+		document.getElementById('drpCity').style.display = 'inline-block';
+	}
 </script>
 </html>

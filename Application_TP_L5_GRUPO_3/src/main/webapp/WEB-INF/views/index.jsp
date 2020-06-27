@@ -1,4 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="com.Model.Administrative"%>
+<%@page import="com.Model.Client"%>
+
+<%
+	if (session.getAttribute("user") != null){
+		if ((session.getAttribute("user").getClass().equals(Administrative.class))){
+				response.sendRedirect("admClients.do");
+		}
+	else if ((session.getAttribute("user").getClass().equals(Client.class))){
+	response.sendRedirect("accounts");
+		}
+	}
+%>
 
 <html>
 

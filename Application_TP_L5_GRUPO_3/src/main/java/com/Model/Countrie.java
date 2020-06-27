@@ -28,4 +28,12 @@ public class Countrie implements Serializable{
 		this.name = name;
 	}
 
+	public int getIdCountrie() {
+		return idCountrie;
+	}
+
+	public void setIdCountrie(int idCountrie) {
+		this.idCountrie = idCountrie;
+	}
+
 }

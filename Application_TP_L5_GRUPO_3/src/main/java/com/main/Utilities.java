@@ -58,9 +58,10 @@ public class Utilities {
 		return p;
 	}
 	
-	public static City createCity(String name) {
+	public static City createCity(String name, Province prov) {
 		City i = new City();
 		i.setName(name);
+		i.setProv(prov);
 		return i;
 	}
 	

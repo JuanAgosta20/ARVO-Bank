@@ -2,10 +2,13 @@ package com.Model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="cities")
 public class City implements Serializable{
@@ -13,7 +16,11 @@ public class City implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int idCity;
+	@Column(unique = true)
 	String name;
+	@ManyToOne()
+	@JoinColumn(name = "idProvince")
+	Province prov;
 	
 	public City() {
 		super();
@@ -26,4 +33,21 @@ public class City implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public int getIdCity() {
+		return idCity;
+	}
+
+	public void setIdCity(int idCity) {
+		this.idCity = idCity;
+	}
+
+	public Province getProv() {
+		return prov;
+	}
+
+	public void setProv(Province prov) {
+		this.prov = prov;
+	}
+	
 }

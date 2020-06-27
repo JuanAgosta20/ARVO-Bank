@@ -14,6 +14,13 @@ public class DirectionController {
 		return MV;
 	}
 	
+	@RequestMapping("index")
+	public ModelAndView Index() {
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("index");
+		return MV;
+	}
+	
 	@RequestMapping("redirectTransfers.html")
 	public ModelAndView redirectTransfers() {
 		ModelAndView MV = new ModelAndView();

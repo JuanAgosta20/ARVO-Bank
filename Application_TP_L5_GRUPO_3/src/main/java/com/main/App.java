@@ -310,57 +310,9 @@ public class App {
 			};
 			
 			City cities[] = {
-					Utilities.createCity("CIUDAD"), // 0 (GENERICO)
-					
-					Utilities.createCity("CIUDAD DE BUENOS AIRES"), // 1
-					Utilities.createCity("CONSTITUCION"), // 2
-					Utilities.createCity("MONSERRAT"), // 3
-					Utilities.createCity("PUERTO MADERO"), // 4
-					Utilities.createCity("RETIRO"), // 5
-					Utilities.createCity("SAN NICOLAS"), // 6
-					Utilities.createCity("SAN TELMO"), // 7
-					Utilities.createCity("RECOLETA"), // 8
-					Utilities.createCity("BALVANERA"), // 9
-					Utilities.createCity("SAN CRISTOBAL"), // 10
-					Utilities.createCity("BARRACAS"), // 11
-					Utilities.createCity("BOCA"), // 12
-					Utilities.createCity("NUEVA POMPEYA"), // 13
-					Utilities.createCity("PARQUE PATRICIOS"), // 14
-					Utilities.createCity("ALMAGRO"), // 15
-					Utilities.createCity("BOEDO"), // 16
-					Utilities.createCity("CABALLITO"), // 17
-					Utilities.createCity("FLORES"), // 18
-					Utilities.createCity("PARQUE CHACABUCO"), // 19
-					Utilities.createCity("VILLA LUGANO"), // 20
-					Utilities.createCity("VILLA RIACHUELO"), // 21
-					Utilities.createCity("VILLA SOLDATI"), // 22
-					Utilities.createCity("LINIERS"), // 23
-					Utilities.createCity("MATADEROS"), // 24
-					Utilities.createCity("PARQUE AVELLANEDA"), // 25
-					Utilities.createCity("FLORESTA"), // 26
-					Utilities.createCity("MONTE CASTRO"), // 27
-					Utilities.createCity("VELEZ SARSFIELD"), // 28
-					Utilities.createCity("VERSALLES"), // 29
-					Utilities.createCity("VILLA LURO"), // 30
-					Utilities.createCity("VILLA REAL"), // 31
-					Utilities.createCity("VILLA DEL PARQUE"), // 32
-					Utilities.createCity("VILLA DEVOTO"), // 33
-					Utilities.createCity("VILLA GENERAL MITRE"), // 34
-					Utilities.createCity("VILLA SANTA RITA"), // 35
-					Utilities.createCity("COGHLAN"), // 36
-					Utilities.createCity("SAAVEDRA"), // 37
-					Utilities.createCity("VILLA PUEYRREDON"), // 38
-					Utilities.createCity("VILLA URQUIZA"), // 39
-					Utilities.createCity("BELGRANO"), // 40
-					Utilities.createCity("COLEGIALES"), // 41
-					Utilities.createCity("NUÑEZ"), // 42
-					Utilities.createCity("PALERMO"), // 43
-					Utilities.createCity("AGRONOMIA"), // 44
-					Utilities.createCity("CHACARITA"), // 45
-					Utilities.createCity("PARQUE CHAS"), // 46
-					Utilities.createCity("PATERNAL"), // 47
-					Utilities.createCity("VILLA CRESPO"), // 48
-					Utilities.createCity("VILLA ORTUZAR"), // 49
+					Utilities.createCity("CIUDAD DE BUENOS AIRES",provs[21]), // 1
+					Utilities.createCity("CONSTITUCION",provs[21]), // 2
+					Utilities.createCity("CÓRDOBA",provs[7]), // 3
 			};
 			//
 			
@@ -532,30 +484,30 @@ public class App {
 			Genre gen3 = Utilities.createGenre("Undefined");
 
 			// CLIENTE
-			Client client = Utilities.createClient(new Date(), cities[22], "32235422", "carlos@gmail.com", "Carlos",
+			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
 					"Rodriguez", countries[11], provs[21], gen3, user, lista);
-			Client client2 = Utilities.createClient(new Date(), cities[39], "23232323", "pablo@gmail.com", "Pablo",
+			Client client2 = Utilities.createClient(new Date(), cities[2], "23232323", "pablo@gmail.com", "Pablo",
 					"Escobar", countries[44], provs[21], gen2, user2, lista2);
 
-			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), cities[15], "18654923",
+			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), cities[1], "18654923",
 					"Eabel@gmail.com", "Ellen", "Abel", countries[11], provs[21], gen, user3, lista3);
 
-			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), cities[8], "23654956", "Sande@gmail.com",
+			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), cities[0], "23654956", "Sande@gmail.com",
 					"Sundar", "Ande", countries[11], provs[21], gen3, user4, lista4);
 
 			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), cities[1], "24632589",
 					"daustin@gmail.com", "David", "Austin", countries[11], provs[21], gen2, user5, lista5);
 
-			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), cities[41], "30652987",
+			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), cities[1], "30652987",
 					"hbaer@gmail.com", "Hermann", "Baer", countries[11], provs[21], gen2, user6, lista6);
 
-			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), cities[33], "35621785", "abull@gmail.com",
+			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), cities[2], "35621785", "abull@gmail.com",
 					"Alexis", "Bull", countries[11], provs[21], gen, user7, def);
 
 			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), cities[0], "39632541",
 					"aerrazur@gmail.com", "Alberto", "Errazuriz", countries[11], provs[7], gen2, user8, def);
 
-			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), cities[0], "35621478",
+			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), cities[1], "35621478",
 					"cdavies@gmail.com", "Curtis", "Davies", countries[11], provs[19], gen2, user9, def);
 
 			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), cities[0], "40654951",
