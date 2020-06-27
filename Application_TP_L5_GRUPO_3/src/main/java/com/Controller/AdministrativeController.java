@@ -11,6 +11,7 @@ import com.Dao.ClientDaoImpl;
 import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.Province;
+import com.Services.ClientServiceImpl;
 import com.Services.GenreService;
 import com.Services.GenreServiceImpl;
 import com.Services.LocationService;
@@ -18,7 +19,8 @@ import com.Services.LocationServiceImpl;
 
 @Controller
 public class AdministrativeController {
-	
+
+	BeanFactory bFactory = new BeanFactory();
 	BeanFactory bf = new BeanFactory();
 	ClientDao cd = new ClientDaoImpl();
 	LocationService ls =  new LocationServiceImpl();//bf.createLocationServiceImpl();
@@ -26,7 +28,12 @@ public class AdministrativeController {
 
 	@RequestMapping("admClients")
 	public ModelAndView Clients(){
-		return new ModelAndView("admClients");
+		ModelAndView MV = new ModelAndView("admClients");
+		ClientServiceImpl sClient = bFactory.createClientServiceImpl();
+		
+		MV.addObject("clients",sClient.readClients());
+		
+		return MV;
 	}
 	
 	@RequestMapping("admAccounts")

@@ -30,6 +30,9 @@
 	<!--SERVICES -->
 	<bean id="UserServiceImpl" class="com.Services.UserServiceImpl">
 	</bean>
+	<bean id="ClientServiceImpl" class="com.Services.ClientServiceImpl">
+	</bean>
+
 	<bean id="AccountServiceImpl" class="com.Services.AccountServiceImpl">
 	</bean>
 	<!-- 
