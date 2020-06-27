@@ -10,6 +10,7 @@ import com.Dao.ClientDaoImpl;
 import com.Dao.GenreDaoImpl;
 import com.Dao.LocationDaoImpl;
 import com.Dao.LogInDaoImpl;
+import com.Services.ClientServiceImpl;
 import com.Services.AccountServiceImpl;
 import com.Services.GenreServiceImpl;
 import com.Services.LocationServiceImpl;
@@ -67,6 +68,10 @@ public class BeanFactory{
 		return (UserServiceImpl) appContext.getBean("UserServiceImpl");
 	}
 	
+
+	public ClientServiceImpl createClientServiceImpl() {
+		return (ClientServiceImpl) appContext.getBean("ClientServiceImpl");
+	}
 	public AccountServiceImpl getAccountServiceImpl() {
 		return (AccountServiceImpl) appContext.getBean("AccountServiceImpl");
 	}
@@ -77,6 +82,7 @@ public class BeanFactory{
 	public GenreServiceImpl createGenreServiceImpl() {
 		return (GenreServiceImpl) appContext.getBean("GenreServiceImpl");
 	}*/
+
 
 	
 }
