@@ -8,6 +8,7 @@ import com.Dao.AccountDaoImpl;
 import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.LogInDaoImpl;
+import com.Services.ClientServiceImpl;
 import com.Services.UserServiceImpl;
 
 public class BeanFactory{
@@ -48,6 +49,10 @@ public class BeanFactory{
 	//SERVICES
 	public UserServiceImpl createUserServiceImpl() {
 		return (UserServiceImpl) appContext.getBean("UserServiceImpl");
+	}
+	
+	public ClientServiceImpl createClientServiceImpl() {
+		return (ClientServiceImpl) appContext.getBean("ClientServiceImpl");
 	}
 
 	

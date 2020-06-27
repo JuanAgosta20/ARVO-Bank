@@ -2,10 +2,12 @@ package com.Services;
 
 import java.util.ArrayList;
 
+import com.Dao.SessionHandler;
 import com.Model.Client;
 
 public class ClientServiceImpl implements ClientService{
-
+	SessionHandler sHand = new SessionHandler();
+	
 	public Boolean saveClient(Client client) {
 			
 		return null;
@@ -22,8 +24,8 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	public ArrayList<Client> readClients() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> clients = (ArrayList<Client>) sHand.getAllData(Client.class);
+		return clients;
 	}
 	
 	

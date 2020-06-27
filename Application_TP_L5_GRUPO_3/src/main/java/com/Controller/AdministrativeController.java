@@ -9,17 +9,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Dao.ClientDao;
 import com.Dao.ClientDaoImpl;
+import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.Province;
+import com.Services.ClientServiceImpl;
 import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
 
 @Controller
 public class AdministrativeController {
-
+	BeanFactory bFactory = new BeanFactory();
+	
+	
 	@RequestMapping("admClients")
 	public ModelAndView Clients(){
-		return new ModelAndView("admClients");
+		ModelAndView MV = new ModelAndView("admClients");
+		ClientServiceImpl sClient = bFactory.createClientServiceImpl();
+		
+		MV.addObject("clients",sClient.readClients());
+		
+		return MV;
 	}
 	
 	@RequestMapping("admAccounts")

@@ -24,5 +24,7 @@
 	<!--SERVICES -->
 	<bean id="UserServiceImpl" class="com.Services.UserServiceImpl">
 	</bean>
+	<bean id="ClientServiceImpl" class="com.Services.ClientServiceImpl">
+	</bean>
 
 </beans>
