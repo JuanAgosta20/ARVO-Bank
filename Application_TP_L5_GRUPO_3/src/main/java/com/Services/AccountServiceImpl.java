@@ -3,6 +3,7 @@ package com.Services;
 import java.util.ArrayList;
 
 import com.Dao.AccountDao;
+import com.Dao.AccountDaoImpl;
 import com.Dao.SessionHandler;
 import com.Model.Account;
 import com.Model.BeanFactory;
@@ -11,7 +12,7 @@ import com.Model.typeAccount;
 public class AccountServiceImpl implements AccountService{
 
 	BeanFactory bf = new BeanFactory();
-	SessionHandler sHand = new SessionHandler();
+	AccountDao ad = new AccountDaoImpl();
 	
 	public Boolean insertAccount(Account acc) {
 		// TODO Auto-generated method stub
@@ -23,10 +24,12 @@ public class AccountServiceImpl implements AccountService{
 		return null;
 	}
 
-	@Override
 	public ArrayList<typeAccount> getAllTypes() {
-		AccountDao ad = bf.getAccountDaoImpl();
 		return ad.getAllTypes();
+	}
+
+	public ArrayList<Account> getAllUnchekedAccounts() {
+		return ad.getAllUnchekedAccounts();
 	}
 
 }

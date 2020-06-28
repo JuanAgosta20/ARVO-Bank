@@ -337,34 +337,34 @@ public class App {
 
 			// CUENTA
 			Date fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
-			Account acc = Utilities.createAccount("12321323213", fecha, 32323.4F, "Cuenta 1", (byte) 1, null, null,
+			Account acc = Utilities.createAccount("12321323213", fecha, 32323.4F, "Cuenta 1", 0, null, null,
 					ta);
 			fecha = Cmd.crearFechaHora(10, 1, 2019, 10, 22, 12);
-			Account acc2 = Utilities.createAccount("68686868686545", fecha, 45000F, "Cuenta 2", (byte) 1, null, null,
+			Account acc2 = Utilities.createAccount("68686868686545", fecha, 45000F, "Cuenta 2", 1, null, null,
 					ta3);
 			fecha = Cmd.crearFechaHora(22, 2, 2020, 31, 2, 12);
-			Account acc3 = Utilities.createAccount("5473767373356", fecha, 333.03F, "Cuenta 3", (byte) 1, null, null,
+			Account acc3 = Utilities.createAccount("5473767373356", fecha, 333.03F, "Cuenta 3", 2, null, null,
 					ta4);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc4 = Utilities.createAccount("59598123156651", fecha, 90000.50F, "Cuenta 1", (byte) 1, null, null,
+			Account acc4 = Utilities.createAccount("59598123156651", fecha, 90000.50F, "Cuenta 1", 2, null, null,
 					ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc5 = Utilities.createAccount("323269444845261", fecha, 10000000F, "Cuenta 2", (byte) 1, null,
+			Account acc5 = Utilities.createAccount("323269444845261", fecha, 10000000F, "Cuenta 2", 2, null,
 					null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc6 = Utilities.createAccount("2215198431218912", fecha, 51510F, "Cuenta 3", (byte) 1, null, null,
+			Account acc6 = Utilities.createAccount("2215198431218912", fecha, 51510F, "Cuenta 3", 2, null, null,
 					ta2);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc7 = Utilities.createAccount("454612354984561", fecha, 100000F, "Cuenta 1", (byte) 1, null, null,
+			Account acc7 = Utilities.createAccount("454612354984561", fecha, 100000F, "Cuenta 1", 1, null, null,
 					ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc8 = Utilities.createAccount("5954841631566", fecha, 45.5F, "Cuenta 1", (byte) 1, null, null,
+			Account acc8 = Utilities.createAccount("5954841631566", fecha, 45.5F, "Cuenta 1", 2, null, null,
 					ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc9 = Utilities.createAccount("88451231561231", fecha, 102000.3F, "Cuenta 1", (byte) 1, null, null,
+			Account acc9 = Utilities.createAccount("88451231561231", fecha, 102000.3F, "Cuenta 1", 2, null, null,
 					ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc10 = Utilities.createAccount("99218913621", fecha, 5.5F, "Cuenta 1", (byte) 1, null, null,
+			Account acc10 = Utilities.createAccount("99218913621", fecha, 5.5F, "Cuenta 1", 2, null, null,
 					ta);
 			
 			

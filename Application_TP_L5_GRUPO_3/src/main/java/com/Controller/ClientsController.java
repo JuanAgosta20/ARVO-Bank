@@ -8,6 +8,7 @@ import com.Model.Account;
 import com.Model.BeanFactory;
 import com.Model.Cmd;
 import com.Services.AccountService;
+import com.Services.AccountServiceImpl;
 import com.Services.UserService;
 
 @Controller
@@ -15,7 +16,7 @@ public class ClientsController {
 	
 	BeanFactory bf = new BeanFactory();
 	UserService us = bf.createUserServiceImpl();
-	AccountService as = bf.getAccountServiceImpl();
+	AccountService as = new AccountServiceImpl();
 	
 	@RequestMapping("clAccounts")
 	public ModelAndView Accounts(){

@@ -72,10 +72,11 @@ public class BeanFactory{
 	public ClientServiceImpl createClientServiceImpl() {
 		return (ClientServiceImpl) appContext.getBean("ClientServiceImpl");
 	}
+	/*
 	public AccountServiceImpl getAccountServiceImpl() {
 		return (AccountServiceImpl) appContext.getBean("AccountServiceImpl");
 	}
-	/*public LocationServiceImpl createLocationServiceImpl() {
+	public LocationServiceImpl createLocationServiceImpl() {
 		return (LocationServiceImpl) appContext.getBean("LocationServiceImpl");
 	}
 	

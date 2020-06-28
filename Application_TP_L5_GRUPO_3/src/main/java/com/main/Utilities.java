@@ -23,7 +23,7 @@ public class Utilities {
 		super();
 	}
 
-	public static Account createAccount(String cbu, Date date, Float funds, String name, Byte state,
+	public static Account createAccount(String cbu, Date date, Float funds, String name, int state,
 			ArrayList<Transaction> tm, ArrayList<Transaction> tr, typeAccount type) {
 		Account acc = new Account();
 		acc.setCBU(cbu);

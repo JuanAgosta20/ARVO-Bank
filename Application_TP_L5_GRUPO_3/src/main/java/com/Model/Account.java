@@ -36,7 +36,7 @@ public class Account implements Serializable {
 	private List<Transaction> transactionMade = new ArrayList<Transaction>();
 	@OneToMany(mappedBy = "destinationAccount")
 	private List<Transaction> transactionReceived = new ArrayList<Transaction>();
-	private Byte state;
+	private int state;
 
 	public Account() {
 		super();
@@ -92,11 +92,11 @@ public class Account implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public Byte getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Byte state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 

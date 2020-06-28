@@ -8,5 +8,6 @@ import com.Model.typeAccount;
 public interface AccountDao {
 	public Boolean insertAccount(Account acc);
 	public Boolean deleteAccount(Account acc);
+	public ArrayList<Account> getAllUnchekedAccounts();
 	public ArrayList<typeAccount> getAllTypes();
 }

@@ -2,13 +2,12 @@ package com.Dao;
 
 import java.util.ArrayList;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 import com.Model.Account;
-import com.Model.Connection;
 import com.Model.typeAccount;
 
+@SuppressWarnings("unchecked")
 public class AccountDaoImpl implements AccountDao{
 
 	SessionHandler sHand = new SessionHandler();
@@ -45,9 +44,21 @@ public class AccountDaoImpl implements AccountDao{
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+
 	public ArrayList<typeAccount> getAllTypes() {
 		return (ArrayList<typeAccount>)sHand.getAllData(typeAccount.class);
+	}
+
+	public ArrayList<Account> getAllUnchekedAccounts() {
+		String hql = "From Account a WHERE a.state = :id";
+		Query query = (Query) session.createQuery(hql);
+		query.setParameter("id", 1);
+		try {
+			return (ArrayList<Account>) query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
