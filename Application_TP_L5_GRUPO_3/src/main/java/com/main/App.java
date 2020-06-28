@@ -32,14 +32,14 @@ public class App {
 			session.beginTransaction();
 
 			// LOCACIONES
-			Countrie countries[] = { Utilities.createCountrie("Afganistán"), // 0
+			Countrie countries[] = { Utilities.createCountrie("Afganistï¿½n"), // 0
 					Utilities.createCountrie("Albania"), // 1
 					Utilities.createCountrie("Alemania"), // 2
 					Utilities.createCountrie("Algeria"), // 3
 					Utilities.createCountrie("Andorra"), // 4
 					Utilities.createCountrie("Angola"), // 5
 					Utilities.createCountrie("Anguila"), // 6
-					Utilities.createCountrie("Antártida"), // 7
+					Utilities.createCountrie("Antï¿½rtida"), // 7
 					Utilities.createCountrie("Antigua y Barbuda"), // 8
 					Utilities.createCountrie("Antillas Neerlandesas"), // 9
 					Utilities.createCountrie("Arabia Saudita"), // 10
@@ -48,29 +48,29 @@ public class App {
 					Utilities.createCountrie("Aruba"), // 13
 					Utilities.createCountrie("Australia"), // 14
 					Utilities.createCountrie("Austria"), // 15
-					Utilities.createCountrie("Azerbayán"), // 16
-					Utilities.createCountrie("Bélgica"), // 17
+					Utilities.createCountrie("Azerbayï¿½n"), // 16
+					Utilities.createCountrie("Bï¿½lgica"), // 17
 					Utilities.createCountrie("Bahamas"), // 18
 					Utilities.createCountrie("Bahrein"), // 19
 					Utilities.createCountrie("Bangladesh"), // 20
 					Utilities.createCountrie("Barbados"), // 21
 					Utilities.createCountrie("Belice"), // 22
-					Utilities.createCountrie("Benín"), // 23
-					Utilities.createCountrie("Bhután"), // 24
+					Utilities.createCountrie("Benï¿½n"), // 23
+					Utilities.createCountrie("Bhutï¿½n"), // 24
 					Utilities.createCountrie("Bielorrusia"), // 25
 					Utilities.createCountrie("Birmania"), // 26
 					Utilities.createCountrie("Bolivia"), // 27
 					Utilities.createCountrie("Bosnia y Herzegovina"), // 28
 					Utilities.createCountrie("Botsuana"), // 29
 					Utilities.createCountrie("Brasil"), // 30
-					Utilities.createCountrie("Brunéi"), // 31
+					Utilities.createCountrie("Brunï¿½i"), // 31
 					Utilities.createCountrie("Bulgaria"), // 32
 					Utilities.createCountrie("Burkina Faso"), // 33
 					Utilities.createCountrie("Burundi"), // 34
 					Utilities.createCountrie("Cabo Verde"), // 35
 					Utilities.createCountrie("Camboya"), // 36
-					Utilities.createCountrie("Camerún"), // 37
-					Utilities.createCountrie("Canadá"), // 38
+					Utilities.createCountrie("Camerï¿½n"), // 37
+					Utilities.createCountrie("Canadï¿½"), // 38
 					Utilities.createCountrie("Chad"), // 39
 					Utilities.createCountrie("Chile"), // 40
 					Utilities.createCountrie("China"), // 41
@@ -91,19 +91,19 @@ public class App {
 					Utilities.createCountrie("Ecuador"), // 56
 					Utilities.createCountrie("Egipto"), // 57
 					Utilities.createCountrie("El Salvador"), // 58
-					Utilities.createCountrie("Emiratos Árabes Unidos"), // 59
+					Utilities.createCountrie("Emiratos ï¿½rabes Unidos"), // 59
 					Utilities.createCountrie("Eritrea"), // 60
 					Utilities.createCountrie("Eslovaquia"), // 61
 					Utilities.createCountrie("Eslovenia"), // 62
-					Utilities.createCountrie("España"), // 63
-					Utilities.createCountrie("Estados Unidos de América"), // 64
+					Utilities.createCountrie("Espaï¿½a"), // 63
+					Utilities.createCountrie("Estados Unidos de Amï¿½rica"), // 64
 					Utilities.createCountrie("Estonia"), // 65
-					Utilities.createCountrie("Etiopía"), // 66
+					Utilities.createCountrie("Etiopï¿½a"), // 66
 					Utilities.createCountrie("Filipinas"), // 67
 					Utilities.createCountrie("Finlandia"), // 68
 					Utilities.createCountrie("Fiyi"), // 69
 					Utilities.createCountrie("Francia"), // 70
-					Utilities.createCountrie("Gabón"), // 71
+					Utilities.createCountrie("Gabï¿½n"), // 71
 					Utilities.createCountrie("Gambia"), // 72
 					Utilities.createCountrie("Georgia"), // 73
 					Utilities.createCountrie("Ghana"), // 74
@@ -120,13 +120,13 @@ public class App {
 					Utilities.createCountrie("Guinea Ecuatorial"), // 85
 					Utilities.createCountrie("Guinea-Bissau"), // 86
 					Utilities.createCountrie("Guyana"), // 87
-					Utilities.createCountrie("Haití"), // 88
+					Utilities.createCountrie("Haitï¿½"), // 88
 					Utilities.createCountrie("Honduras"), // 89
 					Utilities.createCountrie("Hong kong"), // 90
-					Utilities.createCountrie("Hungría"), // 91
+					Utilities.createCountrie("Hungrï¿½a"), // 91
 					Utilities.createCountrie("India"), // 92
 					Utilities.createCountrie("Indonesia"), // 93
-					Utilities.createCountrie("Irán"), // 94
+					Utilities.createCountrie("Irï¿½n"), // 94
 					Utilities.createCountrie("Irak"), // 95
 					Utilities.createCountrie("Irlanda"), // 96
 					Utilities.createCountrie("Isla Bouvet"), // 97
@@ -135,10 +135,10 @@ public class App {
 					Utilities.createCountrie("Isla Norfolk"), // 100
 					Utilities.createCountrie("Islandia"), // 101
 					Utilities.createCountrie("Islas Bermudas"), // 102
-					Utilities.createCountrie("Islas Caimán"), // 103
+					Utilities.createCountrie("Islas Caimï¿½n"), // 103
 					Utilities.createCountrie("Islas Cocos (Keeling)"), // 104
 					Utilities.createCountrie("Islas Cook"), // 105
-					Utilities.createCountrie("Islas de Åland"), // 106
+					Utilities.createCountrie("Islas de ï¿½land"), // 106
 					Utilities.createCountrie("Islas Feroe"), // 107
 					Utilities.createCountrie("Islas Georgias del Sur y Sandwich del Sur"), // 108
 					Utilities.createCountrie("Islas Heard y McDonald"), // 109
@@ -147,23 +147,23 @@ public class App {
 					Utilities.createCountrie("Islas Marianas del Norte"), // 112
 					Utilities.createCountrie("Islas Marshall"), // 113
 					Utilities.createCountrie("Islas Pitcairn"), // 114
-					Utilities.createCountrie("Islas Salomón"), // 115
+					Utilities.createCountrie("Islas Salomï¿½n"), // 115
 					Utilities.createCountrie("Islas Turcas y Caicos"), // 116
 					Utilities.createCountrie("Islas Ultramarinas Menores de Estados Unidos"), // 117
-					Utilities.createCountrie("Islas Vírgenes Británicas"), // 118
-					Utilities.createCountrie("Islas Vírgenes de los Estados Unidos"), // 119
+					Utilities.createCountrie("Islas Vï¿½rgenes Britï¿½nicas"), // 118
+					Utilities.createCountrie("Islas Vï¿½rgenes de los Estados Unidos"), // 119
 					Utilities.createCountrie("Israel"), // 120
 					Utilities.createCountrie("Italia"), // 121
 					Utilities.createCountrie("Jamaica"), // 122
-					Utilities.createCountrie("Japón"), // 123
+					Utilities.createCountrie("Japï¿½n"), // 123
 					Utilities.createCountrie("Jersey"), // 124
 					Utilities.createCountrie("Jordania"), // 125
-					Utilities.createCountrie("Kazajistán"), // 126
+					Utilities.createCountrie("Kazajistï¿½n"), // 126
 					Utilities.createCountrie("Kenia"), // 127
-					Utilities.createCountrie("Kirgizstán"), // 128
+					Utilities.createCountrie("Kirgizstï¿½n"), // 128
 					Utilities.createCountrie("Kiribati"), // 129
 					Utilities.createCountrie("Kuwait"), // 130
-					Utilities.createCountrie("Líbano"), // 131
+					Utilities.createCountrie("Lï¿½bano"), // 131
 					Utilities.createCountrie("Laos"), // 132
 					Utilities.createCountrie("Lesoto"), // 133
 					Utilities.createCountrie("Letonia"), // 134
@@ -172,10 +172,10 @@ public class App {
 					Utilities.createCountrie("Liechtenstein"), // 137
 					Utilities.createCountrie("Lituania"), // 138
 					Utilities.createCountrie("Luxemburgo"), // 139
-					Utilities.createCountrie("México"), // 140
-					Utilities.createCountrie("Mónaco"), // 141
+					Utilities.createCountrie("Mï¿½xico"), // 140
+					Utilities.createCountrie("Mï¿½naco"), // 141
 					Utilities.createCountrie("Macao"), // 142
-					Utilities.createCountrie("Macedônia"), // 143
+					Utilities.createCountrie("Macedï¿½nia"), // 143
 					Utilities.createCountrie("Madagascar"), // 144
 					Utilities.createCountrie("Malasia"), // 145
 					Utilities.createCountrie("Malawi"), // 146
@@ -202,40 +202,40 @@ public class App {
 					Utilities.createCountrie("Noruega"), // 167
 					Utilities.createCountrie("Nueva Caledonia"), // 168
 					Utilities.createCountrie("Nueva Zelanda"), // 169
-					Utilities.createCountrie("Omán"), // 170
-					Utilities.createCountrie("Países Bajos"), // 171
-					Utilities.createCountrie("Pakistán"), // 172
+					Utilities.createCountrie("Omï¿½n"), // 170
+					Utilities.createCountrie("Paï¿½ses Bajos"), // 171
+					Utilities.createCountrie("Pakistï¿½n"), // 172
 					Utilities.createCountrie("Palau"), // 173
 					Utilities.createCountrie("Palestina"), // 174
-					Utilities.createCountrie("Panamá"), // 175
-					Utilities.createCountrie("Papúa Nueva Guinea"), // 176
+					Utilities.createCountrie("Panamï¿½"), // 175
+					Utilities.createCountrie("Papï¿½a Nueva Guinea"), // 176
 					Utilities.createCountrie("Paraguay"), // 177
-					Utilities.createCountrie("Perú"), // 178
+					Utilities.createCountrie("Perï¿½"), // 178
 					Utilities.createCountrie("Polinesia Francesa"), // 179
 					Utilities.createCountrie("Polonia"), // 180
 					Utilities.createCountrie("Portugal"), // 181
 					Utilities.createCountrie("Puerto Rico"), // 182
 					Utilities.createCountrie("Qatar"), // 183
 					Utilities.createCountrie("Reino Unido"), // 184
-					Utilities.createCountrie("República Centroafricana"), // 185
-					Utilities.createCountrie("República Checa"), // 186
-					Utilities.createCountrie("República Dominicana"), // 187
-					Utilities.createCountrie("Reunión"), // 188
+					Utilities.createCountrie("Repï¿½blica Centroafricana"), // 185
+					Utilities.createCountrie("Repï¿½blica Checa"), // 186
+					Utilities.createCountrie("Repï¿½blica Dominicana"), // 187
+					Utilities.createCountrie("Reuniï¿½n"), // 188
 					Utilities.createCountrie("Ruanda"), // 189
-					Utilities.createCountrie("Rumanía"), // 190
+					Utilities.createCountrie("Rumanï¿½a"), // 190
 					Utilities.createCountrie("Rusia"), // 191
 					Utilities.createCountrie("Sahara Occidental"), // 192
 					Utilities.createCountrie("Samoa"), // 193
 					Utilities.createCountrie("Samoa Americana"), // 194
-					Utilities.createCountrie("San Bartolomé"), // 195
-					Utilities.createCountrie("San Cristóbal y Nieves"), // 196
+					Utilities.createCountrie("San Bartolomï¿½"), // 195
+					Utilities.createCountrie("San Cristï¿½bal y Nieves"), // 196
 					Utilities.createCountrie("San Marino"), // 197
-					Utilities.createCountrie("San Martín (Francia)"), // 198
-					Utilities.createCountrie("San Pedro y Miquelón"), // 199
+					Utilities.createCountrie("San Martï¿½n (Francia)"), // 198
+					Utilities.createCountrie("San Pedro y Miquelï¿½n"), // 199
 					Utilities.createCountrie("San Vicente y las Granadinas"), // 200
 					Utilities.createCountrie("Santa Elena"), // 201
-					Utilities.createCountrie("Santa Lucía"), // 202
-					Utilities.createCountrie("Santo Tomé y Príncipe"), // 203
+					Utilities.createCountrie("Santa Lucï¿½a"), // 202
+					Utilities.createCountrie("Santo Tomï¿½ y Prï¿½ncipe"), // 203
 					Utilities.createCountrie("Senegal"), // 204
 					Utilities.createCountrie("Serbia"), // 205
 					Utilities.createCountrie("Seychelles"), // 206
@@ -244,32 +244,32 @@ public class App {
 					Utilities.createCountrie("Siria"), // 209
 					Utilities.createCountrie("Somalia"), // 210
 					Utilities.createCountrie("Sri lanka"), // 211
-					Utilities.createCountrie("Sudáfrica"), // 212
-					Utilities.createCountrie("Sudán"), // 213
+					Utilities.createCountrie("Sudï¿½frica"), // 212
+					Utilities.createCountrie("Sudï¿½n"), // 213
 					Utilities.createCountrie("Suecia"), // 214
 					Utilities.createCountrie("Suiza"), // 215
-					Utilities.createCountrie("Surinám"), // 216
+					Utilities.createCountrie("Surinï¿½m"), // 216
 					Utilities.createCountrie("Svalbard y Jan Mayen"), // 217
 					Utilities.createCountrie("Swazilandia"), // 218
-					Utilities.createCountrie("Tadjikistán"), // 219
+					Utilities.createCountrie("Tadjikistï¿½n"), // 219
 					Utilities.createCountrie("Tailandia"), // 220
-					Utilities.createCountrie("Taiwán"), // 221
+					Utilities.createCountrie("Taiwï¿½n"), // 221
 					Utilities.createCountrie("Tanzania"), // 222
-					Utilities.createCountrie("Territorio Británico del Océano Índico"), // 223
-					Utilities.createCountrie("Territorios Australes y Antárticas Franceses"), // 224
+					Utilities.createCountrie("Territorio Britï¿½nico del Ocï¿½ano ï¿½ndico"), // 223
+					Utilities.createCountrie("Territorios Australes y Antï¿½rticas Franceses"), // 224
 					Utilities.createCountrie("Timor Oriental"), // 225
 					Utilities.createCountrie("Togo"), // 226
 					Utilities.createCountrie("Tokelau"), // 227
 					Utilities.createCountrie("Tonga"), // 228
 					Utilities.createCountrie("Trinidad y Tobago"), // 229
 					Utilities.createCountrie("Tunez"), // 230
-					Utilities.createCountrie("Turkmenistán"), // 231
-					Utilities.createCountrie("Turquía"), // 232
+					Utilities.createCountrie("Turkmenistï¿½n"), // 231
+					Utilities.createCountrie("Turquï¿½a"), // 232
 					Utilities.createCountrie("Tuvalu"), // 233
 					Utilities.createCountrie("Ucrania"), // 234
 					Utilities.createCountrie("Uganda"), // 235
 					Utilities.createCountrie("Uruguay"), // 236
-					Utilities.createCountrie("Uzbekistán"), // 237
+					Utilities.createCountrie("Uzbekistï¿½n"), // 237
 					Utilities.createCountrie("Vanuatu"), // 238
 					Utilities.createCountrie("Venezuela"), // 239
 					Utilities.createCountrie("Vietnam"), // 240
@@ -283,11 +283,11 @@ public class App {
 			Province provs[] = { Utilities.createProvince("Misiones", 54), // 1
 					Utilities.createProvince("San Luis", 74), // 2
 					Utilities.createProvince("San Juan", 70), // 3
-					Utilities.createProvince("Entre Ríos", 30), // 4
+					Utilities.createProvince("Entre Rï¿½os", 30), // 4
 					Utilities.createProvince("Santa Cruz", 78), // 5
-					Utilities.createProvince("Río Negro", 62), // 6
+					Utilities.createProvince("Rï¿½o Negro", 62), // 6
 					Utilities.createProvince("Chubut", 26), // 7
-					Utilities.createProvince("Córdoba", 14), // 8
+					Utilities.createProvince("Cï¿½rdoba", 14), // 8
 					Utilities.createProvince("Mendoza", 50), // 9
 					Utilities.createProvince("La Rioja", 46), // 10
 					Utilities.createProvince("Catamarca", 10), // 11
@@ -295,20 +295,20 @@ public class App {
 					Utilities.createProvince("Santiago del Estero", 86), // 13
 					Utilities.createProvince("Corrientes", 18), // 14
 					Utilities.createProvince("Santa Fe", 82), // 15
-					Utilities.createProvince("Tucumán", 90), // 16
-					Utilities.createProvince("Neuquén", 58), // 17
+					Utilities.createProvince("Tucumï¿½n", 90), // 16
+					Utilities.createProvince("Neuquï¿½n", 58), // 17
 					Utilities.createProvince("Salta", 66), // 18
 					Utilities.createProvince("Chaco", 22), // 19
 					Utilities.createProvince("Formosa", 34), // 20
 					Utilities.createProvince("Jujuy", 38), // 21
-					Utilities.createProvince("Ciudad Autónoma de Buenos Aires", 02), // 22
+					Utilities.createProvince("Ciudad Autï¿½noma de Buenos Aires", 02), // 22
 					Utilities.createProvince("Buenos Aires", 06), // 23
 					Utilities.createProvince("Tierra del Fuego", 94), // 24
 			};
 
 			City cities[] = { Utilities.createCity("CIUDAD DE BUENOS AIRES", provs[21]), // 1
 					Utilities.createCity("CONSTITUCION", provs[21]), // 2
-					Utilities.createCity("CÓRDOBA", provs[7]), // 3
+					Utilities.createCity("Cï¿½RDOBA", provs[7]), // 3
 			};
 			//
 
@@ -327,10 +327,10 @@ public class App {
 			User admin = Utilities.createUser("123456", "Juanc", "Admin");
 
 			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos", true);
-			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dólares", false);
+			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dï¿½lares", false);
 			typeAccount ta3 = Utilities.createTypeAccount("Cuenta Corriente", true);
 			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos", true);
-			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dólares", false);
+			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dï¿½lares", false);
 
 			Genre gen = Utilities.createGenre("Female");
 			Genre gen2 = Utilities.createGenre("Male");

@@ -25,6 +25,7 @@ public class AdministrativeController {
 	BeanFactory bFactory = new BeanFactory();
 	BeanFactory bf = new BeanFactory();
 	ClientDao cd = new ClientDaoImpl();
+	ClientServiceImpl cs = new ClientServiceImpl();
 	LocationService ls =  new LocationServiceImpl();//bf.createLocationServiceImpl();
 	GenreService gs = new GenreServiceImpl(); //bf.createGenreServiceImpl();
 	AccountService accs = new AccountServiceImpl();
@@ -63,6 +64,15 @@ public class AdministrativeController {
 			e.printStackTrace();
 			return MV;
 		}
+		
+		return MV;
+	}
+	
+	@RequestMapping("admDeleteClient")
+	public ModelAndView DeleteClient(int idClient, int idUser){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("admClients");
+		cs.deleteClient(idClient, idUser);
 		
 		return MV;
 	}
