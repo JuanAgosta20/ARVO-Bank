@@ -478,9 +478,9 @@ public class App {
 
 			ArrayList<Account> def = new ArrayList<Account>();
 			
-			Genre gen = Utilities.createGenre("Female");
-			Genre gen2 = Utilities.createGenre("Male");
-			Genre gen3 = Utilities.createGenre("Undefined");
+			Genre gen = Utilities.createGenre("Femenino");
+			Genre gen2 = Utilities.createGenre("Masculino");
+			Genre gen3 = Utilities.createGenre("Otro");
 
 			// CLIENTE
 			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
