@@ -31,9 +31,8 @@ public class App {
 			Session session = sf.openSession();
 			session.beginTransaction();
 
-			//LOCACIONES
-			Countrie countries[] = {
-					Utilities.createCountrie("Afganistán"), // 0
+			// LOCACIONES
+			Countrie countries[] = { Utilities.createCountrie("Afganistán"), // 0
 					Utilities.createCountrie("Albania"), // 1
 					Utilities.createCountrie("Alemania"), // 2
 					Utilities.createCountrie("Algeria"), // 3
@@ -280,9 +279,8 @@ public class App {
 					Utilities.createCountrie("Zambia"), // 244
 					Utilities.createCountrie("Zimbabue"), // 245
 			};
-			
-			Province provs[] = {
-					Utilities.createProvince("Misiones", 54), // 1
+
+			Province provs[] = { Utilities.createProvince("Misiones", 54), // 1
 					Utilities.createProvince("San Luis", 74), // 2
 					Utilities.createProvince("San Juan", 70), // 3
 					Utilities.createProvince("Entre Ríos", 30), // 4
@@ -307,14 +305,13 @@ public class App {
 					Utilities.createProvince("Buenos Aires", 06), // 23
 					Utilities.createProvince("Tierra del Fuego", 94), // 24
 			};
-			
-			City cities[] = {
-					Utilities.createCity("CIUDAD DE BUENOS AIRES",provs[21]), // 1
-					Utilities.createCity("CONSTITUCION",provs[21]), // 2
-					Utilities.createCity("CÓRDOBA",provs[7]), // 3
+
+			City cities[] = { Utilities.createCity("CIUDAD DE BUENOS AIRES", provs[21]), // 1
+					Utilities.createCity("CONSTITUCION", provs[21]), // 2
+					Utilities.createCity("CÓRDOBA", provs[7]), // 3
 			};
 			//
-			
+
 			// USUARIOs
 			User user = Utilities.createUser("123456", "Carlos", "Cliente");
 			User user2 = Utilities.createUser("123456", "Pablo", "Cliente");
@@ -328,47 +325,70 @@ public class App {
 			User user10 = Utilities.createUser("123456", "Kevin", "Cliente");
 
 			User admin = Utilities.createUser("123456", "Juanc", "Admin");
-			
+
 			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos", true);
 			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dólares", false);
 			typeAccount ta3 = Utilities.createTypeAccount("Cuenta Corriente", true);
 			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos", true);
 			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dólares", false);
 
+			Genre gen = Utilities.createGenre("Female");
+			Genre gen2 = Utilities.createGenre("Male");
+			Genre gen3 = Utilities.createGenre("Undefined");
+			
+			// CLIENTE
+			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
+					"Rodriguez", countries[11], provs[21], gen3, user);
+			Client client2 = Utilities.createClient(new Date(), cities[2], "23232323", "pablo@gmail.com", "Pablo",
+					"Escobar", countries[44], provs[21], gen2, user2);
+
+			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), cities[1], "18654923",
+					"Eabel@gmail.com", "Ellen", "Abel", countries[11], provs[21], gen, user3);
+
+			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), cities[0], "23654956",
+					"Sande@gmail.com", "Sundar", "Ande", countries[11], provs[21], gen3, user4);
+
+			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), cities[1], "24632589",
+					"daustin@gmail.com", "David", "Austin", countries[11], provs[21], gen2, user5);
+
+			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), cities[1], "30652987",
+					"hbaer@gmail.com", "Hermann", "Baer", countries[11], provs[21], gen2, user6);
+
+			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), cities[2], "35621785",
+					"abull@gmail.com", "Alexis", "Bull", countries[11], provs[21], gen, user7);
+
+			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), cities[0], "39632541",
+					"aerrazur@gmail.com", "Alberto", "Errazuriz", countries[11], provs[7], gen2, user8);
+
+			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), cities[1], "35621478",
+					"cdavies@gmail.com", "Curtis", "Davies", countries[11], provs[19], gen2, user9);
+
+			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), cities[0], "40654951",
+					"kfeeney@gmail.com", "Kevin", "Feeney", countries[11], provs[11], gen3, user10);
+
 			// CUENTA
 			Date fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
-			Account acc = Utilities.createAccount("12321323213", fecha, 32323.4F, "Cuenta 1", 0, null, null,
-					ta);
+			Account acc = Utilities.createAccount(client, "12321323213", fecha, 32323.4F, "Cuenta 1", 0, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 1, 2019, 10, 22, 12);
-			Account acc2 = Utilities.createAccount("68686868686545", fecha, 45000F, "Cuenta 2", 1, null, null,
-					ta3);
+			Account acc2 = Utilities.createAccount(client2, "68686868686545", fecha, 45000F, "Cuenta 2", 1, null, null, ta3);
 			fecha = Cmd.crearFechaHora(22, 2, 2020, 31, 2, 12);
-			Account acc3 = Utilities.createAccount("5473767373356", fecha, 333.03F, "Cuenta 3", 2, null, null,
-					ta4);
+			Account acc3 = Utilities.createAccount(client, "5473767373356", fecha, 333.03F, "Cuenta 3", 2, null, null, ta4);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc4 = Utilities.createAccount("59598123156651", fecha, 90000.50F, "Cuenta 1", 2, null, null,
-					ta3);
+			Account acc4 = Utilities.createAccount(client3, "59598123156651", fecha, 90000.50F, "Cuenta 1", 2, null, null, ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc5 = Utilities.createAccount("323269444845261", fecha, 10000000F, "Cuenta 2", 2, null,
-					null, ta);
+			Account acc5 = Utilities.createAccount(client4, "323269444845261", fecha, 10000000F, "Cuenta 2", 2, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc6 = Utilities.createAccount("2215198431218912", fecha, 51510F, "Cuenta 3", 2, null, null,
-					ta2);
+			Account acc6 = Utilities.createAccount(client5, "2215198431218912", fecha, 51510F, "Cuenta 3", 2, null, null, ta2);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc7 = Utilities.createAccount("454612354984561", fecha, 100000F, "Cuenta 1", 1, null, null,
-					ta);
+			Account acc7 = Utilities.createAccount(client6, "454612354984561", fecha, 100000F, "Cuenta 1", 1, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc8 = Utilities.createAccount("5954841631566", fecha, 45.5F, "Cuenta 1", 2, null, null,
-					ta);
+			Account acc8 = Utilities.createAccount(client7, "5954841631566", fecha, 45.5F, "Cuenta 1", 2, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc9 = Utilities.createAccount("88451231561231", fecha, 102000.3F, "Cuenta 1", 2, null, null,
-					ta3);
+			Account acc9 = Utilities.createAccount(client8, "88451231561231", fecha, 102000.3F, "Cuenta 1", 2, null, null, ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc10 = Utilities.createAccount("99218913621", fecha, 5.5F, "Cuenta 1", 2, null, null,
-					ta);
-			
-			
-			//TIPOS DE MOVIMIENTO
+			Account acc10 = Utilities.createAccount(client9, "99218913621", fecha, 5.5F, "Cuenta 1", 2, null, null, ta);
+
+			// TIPOS DE MOVIMIENTO
 			typeMove tm = Utilities.createTypeMove("Alta de Cuenta", true);
 			typeMove tm2 = Utilities.createTypeMove("Alta de Prestamo", true);
 			typeMove tm3 = Utilities.createTypeMove("Pago de Prestamo", false);
@@ -383,9 +403,9 @@ public class App {
 			date = Cmd.crearFechaHora(25, 3, 2019, 11, 42, 12);
 			Transaction trans3 = Utilities.createTransaction(2500F, "Alquiler", date, null, null, tm4);
 			date = Cmd.crearFechaHora(15, 4, 2020, 18, 45, 12);
-			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null,tm2);
+			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null, tm2);
 			date = Cmd.crearFechaHora(30, 1, 2020, 10, 45, 45);
-			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null,tm5);
+			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null, tm5);
 			date = Cmd.crearFechaHora(18, 5, 2019, 12, 12, 23);
 			Transaction trans6 = Utilities.createTransaction(2666F, "Pago cuota", date, null, null, tm3);
 			date = Cmd.crearFechaHora(10, 2, 2020, 19, 46, 22);
@@ -459,64 +479,12 @@ public class App {
 			acc9.setTransactionMade(hisTrans9);
 			acc10.setTransactionMade(hisTrans10);
 
-			ArrayList<Account> lista = new ArrayList<Account>();
-			lista.add(acc);
-			lista.add(acc2);
-			lista.add(acc3);
-			ArrayList<Account> lista2 = new ArrayList<Account>();
-			lista2.add(acc4);
-			lista2.add(acc5);
-			lista2.add(acc6);
-			ArrayList<Account> lista3 = new ArrayList<Account>();
-			lista3.add(acc7);
-			ArrayList<Account> lista4 = new ArrayList<Account>();
-			lista4.add(acc8);
-			ArrayList<Account> lista5 = new ArrayList<Account>();
-			lista5.add(acc9);
-			ArrayList<Account> lista6 = new ArrayList<Account>();
-			lista6.add(acc10);
-
-			ArrayList<Account> def = new ArrayList<Account>();
-			
-			Genre gen = Utilities.createGenre("Female");
-			Genre gen2 = Utilities.createGenre("Male");
-			Genre gen3 = Utilities.createGenre("Undefined");
-
-			// CLIENTE
-			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
-					"Rodriguez", countries[11], provs[21], gen3, user, lista);
-			Client client2 = Utilities.createClient(new Date(), cities[2], "23232323", "pablo@gmail.com", "Pablo",
-					"Escobar", countries[44], provs[21], gen2, user2, lista2);
-
-			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), cities[1], "18654923",
-					"Eabel@gmail.com", "Ellen", "Abel", countries[11], provs[21], gen, user3, lista3);
-
-			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), cities[0], "23654956", "Sande@gmail.com",
-					"Sundar", "Ande", countries[11], provs[21], gen3, user4, lista4);
-
-			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), cities[1], "24632589",
-					"daustin@gmail.com", "David", "Austin", countries[11], provs[21], gen2, user5, lista5);
-
-			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), cities[1], "30652987",
-					"hbaer@gmail.com", "Hermann", "Baer", countries[11], provs[21], gen2, user6, lista6);
-
-			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), cities[2], "35621785", "abull@gmail.com",
-					"Alexis", "Bull", countries[11], provs[21], gen, user7, def);
-
-			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), cities[0], "39632541",
-					"aerrazur@gmail.com", "Alberto", "Errazuriz", countries[11], provs[7], gen2, user8, def);
-
-			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), cities[1], "35621478",
-					"cdavies@gmail.com", "Curtis", "Davies", countries[11], provs[19], gen2, user9, def);
-
-			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), cities[0], "40654951",
-					"kfeeney@gmail.com", "Kevin", "Feeney", countries[11], provs[11], gen3, user10, def);
-
 			// USUARIO BANCO
 			Administrative adm = Utilities.createAdministrative("22365986", "Juancho@hotmail.es", "Juan", "Acosta",
 					admin);
-			//Administrative adm2 = Utilities.createAdministrative("33009922", "jony@hotmail.es", "Jonathan", "Aceite",
-			//		admin);
+			// Administrative adm2 = Utilities.createAdministrative("33009922",
+			// "jony@hotmail.es", "Jonathan", "Aceite",
+			// admin);
 
 			// PRESTAMO
 			Loan loan = Utilities.createLoan(client, 2323F, date, 3, 774.33F);
@@ -540,67 +508,69 @@ public class App {
 			Loan loan10 = Utilities.createLoan(client, 60000F, date, 3, 20000F);
 
 			// CUOTAs
-			FeePayment fp = Utilities.creatFeePayment(loan.getMonthAmmount(), Cmd.crearFechaHora(10, 3, 2020, 12, 11, 11));
-			FeePayment fp2 = Utilities.creatFeePayment(loan.getMonthAmmount(), Cmd.crearFechaHora(10, 4, 2020, 15, 33, 11));
-			FeePayment fp3 = Utilities.creatFeePayment(loan.getMonthAmmount(), Cmd.crearFechaHora(10, 5, 2020, 13, 55, 11));
+			FeePayment fp = Utilities.creatFeePayment(loan.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 3, 2020, 12, 11, 11));
+			FeePayment fp2 = Utilities.creatFeePayment(loan.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 4, 2020, 15, 33, 11));
+			FeePayment fp3 = Utilities.creatFeePayment(loan.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 5, 2020, 13, 55, 11));
 			ArrayList<FeePayment> fpList = new ArrayList<FeePayment>();
 			fpList.add(fp);
 			fpList.add(fp2);
 			fpList.add(fp3);
 			loan.setPayments(fpList);
-			
+
 			ArrayList<FeePayment> fpList2 = new ArrayList<FeePayment>();
-			FeePayment fp4 = Utilities.creatFeePayment(loan2.getMonthAmmount(), Cmd.crearFechaHora(10, 3, 2019, 12, 11, 11));
+			FeePayment fp4 = Utilities.creatFeePayment(loan2.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 3, 2019, 12, 11, 11));
 			fpList2.add(fp4);
 			loan2.setPayments(fpList2);
-			
+
 			ArrayList<FeePayment> fpList3 = new ArrayList<FeePayment>();
-			FeePayment fp5 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(12, 2, 2020, 11, 45, 12));
-			FeePayment fp6 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(12, 3, 2020, 11, 45, 12));
-			FeePayment fp7 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(12, 4, 2020, 11, 45, 12));
+			FeePayment fp5 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(12, 2, 2020, 11, 45, 12));
+			FeePayment fp6 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(12, 3, 2020, 11, 45, 12));
+			FeePayment fp7 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(12, 4, 2020, 11, 45, 12));
 			fpList3.add(fp5);
 			fpList3.add(fp6);
 			fpList3.add(fp7);
 			loan4.setPayments(fpList3);
-			
+
 			ArrayList<FeePayment> fpList4 = new ArrayList<FeePayment>();
-			FeePayment fp8 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(4, 2, 2020, 13, 25, 12));
-			FeePayment fp9 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(4, 3, 2020, 9, 25, 12));
-			FeePayment fp10 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(4, 4, 2020, 11, 25, 12));
+			FeePayment fp8 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(4, 2, 2020, 13, 25, 12));
+			FeePayment fp9 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(4, 3, 2020, 9, 25, 12));
+			FeePayment fp10 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(4, 4, 2020, 11, 25, 12));
 			fpList4.add(fp8);
 			fpList4.add(fp9);
 			fpList4.add(fp10);
 			loan5.setPayments(fpList4);
-			
-			// TEST AGREGAR CUENTA
-			/*
-			 * Client cliente = (Client) session.get(Client.class, 1);
-			 * ((List<Account>)cliente.getBankAccounts()).add(acc2);
-			 * session.update(cliente);
-			 */
-			//
-			for(Countrie c : countries) {
+
+			for (Countrie c : countries) {
 				session.save(c);
 			}
-			
+
 			for (Province p : provs) {
 				session.save(p);
 			}
-			
+
 			for (City c : cities) {
 				session.save(c);
 			}
-			
+
 			session.save(gen);
 			session.save(gen2);
 			session.save(gen3);
-			
+
 			session.save(ta);
 			session.save(ta2);
 			session.save(ta3);
 			session.save(ta4);
 			session.save(ta5);
-			
 
 			session.save(ta);
 			session.save(tm2);
@@ -622,6 +592,17 @@ public class App {
 			session.save(client9);
 			session.save(client10);
 			// --
+			session.save(acc);
+			session.save(acc2);
+			session.save(acc3);
+			session.save(acc4);
+			session.save(acc5);
+			session.save(acc6);
+			session.save(acc7);
+			session.save(acc8);
+			session.save(acc9);
+			session.save(acc10);
+			
 			session.save(loan);
 			session.save(loan2);
 			session.save(loan3);
@@ -633,8 +614,7 @@ public class App {
 			session.save(loan9);
 			session.save(loan10);
 			session.save(adm);
-			//session.save(adm2);
-			
+			// session.save(adm2);
 
 			session.getTransaction().commit();
 			session.close();

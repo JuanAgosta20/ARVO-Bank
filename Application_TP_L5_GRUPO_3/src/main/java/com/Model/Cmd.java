@@ -13,6 +13,16 @@ public class Cmd {
 		return Date.from(ldate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
 	
+	public static String getStringStateFrom(Object obj) {
+		if(obj instanceof Account) {
+			Account acc = (Account) obj;
+			switch(acc.getState()) {
+			case 1: return "Pendiente";
+			}
+		}
+		return "error en el estado";
+	}
+	
 	public static Date crearFechaHora(int day, int month, int year, int hour, int min, int seg) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(year, month, day);

@@ -11,7 +11,7 @@ public class MainTest {
 		
 		AccountDao ld = new AccountDaoImpl();
 		for(Account f : ld.getAllUnchekedAccounts()) {
-			System.out.println(f.getIdAccount());
+			System.out.println(f.getClient().getFirstName());
 		}
 		
 		

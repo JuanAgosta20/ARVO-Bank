@@ -1,6 +1,8 @@
 <%@page import="com.Model.Administrative"%>
 <%@page import="com.Model.Account"%>
 <%@page import="com.Model.typeAccount"%>
+<%@page import="com.Model.Client"%>
+<%@page import="com.Model.Cmd"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -44,10 +46,10 @@
 						<c:forEach var="account" items="${uncheckedAccounts}">
 							<tr>
 								<td>${account.getCreationDate()}</td>
-								<td>Abelardo Dominguez</td>
-								<td>1010102</td>
+								<td>${account.getClient().getFirstName()} ${account.getClient().getLastName()}</td>
+								<td>${account.getClient().getDni()}</td>
 								<td>${account.getTypeAcc().getDescription()}</td>
-								<td class="text-danger">Rechazado</td>
+								<td class="text-danger">${Cmd.getStringStateFrom(account)}</td>
 								<td><a class="btn btn-success btn-sm pl-3 pr-3" href="#" role="button">Ver</a></td>
 								<td><button class="btn btn-outline-success btn-sm">Aceptar</button>
 									<button class="btn btn-outline-danger btn-sm ml-1">Rechazar</button></td>
@@ -64,6 +66,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

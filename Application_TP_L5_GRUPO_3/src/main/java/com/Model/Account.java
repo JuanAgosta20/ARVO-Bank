@@ -27,6 +27,9 @@ public class Account implements Serializable {
 	@Column(unique = true)
 	private String CBU;
 	@ManyToOne()
+	@JoinColumn(name ="idClient")
+	private Client client;
+	@ManyToOne()
 	@JoinColumn(name = "idTypeAcc")
 	private typeAccount typeAcc;
 	private String nameAccount;
@@ -50,6 +53,14 @@ public class Account implements Serializable {
 		this.idAccount = idAccount;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public String getCBU() {
 		return CBU;
 	}
@@ -57,8 +68,6 @@ public class Account implements Serializable {
 	public void setCBU(String cBU) {
 		CBU = cBU;
 	}
-
-
 
 	public typeAccount getTypeAcc() {
 		return typeAcc;

@@ -23,9 +23,10 @@ public class Utilities {
 		super();
 	}
 
-	public static Account createAccount(String cbu, Date date, Float funds, String name, int state,
+	public static Account createAccount(Client client, String cbu, Date date, Float funds, String name, int state,
 			ArrayList<Transaction> tm, ArrayList<Transaction> tr, typeAccount type) {
 		Account acc = new Account();
+		acc.setClient(client);
 		acc.setCBU(cbu);
 		acc.setCreationDate(date);
 		acc.setFunds(funds);
@@ -73,7 +74,7 @@ public class Utilities {
 	}
 
 	public static Client createClient(Date birthdate, City city, String dni, String email, String fName, String lName,
-			Countrie nationality, Province province, Genre genre, User user, ArrayList<Account> bankAccounts) {
+			Countrie nationality, Province province, Genre genre, User user) {
 		Client cl = new Client();
 
 		cl.setBirthdate(birthdate);
@@ -87,7 +88,6 @@ public class Utilities {
 		cl.setGenre(genre);
 		cl.setState((byte) 1);
 		cl.setUser(user);
-		cl.setBankAccounts(bankAccounts);
 
 		return cl;
 	}
