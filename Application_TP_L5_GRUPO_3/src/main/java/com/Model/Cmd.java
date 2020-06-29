@@ -1,5 +1,6 @@
 package com.Model;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
@@ -13,14 +14,13 @@ public class Cmd {
 		return Date.from(ldate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
 	
-	public static String getStringStateFrom(Object obj) {
-		if(obj instanceof Account) {
-			Account acc = (Account) obj;
-			switch(acc.getState()) {
-			case 1: return "Pendiente";
-			}
-		}
-		return "error en el estado";
+	public static String getFormattedDate(Date date, Boolean getHora) {
+		SimpleDateFormat format;
+		if(getHora)
+			format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		else 
+			format = new SimpleDateFormat("dd-MM-yyyy");
+		return format.format(date);
 	}
 	
 	public static Date crearFechaHora(int day, int month, int year, int hour, int min, int seg) {

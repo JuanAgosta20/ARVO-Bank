@@ -32,4 +32,12 @@ public class AccountServiceImpl implements AccountService{
 		return ad.getAllUnchekedAccounts();
 	}
 
+	public Boolean updateStateAccount(int idAcc, int newState) {
+		return ad.updateStateAccount(idAcc, newState);
+	}
+
+	public ArrayList<Account> getAccountsFrom(int idClient) {
+		return ad.getAccountsFrom(idClient);
+	}
+
 }

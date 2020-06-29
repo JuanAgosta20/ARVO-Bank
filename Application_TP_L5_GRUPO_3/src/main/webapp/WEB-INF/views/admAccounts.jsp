@@ -22,14 +22,13 @@
 </head>
 <body>
 	<jsp:include page="masterMenuAdmin.jsp"></jsp:include>
-
 	<div class="container-fluid mt-3">
 		<div class="row">
 			<div class="col">
 				<!-- Columna vacía izquierda-->
 			</div>
 			<div class="col-10">
-				<h4 class="text-blue">Autorizar cuentas</h4>
+				<h4 class="text-blue">Cuentas pendientes a autorización</h4>
 				<table class="table table-hover">
 					<thead>
 						<tr class="table-info">
@@ -45,14 +44,21 @@
 					<tbody>
 						<c:forEach var="account" items="${uncheckedAccounts}">
 							<tr>
-								<td>${account.getCreationDate()}</td>
-								<td>${account.getClient().getFirstName()} ${account.getClient().getLastName()}</td>
+								<td>${Cmd.getFormattedDate(account.getCreationDate(), true)}</td>
+								<td>${account.getClient().getFirstName()}
+									${account.getClient().getLastName()}</td>
 								<td>${account.getClient().getDni()}</td>
 								<td>${account.getTypeAcc().getDescription()}</td>
-								<td class="text-danger">${Cmd.getStringStateFrom(account)}</td>
-								<td><a class="btn btn-success btn-sm pl-3 pr-3" href="#" role="button">Ver</a></td>
-								<td><button class="btn btn-outline-success btn-sm">Aceptar</button>
-									<button class="btn btn-outline-danger btn-sm ml-1">Rechazar</button></td>
+								<td><a class="btn btn-success btn-sm pl-3 pr-3" href="#"
+									role="button">Ver</a></td>
+								<td><form method="POST" action="admAccountsState.do">
+										<button name="accept" value="${account.getIdAccount()}"
+											class="btn btn-outline-success btn-sm">Aceptar</button>
+									</form>
+									<form method="POST" action="admAccountsState.do">
+										<button name="reject" value="${account.getIdAccount()}"
+											class="btn btn-outline-danger btn-sm ml-1">Rechazar</button>
+									</form></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -34,47 +34,22 @@
 
 			<!-- Lista cuentas -->
 			<div class="col-6">
-				<div class="row card">
-					<h6 class="card-header">Cuenta Corriente</h6>
-					<div class="card-body">
-
-						<div class="container">
-
-							<div class="row">
-								<h6 class="card-title">Nombre de la cuenta:</h6>
-							</div>
-							<div class="row align-items-center">
-								<div class="col">
-									<b>CBU: </b>3000000000
-								</div>
-								<div class="col">
-									<b>Monto: </b>$20000
-								</div>
-								<div class="col">
-									<button type="button" class="btn btn-success mb-3">Ver
-										Movimientos</button>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
+				
+				<c:forEach var="acc" items="${accounts}">
+				
 				<div class="row card mt-2">
-					<h6 class="card-header">Caja de Ahorro</h6>
+					<h6 class="card-header">${acc.getTypeAcc().getDescription()}</h6>
 					<div class="card-body">
-
 						<div class="container">
-
 							<div class="row">
-								<h6 class="card-title">Nombre de la cuenta:</h6>
+								<h6 class="card-title">${acc.getNameAccount()}</h6>
 							</div>
 							<div class="row align-items-center">
 								<div class="col">
-									<b>CBU: </b>4000000000
+									<b>CBU: </b> ${acc.getCBU()}
 								</div>
 								<div class="col">
-									<b>Monto: </b>$30000
+									<b>Monto: </b> ${acc.getFunds()}
 								</div>
 								<div class="col">
 									<button type="button" class="btn btn-success mb-3">Ver
@@ -82,35 +57,11 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
-				<div class="row card mt-2">
-					<h6 class="card-header">Caja de Ahorro en US$</h6>
-					<div class="card-body">
-
-						<div class="container">
-
-							<div class="row">
-								<h6 class="card-title">Nombre de la cuenta:</h6>
-							</div>
-							<div class="row align-items-center">
-								<div class="col">
-									<b>CBU: </b>5000000000
-								</div>
-								<div class="col">
-									<b>Monto: </b>USD 500
-								</div>
-								<div class="col">
-									<button type="button" class="btn btn-success mb-3">Ver
-										Movimientos</button>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
+				
+				</c:forEach>
+				
 			</div>
 			<!-- Fin lista cuentas -->
 

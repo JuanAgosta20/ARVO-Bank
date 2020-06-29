@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Dao.ClientDao;
@@ -44,6 +45,23 @@ public class AdministrativeController {
 	public ModelAndView Accounts(){
 		ModelAndView mv = new ModelAndView("admAccounts");
 		mv.addObject("uncheckedAccounts", accs.getAllUnchekedAccounts());
+		return mv;
+	}
+	
+	@RequestMapping(name="admAccountsState", method = RequestMethod.POST)
+	public ModelAndView AccountState(String accept, String reject){
+		ModelAndView mv = new ModelAndView("admAccounts");
+		Boolean result = false;
+		if(accept != null) {
+			result = accs.updateStateAccount(Integer.parseInt(accept), 2);
+		}else if(reject != null) {
+			result = accs.updateStateAccount(Integer.parseInt(reject), 0);
+		}
+		mv.addObject("uncheckedAccounts", accs.getAllUnchekedAccounts());
+		
+		mv.addObject("result", result); //true bien, false mal
+		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Operación realizada correctamente"});
+		
 		return mv;
 	}
 	
