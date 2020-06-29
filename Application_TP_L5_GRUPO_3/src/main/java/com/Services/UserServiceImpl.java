@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
 		return admDao.getAdministrative(user);
 	}
 
+	public User getUser(int id) {
+		UserDao ud = new UserDaoImpl();
+		return ud.getUser(id);
+	}
+
 }
