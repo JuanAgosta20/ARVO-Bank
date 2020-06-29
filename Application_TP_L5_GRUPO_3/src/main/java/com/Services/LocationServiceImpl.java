@@ -20,4 +20,12 @@ public class LocationServiceImpl implements LocationService {
 		return ld.getAllProvinces();
 	}
 
+	public Countrie getCountrie(int id) {
+		return ld.getCountrie(id);
+	}
+
+	public Province getProvince(int id) {
+		return ld.getProvince(id);
+	}
+
 }

@@ -13,7 +13,7 @@ public class ClientServiceImpl implements ClientService{
 	
 	public Boolean saveClient(Client client) {
 			
-		return null;
+		return cd.insertClient(client);
 	}
 
 	public Boolean updateClient(Client client) {

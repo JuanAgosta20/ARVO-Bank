@@ -1,5 +1,6 @@
 package com.Controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.Dao.ClientDao;
 import com.Dao.ClientDaoImpl;
 import com.Model.BeanFactory;
+import com.Model.City;
 import com.Model.Client;
 import com.Model.Countrie;
 import com.Model.Genre;
@@ -20,6 +22,7 @@ import com.Model.Province;
 import com.Model.User;
 import com.Services.AccountService;
 import com.Services.AccountServiceImpl;
+import com.Services.ClientService;
 import com.Services.ClientServiceImpl;
 import com.Services.GenreService;
 import com.Services.GenreServiceImpl;
@@ -35,7 +38,7 @@ public class AdministrativeController {
 	BeanFactory bFactory = new BeanFactory();
 	BeanFactory bf = new BeanFactory();
 	ClientDao cd = new ClientDaoImpl();
-	ClientServiceImpl cs = new ClientServiceImpl();
+	ClientService cs = new ClientServiceImpl();
 	LocationService ls = new LocationServiceImpl();// bf.createLocationServiceImpl();
 	GenreService gs = new GenreServiceImpl(); // bf.createGenreServiceImpl();
 	AccountService accs = new AccountServiceImpl();
@@ -100,16 +103,27 @@ public class AdministrativeController {
 	public ModelAndView UpdateClient(String txtDni, int drpGenre, String txtEmail, String txtDate, int drpCountry,
 			int drpProvince, String drpCity, String txtUser, String txtPass, int txtIdClient) {
 		ModelAndView MV = new ModelAndView();
-		
-	    Date date=new SimpleDateFormat("dd/MM/yyyy").parse(txtDate); 
+		Date date = null;
+	    try {
+				date=new SimpleDateFormat("yyyy-MM-dd").parse(txtDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} 
+	    Genre g = gs.getGenre(drpGenre);
+	    Countrie n = ls.getCountrie(drpCountry);
+	    Province p = ls.getProvince(drpProvince);
+	    Client c = cs.readClient(txtIdClient);
+	    c.getUser().setPassword(txtPass);
+	    c.getUser().setUserName(txtUser);
+	    c.setBirthdate(date);
+	    c.setDni(txtDni);
+	    c.setEmail(txtEmail);
+	    c.setGenre(g);
+	    c.setNationality(n);
+	    c.setProvince(p);
 	    
-		User u = us.getUser(txtIdClient);
-		Countrie c = ls.getCountry(drpCity);
-		Province p = ls.getProvince(drpProvince);
-		Genre g = gs.getGenre(drpGenre);
-		Client cl = Utilities.createClient(date, drpCity, txtDni, txtEmail, null, null,c , p, g, user);
-		= cs.updateClient(client);
-
+	    cs.updateClient(c);
+	    MV.setViewName("redirect:admClientProfile.do?id="+txtIdClient);
 		return MV;
 	}
 

@@ -15,4 +15,8 @@ public class GenreServiceImpl implements GenreService {
 		return gd.getAllGenres();
 	}
 
+	public Genre getGenre(int id) {
+		return gd.getGenre(id);
+	}
+
 }

@@ -43,4 +43,18 @@ public class LocationDaoImpl implements LocationDao {
 		}
 	}
 
+	public Countrie getCountrie(int id) {
+		session = sHand.getSession();
+		return (Countrie)session.get(Countrie.class, id);
+	}
+
+	public Province getProvince(int id) {
+		session = sHand.getSession();
+		String hql = "From provinces p where p.idProvinceApi =:id";
+		Query query = (Query) session.createQuery(hql);
+		query.setParameter("id", id);
+		
+		return (Province)query.uniqueResult();
+	}
+
 }

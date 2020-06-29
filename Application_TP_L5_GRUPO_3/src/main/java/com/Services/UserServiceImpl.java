@@ -34,8 +34,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public User getUser(int id) {
-		UserDao ud = new UserDaoImpl();
-		return ud.getUser(id);
+		return null;
 	}
 
 }
