@@ -15,8 +15,7 @@ public class AccountServiceImpl implements AccountService{
 	AccountDao ad = new AccountDaoImpl();
 	
 	public Boolean insertAccount(Account acc) {
-		// TODO Auto-generated method stub
-		return null;
+		return ad.insertAccount(acc);
 	}
 
 	public Boolean deleteAccount(Account acc) {
@@ -32,12 +31,16 @@ public class AccountServiceImpl implements AccountService{
 		return ad.getAllUnchekedAccounts();
 	}
 
-	public Boolean updateStateAccount(int idAcc, int newState) {
-		return ad.updateStateAccount(idAcc, newState);
+	public Boolean acceptAccount(int idAcc, int newState) {
+		return ad.acceptAccount(idAcc, newState);
 	}
 
 	public ArrayList<Account> getAccountsFrom(int idClient) {
 		return ad.getAccountsFrom(idClient);
+	}
+
+	public typeAccount getType(int idType) {
+		return ad.getType(idType);
 	}
 
 }

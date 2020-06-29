@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import com.Model.Account;
+import com.Model.Cmd;
 import com.Model.typeAccount;
 
 @SuppressWarnings("unchecked")
@@ -65,11 +66,17 @@ public class AccountDaoImpl implements AccountDao{
 		}
 	}
 
-	public Boolean updateStateAccount(int idAcc, int newState) {
+	public Boolean acceptAccount(int idAcc, int newState) {
 		try {
 			sHand = new SessionHandler();
 			Account acc = (Account)sHand.get(Account.class, idAcc);
 			acc.setState(newState);
+			int accCount = getCountAccounts(acc.getClient().getIdClient());
+			if(accCount == -1 || accCount >= 4)
+				throw new Exception();
+			acc.setCBU(Cmd.crearCBU(acc.getClient().getDni(), accCount));
+			acc.setFunds(0f);
+			acc.setNameAccount("Cuenta Nro " + (accCount + 1));
 			sHand.update(acc);
 			sHand.commit();
 			return true;
@@ -91,6 +98,29 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	public typeAccount getType(int idType) {
+		try {
+			sHand = new SessionHandler();
+			return (typeAccount)sHand.get(typeAccount.class, idType);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public int getCountAccounts(int idClient) {
+		Session session = sHand.getSession();
+		String hql = "select count(a) From Account a WHERE a.client.idClient = :id AND a.state = 2";
+		Query query = (Query) session.createQuery(hql);
+		query.setParameter("id", idClient);
+		try {
+			return ((Long)query.uniqueResult()).intValue();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 

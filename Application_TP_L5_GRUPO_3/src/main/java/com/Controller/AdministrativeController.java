@@ -48,14 +48,14 @@ public class AdministrativeController {
 		return mv;
 	}
 	
-	@RequestMapping(name="admAccountsState", method = RequestMethod.POST)
+	@RequestMapping(value="admAccountsState", method = RequestMethod.POST)
 	public ModelAndView AccountState(String accept, String reject){
 		ModelAndView mv = new ModelAndView("admAccounts");
 		Boolean result = false;
 		if(accept != null) {
-			result = accs.updateStateAccount(Integer.parseInt(accept), 2);
+			result = accs.acceptAccount(Integer.parseInt(accept), 2);
 		}else if(reject != null) {
-			result = accs.updateStateAccount(Integer.parseInt(reject), 0);
+			result = accs.acceptAccount(Integer.parseInt(reject), 0);
 		}
 		mv.addObject("uncheckedAccounts", accs.getAllUnchekedAccounts());
 		

@@ -36,9 +36,8 @@
 							<th scope="col">Nombre y apellido</th>
 							<th scope="col">DNI</th>
 							<th scope="col">Tipo cuenta</th>
-							<th scope="col">Estado</th>
 							<th scope="col">Perfil</th>
-							<th scope="col"></th>
+							<th scope="col">Acción</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -51,13 +50,13 @@
 								<td>${account.getTypeAcc().getDescription()}</td>
 								<td><a class="btn btn-success btn-sm pl-3 pr-3" href="#"
 									role="button">Ver</a></td>
-								<td><form method="POST" action="admAccountsState.do">
+								<td class="row"><form method="POST" action="admAccountsState.do">
 										<button name="accept" value="${account.getIdAccount()}"
-											class="btn btn-outline-success btn-sm">Aceptar</button>
+											class="btn btn-outline-success btn-sm ml-2">Aceptar</button>
 									</form>
 									<form method="POST" action="admAccountsState.do">
 										<button name="reject" value="${account.getIdAccount()}"
-											class="btn btn-outline-danger btn-sm ml-1">Rechazar</button>
+											class="btn btn-outline-danger btn-sm ml-2">Rechazar</button>
 									</form></td>
 							</tr>
 						</c:forEach>
