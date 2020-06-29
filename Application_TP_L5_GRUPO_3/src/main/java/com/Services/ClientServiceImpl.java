@@ -13,12 +13,11 @@ public class ClientServiceImpl implements ClientService{
 	
 	public Boolean saveClient(Client client) {
 			
-		return null;
+		return cd.insertClient(client);
 	}
 
 	public Boolean updateClient(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.updateClient(client);
 	}
 	
 	public Boolean deleteClient(int idClient,int idUser) {

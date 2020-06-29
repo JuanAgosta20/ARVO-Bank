@@ -34,7 +34,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-4">
-								<form action="" method="post">
+								<form action="admUpdateClient.do" method="post">
 								<table id="tbUserProfile" style="width: 100%">
 									<tr>
 										<td colspan="2" class="text-center"><img id="userAvatar"
@@ -42,7 +42,7 @@
 									</tr>
 									<tr>
 										<td colspan="2" class="text-center"><h4>${client.firstName }
-												${client.lastName}</h4></td>
+												${client.lastName}</h4><input type="hidden" name="txtIdClient" value="${client.idClient }"></input></td>
 									</tr>
 									<tr class="mb-3">
 										<td class="text-right">
@@ -58,14 +58,14 @@
 									<tr>
 										<td><b>DNI:</b></td>
 										<td><label style="width: 100px;" id="lblDni">${client.dni}</label>
-											<input value="${client.dni}" id="txtDni" type="text"
-											style="display: none; width: 200px;" onchange="ShowConfirm()"></input></td>
+											<input value="${client.dni}" id="txtDni" name="txtDni" type="text"
+											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
 									</tr>
 									<tr>
 										<td><b>Género:</b></td>
 										<td><label style="width: 100px;" id="lblGenre">${client.genre.description}</label>
-											<select name="drpGenre" id="drpGenre" onchange="ShowConfirm()"
-											style="display: none; width: 200px;">
+											<select name="drpGenre" id="drpGenre" name="drpGenre" onchange="ShowConfirm()"
+											style="display: none; width: 200px;" required>
 												<c:forEach var="genre" items="${genres}">
 													<c:if test="${genre.idGenre.equals(client.genre.idGenre)}">
 														<option selected value="${genre.idGenre}">
@@ -82,21 +82,21 @@
 									<tr>
 										<td><b>Email:</b></td>
 										<td><label style="width: 100px;" id="lblEmail">${client.email}</label>
-											<input value="${client.email}" id="txtEmail" type="email"
-											style="display: none; width: 200px;" onchange="ShowConfirm()"></input></td>
+											<input value="${client.email}" id="txtEmail" name="txtEmail" type="email"
+											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
 									</tr>
 									<tr>
 										<td><b>Fecha Nac:</b></td>
 										<td><label style="width: 100px;" id="lblDate"><fmt:formatDate
 													value="${client.birthdate }" pattern="dd-MM-yyyy" /></label> <input
-											value="<fmt:formatDate value="${client.birthdate }" pattern = "yyyy-MM-dd"  />"
-											id="txtDate" type="date" style="display: none; width: 200px;" onchange="ShowConfirm()"></input></td>
+											value="<fmt:formatDate value="${client.birthdate }" pattern = "yyyy-MM-dd"/>"
+											id="txtDate" name="txtDate" type="date" style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
 									</tr>
 									<tr>
 										<td><b>Nacionalidad:</b></td>
 										<td><label style="width: 100px;" id="lblCountry">${client.nationality.name}</label>
-											<select name="drpCountry" id="drpCountry" onchange="ShowConfirm()"
-											style="display: none; width: 200px;">
+											<select name="drpCountry" id="drpCountry"  onchange="ShowConfirm()"
+											style="display: none; width: 200px;" required>
 												<c:forEach var="country" items="${countries}">
 													<c:if
 														test="${country.idCountrie.equals(client.nationality.idCountrie)}">
@@ -115,7 +115,7 @@
 										<td><b>Provincia:</b></td>
 										<td><label style="width: 100px;" id="lblProvince">${client.province.name}</label>
 											<select name="drpProvince" id="drpProvince"
-											style="display: none; width: 200px;" onchange="showCitiesandConfirm()">
+											style="display: none; width: 200px;" onchange="showCitiesandConfirm()" required>
 												<c:forEach var="p" items="${provinces}">
 													<c:if
 														test="${p.idProvinceApi.equals(client.province.idProvinceApi)}">
@@ -133,9 +133,21 @@
 										<td><b>Ciudad:</b></td>
 										<td><label style="width: 100px;" id="lblCity">${client.city.name}</label>
 											<select name="drpCity" id="drpCity" onchange="ShowConfirm()"
-											style="display: none; width: 200px;">
+											style="display: none; width: 200px;" required>
 												<option value="${client.city.name}">${client.city.name}</option>
 										</select></td>
+									</tr>
+									<tr>
+										<td><b>ID Usuario:</b></td>
+										<td><label style="width: 100px;" id="lblUser">${client.user.userName}</label>
+											<input value="${client.user.userName}" id="txtUser" name="txtUser" type="text"
+											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
+									</tr>
+									<tr>
+										<td><b>Contraseña:</b></td>
+										<td><label style="width: 100px;" id="lblPass">*******</label>
+											<input value="${client.user.password}" id="txtPass" name="txtPass" type="password"
+											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
 									</tr>
 									<tr>
 										<td class="text-center"><a
@@ -293,6 +305,12 @@
 
 		document.getElementById('lblCity').style.display = 'none';
 		document.getElementById('drpCity').style.display = 'inline-block';
+		
+		document.getElementById('lblPass').style.display = 'none';
+		document.getElementById('txtPass').style.display = 'inline-block';
+		
+		document.getElementById('lblUser').style.display = 'none';
+		document.getElementById('txtUser').style.display = 'inline-block';
 
 		document.getElementById('btnCancel').style.display = 'inline-block';
 		//document.getElementById('btnConfirm').style.display = 'inline-block';

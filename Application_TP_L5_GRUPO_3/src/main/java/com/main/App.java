@@ -332,9 +332,9 @@ public class App {
 			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos", true);
 			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en D�lares", false);
 
-			Genre gen = Utilities.createGenre("Female");
-			Genre gen2 = Utilities.createGenre("Male");
-			Genre gen3 = Utilities.createGenre("Undefined");
+			Genre gen = Utilities.createGenre("Femenino");
+			Genre gen2 = Utilities.createGenre("Masculino");
+			Genre gen3 = Utilities.createGenre("Otro");
 			
 			// CLIENTE
 			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
