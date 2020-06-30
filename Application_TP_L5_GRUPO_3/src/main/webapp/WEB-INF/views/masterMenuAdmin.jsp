@@ -74,7 +74,7 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav mx-auto">
 				<li class="nav-item"><a class="nav-link text-light"
-					href="admClients.do">Clientes</a></li>
+					href="admClientsList.do">Clientes</a></li>
 				<li class="nav-item"><a class="nav-link text-light"
 					href="admAccounts.do">Cuentas</a></li>
 				<li class="nav-item"><a class="nav-link text-light"

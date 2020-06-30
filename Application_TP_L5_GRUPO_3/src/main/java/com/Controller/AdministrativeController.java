@@ -49,11 +49,20 @@ public class AdministrativeController {
 	AccountService accs = new AccountServiceImpl();
 	UserService us = new UserServiceImpl();
 	
-
+	@RequestMapping(value="admClientsList")
+	public ModelAndView ClientsList(ModelAndView mv){
+		if(mv.isEmpty())
+			mv = new ModelAndView("admClients");
+		mv.addObject("clients",cs.readClients());
+		mv.addObject("countries", ls.getAllCountries());
+		mv.addObject("province", ls.getAllProvince());
+		
+		return mv;
+	}
 
 	@RequestMapping(value="admClients", method=RequestMethod.POST)
 	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, 
-			Integer countries, Integer province, String cities, String mail, Integer genre){
+			Integer countries, Integer province, String cities, String mail, Integer genre, String nameCity){
 		ModelAndView MV = new ModelAndView("admClients");
 		Client client = new Client();
 		Province prov = ls.getProvince(province);
@@ -70,7 +79,7 @@ public class AdministrativeController {
 		if(city == null) {
 			city = new City();
 			city.setIdCity(cities);
-			city.setName(lastname);
+			city.setName(nameCity);
 			city.setProv(prov);
 			ls.saveCity(city);
 		}
@@ -99,13 +108,10 @@ public class AdministrativeController {
 			result = false;
 		}
 			
-		MV.addObject("guardo",result);
+		MV.addObject("result",result);
+		MV.addObject("msg", new String[] { "Ha ocurrido un error", "Operación realizada correctamente" });
 		
-		MV.addObject("clients",cs.readClients());
-		MV.addObject("countries", ls.getAllCountries());
-		MV.addObject("province", ls.getAllProvince());
-		
-		return MV;
+		return ClientsList(MV);
 	}
 	
 	@RequestMapping(value="checkEmail",method=RequestMethod.GET)
@@ -213,11 +219,11 @@ public class AdministrativeController {
 
 	@RequestMapping("admDeleteClient")
 	public ModelAndView DeleteClient(int idClient, int idUser) {
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("admClients");
-		cs.deleteClient(idClient, idUser);
-
-		return MV;
+		ModelAndView MV = new ModelAndView("admClients");
+		Boolean result = cs.deleteClient(idClient, idUser);
+		MV.addObject("result", result);
+		MV.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminación fue realizada correctamente" });
+		return ClientsList(MV);
 	}
 
 	@RequestMapping("admLoans")

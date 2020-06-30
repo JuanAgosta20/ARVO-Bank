@@ -164,12 +164,13 @@
 										</c:forEach>
 									</select>
 									<label for="cities">Domicilio</label> 
-									<select class="form-control" id="cities" name="cities">
+									<select class="form-control" id="cities" name="cities" onChange="setName()" onLoad="setName()">
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
+					<input name="nameCity" id="nameCity" type="hidden" value=""> 
 					<div class="modal-footer">
 						<input type="submit" class="btn btn-info text-light btn-sm"
 							name="btnNewClient" value="Agregar" id="agregar" disabled></input>
@@ -182,6 +183,15 @@
 	</div>
 	<!--  Fin modal nuevo cliente -->
 	<script>
+	
+	function setName(){
+		
+		let dropCities = document.getElementById('cities');
+		let nameCity = document.getElementById('nameCity');
+		nameCity.value = dropCities.options[dropCities.selectedIndex].text;
+		
+	}
+	
     var existMail;
 	getCities();
 	async function getCities() {
