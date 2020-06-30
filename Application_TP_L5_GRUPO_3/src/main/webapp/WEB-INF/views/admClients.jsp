@@ -96,7 +96,7 @@
 	  										Inactivo
 										</c:otherwise>
 									</c:choose></td>
-								<td><a class="btn btn-success" href="admClientProfile.do"
+								<td><a class="btn btn-success" href="admClientProfile.do?id=${client.idClient}"
 									role="button">Ver</a></td>
 							</tr>
 						</c:forEach>
