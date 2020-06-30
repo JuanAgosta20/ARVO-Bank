@@ -30,12 +30,19 @@ public class LocationServiceImpl implements LocationService {
 		return ld.getCity(id);
 	}
 	
+	public City getCity(String name, int idProvince) {
+		return ld.getCity(name, idProvince);
+	}
+	
 	public Boolean saveCity(City city) {
 		return ld.saveCity(city);
 	}
 
 	public Province getProvince(Integer id) {
 		return ld.getProvince(id);
+	}
+	public Province getProvinceApi(int id) {
+		return ld.getProvinceApi(id);
 	}
 
 	public Countrie getCountrie(Integer id) {

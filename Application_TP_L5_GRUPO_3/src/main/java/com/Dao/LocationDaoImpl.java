@@ -49,6 +49,19 @@ public class LocationDaoImpl implements LocationDao {
 		return (City) sHand.get(City.class, id);
 	}
 	
+	public City getCity(String name, int prov) {
+		session = sHand.getSession();
+		String hql = "From City c where c.name= :name and c.prov =: prov";
+		Query query = (Query) session.createQuery(hql);
+		query.setParameter("name", name);
+		query.setParameter("prov", prov);
+		try {
+			return  (City) query.uniqueResult();
+		}catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public Boolean saveCity(City city) {
 		try{
 			sHand.save(city);
@@ -75,7 +88,7 @@ public class LocationDaoImpl implements LocationDao {
 		return (Countrie)session.get(Countrie.class, id);
 	}
 
-	public Province getProvince(int id) {
+	public Province getProvinceApi(int id) {
 		session = sHand.getSession();
 		String hql = "From provinces p where p.idProvinceApi =:id";
 		Query query = (Query) session.createQuery(hql);

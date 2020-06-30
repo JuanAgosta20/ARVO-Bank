@@ -176,7 +176,7 @@ public class AdministrativeController {
 
 	@RequestMapping(value = "admUpdateClient", method = RequestMethod.POST)
 	public ModelAndView UpdateClient(String txtDni, int drpGenre, String txtEmail, String txtDate, int drpCountry,
-			int drpProvince, String drpCity, String txtUser, String txtPass, int txtIdClient) {
+			int drpProvince, String drpCity, String txtIdCity, String txtUser, String txtPass, int txtIdClient) {
 		ModelAndView MV = new ModelAndView();
 		Date date = null;
 	    try {
@@ -186,7 +186,15 @@ public class AdministrativeController {
 		} 
 	    Genre g = gs.getGenre(drpGenre);
 	    Countrie n = ls.getCountrie(drpCountry);
-	    Province p = ls.getProvince(drpProvince);
+	    Province p = ls.getProvinceApi(drpProvince);
+	    City city = ls.getCity(drpCity);
+	    if(city == null) {
+	    	city = new City();
+	    	city.setIdCity(drpCity);
+	    	city.setName(txtIdCity);
+	    	city.setProv(p);
+	    	ls.saveCity(city);
+	    }
 	    Client c = cs.readClient(txtIdClient);
 	    c.getUser().setPassword(txtPass);
 	    c.getUser().setUserName(txtUser);
@@ -196,6 +204,7 @@ public class AdministrativeController {
 	    c.setGenre(g);
 	    c.setNationality(n);
 	    c.setProvince(p);
+	    c.setCity(city);
 	    
 	    cs.updateClient(c);
 	    MV.setViewName("redirect:admClientProfile.do?id="+txtIdClient);

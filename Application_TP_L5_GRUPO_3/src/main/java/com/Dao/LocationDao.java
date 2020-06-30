@@ -12,7 +12,9 @@ public interface LocationDao {
 	public Countrie getCountrie(int id);
 	public ArrayList<Province> getAllProvinces();
 	public City getCity(String id);
+	public City getCity(String name, int prov);
 	public Boolean saveCity(City city);
 	public Province getProvince(Integer id);
+	public Province getProvinceApi(int id);
 	public Countrie getCoountry(Integer id);
 }

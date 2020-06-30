@@ -11,8 +11,10 @@ public interface LocationService {
 	public Countrie getCountrie(int id);
 	public ArrayList<Province> getAllProvince();
 	public City getCity(String id);
+	public City getCity(String name, int idProvince);
 	public Boolean saveCity(City city);
 	public Province getProvince(Integer id);
+	public Province getProvinceApi(int id);
 	public Countrie getCountrie(Integer id);
 	public Province getProvince(int id);
 

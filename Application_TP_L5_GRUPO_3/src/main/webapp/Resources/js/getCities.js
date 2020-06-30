@@ -16,6 +16,7 @@ async function getCities() {
 		let selCities = document.getElementById('drpCity');
 		const select = document.getElementById('drpProvince');
 		const id = select.options[select.selectedIndex].value;
+		selCities.options.length = 0;
 		await fetch('https://apis.datos.gob.ar/georef/api/localidades?provincia='+id+'&campos=nombre&max=5000&orden=nombre')
 		.then(response => response.json())
 		.then(data => {

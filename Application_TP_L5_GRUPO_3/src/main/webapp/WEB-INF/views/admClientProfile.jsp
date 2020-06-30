@@ -132,10 +132,11 @@
 									<tr>
 										<td><b>Ciudad:</b></td>
 										<td><label style="width: 100px;" id="lblCity">${client.city.name}</label>
-											<select name="drpCity" id="drpCity" onchange="ShowConfirm()"
+											<select name="drpCity" id="drpCity" onchange="ShowConfirm(); changeTxt();"
 											style="display: none; width: 200px;" required>
 												<option value="${client.city.name}">${client.city.name}</option>
-										</select></td>
+										</select>
+										<input type="hidden" name="txtIdCity" id="txtIdCity"></input></td>
 									</tr>
 									<tr>
 										<td><b>ID Usuario:</b></td>
@@ -307,6 +308,14 @@ function showCitiesandConfirm() {
 	
 function ShowConfirm(){
 	document.getElementById('btnConfirm').style.display = 'inline-block';
+}
+
+function changeTxt(){
+	let cities = document.getElementById('drpCity');
+	const name = cities.options[cities.selectedIndex].text;
+	const txtName = document.getElementById('txtIdCity');
+	txtName.value = name;
+	console.log(name);
 }
 </script>
 </html>
