@@ -47,6 +47,7 @@ public class AdministrativeController {
 	LocationService ls =  bf.createLocationServiceImpl();
 	GenreService gs = bf.createGenreServiceImpl();
 	AccountService accs = new AccountServiceImpl();
+	UserService us = new UserServiceImpl();
 	
 
 
@@ -59,6 +60,12 @@ public class AdministrativeController {
 		Countrie country = ls.getCountrie(countries);
 		City city = ls.getCity(cities);
 		Genre gen = gs.getGenre(genre);
+		User user = new User();
+		
+		user.setPassword("asd");
+		user.setUserName("Pepe2");
+		user.setState((byte)1);
+		user.setUserType("Cliente");
 		
 		if(city == null) {
 			city = new City();
@@ -82,9 +89,17 @@ public class AdministrativeController {
 		client.setCity(city);
 		client.setProvince(prov);
 		client.setState((byte)1);
+		client.setUser(user);
+		Boolean result;
 		
-		if(cs.saveClient(client)) MV.addObject("guardo",true);
-		else MV.addObject("guardo",false);
+		if(cs.saveClient(client)) {
+			result = true;
+		}
+		else {
+			result = false;
+		}
+			
+		MV.addObject("guardo",result);
 		
 		MV.addObject("clients",cs.readClients());
 		MV.addObject("countries", ls.getAllCountries());

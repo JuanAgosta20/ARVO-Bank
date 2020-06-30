@@ -212,17 +212,16 @@
 		.then(data => {
 			console.log(data.existe);
 			existMail = data.existe;
-			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
-				console.log('regex cumpliedo')
-				document.getElementById('badmail').style.display = 'none';
-			}else{
-				document.getElementById('badmail').textContent = 'Ej: xxxx@xxxx.xxx'
-				document.getElementById('badmail').style.display = 'block';
+			if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))){
+					document.getElementById('badmail').textContent = 'Ej: xxxx@xxxx.xxx'
+					document.getElementById('badmail').style.display = 'block';
 			}
+			
 			if(data.existe == true){
 				document.getElementById('badmail').textContent = 'Ese email ya está registrado'
 				document.getElementById('badmail').style.display = 'block';
-			}else{
+			}
+			if(!data.existe && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
 				document.getElementById('agregar').disabled = false;
 				document.getElementById('badmail').style.display = 'none';
 			}
