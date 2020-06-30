@@ -42,4 +42,12 @@ public class LocationServiceImpl implements LocationService {
 		ld.getCoountry(id);
 		return null;
 	}
+	public Countrie getCountrie(int id) {
+		return ld.getCountrie(id);
+	}
+
+	public Province getProvince(int id) {
+		return ld.getProvince(id);
+	}
+
 }

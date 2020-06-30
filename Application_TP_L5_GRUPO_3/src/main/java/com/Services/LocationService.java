@@ -8,10 +8,12 @@ import com.Model.Province;
 
 public interface LocationService {
 	public ArrayList<Countrie> getAllCountries();
+	public Countrie getCountrie(int id);
 	public ArrayList<Province> getAllProvince();
 	public City getCity(String id);
 	public Boolean saveCity(City city);
 	public Province getProvince(Integer id);
 	public Countrie getCountrie(Integer id);
+	public Province getProvince(int id);
 
 }

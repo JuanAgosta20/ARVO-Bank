@@ -19,6 +19,7 @@ public class GenreServiceImpl implements GenreService {
 	}
 
 	public Genre getGenre(Integer id) {
+	public Genre getGenre(int id) {
 		return gd.getGenre(id);
 	}
 

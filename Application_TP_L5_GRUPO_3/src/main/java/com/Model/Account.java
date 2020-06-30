@@ -27,6 +27,9 @@ public class Account implements Serializable {
 	@Column(unique = true)
 	private String CBU;
 	@ManyToOne()
+	@JoinColumn(name ="idClient")
+	private Client client;
+	@ManyToOne()
 	@JoinColumn(name = "idTypeAcc")
 	private typeAccount typeAcc;
 	private String nameAccount;
@@ -36,7 +39,7 @@ public class Account implements Serializable {
 	private List<Transaction> transactionMade = new ArrayList<Transaction>();
 	@OneToMany(mappedBy = "destinationAccount")
 	private List<Transaction> transactionReceived = new ArrayList<Transaction>();
-	private Byte state;
+	private int state;
 
 	public Account() {
 		super();
@@ -50,6 +53,14 @@ public class Account implements Serializable {
 		this.idAccount = idAccount;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public String getCBU() {
 		return CBU;
 	}
@@ -57,8 +68,6 @@ public class Account implements Serializable {
 	public void setCBU(String cBU) {
 		CBU = cBU;
 	}
-
-
 
 	public typeAccount getTypeAcc() {
 		return typeAcc;
@@ -92,11 +101,11 @@ public class Account implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public Byte getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Byte state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 

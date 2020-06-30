@@ -3,6 +3,7 @@ package com.Services;
 import java.util.ArrayList;
 
 import com.Dao.AccountDao;
+import com.Dao.AccountDaoImpl;
 import com.Dao.SessionHandler;
 import com.Model.Account;
 import com.Model.BeanFactory;
@@ -11,22 +12,34 @@ import com.Model.typeAccount;
 public class AccountServiceImpl implements AccountService{
 
 	BeanFactory bf = new BeanFactory();
-	SessionHandler sHand = new SessionHandler();
+	AccountDao ad = new AccountDaoImpl();
 	
 	public Boolean insertAccount(Account acc) {
-		// TODO Auto-generated method stub
-		return null;
+		return ad.insertAccount(acc);
 	}
 
-	public Boolean deleteAccount(Account acc) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deleteAccount(int idAccount) {
+		return ad.deleteAccount(idAccount);
 	}
 
-	@Override
 	public ArrayList<typeAccount> getAllTypes() {
-		AccountDao ad = bf.getAccountDaoImpl();
 		return ad.getAllTypes();
+	}
+
+	public ArrayList<Account> getAllUnchekedAccounts() {
+		return ad.getAllUnchekedAccounts();
+	}
+
+	public Boolean acceptAccount(int idAcc, int newState) {
+		return ad.acceptAccount(idAcc, newState);
+	}
+
+	public ArrayList<Account> getAccountsFrom(int idClient) {
+		return ad.getAccountsFrom(idClient);
+	}
+
+	public typeAccount getType(int idType) {
+		return ad.getType(idType);
 	}
 
 }

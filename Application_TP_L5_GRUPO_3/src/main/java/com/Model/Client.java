@@ -47,9 +47,6 @@ public class Client implements Serializable {
 	@JoinColumn(name = "idCity")
 	private City city;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "idClient")
-	private List<Account> bankAccounts = new ArrayList<Account>(4);
 	private Byte state;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idUser")
@@ -115,10 +112,6 @@ public class Client implements Serializable {
 		this.state = state;
 	}
 
-	public void setBankAccounts(List<Account> bankAccounts) {
-		this.bankAccounts = bankAccounts;
-	}
-
 	public Date getBirthdate() {
 		return birthdate;
 	}
@@ -157,10 +150,6 @@ public class Client implements Serializable {
 
 	public void setCity(City city) {
 		this.city = city;
-	}
-
-	public List<Account> getBankAccounts() {
-		return bankAccounts;
 	}
 
 }

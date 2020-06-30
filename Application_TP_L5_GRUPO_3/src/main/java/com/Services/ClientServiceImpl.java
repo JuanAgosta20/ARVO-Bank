@@ -3,6 +3,7 @@ package com.Services;
 import java.util.ArrayList;
 
 import com.Dao.ClientDao;
+
 import com.Model.Client;
 
 public class ClientServiceImpl implements ClientService{
@@ -18,16 +19,19 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	public Boolean updateClient(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+		return cd.updateClient(client);
+	}
+	
+	public Boolean deleteClient(int idClient,int idUser) {
+		return (cd.deleteClient(idClient) && cd.deleteUser(idUser));
 	}
 
-	public Client readClient(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client readClient(int id) {
+		return cd.getClient(id);
 	}
 
 	public ArrayList<Client> readClients() {
+
 		ArrayList<Client> clients = dClient.getClients();
 		return clients;
 	}
@@ -40,6 +44,5 @@ public class ClientServiceImpl implements ClientService{
 	public Boolean emailExist(String email) {
 		return dClient.emailExist(email);
 	}
-	
-	
+
 }

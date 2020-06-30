@@ -31,16 +31,15 @@ public class App {
 			Session session = sf.openSession();
 			session.beginTransaction();
 
-			//LOCACIONES
-			Countrie countries[] = {
-					Utilities.createCountrie("Afganistán"), // 0
+			// LOCACIONES
+			Countrie countries[] = { Utilities.createCountrie("Afganistï¿½n"), // 0
 					Utilities.createCountrie("Albania"), // 1
 					Utilities.createCountrie("Alemania"), // 2
 					Utilities.createCountrie("Algeria"), // 3
 					Utilities.createCountrie("Andorra"), // 4
 					Utilities.createCountrie("Angola"), // 5
 					Utilities.createCountrie("Anguila"), // 6
-					Utilities.createCountrie("Antártida"), // 7
+					Utilities.createCountrie("Antï¿½rtida"), // 7
 					Utilities.createCountrie("Antigua y Barbuda"), // 8
 					Utilities.createCountrie("Antillas Neerlandesas"), // 9
 					Utilities.createCountrie("Arabia Saudita"), // 10
@@ -49,29 +48,29 @@ public class App {
 					Utilities.createCountrie("Aruba"), // 13
 					Utilities.createCountrie("Australia"), // 14
 					Utilities.createCountrie("Austria"), // 15
-					Utilities.createCountrie("Azerbayán"), // 16
-					Utilities.createCountrie("Bélgica"), // 17
+					Utilities.createCountrie("Azerbayï¿½n"), // 16
+					Utilities.createCountrie("Bï¿½lgica"), // 17
 					Utilities.createCountrie("Bahamas"), // 18
 					Utilities.createCountrie("Bahrein"), // 19
 					Utilities.createCountrie("Bangladesh"), // 20
 					Utilities.createCountrie("Barbados"), // 21
 					Utilities.createCountrie("Belice"), // 22
-					Utilities.createCountrie("Benín"), // 23
-					Utilities.createCountrie("Bhután"), // 24
+					Utilities.createCountrie("Benï¿½n"), // 23
+					Utilities.createCountrie("Bhutï¿½n"), // 24
 					Utilities.createCountrie("Bielorrusia"), // 25
 					Utilities.createCountrie("Birmania"), // 26
 					Utilities.createCountrie("Bolivia"), // 27
 					Utilities.createCountrie("Bosnia y Herzegovina"), // 28
 					Utilities.createCountrie("Botsuana"), // 29
 					Utilities.createCountrie("Brasil"), // 30
-					Utilities.createCountrie("Brunéi"), // 31
+					Utilities.createCountrie("Brunï¿½i"), // 31
 					Utilities.createCountrie("Bulgaria"), // 32
 					Utilities.createCountrie("Burkina Faso"), // 33
 					Utilities.createCountrie("Burundi"), // 34
 					Utilities.createCountrie("Cabo Verde"), // 35
 					Utilities.createCountrie("Camboya"), // 36
-					Utilities.createCountrie("Camerún"), // 37
-					Utilities.createCountrie("Canadá"), // 38
+					Utilities.createCountrie("Camerï¿½n"), // 37
+					Utilities.createCountrie("Canadï¿½"), // 38
 					Utilities.createCountrie("Chad"), // 39
 					Utilities.createCountrie("Chile"), // 40
 					Utilities.createCountrie("China"), // 41
@@ -92,19 +91,19 @@ public class App {
 					Utilities.createCountrie("Ecuador"), // 56
 					Utilities.createCountrie("Egipto"), // 57
 					Utilities.createCountrie("El Salvador"), // 58
-					Utilities.createCountrie("Emiratos Árabes Unidos"), // 59
+					Utilities.createCountrie("Emiratos ï¿½rabes Unidos"), // 59
 					Utilities.createCountrie("Eritrea"), // 60
 					Utilities.createCountrie("Eslovaquia"), // 61
 					Utilities.createCountrie("Eslovenia"), // 62
-					Utilities.createCountrie("España"), // 63
-					Utilities.createCountrie("Estados Unidos de América"), // 64
+					Utilities.createCountrie("Espaï¿½a"), // 63
+					Utilities.createCountrie("Estados Unidos de Amï¿½rica"), // 64
 					Utilities.createCountrie("Estonia"), // 65
-					Utilities.createCountrie("Etiopía"), // 66
+					Utilities.createCountrie("Etiopï¿½a"), // 66
 					Utilities.createCountrie("Filipinas"), // 67
 					Utilities.createCountrie("Finlandia"), // 68
 					Utilities.createCountrie("Fiyi"), // 69
 					Utilities.createCountrie("Francia"), // 70
-					Utilities.createCountrie("Gabón"), // 71
+					Utilities.createCountrie("Gabï¿½n"), // 71
 					Utilities.createCountrie("Gambia"), // 72
 					Utilities.createCountrie("Georgia"), // 73
 					Utilities.createCountrie("Ghana"), // 74
@@ -121,13 +120,13 @@ public class App {
 					Utilities.createCountrie("Guinea Ecuatorial"), // 85
 					Utilities.createCountrie("Guinea-Bissau"), // 86
 					Utilities.createCountrie("Guyana"), // 87
-					Utilities.createCountrie("Haití"), // 88
+					Utilities.createCountrie("Haitï¿½"), // 88
 					Utilities.createCountrie("Honduras"), // 89
 					Utilities.createCountrie("Hong kong"), // 90
-					Utilities.createCountrie("Hungría"), // 91
+					Utilities.createCountrie("Hungrï¿½a"), // 91
 					Utilities.createCountrie("India"), // 92
 					Utilities.createCountrie("Indonesia"), // 93
-					Utilities.createCountrie("Irán"), // 94
+					Utilities.createCountrie("Irï¿½n"), // 94
 					Utilities.createCountrie("Irak"), // 95
 					Utilities.createCountrie("Irlanda"), // 96
 					Utilities.createCountrie("Isla Bouvet"), // 97
@@ -136,10 +135,10 @@ public class App {
 					Utilities.createCountrie("Isla Norfolk"), // 100
 					Utilities.createCountrie("Islandia"), // 101
 					Utilities.createCountrie("Islas Bermudas"), // 102
-					Utilities.createCountrie("Islas Caimán"), // 103
+					Utilities.createCountrie("Islas Caimï¿½n"), // 103
 					Utilities.createCountrie("Islas Cocos (Keeling)"), // 104
 					Utilities.createCountrie("Islas Cook"), // 105
-					Utilities.createCountrie("Islas de Åland"), // 106
+					Utilities.createCountrie("Islas de ï¿½land"), // 106
 					Utilities.createCountrie("Islas Feroe"), // 107
 					Utilities.createCountrie("Islas Georgias del Sur y Sandwich del Sur"), // 108
 					Utilities.createCountrie("Islas Heard y McDonald"), // 109
@@ -148,23 +147,23 @@ public class App {
 					Utilities.createCountrie("Islas Marianas del Norte"), // 112
 					Utilities.createCountrie("Islas Marshall"), // 113
 					Utilities.createCountrie("Islas Pitcairn"), // 114
-					Utilities.createCountrie("Islas Salomón"), // 115
+					Utilities.createCountrie("Islas Salomï¿½n"), // 115
 					Utilities.createCountrie("Islas Turcas y Caicos"), // 116
 					Utilities.createCountrie("Islas Ultramarinas Menores de Estados Unidos"), // 117
-					Utilities.createCountrie("Islas Vírgenes Británicas"), // 118
-					Utilities.createCountrie("Islas Vírgenes de los Estados Unidos"), // 119
+					Utilities.createCountrie("Islas Vï¿½rgenes Britï¿½nicas"), // 118
+					Utilities.createCountrie("Islas Vï¿½rgenes de los Estados Unidos"), // 119
 					Utilities.createCountrie("Israel"), // 120
 					Utilities.createCountrie("Italia"), // 121
 					Utilities.createCountrie("Jamaica"), // 122
-					Utilities.createCountrie("Japón"), // 123
+					Utilities.createCountrie("Japï¿½n"), // 123
 					Utilities.createCountrie("Jersey"), // 124
 					Utilities.createCountrie("Jordania"), // 125
-					Utilities.createCountrie("Kazajistán"), // 126
+					Utilities.createCountrie("Kazajistï¿½n"), // 126
 					Utilities.createCountrie("Kenia"), // 127
-					Utilities.createCountrie("Kirgizstán"), // 128
+					Utilities.createCountrie("Kirgizstï¿½n"), // 128
 					Utilities.createCountrie("Kiribati"), // 129
 					Utilities.createCountrie("Kuwait"), // 130
-					Utilities.createCountrie("Líbano"), // 131
+					Utilities.createCountrie("Lï¿½bano"), // 131
 					Utilities.createCountrie("Laos"), // 132
 					Utilities.createCountrie("Lesoto"), // 133
 					Utilities.createCountrie("Letonia"), // 134
@@ -173,10 +172,10 @@ public class App {
 					Utilities.createCountrie("Liechtenstein"), // 137
 					Utilities.createCountrie("Lituania"), // 138
 					Utilities.createCountrie("Luxemburgo"), // 139
-					Utilities.createCountrie("México"), // 140
-					Utilities.createCountrie("Mónaco"), // 141
+					Utilities.createCountrie("Mï¿½xico"), // 140
+					Utilities.createCountrie("Mï¿½naco"), // 141
 					Utilities.createCountrie("Macao"), // 142
-					Utilities.createCountrie("Macedônia"), // 143
+					Utilities.createCountrie("Macedï¿½nia"), // 143
 					Utilities.createCountrie("Madagascar"), // 144
 					Utilities.createCountrie("Malasia"), // 145
 					Utilities.createCountrie("Malawi"), // 146
@@ -203,40 +202,40 @@ public class App {
 					Utilities.createCountrie("Noruega"), // 167
 					Utilities.createCountrie("Nueva Caledonia"), // 168
 					Utilities.createCountrie("Nueva Zelanda"), // 169
-					Utilities.createCountrie("Omán"), // 170
-					Utilities.createCountrie("Países Bajos"), // 171
-					Utilities.createCountrie("Pakistán"), // 172
+					Utilities.createCountrie("Omï¿½n"), // 170
+					Utilities.createCountrie("Paï¿½ses Bajos"), // 171
+					Utilities.createCountrie("Pakistï¿½n"), // 172
 					Utilities.createCountrie("Palau"), // 173
 					Utilities.createCountrie("Palestina"), // 174
-					Utilities.createCountrie("Panamá"), // 175
-					Utilities.createCountrie("Papúa Nueva Guinea"), // 176
+					Utilities.createCountrie("Panamï¿½"), // 175
+					Utilities.createCountrie("Papï¿½a Nueva Guinea"), // 176
 					Utilities.createCountrie("Paraguay"), // 177
-					Utilities.createCountrie("Perú"), // 178
+					Utilities.createCountrie("Perï¿½"), // 178
 					Utilities.createCountrie("Polinesia Francesa"), // 179
 					Utilities.createCountrie("Polonia"), // 180
 					Utilities.createCountrie("Portugal"), // 181
 					Utilities.createCountrie("Puerto Rico"), // 182
 					Utilities.createCountrie("Qatar"), // 183
 					Utilities.createCountrie("Reino Unido"), // 184
-					Utilities.createCountrie("República Centroafricana"), // 185
-					Utilities.createCountrie("República Checa"), // 186
-					Utilities.createCountrie("República Dominicana"), // 187
-					Utilities.createCountrie("Reunión"), // 188
+					Utilities.createCountrie("Repï¿½blica Centroafricana"), // 185
+					Utilities.createCountrie("Repï¿½blica Checa"), // 186
+					Utilities.createCountrie("Repï¿½blica Dominicana"), // 187
+					Utilities.createCountrie("Reuniï¿½n"), // 188
 					Utilities.createCountrie("Ruanda"), // 189
-					Utilities.createCountrie("Rumanía"), // 190
+					Utilities.createCountrie("Rumanï¿½a"), // 190
 					Utilities.createCountrie("Rusia"), // 191
 					Utilities.createCountrie("Sahara Occidental"), // 192
 					Utilities.createCountrie("Samoa"), // 193
 					Utilities.createCountrie("Samoa Americana"), // 194
-					Utilities.createCountrie("San Bartolomé"), // 195
-					Utilities.createCountrie("San Cristóbal y Nieves"), // 196
+					Utilities.createCountrie("San Bartolomï¿½"), // 195
+					Utilities.createCountrie("San Cristï¿½bal y Nieves"), // 196
 					Utilities.createCountrie("San Marino"), // 197
-					Utilities.createCountrie("San Martín (Francia)"), // 198
-					Utilities.createCountrie("San Pedro y Miquelón"), // 199
+					Utilities.createCountrie("San Martï¿½n (Francia)"), // 198
+					Utilities.createCountrie("San Pedro y Miquelï¿½n"), // 199
 					Utilities.createCountrie("San Vicente y las Granadinas"), // 200
 					Utilities.createCountrie("Santa Elena"), // 201
-					Utilities.createCountrie("Santa Lucía"), // 202
-					Utilities.createCountrie("Santo Tomé y Príncipe"), // 203
+					Utilities.createCountrie("Santa Lucï¿½a"), // 202
+					Utilities.createCountrie("Santo Tomï¿½ y Prï¿½ncipe"), // 203
 					Utilities.createCountrie("Senegal"), // 204
 					Utilities.createCountrie("Serbia"), // 205
 					Utilities.createCountrie("Seychelles"), // 206
@@ -245,32 +244,32 @@ public class App {
 					Utilities.createCountrie("Siria"), // 209
 					Utilities.createCountrie("Somalia"), // 210
 					Utilities.createCountrie("Sri lanka"), // 211
-					Utilities.createCountrie("Sudáfrica"), // 212
-					Utilities.createCountrie("Sudán"), // 213
+					Utilities.createCountrie("Sudï¿½frica"), // 212
+					Utilities.createCountrie("Sudï¿½n"), // 213
 					Utilities.createCountrie("Suecia"), // 214
 					Utilities.createCountrie("Suiza"), // 215
-					Utilities.createCountrie("Surinám"), // 216
+					Utilities.createCountrie("Surinï¿½m"), // 216
 					Utilities.createCountrie("Svalbard y Jan Mayen"), // 217
 					Utilities.createCountrie("Swazilandia"), // 218
-					Utilities.createCountrie("Tadjikistán"), // 219
+					Utilities.createCountrie("Tadjikistï¿½n"), // 219
 					Utilities.createCountrie("Tailandia"), // 220
-					Utilities.createCountrie("Taiwán"), // 221
+					Utilities.createCountrie("Taiwï¿½n"), // 221
 					Utilities.createCountrie("Tanzania"), // 222
-					Utilities.createCountrie("Territorio Británico del Océano Índico"), // 223
-					Utilities.createCountrie("Territorios Australes y Antárticas Franceses"), // 224
+					Utilities.createCountrie("Territorio Britï¿½nico del Ocï¿½ano ï¿½ndico"), // 223
+					Utilities.createCountrie("Territorios Australes y Antï¿½rticas Franceses"), // 224
 					Utilities.createCountrie("Timor Oriental"), // 225
 					Utilities.createCountrie("Togo"), // 226
 					Utilities.createCountrie("Tokelau"), // 227
 					Utilities.createCountrie("Tonga"), // 228
 					Utilities.createCountrie("Trinidad y Tobago"), // 229
 					Utilities.createCountrie("Tunez"), // 230
-					Utilities.createCountrie("Turkmenistán"), // 231
-					Utilities.createCountrie("Turquía"), // 232
+					Utilities.createCountrie("Turkmenistï¿½n"), // 231
+					Utilities.createCountrie("Turquï¿½a"), // 232
 					Utilities.createCountrie("Tuvalu"), // 233
 					Utilities.createCountrie("Ucrania"), // 234
 					Utilities.createCountrie("Uganda"), // 235
 					Utilities.createCountrie("Uruguay"), // 236
-					Utilities.createCountrie("Uzbekistán"), // 237
+					Utilities.createCountrie("Uzbekistï¿½n"), // 237
 					Utilities.createCountrie("Vanuatu"), // 238
 					Utilities.createCountrie("Venezuela"), // 239
 					Utilities.createCountrie("Vietnam"), // 240
@@ -280,16 +279,15 @@ public class App {
 					Utilities.createCountrie("Zambia"), // 244
 					Utilities.createCountrie("Zimbabue"), // 245
 			};
-			
-			Province provs[] = {
-					Utilities.createProvince("Misiones", 54), // 1
+
+			Province provs[] = { Utilities.createProvince("Misiones", 54), // 1
 					Utilities.createProvince("San Luis", 74), // 2
 					Utilities.createProvince("San Juan", 70), // 3
-					Utilities.createProvince("Entre Ríos", 30), // 4
+					Utilities.createProvince("Entre Rï¿½os", 30), // 4
 					Utilities.createProvince("Santa Cruz", 78), // 5
-					Utilities.createProvince("Río Negro", 62), // 6
+					Utilities.createProvince("Rï¿½o Negro", 62), // 6
 					Utilities.createProvince("Chubut", 26), // 7
-					Utilities.createProvince("Córdoba", 14), // 8
+					Utilities.createProvince("Cï¿½rdoba", 14), // 8
 					Utilities.createProvince("Mendoza", 50), // 9
 					Utilities.createProvince("La Rioja", 46), // 10
 					Utilities.createProvince("Catamarca", 10), // 11
@@ -297,24 +295,23 @@ public class App {
 					Utilities.createProvince("Santiago del Estero", 86), // 13
 					Utilities.createProvince("Corrientes", 18), // 14
 					Utilities.createProvince("Santa Fe", 82), // 15
-					Utilities.createProvince("Tucumán", 90), // 16
-					Utilities.createProvince("Neuquén", 58), // 17
+					Utilities.createProvince("Tucumï¿½n", 90), // 16
+					Utilities.createProvince("Neuquï¿½n", 58), // 17
 					Utilities.createProvince("Salta", 66), // 18
 					Utilities.createProvince("Chaco", 22), // 19
 					Utilities.createProvince("Formosa", 34), // 20
 					Utilities.createProvince("Jujuy", 38), // 21
-					Utilities.createProvince("Ciudad Autónoma de Buenos Aires", 02), // 22
+					Utilities.createProvince("Ciudad Autï¿½noma de Buenos Aires", 02), // 22
 					Utilities.createProvince("Buenos Aires", 06), // 23
 					Utilities.createProvince("Tierra del Fuego", 94), // 24
 			};
-			
-			City cities[] = {
-					Utilities.createCity("CIUDAD DE BUENOS AIRES",provs[21]), // 1
-					Utilities.createCity("CONSTITUCION",provs[21]), // 2
-					Utilities.createCity("CÓRDOBA",provs[7]), // 3
+
+			City cities[] = { Utilities.createCity("CIUDAD DE BUENOS AIRES", provs[21]), // 1
+					Utilities.createCity("CONSTITUCION", provs[21]), // 2
+					Utilities.createCity("Cï¿½RDOBA", provs[7]), // 3
 			};
 			//
-			
+
 			// USUARIOs
 			User user = Utilities.createUser("123456", "Carlos", "Cliente");
 			User user2 = Utilities.createUser("123456", "Pablo", "Cliente");
@@ -328,47 +325,70 @@ public class App {
 			User user10 = Utilities.createUser("123456", "Kevin", "Cliente");
 
 			User admin = Utilities.createUser("123456", "Juanc", "Admin");
-			
+
 			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos", true);
-			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dólares", false);
+			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dï¿½lares", false);
 			typeAccount ta3 = Utilities.createTypeAccount("Cuenta Corriente", true);
 			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos", true);
-			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dólares", false);
+			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dï¿½lares", false);
+
+			Genre gen = Utilities.createGenre("Femenino");
+			Genre gen2 = Utilities.createGenre("Masculino");
+			Genre gen3 = Utilities.createGenre("Otro");
+			
+			// CLIENTE
+			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
+					"Rodriguez", countries[11], provs[21], gen3, user);
+			Client client2 = Utilities.createClient(new Date(), cities[2], "23232323", "pablo@gmail.com", "Pablo",
+					"Escobar", countries[44], provs[21], gen2, user2);
+
+			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), cities[1], "18654923",
+					"Eabel@gmail.com", "Ellen", "Abel", countries[11], provs[21], gen, user3);
+
+			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), cities[0], "23654956",
+					"Sande@gmail.com", "Sundar", "Ande", countries[11], provs[21], gen3, user4);
+
+			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), cities[1], "24632589",
+					"daustin@gmail.com", "David", "Austin", countries[11], provs[21], gen2, user5);
+
+			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), cities[1], "30652987",
+					"hbaer@gmail.com", "Hermann", "Baer", countries[11], provs[21], gen2, user6);
+
+			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), cities[2], "35621785",
+					"abull@gmail.com", "Alexis", "Bull", countries[11], provs[21], gen, user7);
+
+			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), cities[0], "39632541",
+					"aerrazur@gmail.com", "Alberto", "Errazuriz", countries[11], provs[7], gen2, user8);
+
+			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), cities[1], "35621478",
+					"cdavies@gmail.com", "Curtis", "Davies", countries[11], provs[19], gen2, user9);
+
+			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), cities[0], "40654951",
+					"kfeeney@gmail.com", "Kevin", "Feeney", countries[11], provs[11], gen3, user10);
 
 			// CUENTA
 			Date fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
-			Account acc = Utilities.createAccount("12321323213", fecha, 32323.4F, "Cuenta 1", (byte) 1, null, null,
-					ta);
+			Account acc = Utilities.createAccount(client, "12321323213", fecha, 32323.4F, "Cuenta 1", 0, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 1, 2019, 10, 22, 12);
-			Account acc2 = Utilities.createAccount("68686868686545", fecha, 45000F, "Cuenta 2", (byte) 1, null, null,
-					ta3);
+			Account acc2 = Utilities.createAccount(client2, "68686868686545", fecha, 45000F, "Cuenta 2", 1, null, null, ta3);
 			fecha = Cmd.crearFechaHora(22, 2, 2020, 31, 2, 12);
-			Account acc3 = Utilities.createAccount("5473767373356", fecha, 333.03F, "Cuenta 3", (byte) 1, null, null,
-					ta4);
+			Account acc3 = Utilities.createAccount(client, "5473767373356", fecha, 333.03F, "Cuenta 3", 2, null, null, ta4);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc4 = Utilities.createAccount("59598123156651", fecha, 90000.50F, "Cuenta 1", (byte) 1, null, null,
-					ta3);
+			Account acc4 = Utilities.createAccount(client3, "59598123156651", fecha, 90000.50F, "Cuenta 1", 2, null, null, ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc5 = Utilities.createAccount("323269444845261", fecha, 10000000F, "Cuenta 2", (byte) 1, null,
-					null, ta);
+			Account acc5 = Utilities.createAccount(client4, "323269444845261", fecha, 10000000F, "Cuenta 2", 2, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc6 = Utilities.createAccount("2215198431218912", fecha, 51510F, "Cuenta 3", (byte) 1, null, null,
-					ta2);
+			Account acc6 = Utilities.createAccount(client5, "2215198431218912", fecha, 51510F, "Cuenta 3", 2, null, null, ta2);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc7 = Utilities.createAccount("454612354984561", fecha, 100000F, "Cuenta 1", (byte) 1, null, null,
-					ta);
+			Account acc7 = Utilities.createAccount(client6, "454612354984561", fecha, 100000F, "Cuenta 1", 1, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc8 = Utilities.createAccount("5954841631566", fecha, 45.5F, "Cuenta 1", (byte) 1, null, null,
-					ta);
+			Account acc8 = Utilities.createAccount(client7, "5954841631566", fecha, 45.5F, "Cuenta 1", 2, null, null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc9 = Utilities.createAccount("88451231561231", fecha, 102000.3F, "Cuenta 1", (byte) 1, null, null,
-					ta3);
+			Account acc9 = Utilities.createAccount(client8, "88451231561231", fecha, 102000.3F, "Cuenta 1", 2, null, null, ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc10 = Utilities.createAccount("99218913621", fecha, 5.5F, "Cuenta 1", (byte) 1, null, null,
-					ta);
-			
-			
-			//TIPOS DE MOVIMIENTO
+			Account acc10 = Utilities.createAccount(client9, "99218913621", fecha, 5.5F, "Cuenta 1", 2, null, null, ta);
+
+			// TIPOS DE MOVIMIENTO
 			typeMove tm = Utilities.createTypeMove("Alta de Cuenta", true);
 			typeMove tm2 = Utilities.createTypeMove("Alta de Prestamo", true);
 			typeMove tm3 = Utilities.createTypeMove("Pago de Prestamo", false);
@@ -383,9 +403,9 @@ public class App {
 			date = Cmd.crearFechaHora(25, 3, 2019, 11, 42, 12);
 			Transaction trans3 = Utilities.createTransaction(2500F, "Alquiler", date, null, null, tm4);
 			date = Cmd.crearFechaHora(15, 4, 2020, 18, 45, 12);
-			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null,tm2);
+			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null, tm2);
 			date = Cmd.crearFechaHora(30, 1, 2020, 10, 45, 45);
-			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null,tm5);
+			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null, tm5);
 			date = Cmd.crearFechaHora(18, 5, 2019, 12, 12, 23);
 			Transaction trans6 = Utilities.createTransaction(2666F, "Pago cuota", date, null, null, tm3);
 			date = Cmd.crearFechaHora(10, 2, 2020, 19, 46, 22);
@@ -459,64 +479,12 @@ public class App {
 			acc9.setTransactionMade(hisTrans9);
 			acc10.setTransactionMade(hisTrans10);
 
-			ArrayList<Account> lista = new ArrayList<Account>();
-			lista.add(acc);
-			lista.add(acc2);
-			lista.add(acc3);
-			ArrayList<Account> lista2 = new ArrayList<Account>();
-			lista2.add(acc4);
-			lista2.add(acc5);
-			lista2.add(acc6);
-			ArrayList<Account> lista3 = new ArrayList<Account>();
-			lista3.add(acc7);
-			ArrayList<Account> lista4 = new ArrayList<Account>();
-			lista4.add(acc8);
-			ArrayList<Account> lista5 = new ArrayList<Account>();
-			lista5.add(acc9);
-			ArrayList<Account> lista6 = new ArrayList<Account>();
-			lista6.add(acc10);
-
-			ArrayList<Account> def = new ArrayList<Account>();
-			
-			Genre gen = Utilities.createGenre("Female");
-			Genre gen2 = Utilities.createGenre("Male");
-			Genre gen3 = Utilities.createGenre("Undefined");
-
-			// CLIENTE
-			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
-					"Rodriguez", countries[11], provs[21], gen3, user, lista);
-			Client client2 = Utilities.createClient(new Date(), cities[2], "23232323", "pablo@gmail.com", "Pablo",
-					"Escobar", countries[44], provs[21], gen2, user2, lista2);
-
-			Client client3 = Utilities.createClient(Cmd.crearFecha(6, 12, 1980), cities[1], "18654923",
-					"Eabel@gmail.com", "Ellen", "Abel", countries[11], provs[21], gen, user3, lista3);
-
-			Client client4 = Utilities.createClient(Cmd.crearFecha(3, 8, 1985), cities[0], "23654956", "Sande@gmail.com",
-					"Sundar", "Ande", countries[11], provs[21], gen3, user4, lista4);
-
-			Client client5 = Utilities.createClient(Cmd.crearFecha(14, 6, 1989), cities[1], "24632589",
-					"daustin@gmail.com", "David", "Austin", countries[11], provs[21], gen2, user5, lista5);
-
-			Client client6 = Utilities.createClient(Cmd.crearFecha(22, 1, 1990), cities[1], "30652987",
-					"hbaer@gmail.com", "Hermann", "Baer", countries[11], provs[21], gen2, user6, lista6);
-
-			Client client7 = Utilities.createClient(Cmd.crearFecha(19, 5, 1992), cities[2], "35621785", "abull@gmail.com",
-					"Alexis", "Bull", countries[11], provs[21], gen, user7, def);
-
-			Client client8 = Utilities.createClient(Cmd.crearFecha(28, 2, 1996), cities[0], "39632541",
-					"aerrazur@gmail.com", "Alberto", "Errazuriz", countries[11], provs[7], gen2, user8, def);
-
-			Client client9 = Utilities.createClient(Cmd.crearFecha(2, 2, 1998), cities[1], "35621478",
-					"cdavies@gmail.com", "Curtis", "Davies", countries[11], provs[19], gen2, user9, def);
-
-			Client client10 = Utilities.createClient(Cmd.crearFecha(13, 8, 1997), cities[0], "40654951",
-					"kfeeney@gmail.com", "Kevin", "Feeney", countries[11], provs[11], gen3, user10, def);
-
 			// USUARIO BANCO
 			Administrative adm = Utilities.createAdministrative("22365986", "Juancho@hotmail.es", "Juan", "Acosta",
 					admin);
-			//Administrative adm2 = Utilities.createAdministrative("33009922", "jony@hotmail.es", "Jonathan", "Aceite",
-			//		admin);
+			// Administrative adm2 = Utilities.createAdministrative("33009922",
+			// "jony@hotmail.es", "Jonathan", "Aceite",
+			// admin);
 
 			// PRESTAMO
 			Loan loan = Utilities.createLoan(client, 2323F, date, 3, 774.33F);
@@ -540,67 +508,69 @@ public class App {
 			Loan loan10 = Utilities.createLoan(client, 60000F, date, 3, 20000F);
 
 			// CUOTAs
-			FeePayment fp = Utilities.creatFeePayment(loan.getMonthAmmount(), Cmd.crearFechaHora(10, 3, 2020, 12, 11, 11));
-			FeePayment fp2 = Utilities.creatFeePayment(loan.getMonthAmmount(), Cmd.crearFechaHora(10, 4, 2020, 15, 33, 11));
-			FeePayment fp3 = Utilities.creatFeePayment(loan.getMonthAmmount(), Cmd.crearFechaHora(10, 5, 2020, 13, 55, 11));
+			FeePayment fp = Utilities.creatFeePayment(loan.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 3, 2020, 12, 11, 11));
+			FeePayment fp2 = Utilities.creatFeePayment(loan.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 4, 2020, 15, 33, 11));
+			FeePayment fp3 = Utilities.creatFeePayment(loan.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 5, 2020, 13, 55, 11));
 			ArrayList<FeePayment> fpList = new ArrayList<FeePayment>();
 			fpList.add(fp);
 			fpList.add(fp2);
 			fpList.add(fp3);
 			loan.setPayments(fpList);
-			
+
 			ArrayList<FeePayment> fpList2 = new ArrayList<FeePayment>();
-			FeePayment fp4 = Utilities.creatFeePayment(loan2.getMonthAmmount(), Cmd.crearFechaHora(10, 3, 2019, 12, 11, 11));
+			FeePayment fp4 = Utilities.creatFeePayment(loan2.getMonthAmmount(),
+					Cmd.crearFechaHora(10, 3, 2019, 12, 11, 11));
 			fpList2.add(fp4);
 			loan2.setPayments(fpList2);
-			
+
 			ArrayList<FeePayment> fpList3 = new ArrayList<FeePayment>();
-			FeePayment fp5 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(12, 2, 2020, 11, 45, 12));
-			FeePayment fp6 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(12, 3, 2020, 11, 45, 12));
-			FeePayment fp7 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(12, 4, 2020, 11, 45, 12));
+			FeePayment fp5 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(12, 2, 2020, 11, 45, 12));
+			FeePayment fp6 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(12, 3, 2020, 11, 45, 12));
+			FeePayment fp7 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(12, 4, 2020, 11, 45, 12));
 			fpList3.add(fp5);
 			fpList3.add(fp6);
 			fpList3.add(fp7);
 			loan4.setPayments(fpList3);
-			
+
 			ArrayList<FeePayment> fpList4 = new ArrayList<FeePayment>();
-			FeePayment fp8 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(4, 2, 2020, 13, 25, 12));
-			FeePayment fp9 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(4, 3, 2020, 9, 25, 12));
-			FeePayment fp10 = Utilities.creatFeePayment(loan3.getMonthAmmount(), Cmd.crearFechaHora(4, 4, 2020, 11, 25, 12));
+			FeePayment fp8 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(4, 2, 2020, 13, 25, 12));
+			FeePayment fp9 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(4, 3, 2020, 9, 25, 12));
+			FeePayment fp10 = Utilities.creatFeePayment(loan3.getMonthAmmount(),
+					Cmd.crearFechaHora(4, 4, 2020, 11, 25, 12));
 			fpList4.add(fp8);
 			fpList4.add(fp9);
 			fpList4.add(fp10);
 			loan5.setPayments(fpList4);
-			
-			// TEST AGREGAR CUENTA
-			/*
-			 * Client cliente = (Client) session.get(Client.class, 1);
-			 * ((List<Account>)cliente.getBankAccounts()).add(acc2);
-			 * session.update(cliente);
-			 */
-			//
-			for(Countrie c : countries) {
+
+			for (Countrie c : countries) {
 				session.save(c);
 			}
-			
+
 			for (Province p : provs) {
 				session.save(p);
 			}
-			
+
 			for (City c : cities) {
 				session.save(c);
 			}
-			
+
 			session.save(gen);
 			session.save(gen2);
 			session.save(gen3);
-			
+
 			session.save(ta);
 			session.save(ta2);
 			session.save(ta3);
 			session.save(ta4);
 			session.save(ta5);
-			
 
 			session.save(ta);
 			session.save(tm2);
@@ -622,6 +592,17 @@ public class App {
 			session.save(client9);
 			session.save(client10);
 			// --
+			session.save(acc);
+			session.save(acc2);
+			session.save(acc3);
+			session.save(acc4);
+			session.save(acc5);
+			session.save(acc6);
+			session.save(acc7);
+			session.save(acc8);
+			session.save(acc9);
+			session.save(acc10);
+			
 			session.save(loan);
 			session.save(loan2);
 			session.save(loan3);
@@ -633,8 +614,7 @@ public class App {
 			session.save(loan9);
 			session.save(loan10);
 			session.save(adm);
-			//session.save(adm2);
-			
+			// session.save(adm2);
 
 			session.getTransaction().commit();
 			session.close();

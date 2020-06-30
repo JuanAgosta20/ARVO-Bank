@@ -37,11 +37,13 @@
 		<constructor-arg name="dCli" ref="ClientDaoImpl" />
 	</bean>
 
-	<bean id="AccountServiceImpl"
-		class="com.Services.AccountServiceImpl">
-	</bean>
 	<bean id="LocationServiceImpl"
 		class="com.Services.LocationServiceImpl">
+
+<!-- 
+	<bean id="AccountServiceImpl" class="com.Services.AccountServiceImpl">
+	</bean>
+
 	</bean>
 	<bean id="GenreServiceImpl" class="com.Services.GenreServiceImpl">
 		<constructor-arg name="gdao" ref="GenreDaoImpl" />
