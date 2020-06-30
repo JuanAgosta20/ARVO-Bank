@@ -2,9 +2,11 @@ package com.Dao;
 
 import java.util.ArrayList;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.Model.City;
 import com.Model.Countrie;
 import com.Model.Province;
 
@@ -41,6 +43,31 @@ public class LocationDaoImpl implements LocationDao {
 		}catch (Exception e) {
 			return null;
 		}
+	}
+
+	public City getCity(String id) {
+		return (City) sHand.get(City.class, id);
+	}
+	
+	public Boolean saveCity(City city) {
+		try{
+			sHand.save(city);
+			sHand.commit();
+			return true;
+		}
+		catch(HibernateException ex){
+			ex.printStackTrace();
+			return false;
+		}
+		
+	}
+
+	public Province getProvince(Integer id) {
+		return (Province) sHand.get(Province.class, id);
+	}
+
+	public Countrie getCoountry(Integer id) { 
+		return (Countrie) sHand.get(Countrie.class, id);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.Dao;
 import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import com.Model.Client;
 import com.Model.User;
@@ -69,6 +70,15 @@ public class ClientDaoImpl implements ClientDao {
 	public ArrayList<Client> getClients() {
 		ArrayList<Client> client = (ArrayList<Client>) sHand.getAllData(Client.class);
 		return client;
+	}
+
+	public Boolean emailExist(String email) {
+		String hql = "From Client c where c.email = :email";
+		Query query = sHand.getSession().createQuery(hql);
+		if(query.setParameter("email", email).setMaxResults(1).list().size() == 1) {
+			return true;
+		}
+		return false;
 	}
 	
 	

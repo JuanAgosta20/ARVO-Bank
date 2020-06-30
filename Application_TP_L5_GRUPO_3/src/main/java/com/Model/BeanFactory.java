@@ -30,10 +30,12 @@ public class BeanFactory{
 	}
 	
 	public Administrative createAdministrative() {
-		return (Administrative) appContext.getBean("client");
+		return (Administrative) appContext.getBean("administrative");
 	}
 	
-	
+	public Client createClient() {
+		return (Client) appContext.getBean("client");
+	}
 	
 	//DAO
 
@@ -75,13 +77,13 @@ public class BeanFactory{
 	public AccountServiceImpl getAccountServiceImpl() {
 		return (AccountServiceImpl) appContext.getBean("AccountServiceImpl");
 	}
-	/*public LocationServiceImpl createLocationServiceImpl() {
+	public LocationServiceImpl createLocationServiceImpl() {
 		return (LocationServiceImpl) appContext.getBean("LocationServiceImpl");
 	}
 	
 	public GenreServiceImpl createGenreServiceImpl() {
 		return (GenreServiceImpl) appContext.getBean("GenreServiceImpl");
-	}*/
+	}
 
 
 	

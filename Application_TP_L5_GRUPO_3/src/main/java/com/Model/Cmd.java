@@ -1,5 +1,7 @@
 package com.Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
@@ -21,6 +23,12 @@ public class Cmd {
 		cal.set(Calendar.SECOND, seg);
 		Date date = cal.getTime();
 		
+		return date;
+	}
+	
+	public static Date crearFecha(String sDate) throws ParseException {
+		sDate = sDate.replace("-", "/");
+		Date date = new SimpleDateFormat("yyyy/MM/dd").parse(sDate);
 		return date;
 	}
 	
