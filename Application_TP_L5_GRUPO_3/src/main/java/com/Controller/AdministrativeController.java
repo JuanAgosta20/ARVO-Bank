@@ -34,7 +34,6 @@ import com.Services.GenreService;
 import com.Services.GenreServiceImpl;
 import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
-import com.google.protobuf.TextFormat.ParseException;
 import com.Services.UserService;
 import com.Services.UserServiceImpl;
 import com.main.Utilities;
@@ -47,6 +46,9 @@ public class AdministrativeController {
 	ClientService cs = bf.createClientServiceImpl();
 	LocationService ls =  bf.createLocationServiceImpl();
 	GenreService gs = bf.createGenreServiceImpl();
+	AccountService accs = new AccountServiceImpl();
+	
+
 
 	@RequestMapping(value="admClients", method=RequestMethod.POST)
 	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, 
@@ -140,7 +142,7 @@ public class AdministrativeController {
 			MV = new ModelAndView("admClientProfile");
 
 		try {
-			Client client = cd.getClient(id);
+			Client client = cs.readClient(id);
 			MV.addObject("client", client);
 			MV.addObject("countries", ls.getAllCountries());
 			MV.addObject("genres", gs.getAllGenres());

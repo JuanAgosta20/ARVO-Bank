@@ -68,6 +68,8 @@ public class LocationDaoImpl implements LocationDao {
 
 	public Countrie getCoountry(Integer id) { 
 		return (Countrie) sHand.get(Countrie.class, id);
+	}
+	
 	public Countrie getCountrie(int id) {
 		session = sHand.getSession();
 		return (Countrie)session.get(Countrie.class, id);

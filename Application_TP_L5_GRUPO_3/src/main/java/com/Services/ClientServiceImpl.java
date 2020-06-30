@@ -7,14 +7,14 @@ import com.Dao.ClientDao;
 import com.Model.Client;
 
 public class ClientServiceImpl implements ClientService{
-	ClientDao dClient;
+	ClientDao cd;
 	
 	public ClientServiceImpl(ClientDao dCli) {
-		dClient = dCli;
+		cd = dCli;
 	}
 	
 	public Boolean saveClient(Client client) {
-			dClient.insertClient(client);
+			cd.insertClient(client);
 		return null;
 	}
 
@@ -32,7 +32,7 @@ public class ClientServiceImpl implements ClientService{
 
 	public ArrayList<Client> readClients() {
 
-		ArrayList<Client> clients = dClient.getClients();
+		ArrayList<Client> clients = cd.getClients();
 		return clients;
 	}
 
@@ -42,7 +42,7 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	public Boolean emailExist(String email) {
-		return dClient.emailExist(email);
+		return cd.emailExist(email);
 	}
 
 }

@@ -306,9 +306,9 @@ public class App {
 					Utilities.createProvince("Tierra del Fuego", 94), // 24
 			};
 
-			City cities[] = { Utilities.createCity("CIUDAD DE BUENOS AIRES", provs[21]), // 1
-					Utilities.createCity("CONSTITUCION", provs[21]), // 2
-					Utilities.createCity("C�RDOBA", provs[7]), // 3
+			City cities[] = { Utilities.createCity("02000010000","CIUDAD DE BUENOS AIRES", provs[21]), // 1
+					Utilities.createCity("02007010001","CONSTITUCION", provs[21]), // 2
+					Utilities.createCity("14014010000","C�RDOBA", provs[7]), // 3
 			};
 			//
 
