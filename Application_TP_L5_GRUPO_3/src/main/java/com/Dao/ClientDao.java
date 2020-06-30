@@ -14,4 +14,5 @@ public interface ClientDao{
 	public Client getClient(User user);
 	public Client getClient(String dni);
 	public ArrayList<Client> getClients();
+	public Boolean emailExist(String email);
 }

@@ -16,9 +16,8 @@ public class GenreDaoImpl implements GenreDao {
 		return (ArrayList<Genre>) sHand.getAllData(Genre.class);
 	}
 
-	public Genre getGenre(int id) {
-		session = sHand.getSession();
-		return (Genre)session.get(Genre.class, id);
+	public Genre getGenre(Integer id) {
+		return (Genre) sHand.get(Genre.class, id);
 	}
 
 }

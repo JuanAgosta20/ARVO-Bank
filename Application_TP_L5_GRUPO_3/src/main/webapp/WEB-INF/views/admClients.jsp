@@ -4,7 +4,7 @@
 <%@page import="com.Model.Administrative"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC >
 
 <%
 	if (session.getAttribute("user") == null
@@ -43,11 +43,9 @@
 			</div>
 
 			<div class="col-auto">
-				<a class="btn btn-info"
-					data-toggle="modal"
-					href="#modalNewClient">
-					<i class="material-icons" 
-					>account_circle</i> Nuevo Cliente</a>
+				<a class="btn btn-info" data-toggle="modal" href="#modalNewClient">
+					<i class="material-icons">account_circle</i> Nuevo Cliente
+				</a>
 			</div>
 		</div>
 
@@ -90,16 +88,14 @@
 								<td>${client.nationality.name}</td>
 								<td>${client.province.name}</td>
 								<td>${client.city.name}</td>
-								<td>
-									<c:choose>
+								<td><c:choose>
 										<c:when test="${client.state == 1}">
 	  										Activo
 										</c:when>
 										<c:otherwise>
 	  										Inactivo
 										</c:otherwise>
-									</c:choose>
-								</td>
+									</c:choose></td>
 								<td><a class="btn btn-success" href="admClientProfile.do"
 									role="button">Ver</a></td>
 							</tr>
@@ -115,59 +111,124 @@
 
 		</div>
 	</div>
-	
+
 	<!-- Modal Nuevo Cliente -->
-	<div class="modal fade" id="modalNewClient" tabindex="-1"
-				role="dialog" aria-labelledby="modalNewClient" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title text-blue" id="modalTitle">Agregar
-								cliente</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<form action="clRequestAccount.do" method="POST">
-						<div class="modal-body">
-							<div class="row my-3">
-								<div class="col">
-									<div class="form-group">
-										<label for="name">Nombre/s</label>
-										<input class="form-control" type="text" id="name"></input>
-										<label for="lastname">Apellido/s</label>
-										<input class="form-control" type="text" id="lastname"></input>
-										<label for="DNI">D.N.I</label>
-										<input class="form-control" type="text" id="DNI" placeholder="ej: 403004230"></input>
-										<label for="birthdate">Fecha de nacimiento</label>
-										<input class="form-control" type="date" id="birthdate"></input>
-										<label for="genre">Género</label>
-										<select class="form-control" id="genre" name="genre">
-											<option value="1">Hombre</option>
-											<option value="2">Mujer</option>
-											<option value="3">Indefinido</option>
-										</select>
-										<label for="name">Nombre/s</label>
-										<input class="form-control" type="" id="name"></input>
-									</div>
+	<div class="modal fade" id="modalNewClient" tabindex="-1" role="dialog"
+		aria-labelledby="modalNewClient" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-blue" id="modalTitle">Agregar
+						cliente</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="admClients.do" method="POST">
+					<div class="modal-body">
+						<div class="row my-3">
+							<div class="col">
+								<div class="form-group">
+									<label for="name">Nombre/s</label> 
+									<input class="form-control" type="text" id="name" name="name" required></input>
+									<label for="lastname">Apellido/s</label>
+									<input class="form-control" type="text" id="lastname" name="lastname" required></input>
+									<label for="DNI">D.N.I</label> 
+									<input class="form-control" type="number" id="DNI" name="DNI" placeholder="ej: 40300423" required></input>
+									<label for="birthdate">Fecha de nacimiento</label>
+									<input class="form-control" type="date" id="birthdate" name="birthdate" required></input> 
+									<label for="mail">Email</label> 
+									<input onblur="checkEmail();" class="form-control" type="email" id="mail" name="mail" required></input>
+									<div class="alert alert-danger" id="badmail" style=" display:none; "><p>Ese email ya está registrado</p></div>
 								</div>
-								<div class="col">
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label for="genre">Género</label>
+									<select class="form-control" id="genre" name="genre">
+										<option value="1">Hombre</option>
+										<option value="2">Mujer</option>
+										<option value="3">Indefinido</option>
+									</select>
+									<label for="countries">Nacionalidad</label> 
+									<select class="form-control" id="countries" name="countries">
+										<c:forEach var="country" items="${countries }">
+											<option value="${country.idCountrie}">${country.name}</option>
+										</c:forEach>
+									</select>
+									<label for="province">Provincia</label> 
+									<select onchange="getCities();" class="form-control" id="province" name="province">
+										<c:forEach var="prov" items="${province }">
+											<option value="${prov.idProvinceApi}">${prov.name}</option>
+										</c:forEach>
+									</select>
+									<label for="cities">Domicilio</label> 
+									<select class="form-control" id="cities" name="cities">
+									</select>
 								</div>
 							</div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-info text-light btn-sm"
-								name="btnNewAccount">Agregar</button>
-							<button type="button" class="btn btn-secondary btn-sm"
-								data-dismiss="modal" name="btnCancel">Cancelar</button>
-						</div>
-						</form>
 					</div>
-				</div>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-info text-light btn-sm"
+							name="btnNewClient" value="Agregar" id="agregar" disabled></input>
+						<button type="button" class="btn btn-secondary btn-sm"
+							data-dismiss="modal" name="btnCancel">Cancelar</button>
+					</div>
+				</form>
 			</div>
-			<!--  Fin modal nuevo cliente -->
+		</div>
+	</div>
+	<!--  Fin modal nuevo cliente -->
+	<script>
+    var existMail;
+	getCities();
+	async function getCities() {
+			console.log('Dentro de get cities')
+			let selCities = document.getElementById('cities');
+			const select = document.getElementById('province');
+			const id = select.options[select.selectedIndex].value;
+			await fetch('https://apis.datos.gob.ar/georef/api/localidades?provincia='+id+'&campos=nombre&max=5000&orden=nombre')
+			.then(response => response.json())
+			.then(data => {
+				console.log(data)
+				data.localidades.forEach((e,i)=> {
+					
+					selCities.options[i]=(new Option(e.nombre,e.id))
+				})
+			})
+			
+	}
+	
+	async function checkEmail(){
+		let value = document.getElementById('mail').value;
+		console.log(value);
+		await fetch('checkEmail.do?mail=' + value ,
+				{
+					method:'GET'
+				})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data.existe);
+			existMail = data.existe;
+			if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))){
+					document.getElementById('badmail').textContent = 'Ej: xxxx@xxxx.xxx'
+					document.getElementById('badmail').style.display = 'block';
+			}
+			
+			if(data.existe == true){
+				document.getElementById('badmail').textContent = 'Ese email ya está registrado'
+				document.getElementById('badmail').style.display = 'block';
+			}
+			if(!data.existe && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
+				document.getElementById('agregar').disabled = false;
+				document.getElementById('badmail').style.display = 'none';
+			}
 
-
+		})
+	}
+	
+</script>
 </body>
 </html>

@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.Model.Administrative;
 import com.Model.BeanFactory;
 import com.Model.User;
+import com.Services.ClientService;
+import com.Services.ClientServiceImpl;
+import com.Services.LocationService;
 import com.Services.UserService;
 
 @Controller
@@ -20,7 +23,10 @@ public class LogInController {
 	BeanFactory bf = new BeanFactory();
 	UserService us = bf.createUserServiceImpl();
 
-	/*@RequestMapping(value = "login.do", method = RequestMethod.POST)
+	ClientService sClient = bf.createClientServiceImpl();
+	LocationService sLocation = bf.createLocationServiceImpl();
+
+	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public ModelAndView redirectLogIn(String txtUsername, String txtPass, HttpServletRequest req) {
 		ModelAndView MV = new ModelAndView();
 
@@ -34,6 +40,12 @@ public class LogInController {
 			return MV;
 		} else if (user.getUserType().equals("Admin")) {
 			Administrative adm = us.getAdmin(user);
+			
+			
+			MV.addObject("clients",sClient.readClients());
+			MV.addObject("countries", sLocation.getAllCountries());
+			MV.addObject("province", sLocation.getAllProvince());
+			
 			session.setAttribute("user", adm);
 			MV.setViewName("admClients");
 		} else if (user.getUserType().equals("Client")) {
@@ -44,8 +56,8 @@ public class LogInController {
 		}
 
 		return MV;
-	}*/
-	
+	}
+	/*
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public ModelAndView redirectLogIn(String txtUsername, String txtPass, HttpServletRequest req) {
 		ModelAndView MV = new ModelAndView();
@@ -79,5 +91,5 @@ public class LogInController {
 		session.setAttribute("user", null);
 		MV.setViewName("index");
 		return MV;
-	}
+	}*/
 }

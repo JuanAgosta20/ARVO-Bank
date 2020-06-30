@@ -10,23 +10,25 @@ import com.Model.User;
 
 public class ClientDaoImpl implements ClientDao {
 
-	SessionHandler sHand = new SessionHandler();
+	SessionHandler sHand;
 	Session session;
 
 	public Boolean insertClient(Client client) {
 		sHand = new SessionHandler();
-
+		session = sHand.getSession();
 		try {
-			sHand.save(client);
-			sHand.commit();
+			session.save(client);
+			session.getTransaction().commit();
 			return true;
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
+			session.getTransaction().rollback();
 			return false;
 		}
 	}
 
 	public Boolean updateClient(Client client) {
+		sHand = new SessionHandler();
 		try {
 			sHand.update(client);
 			sHand.commit();
@@ -38,6 +40,7 @@ public class ClientDaoImpl implements ClientDao {
 	}
 
 	public Client getClient(Integer id) {
+		sHand = new SessionHandler();
 		try {
 			Client client = (Client) sHand.get(Client.class, id);
 			return client;
@@ -53,6 +56,7 @@ public class ClientDaoImpl implements ClientDao {
 	}
 
 	public Client getClient(User user) {
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		Client client;
 		try {
@@ -67,12 +71,26 @@ public class ClientDaoImpl implements ClientDao {
 	}
 
 	public ArrayList<Client> getClients() {
+		sHand = new SessionHandler();
 		@SuppressWarnings("unchecked")
 		ArrayList<Client> client = (ArrayList<Client>) sHand.getAllData(Client.class);
 		return client;
 	}
 
+
+	public Boolean emailExist(String email) {
+		sHand = new SessionHandler();
+		String hql = "From Client c where c.email = :email";
+		Query query = sHand.getSession().createQuery(hql);
+		if(query.setParameter("email", email).setMaxResults(1).list().size() == 1) {
+			return true;
+		}
+		return false;
+	}
+  
+  
 	public Boolean deleteClient(int id) {
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		String hql = "update Client c set c.state=0  where c.idClient= :id";
 		Query query = (Query) session.createQuery(hql);
@@ -90,6 +108,7 @@ public class ClientDaoImpl implements ClientDao {
 	}
 
 	public Boolean deleteUser(int id) {
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		String hql = "update User u set  u.state=0 where u.idUser= :id";
 		Query query = (Query) session.createQuery(hql);
