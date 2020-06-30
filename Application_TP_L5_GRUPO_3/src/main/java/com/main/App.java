@@ -280,14 +280,15 @@ public class App {
 					Utilities.createCountrie("Zimbabue") // 245
 			};
 
-			Province provs[] = { Utilities.createProvince("Misiones", 54), // 1
+			Province provs[] = {
+					Utilities.createProvince("Misiones", 54), // 1
 					Utilities.createProvince("San Luis", 74), // 2
 					Utilities.createProvince("San Juan", 70), // 3
-					Utilities.createProvince("Entre Rï¿½os", 30), // 4
+					Utilities.createProvince("Entre Ríos", 30), // 4
 					Utilities.createProvince("Santa Cruz", 78), // 5
-					Utilities.createProvince("Rï¿½o Negro", 62), // 6
+					Utilities.createProvince("Río Negro", 62), // 6
 					Utilities.createProvince("Chubut", 26), // 7
-					Utilities.createProvince("Cï¿½rdoba", 14), // 8
+					Utilities.createProvince("Córdoba", 14), // 8
 					Utilities.createProvince("Mendoza", 50), // 9
 					Utilities.createProvince("La Rioja", 46), // 10
 					Utilities.createProvince("Catamarca", 10), // 11
@@ -295,15 +296,15 @@ public class App {
 					Utilities.createProvince("Santiago del Estero", 86), // 13
 					Utilities.createProvince("Corrientes", 18), // 14
 					Utilities.createProvince("Santa Fe", 82), // 15
-					Utilities.createProvince("Tucumï¿½n", 90), // 16
-					Utilities.createProvince("Neuquï¿½n", 58), // 17
+					Utilities.createProvince("Tucumán", 90), // 16
+					Utilities.createProvince("Neuquén", 58), // 17
 					Utilities.createProvince("Salta", 66), // 18
 					Utilities.createProvince("Chaco", 22), // 19
 					Utilities.createProvince("Formosa", 34), // 20
 					Utilities.createProvince("Jujuy", 38), // 21
-					Utilities.createProvince("Ciudad Autï¿½noma de Buenos Aires", 02), // 22
+					Utilities.createProvince("Ciudad Autónoma de Buenos Aires", 02), // 22
 					Utilities.createProvince("Buenos Aires", 06), // 23
-					Utilities.createProvince("Tierra del Fuego", 94), // 24
+					Utilities.createProvince("Tierra del Fuego, Antártida e Islas del Atlántico Sur", 94), // 24
 			};
 
 			City cities[] = { Utilities.createCity("02000010000", "CIUDAD DE BUENOS AIRES", provs[21]), // 1
