@@ -39,8 +39,7 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	public Countrie getCountrie(Integer id) {
-		ld.getCoountry(id);
-		return null;
+		return ld.getCoountry(id);
 	}
 	public Countrie getCountrie(int id) {
 		return ld.getCountrie(id);

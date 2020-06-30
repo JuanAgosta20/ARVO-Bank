@@ -26,7 +26,7 @@ public class LogInController {
 	ClientService sClient = bf.createClientServiceImpl();
 	LocationService sLocation = bf.createLocationServiceImpl();
 
-	/*@RequestMapping(value = "login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public ModelAndView redirectLogIn(String txtUsername, String txtPass, HttpServletRequest req) {
 		ModelAndView MV = new ModelAndView();
 
@@ -56,8 +56,8 @@ public class LogInController {
 		}
 
 		return MV;
-	}*/
-	
+	}
+	/*
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public ModelAndView redirectLogIn(String txtUsername, String txtPass, HttpServletRequest req) {
 		ModelAndView MV = new ModelAndView();
@@ -91,5 +91,5 @@ public class LogInController {
 		session.setAttribute("user", null);
 		MV.setViewName("index");
 		return MV;
-	}
+	}*/
 }

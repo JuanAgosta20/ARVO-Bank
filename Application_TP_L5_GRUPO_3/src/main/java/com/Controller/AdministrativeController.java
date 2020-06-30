@@ -52,7 +52,7 @@ public class AdministrativeController {
 
 	@RequestMapping(value="admClients", method=RequestMethod.POST)
 	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, 
-			Integer countries, Integer province, String cities, String email, Integer genre){
+			Integer countries, Integer province, String cities, String mail, Integer genre){
 		ModelAndView MV = new ModelAndView("admClients");
 		Client client = new Client();
 		Province prov = ls.getProvince(province);
@@ -77,10 +77,11 @@ public class AdministrativeController {
 		client.setLastName(lastname);
 		client.setDni(DNI);
 		client.setGenre(gen);
-		client.setEmail(email);
+		client.setEmail(mail);
 		client.setNationality(country);
 		client.setCity(city);
 		client.setProvince(prov);
+		client.setState((byte)1);
 		
 		if(cs.saveClient(client)) MV.addObject("guardo",true);
 		else MV.addObject("guardo",false);
@@ -94,9 +95,9 @@ public class AdministrativeController {
 	
 	@RequestMapping(value="checkEmail",method=RequestMethod.GET)
 		@ResponseBody
-		public String checkEmail(String email){
-			System.out.println("Entro a check email" + email);
-			if(cs.emailExist(email)) {
+		public String checkEmail(String mail){
+			System.out.println("Entro a check email" + mail);
+			if(cs.emailExist(mail)) {
 				return "{\"existe\": true}";
 			}
 			return "{\"existe\": false}";

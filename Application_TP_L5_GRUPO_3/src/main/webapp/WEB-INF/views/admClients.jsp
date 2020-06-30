@@ -171,8 +171,8 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="submit" onclick="vaildateForm();" class="btn btn-info text-light btn-sm"
-							name="btnNewClient" value="Agregar"></input>
+						<input type="submit" class="btn btn-info text-light btn-sm"
+							name="btnNewClient" value="Agregar" id="agregar" disabled></input>
 						<button type="button" class="btn btn-secondary btn-sm"
 							data-dismiss="modal" name="btnCancel">Cancelar</button>
 					</div>
@@ -201,21 +201,17 @@
 			
 	}
 	
-	function validateForm(){
-		if (document.getElementById('badmail').style.display == 'block') preventDefault();
-	}	
 	async function checkEmail(){
 		let value = document.getElementById('mail').value;
-		await fetch(`checkEmail.do?email=${value}`,
+		console.log(value);
+		await fetch('checkEmail.do?mail=' + value ,
 				{
-					method:'GET',
-					params:[{"email": value}]
+					method:'GET'
 				})
 		.then(response => response.json())
 		.then(data => {
 			console.log(data.existe);
 			existMail = data.existe;
-			
 			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
 				console.log('regex cumpliedo')
 				document.getElementById('badmail').style.display = 'none';
@@ -226,9 +222,14 @@
 			if(data.existe == true){
 				document.getElementById('badmail').textContent = 'Ese email ya está registrado'
 				document.getElementById('badmail').style.display = 'block';
+			}else{
+				document.getElementById('agregar').disabled = false;
+				document.getElementById('badmail').style.display = 'none';
 			}
+
 		})
-}
+	}
+	
 </script>
 </body>
 </html>
