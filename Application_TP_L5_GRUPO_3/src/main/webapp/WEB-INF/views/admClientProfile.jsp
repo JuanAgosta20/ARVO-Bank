@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.Model.Administrative"%>
+<%@page import="com.Model.Account"%>
+<%@page import="com.Model.typeAccount"%>
+<%@page import="com.Model.Cmd"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -26,12 +29,9 @@
 
 	<div class="container-fluid mt-3">
 		<div class="row">
-			<div class="col">
-				<!-- Columna vacía izquierda-->
-			</div>
-			<div class="col-10">
+			<div class="col-12">
 				<h4 class="text-blue mb-4 ml-4">Perfil Cliente</h4>
-					<div class="container">
+					<div class="container-fluid">
 						<div class="row">
 							<div class="col-4">
 								<form action="admUpdateClient.do" method="post">
@@ -164,7 +164,7 @@
 							</div>
 
 
-				<div class="col">
+				<div class="col-8">
 					<nav>
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
 							<a class="nav-item nav-link active" id="nav-accounts-tab"
@@ -189,38 +189,25 @@
 										<th scope="col">CBU</th>
 										<th scope="col">Nombre</th>
 										<th scope="col">Tipo</th>
-										<th scope="col">Monto</th>
-										<th scope="col">Estado</th>
+										<th scope="col">Fondos</th>
+										<th scope="col">Acción</th>
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach var="acc" items="${accounts}">
 									<tr>
-										<td>10/10/2010</td>
-										<td>3000000000</td>
-										<td>CtaCte</td>
-										<td>Cuenta Corriente</td>
-										<td>$20000</td>
-										<td>Activa</td>
-										<td><button class="btn btn-danger">Baja</button></td>
+										<Form action="admDeleteAccount.do" method="POST">
+										<input type="hidden" value="${acc.getIdAccount()}" name="idAccount">
+										<input type="hidden" value="${acc.getClient().getIdClient()}" name="idClient">
+										<td>${Cmd.getFormattedDate(acc.getCreationDate(), false)}</td>
+										<td>${ acc.getCBU() }</td>
+										<td>${acc.getNameAccount()}</td>
+										<td>${acc.getTypeAcc().getDescription()}</td>
+										<td>${acc.getFunds()}</td>
+										<td><button class="btn btn-danger btn-sm">Baja</button></td>
+										</Form>
 									</tr>
-									<tr>
-										<td>08/08/2008</td>
-										<td>4000000000</td>
-										<td>CjaAho</td>
-										<td>Caja Ahorro en $</td>
-										<td>$30000</td>
-										<td>Activa</td>
-										<td><button class="btn btn-danger">Baja</button></td>
-									</tr>
-									<tr>
-										<td>08/08/2008</td>
-										<td>5000000000</td>
-										<td>CjaAhoUS</td>
-										<td>Caja Ahorro en US$</td>
-										<td>USD 500</td>
-										<td>Activa</td>
-										<td><button class="btn btn-danger">Baja</button></td>
-									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 
@@ -273,9 +260,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col">
-		<!-- Columna vacía derecha -->
 	</div>
 	</div>
 	</div>

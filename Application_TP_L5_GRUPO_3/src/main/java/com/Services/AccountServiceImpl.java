@@ -18,9 +18,8 @@ public class AccountServiceImpl implements AccountService{
 		return ad.insertAccount(acc);
 	}
 
-	public Boolean deleteAccount(Account acc) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deleteAccount(int idAccount) {
+		return ad.deleteAccount(idAccount);
 	}
 
 	public ArrayList<typeAccount> getAllTypes() {

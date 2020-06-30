@@ -43,7 +43,7 @@
 					<tbody>
 						<c:forEach var="account" items="${uncheckedAccounts}">
 							<tr>
-								<td>${Cmd.getFormattedDate(account.getCreationDate(), true)}</td>
+								<td>${Cmd.getFormattedDate(account.getCreationDate(), false)}</td>
 								<td>${account.getClient().getFirstName()}
 									${account.getClient().getLastName()}</td>
 								<td>${account.getClient().getDni()}</td>

@@ -33,9 +33,10 @@ public class AccountDaoImpl implements AccountDao{
 		}
 	}
 
-	public Boolean deleteAccount(Account acc) {
+	public Boolean deleteAccount(int idAccount) {
 		try {
 			sHand = new SessionHandler();
+			Account acc = (Account) sHand.get(Account.class, idAccount);
 			acc.setState(0);
 			sHand.update(acc);
 			sHand.commit();

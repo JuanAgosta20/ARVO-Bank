@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Dao.ClientDao;
 import com.Dao.ClientDaoImpl;
+import com.Model.Account;
 import com.Model.BeanFactory;
 import com.Model.City;
 import com.Model.Client;
@@ -77,20 +78,30 @@ public class AdministrativeController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value="admDeleteAccount", method=RequestMethod.POST)
+	public ModelAndView DeleteAccount(int idAccount, int idClient) {
+		ModelAndView mv = new ModelAndView("admClientProfile");
+		Boolean result = accs.deleteAccount(idAccount);
+		mv.addObject("result", result);
+		mv.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminación fue realizada correctamente" });
+		return ClientProfile(idClient, mv);
+	}
 
 	@RequestMapping("admClientProfile")
-	public ModelAndView ClientProfile(int id) {
-		ModelAndView MV = new ModelAndView("admClientProfile");
+	public ModelAndView ClientProfile(int id, ModelAndView MV) {
+		if(MV.isEmpty())
+			MV = new ModelAndView("admClientProfile");
 
 		try {
 			Client client = cd.getClient(id);
 			MV.addObject("client", client);
 			MV.addObject("countries", ls.getAllCountries());
 			MV.addObject("genres", gs.getAllGenres());
-			// ls.getAllProvince().forEach(e->{System.out.println(e.getName());});
 			ArrayList<Province> provs = ls.getAllProvince();
-			;
 			MV.addObject("provinces", provs);
+			ArrayList<Account> acc = accs.getAccountsFrom(client.getIdClient());
+			MV.addObject("accounts", acc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MV;
