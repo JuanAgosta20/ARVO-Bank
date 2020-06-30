@@ -3,17 +3,19 @@ package com.Services;
 import java.util.ArrayList;
 
 import com.Dao.ClientDao;
-import com.Dao.ClientDaoImpl;
-import com.Dao.SessionHandler;
+
 import com.Model.Client;
 
 public class ClientServiceImpl implements ClientService{
-	SessionHandler sHand = new SessionHandler();
-	ClientDao cd = new ClientDaoImpl();
+	ClientDao dClient;
+	
+	public ClientServiceImpl(ClientDao dCli) {
+		dClient = dCli;
+	}
 	
 	public Boolean saveClient(Client client) {
-			
-		return cd.insertClient(client);
+			dClient.insertClient(client);
+		return null;
 	}
 
 	public Boolean updateClient(Client client) {
@@ -29,15 +31,18 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	public ArrayList<Client> readClients() {
-		@SuppressWarnings("unchecked")
-		ArrayList<Client> clients = (ArrayList<Client>) sHand.getAllData(Client.class);
+
+		ArrayList<Client> clients = dClient.getClients();
 		return clients;
 	}
 
-	public Client readClient(Client client) {
+	public Client readClient(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
+	public Boolean emailExist(String email) {
+		return dClient.emailExist(email);
+	}
+
 }

@@ -5,11 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.hibernate.mapping.Map;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBodyAdvice;
 
 import com.Dao.ClientDao;
 import com.Dao.ClientDaoImpl;
@@ -17,6 +21,7 @@ import com.Model.Account;
 import com.Model.BeanFactory;
 import com.Model.City;
 import com.Model.Client;
+import com.Model.Cmd;
 import com.Model.Countrie;
 import com.Model.Genre;
 import com.Model.Province;
@@ -29,6 +34,7 @@ import com.Services.GenreService;
 import com.Services.GenreServiceImpl;
 import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
+import com.google.protobuf.TextFormat.ParseException;
 import com.Services.UserService;
 import com.Services.UserServiceImpl;
 import com.main.Utilities;
@@ -36,25 +42,64 @@ import com.main.Utilities;
 @Controller
 public class AdministrativeController {
 
-	BeanFactory bFactory = new BeanFactory();
 	BeanFactory bf = new BeanFactory();
-	ClientDao cd = new ClientDaoImpl();
-	ClientService cs = new ClientServiceImpl();
-	LocationService ls = new LocationServiceImpl();// bf.createLocationServiceImpl();
-	GenreService gs = new GenreServiceImpl(); // bf.createGenreServiceImpl();
-	AccountService accs = new AccountServiceImpl();
-	UserService us = new UserServiceImpl();
 
-	@RequestMapping("admClients")
-	public ModelAndView Clients() {
+	ClientService cs = bf.createClientServiceImpl();
+	LocationService ls =  bf.createLocationServiceImpl();
+	GenreService gs = bf.createGenreServiceImpl();
+
+	@RequestMapping(value="admClients", method=RequestMethod.POST)
+	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, 
+			Integer countries, Integer province, String cities, String email, Integer genre){
 		ModelAndView MV = new ModelAndView("admClients");
-		ClientServiceImpl sClient = bFactory.createClientServiceImpl();
-
-		MV.addObject("clients", sClient.readClients());
-
+		Client client = new Client();
+		Province prov = ls.getProvince(province);
+		Countrie country = ls.getCountrie(countries);
+		City city = ls.getCity(cities);
+		Genre gen = gs.getGenre(genre);
+		
+		if(city == null) {
+			city = new City();
+			city.setIdCity(cities);
+			city.setName(lastname);
+			city.setProv(prov);
+			ls.saveCity(city);
+		}
+		
+		try {
+			if(birthdate != null) client.setBirthdate(Cmd.crearFecha(birthdate));
+		}catch(java.text.ParseException ex) {
+			ex.printStackTrace();
+		}
+		client.setFirstName(name);
+		client.setLastName(lastname);
+		client.setDni(DNI);
+		client.setGenre(gen);
+		client.setEmail(email);
+		client.setNationality(country);
+		client.setCity(city);
+		client.setProvince(prov);
+		
+		if(cs.saveClient(client)) MV.addObject("guardo",true);
+		else MV.addObject("guardo",false);
+		
+		MV.addObject("clients",cs.readClients());
+		MV.addObject("countries", ls.getAllCountries());
+		MV.addObject("province", ls.getAllProvince());
+		
 		return MV;
 	}
-
+	
+	@RequestMapping(value="checkEmail",method=RequestMethod.GET)
+		@ResponseBody
+		public String checkEmail(String email){
+			System.out.println("Entro a check email" + email);
+			if(cs.emailExist(email)) {
+				return "{\"existe\": true}";
+			}
+			return "{\"existe\": false}";
+			
+		}
 	@RequestMapping("admAccounts")
 	public ModelAndView Accounts() {
 		ModelAndView mv = new ModelAndView("admAccounts");
@@ -74,7 +119,7 @@ public class AdministrativeController {
 		mv.addObject("uncheckedAccounts", accs.getAllUnchekedAccounts());
 
 		mv.addObject("result", result); // true bien, false mal
-		mv.addObject("msg", new String[] { "Ha ocurrido un error", "Operación realizada correctamente" });
+		mv.addObject("msg", new String[] { "Ha ocurrido un error", "OperaciÃ³n realizada correctamente" });
 
 		return mv;
 	}
@@ -84,11 +129,12 @@ public class AdministrativeController {
 		ModelAndView mv = new ModelAndView("admClientProfile");
 		Boolean result = accs.deleteAccount(idAccount);
 		mv.addObject("result", result);
-		mv.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminación fue realizada correctamente" });
+		mv.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminaciÃ³n fue realizada correctamente" });
 		return ClientProfile(idClient, mv);
 	}
 
 	@RequestMapping("admClientProfile")
+
 	public ModelAndView ClientProfile(int id, ModelAndView MV) {
 		if(MV.isEmpty())
 			MV = new ModelAndView("admClientProfile");

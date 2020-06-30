@@ -10,6 +10,8 @@
 	</bean>
 	<bean id="account" class="com.Model.Account">
 	</bean>
+	<bean id="administrative" class="com.Model.Administrative">
+	</bean>
 	<!-- DAO -->
 	<bean id="LogInDaoImpl" class="com.Dao.LogInDaoImpl">
 	</bean>
@@ -25,21 +27,27 @@
 	<bean id="AdministrativeDaoImpl"
 		class="com.Dao.AdministrativeDaoImpl">
 	</bean>
-	
-	
+
+
 	<!--SERVICES -->
 	<bean id="UserServiceImpl" class="com.Services.UserServiceImpl">
 	</bean>
-	<bean id="ClientServiceImpl" class="com.Services.ClientServiceImpl">
+	<bean id="ClientServiceImpl"
+		class="com.Services.ClientServiceImpl">
+		<constructor-arg name="dCli" ref="ClientDaoImpl" />
 	</bean>
+
+	<bean id="LocationServiceImpl"
+		class="com.Services.LocationServiceImpl">
+
 <!-- 
 	<bean id="AccountServiceImpl" class="com.Services.AccountServiceImpl">
 	</bean>
-	
-	<bean id="LocationServiceImpl" class="com.Services.LocationServiceImpl">
+
 	</bean>
 	<bean id="GenreServiceImpl" class="com.Services.GenreServiceImpl">
-	</bean> -->
-	
+		<constructor-arg name="gdao" ref="GenreDaoImpl" />
+	</bean>
+
 
 </beans>

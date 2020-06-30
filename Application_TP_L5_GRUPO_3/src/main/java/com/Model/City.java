@@ -14,8 +14,7 @@ import javax.persistence.ManyToOne;
 public class City implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	int idCity;
+	String idCity;
 	@Column(unique = true)
 	String name;
 	@ManyToOne()
@@ -34,11 +33,11 @@ public class City implements Serializable{
 		this.name = name;
 	}
 
-	public int getIdCity() {
+	public String getIdCity() {
 		return idCity;
 	}
 
-	public void setIdCity(int idCity) {
+	public void setIdCity(String idCity) {
 		this.idCity = idCity;
 	}
 

@@ -72,6 +72,17 @@ public class ClientDaoImpl implements ClientDao {
 		return client;
 	}
 
+
+	public Boolean emailExist(String email) {
+		String hql = "From Client c where c.email = :email";
+		Query query = sHand.getSession().createQuery(hql);
+		if(query.setParameter("email", email).setMaxResults(1).list().size() == 1) {
+			return true;
+		}
+		return false;
+	}
+  
+  
 	public Boolean deleteClient(int id) {
 		session = sHand.getSession();
 		String hql = "update Client c set c.state=0  where c.idClient= :id";
