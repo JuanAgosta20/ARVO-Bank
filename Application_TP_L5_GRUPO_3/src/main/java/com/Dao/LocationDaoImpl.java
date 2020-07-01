@@ -18,12 +18,12 @@ public class LocationDaoImpl implements LocationDao {
 		super();
 	}
 
-	SessionHandler sHand = new SessionHandler();
+	SessionHandler sHand;
 	Session session;
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Countrie> getAllCountries() {
-
+		sHand = new SessionHandler();
 		return (ArrayList<Countrie>) sHand.getAllData(Countrie.class);
 		/*
 		 * session = sHand.getSession(); try { ArrayList<Countrie> list =
@@ -35,6 +35,7 @@ public class LocationDaoImpl implements LocationDao {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Province> getAllProvinces() {
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		String hql = "From provinces p order by p.name asc";
 		Query query = (Query) session.createQuery(hql);
@@ -46,10 +47,12 @@ public class LocationDaoImpl implements LocationDao {
 	}
 
 	public City getCity(String id) {
+		sHand = new SessionHandler();
 		return (City) sHand.get(City.class, id);
 	}
 	
 	public City getCity(String name, int prov) {
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		String hql = "From City c where c.name= :name and c.prov =: prov";
 		Query query = (Query) session.createQuery(hql);
@@ -63,6 +66,7 @@ public class LocationDaoImpl implements LocationDao {
 	}
 	
 	public Boolean saveCity(City city) {
+		sHand = new SessionHandler();
 		try{
 			sHand.save(city);
 			sHand.commit();
@@ -76,19 +80,23 @@ public class LocationDaoImpl implements LocationDao {
 	}
 
 	public Province getProvince(Integer id) {
+		sHand = new SessionHandler();
 		return (Province) sHand.get(Province.class, id);
 	}
 
 	public Countrie getCoountry(Integer id) { 
+		sHand = new SessionHandler();
 		return (Countrie) sHand.get(Countrie.class, id);
 	}
 	
 	public Countrie getCountrie(int id) {
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		return (Countrie)session.get(Countrie.class, id);
 	}
 
 	public Province getProvinceApi(int id) {
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		String hql = "From provinces p where p.idProvinceApi =:id";
 		Query query = (Query) session.createQuery(hql);

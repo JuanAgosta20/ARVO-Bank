@@ -59,7 +59,7 @@
 										<td><b>DNI:</b></td>
 										<td><label style="width: 100px;" id="lblDni">${client.dni}</label>
 											<input value="${client.dni}" id="txtDni" name="txtDni" type="text"
-											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
+											style="display: none; width: 200px;" onchange="ShowConfirm()" readonly></input></td>
 									</tr>
 									<tr>
 										<td><b>Género:</b></td>
@@ -144,7 +144,7 @@
 										<td><b>Nombre usuario:</b></td>
 										<td><label style="width: 100px;" id="lblUser">${client.user.userName}</label>
 											<input value="${client.user.userName}" id="txtUser" name="txtUser" type="text"
-											style="display: none; width: 200px;" disabled></input></td>
+											style="display: none; width: 200px;" readonly></input></td>
 									</tr>
 									<tr>
 										<td><b>Contraseña:</b></td>
@@ -154,7 +154,7 @@
 									</tr>
 									<tr>
 										<td class="text-center"><a
-											href="http://localhost:8081/Application_TP_L5_GRUPO_3/admClientProfile.do?id=${client.idClient }"
+											href="admClientProfile.do?id=${client.idClient }"
 											name="btnCancel" id="btnCancel" type="button"
 											class="btn btn-secondary" style="display: none">Cancelar</a></td>
 										<td class="text-center">
