@@ -35,7 +35,7 @@
 						<div class="row">
 							<div class="col-4">
 								<form action="admUpdateClient.do" method="post">
-								<table id="tbUserProfile" style="width: 100%">
+								<table id="tbUserProfile" style="width: 80%">
 									<tr>
 										<td colspan="2" class="text-center"><img id="userAvatar"
 											alt="userAvatar" src="Resources/images/user.png"></td>
@@ -83,7 +83,9 @@
 										<td><b>Email:</b></td>
 										<td><label style="width: 100px;" id="lblEmail">${client.email}</label>
 											<input value="${client.email}" id="txtEmail" name="txtEmail" type="email"
-											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
+											style="display: none; width: 200px;" onchange="checkEmail()" required></input>
+										</td>
+										<td><div class="alert alert-danger m-0 p-0" style="display: none; margin:0px" id="badmail">&times</div></td>
 									</tr>
 									<tr>
 										<td><b>Fecha Nac:</b></td>
@@ -139,7 +141,7 @@
 										<input type="hidden" name="txtIdCity" id="txtIdCity"></input></td>
 									</tr>
 									<tr>
-										<td><b>ID Usuario:</b></td>
+										<td><b>Nombre usuario:</b></td>
 										<td><label style="width: 100px;" id="lblUser">${client.user.userName}</label>
 											<input value="${client.user.userName}" id="txtUser" name="txtUser" type="text"
 											style="display: none; width: 200px;" disabled></input></td>
@@ -316,6 +318,38 @@ function changeTxt(){
 	const txtName = document.getElementById('txtIdCity');
 	txtName.value = name;
 	console.log(name);
+}
+
+async function checkEmail(){
+	let value = document.getElementById('txtEmail').value;
+	console.log(value);
+	
+	if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))){
+		document.getElementById('badmail').title = 'Ej: xxxx@xxxx.xxx'
+		document.getElementById('badmail').style.display = 'block';
+		return;
+	}
+	
+	await fetch('checkEmail.do?mail=' + value ,
+			{
+				method:'GET'
+			})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data.existe);
+				existMail = data.existe;
+			
+				if(data.existe == true){
+					document.getElementById('badmail').title = 'Ese email ya está registrado'
+					document.getElementById('badmail').style.display = 'block';
+				}else{
+					document.getElementById('badmail').style.display = 'none';
+				}
+		
+		showConfirm();
+	})
+	
+	
 }
 </script>
 </html>

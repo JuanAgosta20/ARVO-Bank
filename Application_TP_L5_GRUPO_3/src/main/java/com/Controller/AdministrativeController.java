@@ -151,7 +151,7 @@ public class AdministrativeController {
 		if(accept != null) {
 			result = accs.acceptAccount(Integer.parseInt(accept), 2);
 		}else if(reject != null) {
-			result = accs.acceptAccount(Integer.parseInt(reject), 0);
+			result = accs.deleteAccount(Integer.parseInt(reject));
 		}
 		mv.addObject("uncheckedAccounts", accs.getAllUnchekedAccounts());
 

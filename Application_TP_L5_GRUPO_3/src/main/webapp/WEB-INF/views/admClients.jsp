@@ -186,7 +186,7 @@
 	</div>
 	<!--  Fin modal nuevo cliente -->
 	<script>
-	var existMail,checkUserName;
+	var existMail =true ,checkUser = true;
 	function setName(){
 		
 		let dropCities = document.getElementById('cities');
@@ -216,12 +216,20 @@
 					selCities.options[i]=(new Option(e.nombre,e.id))
 				})
 			})
-			enableButton();
+			
 	}
 	
 	async function checkEmail(){
 		let value = document.getElementById('mail').value;
 		console.log(value);
+		
+		if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))){
+			document.getElementById('badmail').textContent = 'Ej: xxxx@xxxx.xxx'
+			document.getElementById('badmail').style.display = 'block';
+			document.getElementById('agregar').disabled = true;
+			return;
+		}
+		
 		await fetch('checkEmail.do?mail=' + value ,
 				{
 					method:'GET'
@@ -230,21 +238,19 @@
 		.then(data => {
 			console.log(data.existe);
 			existMail = data.existe;
-			if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))){
-					document.getElementById('badmail').textContent = 'Ej: xxxx@xxxx.xxx'
-					document.getElementById('badmail').style.display = 'block';
-			}
-			
+		
 			if(data.existe == true){
 				document.getElementById('badmail').textContent = 'Ese email ya está registrado'
 				document.getElementById('badmail').style.display = 'block';
-			}
-			if(!data.existe && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
-				document.getElementById('agregar').disabled = false;
+				document.getElementById('agregar').disabled = true;
+			}else{
 				document.getElementById('badmail').style.display = 'none';
 			}
 			
+			if(!existMail && !checkUser) document.getElementById('agregar').disabled = false;
 		})
+		
+		
 	}
 	
 	async function checkUserName(){
@@ -257,15 +263,17 @@
 		.then(response => response.json())
 		.then(data => {
 			console.log(data.existe);
-			checkUserName = data.existe;
+			checkUser = data.existe;
 			if(data.existe){
 				document.getElementById('badusername').style.display = 'block';
-			}else{
+				document.getElementById('agregar').disabled = true;
+			}else {
 				document.getElementById('badusername').style.display = 'none';
 			}
 			
+			if(!existMail && !checkUser) document.getElementById('agregar').disabled = false;
 		})
-		enableButton();
+		
 	}
 	
 	

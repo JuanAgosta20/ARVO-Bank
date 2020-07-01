@@ -48,7 +48,7 @@
 									${account.getClient().getLastName()}</td>
 								<td>${account.getClient().getDni()}</td>
 								<td>${account.getTypeAcc().getDescription()}</td>
-								<td><a class="btn btn-success btn-sm pl-3 pr-3" href="#"
+								<td><a class="btn btn-success btn-sm pl-3 pr-3" href="admClientProfile.do?id=${account.getClient().getIdClient()}"
 									role="button">Ver</a></td>
 								<td class="row"><form method="POST" action="admAccountsState.do">
 										<button name="accept" value="${account.getIdAccount()}"
