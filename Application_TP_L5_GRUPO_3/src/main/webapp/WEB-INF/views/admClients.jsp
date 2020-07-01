@@ -166,6 +166,9 @@
 									<label for="cities">Domicilio</label> 
 									<select class="form-control" id="cities" name="cities" onChange="setName()" onLoad="setName()">
 									</select>
+									<label for="username">Nombre de usuario</label> 
+									<input onblur="checkUserName();" class="form-control" type="text" id="username" name="username" required></input>
+									<div class="alert alert-danger" id="badusername" style=" display:none; "><p>Ese usuario ya está registrado</p></div>
 								</div>
 							</div>
 						</div>
@@ -183,7 +186,7 @@
 	</div>
 	<!--  Fin modal nuevo cliente -->
 	<script>
-	
+	var existMail,checkUserName;
 	function setName(){
 		
 		let dropCities = document.getElementById('cities');
@@ -192,7 +195,12 @@
 		
 	}
 	
-    var existMail;
+	function enableButton(){
+		console.log('enableButton');
+		if(!checkEmail && !checkUserName) document.getElementById('agregar').disabled = false;
+	}
+	
+    
 	getCities();
 	async function getCities() {
 			console.log('Dentro de get cities')
@@ -208,7 +216,7 @@
 					selCities.options[i]=(new Option(e.nombre,e.id))
 				})
 			})
-			
+			enableButton();
 	}
 	
 	async function checkEmail(){
@@ -235,9 +243,31 @@
 				document.getElementById('agregar').disabled = false;
 				document.getElementById('badmail').style.display = 'none';
 			}
-
+			
 		})
 	}
+	
+	async function checkUserName(){
+		let value = document.getElementById('username').value;
+		console.log(value);
+		await fetch('checkUserName.do?username=' + value ,
+				{
+					method:'GET'
+				})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data.existe);
+			checkUserName = data.existe;
+			if(data.existe){
+				document.getElementById('badusername').style.display = 'block';
+			}else{
+				document.getElementById('badusername').style.display = 'none';
+			}
+			
+		})
+		enableButton();
+	}
+	
 	
 </script>
 </body>

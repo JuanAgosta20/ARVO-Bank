@@ -10,5 +10,6 @@ public interface UserService {
 	public User getUser(int id); //Id de cliente o admin, no de usuario
 	public Client getClient(User user);
 	public Administrative getAdmin(User user);
+	public Boolean existUserName(String username);
 	
 }

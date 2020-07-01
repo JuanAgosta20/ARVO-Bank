@@ -97,10 +97,10 @@ public class ClientDaoImpl implements ClientDao {
 		query.setParameter("id", id);
 		try {
 			Boolean bool = query.executeUpdate() == 1 ? true : false;
-			/*if (bool)
+			if (bool)
 				sHand.commit();
 			else
-				sHand.rollback();*/
+				sHand.rollback();
 			return bool;
 		} catch (Exception e) {
 			return false;

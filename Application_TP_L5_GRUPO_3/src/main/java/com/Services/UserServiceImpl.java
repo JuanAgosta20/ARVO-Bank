@@ -5,6 +5,8 @@ import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.LogInDaoImpl;
 import com.Dao.SessionHandler;
+import com.Dao.UserDao;
+import com.Dao.UserDaoImpl;
 import com.Model.Administrative;
 import com.Model.BeanFactory;
 import com.Model.Client;
@@ -35,6 +37,11 @@ public class UserServiceImpl implements UserService {
 
 	public User getUser(int id) {
 		return null;
+	}
+
+	public Boolean existUserName(String username) {
+		UserDao ud = new UserDaoImpl();
+		return ud.existUserName(username);
 	}
 
 }

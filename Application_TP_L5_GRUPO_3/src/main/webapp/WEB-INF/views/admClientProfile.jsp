@@ -142,7 +142,7 @@
 										<td><b>ID Usuario:</b></td>
 										<td><label style="width: 100px;" id="lblUser">${client.user.userName}</label>
 											<input value="${client.user.userName}" id="txtUser" name="txtUser" type="text"
-											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
+											style="display: none; width: 200px;" disabled></input></td>
 									</tr>
 									<tr>
 										<td><b>Contraseña:</b></td>

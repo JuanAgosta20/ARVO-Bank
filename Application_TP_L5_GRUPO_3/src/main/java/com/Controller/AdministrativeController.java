@@ -62,7 +62,7 @@ public class AdministrativeController {
 
 	@RequestMapping(value="admClients", method=RequestMethod.POST)
 	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, 
-			Integer countries, Integer province, String cities, String mail, Integer genre, String nameCity){
+			Integer countries, Integer province, String cities, String mail, Integer genre, String nameCity, String username){
 		ModelAndView MV = new ModelAndView("admClients");
 		Client client = new Client();
 		Province prov = ls.getProvince(province);
@@ -71,8 +71,8 @@ public class AdministrativeController {
 		Genre gen = gs.getGenre(genre);
 		User user = new User();
 		
-		user.setPassword("asd");
-		user.setUserName("Pepe2");
+		user.setPassword(DNI);
+		user.setUserName(username);
 		user.setState((byte)1);
 		user.setUserType("Cliente");
 		
@@ -124,6 +124,19 @@ public class AdministrativeController {
 			return "{\"existe\": false}";
 			
 		}
+	
+	@RequestMapping(value="checkUserName",method=RequestMethod.GET)
+	@ResponseBody
+	public String checkUserName(String username){
+		System.out.println("Entro a check username" + username);
+		if(us.existUserName(username)) {
+			return "{\"existe\": true}";
+		}
+		return "{\"existe\": false}";
+		
+	}
+	
+	
 	@RequestMapping("admAccounts")
 	public ModelAndView Accounts() {
 		ModelAndView mv = new ModelAndView("admAccounts");
@@ -219,7 +232,7 @@ public class AdministrativeController {
 
 	@RequestMapping("admDeleteClient")
 	public ModelAndView DeleteClient(int idClient, int idUser) {
-		ModelAndView MV = new ModelAndView("admClients");
+		ModelAndView MV = new ModelAndView("redirect:admClientsList.do");
 		Boolean result = cs.deleteClient(idClient, idUser);
 		MV.addObject("result", result);
 		MV.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminación fue realizada correctamente" });
