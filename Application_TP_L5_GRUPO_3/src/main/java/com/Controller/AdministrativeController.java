@@ -202,7 +202,7 @@ public class AdministrativeController {
 				date=new SimpleDateFormat("yyyy-MM-dd").parse(txtDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
-		} 
+		}
 	    Genre g = gs.getGenre(drpGenre);
 	    Countrie n = ls.getCountrie(drpCountry);
 	    Province p = ls.getProvinceApi(drpProvince);
