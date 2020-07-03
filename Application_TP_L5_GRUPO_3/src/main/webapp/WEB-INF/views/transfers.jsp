@@ -32,7 +32,7 @@
 
 				<!-- Form nueva transaccion  -->
 
-				<form class="container mt-3" action="" id="formT1">
+				<form class="container mt-3" action="" id="formT2" style="display:none">
 					<div class="row">
 						<div class="col">Cuenta origen:</div>
 						<div class="col">
@@ -73,7 +73,7 @@
 
 				<!-- Form nueva transaccion  -->
 
-				<form class="container mt-3" action="" id="formT2" style="display:none">
+				<form class="container mt-3" action="" id="formT1" >
 					<div class="row">
 						<div class="col">Cuenta origen:</div>
 						<div class="col">
