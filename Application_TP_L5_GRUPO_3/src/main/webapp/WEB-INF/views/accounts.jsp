@@ -5,6 +5,12 @@
 <%@page import="com.Model.Client"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%
+	if (session.getAttribute("user") == null || !(session.getAttribute("user").getClass().equals(Client.class)))
+		response.sendRedirect("redirectIndex.do");
+%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -34,34 +40,34 @@
 
 			<!-- Lista cuentas -->
 			<div class="col-6">
-				
+
 				<c:forEach var="acc" items="${accounts}">
-				
-				<div class="row card mt-2">
-					<h6 class="card-header">${acc.getTypeAcc().getDescription()}</h6>
-					<div class="card-body">
-						<div class="container">
-							<div class="row">
-								<h6 class="card-title">${acc.getNameAccount()}</h6>
-							</div>
-							<div class="row align-items-center">
-								<div class="col">
-									<b>CBU: </b> ${acc.getCBU()}
+
+					<div class="row card mt-2">
+						<h6 class="card-header">${acc.getTypeAcc().getDescription()}</h6>
+						<div class="card-body">
+							<div class="container">
+								<div class="row">
+									<h6 class="card-title">${acc.getNameAccount()}</h6>
 								</div>
-								<div class="col">
-									<b>Monto: </b> ${acc.getFunds()}
-								</div>
-								<div class="col">
-									<button type="button" class="btn btn-success mb-3">Ver
-										Movimientos</button>
+								<div class="row align-items-center">
+									<div class="col">
+										<b>CBU: </b> ${acc.getCBU()}
+									</div>
+									<div class="col">
+										<b>Monto: </b> ${acc.getFunds()}
+									</div>
+									<div class="col">
+										<button type="button" class="btn btn-success mb-3">Ver
+											Movimientos</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				
+
 				</c:forEach>
-				
+
 			</div>
 			<!-- Fin lista cuentas -->
 
@@ -82,9 +88,9 @@
 							<div class="modal-body">
 								<div class="row my-2">
 									<div class="form-group text-center">
-										<label for="cmbAccounts" class="m-1 ">Seleccione el tipo de cuenta:
-										</label> 
-										<select name="cmbAccounts" id="cmbAccounts" class="m-1 p-1">
+										<label for="cmbAccounts" class="m-1 ">Seleccione el
+											tipo de cuenta: </label> <select name="cmbAccounts" id="cmbAccounts"
+											class="m-1 p-1">
 											<c:forEach var="atype" items="${ acccountTypes }">
 												<option value="${atype.getIdTypeAccount()}">${atype.getDescription()}</option>
 											</c:forEach>

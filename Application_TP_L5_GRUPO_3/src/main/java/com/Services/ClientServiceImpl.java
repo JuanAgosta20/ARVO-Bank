@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.Dao.ClientDao;
 
 import com.Model.Client;
+import com.Model.User;
 
 public class ClientServiceImpl implements ClientService{
 	ClientDao cd;
@@ -42,6 +43,10 @@ public class ClientServiceImpl implements ClientService{
 
 	public Boolean emailExist(String email) {
 		return cd.emailExist(email);
+	}
+
+	public Client readClientByUserId(User user) {
+		return cd.getClientByUserId(user);
 	}
 
 }

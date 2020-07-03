@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import com.Model.Administrative;
 import com.Model.Client;
 import com.Model.User;
 
@@ -122,6 +124,23 @@ public class ClientDaoImpl implements ClientDao {
 			return bool;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	public Client getClientByUserId(User user) {
+		Client cli;
+		sHand = new SessionHandler();
+		session = sHand.getSession();
+		int id = user.getIdUser();
+		String hql = "From Client c WHERE c.user.idUser = :id";
+		Query query = (Query) session.createQuery(hql);
+		query.setParameter("id", id);
+		try {
+			cli = (Client) query.uniqueResult();
+			return cli;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 
