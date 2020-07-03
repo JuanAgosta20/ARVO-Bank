@@ -21,7 +21,7 @@ public class DirectionController {
 		return MV;
 	}
 	
-	@RequestMapping("redirectTransfers.html")
+	@RequestMapping("redirectTransfers")
 	public ModelAndView redirectTransfers() {
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("transfers");

@@ -13,6 +13,7 @@ public interface ClientDao{
 	public Client getClient(Integer id);
 	public Client getClient(User user);
 	public Client getClient(String dni);
+	public Client getClientByUserId(User user);
 	public ArrayList<Client> getClients();
 	public Boolean emailExist(String email);
 }
