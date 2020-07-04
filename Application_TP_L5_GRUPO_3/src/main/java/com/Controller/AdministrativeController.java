@@ -1,10 +1,14 @@
 package com.Controller;
 
+import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.mapping.Map;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBod
 
 import com.Dao.ClientDao;
 import com.Dao.ClientDaoImpl;
+import com.Dao.SessionHandler;
 import com.Model.Account;
 import com.Model.BeanFactory;
 import com.Model.City;
@@ -25,6 +30,7 @@ import com.Model.Cmd;
 import com.Model.Countrie;
 import com.Model.Genre;
 import com.Model.Province;
+import com.Model.TransactionsPerMonth;
 import com.Model.User;
 import com.Services.AccountService;
 import com.Services.AccountServiceImpl;
@@ -36,6 +42,9 @@ import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
 import com.Services.UserService;
 import com.Services.UserServiceImpl;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 import com.main.Utilities;
 
 @Controller
@@ -44,25 +53,25 @@ public class AdministrativeController {
 	BeanFactory bf = new BeanFactory();
 
 	ClientService cs = bf.createClientServiceImpl();
-	LocationService ls =  bf.createLocationServiceImpl();
+	LocationService ls = bf.createLocationServiceImpl();
 	GenreService gs = bf.createGenreServiceImpl();
 	AccountService accs = new AccountServiceImpl();
 	UserService us = new UserServiceImpl();
-	
-	@RequestMapping(value="admClientsList")
-	public ModelAndView ClientsList(ModelAndView mv){
-		if(mv.isEmpty())
+
+	@RequestMapping(value = "admClientsList")
+	public ModelAndView ClientsList(ModelAndView mv) {
+		if (mv.isEmpty())
 			mv = new ModelAndView("admClients");
-		mv.addObject("clients",cs.readClients());
+		mv.addObject("clients", cs.readClients());
 		mv.addObject("countries", ls.getAllCountries());
 		mv.addObject("province", ls.getAllProvince());
-		
+
 		return mv;
 	}
 
-	@RequestMapping(value="admClients", method=RequestMethod.POST)
-	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, 
-			Integer countries, Integer province, String cities, String mail, Integer genre, String nameCity, String username){
+	@RequestMapping(value = "admClients", method = RequestMethod.POST)
+	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, Integer countries,
+			Integer province, String cities, String mail, Integer genre, String nameCity, String username) {
 		ModelAndView MV = new ModelAndView("admClients");
 		Client client = new Client();
 		Province prov = ls.getProvince(province);
@@ -70,23 +79,24 @@ public class AdministrativeController {
 		City city = ls.getCity(cities);
 		Genre gen = gs.getGenre(genre);
 		User user = new User();
-		
+
 		user.setPassword(DNI);
 		user.setUserName(username);
-		user.setState((byte)1);
+		user.setState((byte) 1);
 		user.setUserType("Cliente");
-		
-		if(city == null) {
+
+		if (city == null) {
 			city = new City();
 			city.setIdCity(cities);
 			city.setName(nameCity);
 			city.setProv(prov);
 			ls.saveCity(city);
 		}
-		
+
 		try {
-			if(birthdate != null) client.setBirthdate(Cmd.crearFecha(birthdate));
-		}catch(java.text.ParseException ex) {
+			if (birthdate != null)
+				client.setBirthdate(Cmd.crearFecha(birthdate));
+		} catch (java.text.ParseException ex) {
 			ex.printStackTrace();
 		}
 		client.setFirstName(name);
@@ -97,46 +107,44 @@ public class AdministrativeController {
 		client.setNationality(country);
 		client.setCity(city);
 		client.setProvince(prov);
-		client.setState((byte)1);
+		client.setState((byte) 1);
 		client.setUser(user);
 		Boolean result;
-		
-		if(cs.saveClient(client)) {
+
+		if (cs.saveClient(client)) {
 			result = true;
-		}
-		else {
+		} else {
 			result = false;
 		}
-			
-		MV.addObject("result",result);
+
+		MV.addObject("result", result);
 		MV.addObject("msg", new String[] { "Ha ocurrido un error", "Operación realizada correctamente" });
-		
+
 		return ClientsList(MV);
 	}
-	
-	@RequestMapping(value="checkEmail",method=RequestMethod.GET)
-		@ResponseBody
-		public String checkEmail(String mail){
-			System.out.println("Entro a check email" + mail);
-			if(cs.emailExist(mail)) {
-				return "{\"existe\": true}";
-			}
-			return "{\"existe\": false}";
-			
-		}
-	
-	@RequestMapping(value="checkUserName",method=RequestMethod.GET)
+
+	@RequestMapping(value = "checkEmail", method = RequestMethod.GET)
 	@ResponseBody
-	public String checkUserName(String username){
-		System.out.println("Entro a check username" + username);
-		if(us.existUserName(username)) {
+	public String checkEmail(String mail) {
+		System.out.println("Entro a check email" + mail);
+		if (cs.emailExist(mail)) {
 			return "{\"existe\": true}";
 		}
 		return "{\"existe\": false}";
-		
+
 	}
-	
-	
+
+	@RequestMapping(value = "checkUserName", method = RequestMethod.GET)
+	@ResponseBody
+	public String checkUserName(String username) {
+		System.out.println("Entro a check username" + username);
+		if (us.existUserName(username)) {
+			return "{\"existe\": true}";
+		}
+		return "{\"existe\": false}";
+
+	}
+
 	@RequestMapping("admAccounts")
 	public ModelAndView Accounts() {
 		ModelAndView mv = new ModelAndView("admAccounts");
@@ -144,13 +152,13 @@ public class AdministrativeController {
 		return mv;
 	}
 
-	@RequestMapping(value="admAccountsState", method = RequestMethod.POST)
-	public ModelAndView AccountState(String accept, String reject){
+	@RequestMapping(value = "admAccountsState", method = RequestMethod.POST)
+	public ModelAndView AccountState(String accept, String reject) {
 		ModelAndView mv = new ModelAndView("admAccounts");
 		Boolean result = false;
-		if(accept != null) {
+		if (accept != null) {
 			result = accs.acceptAccount(Integer.parseInt(accept), 2);
-		}else if(reject != null) {
+		} else if (reject != null) {
 			result = accs.deleteAccount(Integer.parseInt(reject));
 		}
 		mv.addObject("uncheckedAccounts", accs.getAllUnchekedAccounts());
@@ -160,8 +168,8 @@ public class AdministrativeController {
 
 		return mv;
 	}
-	
-	@RequestMapping(value="admDeleteAccount", method=RequestMethod.POST)
+
+	@RequestMapping(value = "admDeleteAccount", method = RequestMethod.POST)
 	public ModelAndView DeleteAccount(int idAccount, int idClient) {
 		ModelAndView mv = new ModelAndView("admClientProfile");
 		Boolean result = accs.deleteAccount(idAccount);
@@ -173,7 +181,7 @@ public class AdministrativeController {
 	@RequestMapping("admClientProfile")
 
 	public ModelAndView ClientProfile(int id, ModelAndView MV) {
-		if(MV.isEmpty())
+		if (MV.isEmpty())
 			MV = new ModelAndView("admClientProfile");
 
 		try {
@@ -198,35 +206,35 @@ public class AdministrativeController {
 			int drpProvince, String drpCity, String txtIdCity, String txtUser, String txtPass, int txtIdClient) {
 		ModelAndView MV = new ModelAndView();
 		Date date = null;
-	    try {
-				date=new SimpleDateFormat("yyyy-MM-dd").parse(txtDate);
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse(txtDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-	    Genre g = gs.getGenre(drpGenre);
-	    Countrie n = ls.getCountrie(drpCountry);
-	    Province p = ls.getProvinceApi(drpProvince);
-	    City city = ls.getCity(drpCity);
-	    if(city == null) {
-	    	city = new City();
-	    	city.setIdCity(drpCity);
-	    	city.setName(txtIdCity);
-	    	city.setProv(p);
-	    	ls.saveCity(city);
-	    }
-	    Client c = cs.readClient(txtIdClient);
-	    c.getUser().setPassword(txtPass);
-	    c.getUser().setUserName(txtUser);
-	    c.setBirthdate(date);
-	    c.setDni(txtDni);
-	    c.setEmail(txtEmail);
-	    c.setGenre(g);
-	    c.setNationality(n);
-	    c.setProvince(p);
-	    c.setCity(city);
-	    
-	    cs.updateClient(c);
-	    MV.setViewName("redirect:admClientProfile.do?id="+txtIdClient);
+		Genre g = gs.getGenre(drpGenre);
+		Countrie n = ls.getCountrie(drpCountry);
+		Province p = ls.getProvinceApi(drpProvince);
+		City city = ls.getCity(drpCity);
+		if (city == null) {
+			city = new City();
+			city.setIdCity(drpCity);
+			city.setName(txtIdCity);
+			city.setProv(p);
+			ls.saveCity(city);
+		}
+		Client c = cs.readClient(txtIdClient);
+		c.getUser().setPassword(txtPass);
+		c.getUser().setUserName(txtUser);
+		c.setBirthdate(date);
+		c.setDni(txtDni);
+		c.setEmail(txtEmail);
+		c.setGenre(g);
+		c.setNationality(n);
+		c.setProvince(p);
+		c.setCity(city);
+
+		cs.updateClient(c);
+		MV.setViewName("redirect:admClientProfile.do?id=" + txtIdClient);
 		return MV;
 	}
 
@@ -247,5 +255,41 @@ public class AdministrativeController {
 	@RequestMapping("admReports")
 	public ModelAndView Reports() {
 		return new ModelAndView("admReports");
+	}
+
+	@RequestMapping(value = "getTransfers", method = RequestMethod.GET)
+	@ResponseBody
+	public String getTransfers(String init, String end) {
+		System.out.println("Entro a check username" + init + end);
+		// Esto se reemplaza y va en dao
+		SessionHandler sHand = new SessionHandler();
+		Session session = sHand.getSession();
+		String hql = "SELECT COUNT(idTrans) as 'quantity' FROM transactions where (date BETWEEN '" + init + "' AND '"
+				+ end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
+		String hql2 = "SELECT DATE_FORMAT(date, '%M') as 'monthName' FROM transactions where (date BETWEEN '" + init
+				+ "' AND '" + end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
+		try {
+			ArrayList<BigInteger> arr = (ArrayList<BigInteger>) session.createSQLQuery(hql).list();
+			ArrayList<String> arr2 = (ArrayList<String>) session.createSQLQuery(hql2).list();
+			ArrayList<TransactionsPerMonth> arrTrans = new ArrayList<TransactionsPerMonth>();
+			for (int i = 0; i < arr.size(); i++) {
+				TransactionsPerMonth tp = new TransactionsPerMonth();
+				tp.setMonthName(arr2.get(i).toString());
+				tp.setQuantity(arr.get(i));
+				arrTrans.add(tp);
+			}
+			String json = new Gson().toJson(arrTrans);
+			System.out.println(json);
+			return json;
+		} catch (Exception e) {
+			return null;
+		}
+
+		/*
+		 * query SELECT DATE_FORMAT(date, '%m') as 'month', COUNT(idTrans) as 'total'
+		 * FROM transactions where (date BETWEEN '2020-01-01' AND '2020-12-31') GROUP BY
+		 * DATE_FORMAT(date, '%m')
+		 */
+
 	}
 }
