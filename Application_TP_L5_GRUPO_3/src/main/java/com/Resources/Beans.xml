@@ -27,6 +27,8 @@
 	<bean id="AdministrativeDaoImpl"
 		class="com.Dao.AdministrativeDaoImpl">
 	</bean>
+	<bean id="Paginator" class="com.Dao.Paginator">
+	</bean>
 
 
 	<!--SERVICES -->

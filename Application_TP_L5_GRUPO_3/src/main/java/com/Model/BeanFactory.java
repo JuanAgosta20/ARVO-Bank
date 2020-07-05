@@ -10,6 +10,7 @@ import com.Dao.ClientDaoImpl;
 import com.Dao.GenreDaoImpl;
 import com.Dao.LocationDaoImpl;
 import com.Dao.LogInDaoImpl;
+import com.Dao.Paginator;
 import com.Services.ClientServiceImpl;
 import com.Services.AccountServiceImpl;
 import com.Services.GenreServiceImpl;
@@ -61,6 +62,10 @@ public class BeanFactory{
 	
 	public GenreDaoImpl createGenreDaoImpl() {
 		return (GenreDaoImpl) appContext.getBean("GenreDaoImpl");
+	}
+	
+	public Paginator createPaginator() {
+		return (Paginator) appContext.getBean("Paginator");
 	}
 	
 	

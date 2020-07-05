@@ -61,7 +61,7 @@ public class AdministrativeController {
 
 	@RequestMapping(value = "admClientsList")
 	public ModelAndView ClientsList(ModelAndView mv,Integer skip, Integer take, Integer page) {
-		Paginator paginator = new Paginator();
+		Paginator paginator = bf.createPaginator();
 		if (mv.isEmpty())
 			mv = new ModelAndView("admClients");
 		
