@@ -18,6 +18,7 @@ public class AccountDaoImpl implements AccountDao{
 	}
 
 	public void Destroy() {
+		if(sHand.session.isOpen())
 		sHand.close();
 	}
 	

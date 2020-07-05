@@ -9,8 +9,11 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		
-		AccountDao ld = new AccountDaoImpl();
-		System.out.println(ld.getCountAccounts(5));
+		LoanDao ld = new LoanDaoImpl();
+		ld.getLoansFrom(1).forEach(x -> {
+			System.out.println(x.getLoanId());
+		});
+		
 		
 	}
 

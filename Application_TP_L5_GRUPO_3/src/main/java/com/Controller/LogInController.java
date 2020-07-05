@@ -52,9 +52,7 @@ public class LogInController {
 		} else if (user.getUserType().equals("Cliente")) {
 			Client client = sClient.readClientByUserId(user);
 			 session.setAttribute("user", client);
-			// MV.addObject("accounts", client.getBankAccounts());
-			MV.setViewName("accounts");
-			 
+			MV.setViewName("redirect:clAccounts.do");
 		}
 
 		return MV;

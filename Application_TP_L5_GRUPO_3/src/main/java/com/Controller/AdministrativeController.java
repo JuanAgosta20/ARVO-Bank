@@ -174,7 +174,7 @@ public class AdministrativeController {
 		ModelAndView mv = new ModelAndView("admClientProfile");
 		Boolean result = accs.deleteAccount(idAccount);
 		mv.addObject("result", result);
-		mv.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminación fue realizada correctamente" });
+		mv.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminacion fue realizada correctamente" });
 		return ClientProfile(idClient, mv);
 	}
 

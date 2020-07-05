@@ -34,7 +34,7 @@ public class Loan implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "loanId")
 	List<FeePayment> payments = new ArrayList<FeePayment>();
-	private Byte state;
+	private int state;
 		
 	public Loan() {
 		super();
@@ -48,11 +48,11 @@ public class Loan implements Serializable{
 		this.client = client;
 	}
 
-	public Byte getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Byte state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 

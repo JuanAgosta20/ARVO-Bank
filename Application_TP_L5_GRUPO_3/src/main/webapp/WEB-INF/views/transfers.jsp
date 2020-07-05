@@ -13,7 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!--<jsp:include page="Include.html"></jsp:include>-->
 <%@ include file="Include.html"%>
-<script src="Resources/js/transferencias.js"></script>
+<script src="Resources/js/multiViewHandler.js"></script>
 </head>
 <body>
 	<jsp:include page="masterMenuClient.jsp"></jsp:include>

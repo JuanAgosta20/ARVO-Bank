@@ -13,7 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="Include.html"></jsp:include>
 <title>ARVO Bank - Préstamos</title>
-<script src="Resources/js/custom.js"></script>
+<script src="Resources/js/multiViewHandler.js"></script>
 <script src="Resources/js/loansHandler.js"></script>
 </head>
 <body>
@@ -23,19 +23,19 @@
 		<div class="row">
 			<div class="col">
 				<div class="list-group">
-					<a href="" class="list-group-item list-group-item-action"
-						data-launch-view="pageNewLoan"><i class="material-icons">local_atm</i>
-						Solicitar Préstamo</a> <a href=""
-						class="list-group-item list-group-item-action"
-						data-launch-view="pageMyLoans"><i class="material-icons">payments</i>
-						Ver Préstamos</a>
+						<button class="list-group-item list-group-item-action" name="btnPanel" onClick="enableForm(this, 'T2')">
+						<i class="material-icons">local_atm</i> Solicitar Préstamo
+					</button>
+					<button class="list-group-item list-group-item-action" name="btnPanel" onClick="enableForm(this, 'T1')" style="color:white; background-color:#1761a0">
+						<i class="material-icons">payments</i> Ver Préstamos
+					</button>
 				</div>
 			</div>
 
 			<div class="col-7">
 				<div id="Views">
 					<!-- Tabla Prï¿½stamos -->
-					<div class="view hide" id="pageMyLoans">
+					<div class="view" id="formT1">
 						<h4 class="text-blue mb-3">Mis préstamos</h4>
 						<table class="table table-hover">
 							<thead>
@@ -120,7 +120,7 @@
 
 					<!-- Solicitar Prï¿½stamo -->
 
-					<div class="view hide" id="pageNewLoan">
+					<div class="view hide" id="formT2">
 						<h4 class="text-blue">Solicitar Préstamo</h4>
 						<form action="" name="frmNewLoan" class="container mt-3">
 							<div class="row mt-3">
