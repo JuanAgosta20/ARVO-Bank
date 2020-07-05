@@ -16,9 +16,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="Include.html"></jsp:include>
 <title>ARVO Bank - Clientes</title>
-
 </head>
+
 <body>
+	<input type="hidden" id="skip" name="skip" value=${skip }></input>
+	<input type="hidden" id="take" name="take" value=${take }></input>
+	<input type="hidden" id="page" name="page" value=${page }></input>
 	<jsp:include page="masterMenuAdmin.jsp"></jsp:include>
 
 	<div class="container-fluid mt-3">
@@ -49,66 +52,78 @@
 			</div>
 		</div>
 
-
-		<div class="row">
-
-
-			<div class="col m-auto">
-
-				<!--Table-->
-
-				<table id="tbClients" class="table table-hover table-striped ">
-
-					<thead>
-						<tr>
-							<th>Apellido/s</th>
-							<th>Nombre/s</th>
-							<th>DNI</th>
-							<th>F.Nac</th>
-							<th>Género</th>
-							<th>Email</th>
-							<th>Nacionalidad</th>
-							<th>Provincia</th>
-							<th>Ciudad</th>
-							<th>Estado</th>
-							<th>Perfil</th>
-
-						</tr>
-					</thead>
-
-					<tbody>
-						<c:forEach var="client" items="${clients}">
+	<div class="container">
+			<div class="row">
+	
+	
+				<div class="col m-auto">
+	
+					<!--Table-->
+					<div class="row">
+						<div class="mx-auto">
+							<a class="btn btn-primary" id="prevtop" href="#" onclick="prevPage();">&laquo;</a>
+							<div class="btn btn-primary">${page }/${totalpages }</div>
+							<a class="btn btn-primary" id="nexttop" href="#" onclick="nextPage();">&raquo;</a>
+						</div>
+					</div>
+					<table id="tbClients" class="table table-hover table-striped ">
+	
+						<thead>
 							<tr>
-								<td>${client.lastName}</td>
-								<td>${client.firstName}</td>
-								<td>${client.dni}</td>
-								<td>${client.birthdate}</td>
-								<td>${client.genre.description}</td>
-								<td>${client.email}</td>
-								<td>${client.nationality.name}</td>
-								<td>${client.province.name}</td>
-								<td>${client.city.name}</td>
-								<td><c:choose>
-										<c:when test="${client.state == 1}">
-	  										Activo
-										</c:when>
-										<c:otherwise>
-	  										Inactivo
-										</c:otherwise>
-									</c:choose></td>
-								<td><a class="btn btn-success" href="admClientProfile.do?id=${client.idClient}"
-									role="button">Ver</a></td>
+								<th>Apellido/s</th>
+								<th>Nombre/s</th>
+								<th>DNI</th>
+								<th>F.Nac</th>
+								<th>Género</th>
+								<th>Email</th>
+								<th>Nacionalidad</th>
+								<th>Provincia</th>
+								<th>Ciudad</th>
+								<th>Estado</th>
+								<th>Perfil</th>
+	
 							</tr>
-						</c:forEach>
-					</tbody>
-					<!--Table body-->
-				</table>
-				<!--Table-->
-
+						</thead>
+	
+						<tbody class="paginate">
+							<c:forEach var="client" items="${clients}">
+								<tr class="pagination-item">
+									<td>${client.lastName}</td>
+									<td>${client.firstName}</td>
+									<td>${client.dni}</td>
+									<td>${client.birthdate}</td>
+									<td>${client.genre.description}</td>
+									<td>${client.email}</td>
+									<td>${client.nationality.name}</td>
+									<td>${client.province.name}</td>
+									<td>${client.city.name}</td>
+									<td><c:choose>
+											<c:when test="${client.state == 1}">
+		  										Activo
+											</c:when>
+											<c:otherwise>
+		  										Inactivo
+											</c:otherwise>
+										</c:choose></td>
+									<td><a class="btn btn-success" href="admClientProfile.do?id=${client.idClient}"
+										role="button">Ver</a></td>
+								</tr>
+							</c:forEach>
+							
+							
+						</tbody>
+						<!--Table body-->
+					</table>
+					<!--Table-->
+					<div class="row">
+						<div class="mx-auto">
+							<a class="btn btn-primary" href="#" onclick="prevPage();" id="prevbot">&laquo;</a>
+							<div class="btn btn-primary">${page}/${totalpages}</div>
+							<a class="btn btn-primary" href="#" onclick="nextPage();" id="nextbot">&raquo;</a>
+						</div>
+					</div>
+				</div>
 			</div>
-
-
-
 		</div>
 	</div>
 
@@ -186,6 +201,44 @@
 	</div>
 	<!--  Fin modal nuevo cliente -->
 	<script>
+	function prevPage(){
+		var eltake = document.getElementById('take');
+		var elskip = document.getElementById('skip');
+		var elpage = document.getElementById('page');
+		var elprevbot = document.getElementById('prevbot');
+		var elprevtop = document.getElementById('prevtop');
+		console.log(elpage.value)
+		if(elpage.value > 1 ){
+			elpage.value = Number(elpage.value) - 1;
+			elskip.value = Number(eltake.value) * (Number(elpage.value)-1);
+		}
+			
+		console.log(elskip.value)
+		elprevbot.href="admClientsList.do?page="+elpage.value+"&skip="+elskip.value+"&take=10";
+		elprevtop.href="admClientsList.do?page="+elpage.value+"&skip="+elskip.value+"&take=10";
+		console.log('asd')
+	}
+	
+	function nextPage(){
+		var eltake = document.getElementById('take');
+		var elskip = document.getElementById('skip');
+		var elpage = document.getElementById('page');
+		var elnextbot = document.getElementById('nextbot');
+		var elnexttop = document.getElementById('nexttop');
+		console.log(elpage.value)
+		console.log(elpage.value < ${totalpages})
+		console.log(${totalpages} )
+		if(elpage.value < ${totalpages} ){
+			elpage.value = Number(elpage.value) + 1;
+			elskip.value = Number(eltake.value) * (Number(elpage.value)-1);
+			
+		}
+		console.log(elskip.value)
+		elnextbot.href="admClientsList.do?page=" + elpage.value + "&skip=" + elskip.value + "&take=10";
+		elnexttop.href="admClientsList.do?page=" + elpage.value + "&skip=" + elskip.value + "&take=10";
+		console.log('asd')
+	}
+	
 	var existMail =true ,checkUser = true;
 	function setName(){
 		
@@ -275,6 +328,9 @@
 		})
 		
 	}
+	
+	
+
 	
 	
 </script>

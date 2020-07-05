@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Dao.Paginator;
 import com.Model.Administrative;
 import com.Model.BeanFactory;
 import com.Model.Client;
@@ -30,7 +31,7 @@ public class LogInController {
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public ModelAndView redirectLogIn(String txtUsername, String txtPass, HttpServletRequest req) {
 		ModelAndView MV = new ModelAndView();
-
+		Paginator paginator = new Paginator();
 		User user = us.getUser(txtUsername, txtPass);
 
 		HttpSession session = req.getSession();
@@ -43,9 +44,13 @@ public class LogInController {
 			Administrative adm = us.getAdmin(user);
 			
 			
-			MV.addObject("clients",sClient.readClients());
+			MV.addObject("clients", paginator.Paginate(Client.class, 10, 0));
 			MV.addObject("countries", sLocation.getAllCountries());
 			MV.addObject("province", sLocation.getAllProvince());
+			MV.addObject("skip",0);
+			MV.addObject("take", 10 );
+			MV.addObject("page",1);
+			MV.addObject("totalpages",paginator.getTotalPages(Client.class, 10));
 			
 			session.setAttribute("user", adm);
 			MV.setViewName("admClients");
