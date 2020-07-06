@@ -15,116 +15,90 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="Include.html"></jsp:include>
+<script src="Resources/js/admClientsLib.js"></script>
 <title>ARVO Bank - Clientes</title>
 </head>
 
 <body>
-	<input type="hidden" id="skip" name="skip" value=${skip }></input>
-	<input type="hidden" id="take" name="take" value=${take }></input>
-	<input type="hidden" id="page" name="page" value=${page }></input>
 	<jsp:include page="masterMenuAdmin.jsp"></jsp:include>
 
+
+
 	<div class="container-fluid mt-3">
-		<h4 class="text-blue">Clientes</h4>
-		<div class="row my-3 justify-content-between">
-			<div class="col">
-				<form class="form-inline">
-					<label class="my-1 mr-2" for="inlineFormInputName2">Buscar:
-					</label> <input type="text" class="form-control my-1 mr-sm-2"
-						id="inlineFormInputName2" placeholder="DNI/Apellido"> <label
-						class="my-1 mr-2" for="inlineFormCustomSelectPref">Filtrar:
-					</label> <select class="custom-select my-1 mr-sm-2"
-						id="inlineFormCustomSelectPref">
-						<option selected>Apellido</option>
-						<option value="1">Estado</option>
-						<option value="2">Otra</option>
-					</select>
-					<button type="submit" class="btn btn-info my-1">
-						<i class="material-icons">search</i>
-					</button>
-				</form>
+		<form action="admClientsList.do?" method="POST">
+			<input type="hidden" id="skip" name="skip" value=${skip }></input> <input
+				type="hidden" id="take" name="take" value=${take }></input> <input
+				type="hidden" id="page" name="page" value=${page }></input>
+			<h4 class="text-blue">Clientes</h4>
+			<div class="row my-3 justify-content-between">
+				<div class="col">
+				</div>
+
+				<div class="col-auto">
+					<a class="btn btn-info" data-toggle="modal" href="#modalNewClient">
+						<i class="material-icons">account_circle</i> Nuevo Cliente
+					</a>
+				</div>
 			</div>
 
-			<div class="col-auto">
-				<a class="btn btn-info" data-toggle="modal" href="#modalNewClient">
-					<i class="material-icons">account_circle</i> Nuevo Cliente
-				</a>
-			</div>
-		</div>
+			<div class="container">
+				<div class="row">
 
-	<div class="container">
-			<div class="row">
-	
-	
-				<div class="col m-auto">
-	
-					<!--Table-->
-					<div class="row">
-						<div class="mx-auto">
-							<a class="btn btn-primary" id="prevtop" href="#" onclick="prevPage();">&laquo;</a>
-							<div class="btn btn-primary">${page }/${totalpages }</div>
-							<a class="btn btn-primary" id="nexttop" href="#" onclick="nextPage();">&raquo;</a>
-						</div>
-					</div>
-					<table id="tbClients" class="table table-hover table-striped ">
-	
-						<thead>
-							<tr>
-								<th>Apellido/s</th>
-								<th>Nombre/s</th>
-								<th>DNI</th>
-								<th>F.Nac</th>
-								<th>Género</th>
-								<th>Email</th>
-								<th>Nacionalidad</th>
-								<th>Provincia</th>
-								<th>Ciudad</th>
-								<th>Estado</th>
-								<th>Perfil</th>
-	
-							</tr>
-						</thead>
-	
-						<tbody class="paginate">
-							<c:forEach var="client" items="${clients}">
-								<tr class="pagination-item">
-									<td>${client.lastName}</td>
-									<td>${client.firstName}</td>
-									<td>${client.dni}</td>
-									<td>${client.birthdate}</td>
-									<td>${client.genre.description}</td>
-									<td>${client.email}</td>
-									<td>${client.nationality.name}</td>
-									<td>${client.province.name}</td>
-									<td>${client.city.name}</td>
-									<td><c:choose>
-											<c:when test="${client.state == 1}">
+
+					<div class="col m-auto">
+
+						<!--Table-->
+						<table id="tbClients" class="table table-hover table-striped table-sm">
+
+							<thead>
+								<tr>
+									<th>Apellido/s</th>
+									<th>Nombre/s</th>
+									<th>DNI</th>
+									<th>F.Nac</th>
+									<th>Género</th>
+									<th>Email</th>
+									<th>Nacionalidad</th>
+									<th>Provincia</th>
+									<th>Ciudad</th>
+									<th>Estado</th>
+									<th>Perfil</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<c:forEach var="client" items="${clients}">
+									<tr class="pagination-item">
+										<td>${client.lastName}</td>
+										<td>${client.firstName}</td>
+										<td>${client.dni}</td>
+										<td>${client.birthdate}</td>
+										<td>${client.genre.description}</td>
+										<td>${client.email}</td>
+										<td>${client.nationality.name}</td>
+										<td>${client.province.name}</td>
+										<td>${client.city.name}</td>
+										<td><c:choose>
+												<c:when test="${client.state == 1}">
 		  										Activo
 											</c:when>
-											<c:otherwise>
+												<c:otherwise>
 		  										Inactivo
 											</c:otherwise>
-										</c:choose></td>
-									<td><a class="btn btn-success" href="admClientProfile.do?id=${client.idClient}"
-										role="button">Ver</a></td>
-								</tr>
-							</c:forEach>
-							
-							
-						</tbody>
-						<!--Table body-->
-					</table>
-					<!--Table-->
-					<div class="row">
-						<div class="mx-auto">
-							<a class="btn btn-primary" href="#" onclick="prevPage();" id="prevbot">&laquo;</a>
-							<div class="btn btn-primary">${page}/${totalpages}</div>
-							<a class="btn btn-primary" href="#" onclick="nextPage();" id="nextbot">&raquo;</a>
-						</div>
+											</c:choose></td>
+										<td><a class="btn btn-success"
+											href="admClientProfile.do?id=${client.idClient}"
+											role="button">Ver</a></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							<!--Table body-->
+						</table>
+						<!--Table-->
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 
 	<!-- Modal Nuevo Cliente -->
@@ -145,50 +119,57 @@
 						<div class="row my-3">
 							<div class="col">
 								<div class="form-group">
-									<label for="name">Nombre/s</label> 
-									<input class="form-control" type="text" id="name" name="name" required></input>
-									<label for="lastname">Apellido/s</label>
-									<input class="form-control" type="text" id="lastname" name="lastname" required></input>
-									<label for="DNI">D.N.I</label> 
-									<input class="form-control" type="number" id="DNI" name="DNI" placeholder="ej: 40300423" required></input>
-									<label for="birthdate">Fecha de nacimiento</label>
-									<input class="form-control" type="date" id="birthdate" name="birthdate" required></input> 
-									<label for="mail">Email</label> 
-									<input onblur="checkEmail();" class="form-control" type="email" id="mail" name="mail" required></input>
-									<div class="alert alert-danger" id="badmail" style=" display:none; "><p>Ese email ya está registrado</p></div>
+									<label for="name">Nombre/s</label> <input class="form-control"
+										type="text" id="name" name="name" required></input> <label
+										for="lastname">Apellido/s</label> <input class="form-control"
+										type="text" id="lastname" name="lastname" required></input> <label
+										for="DNI">D.N.I</label> <input class="form-control"
+										type="number" id="DNI" name="DNI" placeholder="ej: 40300423"
+										required></input> <label for="birthdate">Fecha de
+										nacimiento</label> <input class="form-control" type="date"
+										id="birthdate" name="birthdate" required></input> <label
+										for="mail">Email</label> <input onblur="checkEmail();"
+										class="form-control" type="email" id="mail" name="mail"
+										required></input>
+									<div class="alert alert-danger" id="badmail"
+										style="display: none;">
+										<p>Ese email ya está registrado</p>
+									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="form-group">
-									<label for="genre">Género</label>
-									<select class="form-control" id="genre" name="genre">
+									<label for="genre">Género</label> <select class="form-control"
+										id="genre" name="genre">
 										<option value="1">Hombre</option>
 										<option value="2">Mujer</option>
 										<option value="3">Indefinido</option>
-									</select>
-									<label for="countries">Nacionalidad</label> 
-									<select class="form-control" id="countries" name="countries">
+									</select> <label for="countries">Nacionalidad</label> <select
+										class="form-control" id="countries" name="countries">
 										<c:forEach var="country" items="${countries }">
 											<option value="${country.idCountrie}">${country.name}</option>
 										</c:forEach>
-									</select>
-									<label for="province">Provincia</label> 
-									<select onchange="getCities();" class="form-control" id="province" name="province">
+									</select> <label for="province">Provincia</label> <select
+										onchange="getCities();" class="form-control" id="province"
+										name="province">
 										<c:forEach var="prov" items="${province }">
 											<option value="${prov.idProvinceApi}">${prov.name}</option>
 										</c:forEach>
-									</select>
-									<label for="cities">Domicilio</label> 
-									<select class="form-control" id="cities" name="cities" onChange="setName()" onLoad="setName()">
-									</select>
-									<label for="username">Nombre de usuario</label> 
-									<input onblur="checkUserName();" class="form-control" type="text" id="username" name="username" required></input>
-									<div class="alert alert-danger" id="badusername" style=" display:none; "><p>Ese usuario ya está registrado</p></div>
+									</select> <label for="cities">Domicilio</label> <select
+										class="form-control" id="cities" name="cities"
+										onChange="setName()" onLoad="setName()">
+									</select> <label for="username">Nombre de usuario</label> <input
+										onblur="checkUserName();" class="form-control" type="text"
+										id="username" name="username" required></input>
+									<div class="alert alert-danger" id="badusername"
+										style="display: none;">
+										<p>Ese usuario ya está registrado</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<input name="nameCity" id="nameCity" type="hidden" value=""> 
+					<input name="nameCity" id="nameCity" type="hidden" value="">
 					<div class="modal-footer">
 						<input type="submit" class="btn btn-info text-light btn-sm"
 							name="btnNewClient" value="Agregar" id="agregar" disabled></input>
@@ -200,139 +181,6 @@
 		</div>
 	</div>
 	<!--  Fin modal nuevo cliente -->
-	<script>
-	function prevPage(){
-		var eltake = document.getElementById('take');
-		var elskip = document.getElementById('skip');
-		var elpage = document.getElementById('page');
-		var elprevbot = document.getElementById('prevbot');
-		var elprevtop = document.getElementById('prevtop');
-		console.log(elpage.value)
-		if(elpage.value > 1 ){
-			elpage.value = Number(elpage.value) - 1;
-			elskip.value = Number(eltake.value) * (Number(elpage.value)-1);
-		}
-			
-		console.log(elskip.value)
-		elprevbot.href="admClientsList.do?page="+elpage.value+"&skip="+elskip.value+"&take=10";
-		elprevtop.href="admClientsList.do?page="+elpage.value+"&skip="+elskip.value+"&take=10";
-		console.log('asd')
-	}
 	
-	function nextPage(){
-		var eltake = document.getElementById('take');
-		var elskip = document.getElementById('skip');
-		var elpage = document.getElementById('page');
-		var elnextbot = document.getElementById('nextbot');
-		var elnexttop = document.getElementById('nexttop');
-		console.log(elpage.value)
-		console.log(elpage.value < ${totalpages})
-		console.log(${totalpages} )
-		if(elpage.value < ${totalpages} ){
-			elpage.value = Number(elpage.value) + 1;
-			elskip.value = Number(eltake.value) * (Number(elpage.value)-1);
-			
-		}
-		console.log(elskip.value)
-		elnextbot.href="admClientsList.do?page=" + elpage.value + "&skip=" + elskip.value + "&take=10";
-		elnexttop.href="admClientsList.do?page=" + elpage.value + "&skip=" + elskip.value + "&take=10";
-		console.log('asd')
-	}
-	
-	var existMail =true ,checkUser = true;
-	function setName(){
-		
-		let dropCities = document.getElementById('cities');
-		let nameCity = document.getElementById('nameCity');
-		nameCity.value = dropCities.options[dropCities.selectedIndex].text;
-		
-	}
-	
-	function enableButton(){
-		console.log('enableButton');
-		if(!checkEmail && !checkUserName) document.getElementById('agregar').disabled = false;
-	}
-	
-    
-	getCities();
-	async function getCities() {
-			console.log('Dentro de get cities')
-			let selCities = document.getElementById('cities');
-			const select = document.getElementById('province');
-			const id = select.options[select.selectedIndex].value;
-			await fetch('https://apis.datos.gob.ar/georef/api/localidades?provincia='+id+'&campos=nombre&max=5000&orden=nombre')
-			.then(response => response.json())
-			.then(data => {
-				console.log(data)
-				data.localidades.forEach((e,i)=> {
-					
-					selCities.options[i]=(new Option(e.nombre,e.id))
-				})
-			})
-			
-	}
-	
-	async function checkEmail(){
-		let value = document.getElementById('mail').value;
-		console.log(value);
-		
-		if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))){
-			document.getElementById('badmail').textContent = 'Ej: xxxx@xxxx.xxx'
-			document.getElementById('badmail').style.display = 'block';
-			document.getElementById('agregar').disabled = true;
-			return;
-		}
-		
-		await fetch('checkEmail.do?mail=' + value ,
-				{
-					method:'GET'
-				})
-		.then(response => response.json())
-		.then(data => {
-			console.log(data.existe);
-			existMail = data.existe;
-		
-			if(data.existe == true){
-				document.getElementById('badmail').textContent = 'Ese email ya está registrado'
-				document.getElementById('badmail').style.display = 'block';
-				document.getElementById('agregar').disabled = true;
-			}else{
-				document.getElementById('badmail').style.display = 'none';
-			}
-			
-			if(!existMail && !checkUser) document.getElementById('agregar').disabled = false;
-		})
-		
-		
-	}
-	
-	async function checkUserName(){
-		let value = document.getElementById('username').value;
-		console.log(value);
-		await fetch('checkUserName.do?username=' + value ,
-				{
-					method:'GET'
-				})
-		.then(response => response.json())
-		.then(data => {
-			console.log(data.existe);
-			checkUser = data.existe;
-			if(data.existe){
-				document.getElementById('badusername').style.display = 'block';
-				document.getElementById('agregar').disabled = true;
-			}else {
-				document.getElementById('badusername').style.display = 'none';
-			}
-			
-			if(!existMail && !checkUser) document.getElementById('agregar').disabled = false;
-		})
-		
-	}
-	
-	
-
-	
-	
-</script>
 </body>
 </html>

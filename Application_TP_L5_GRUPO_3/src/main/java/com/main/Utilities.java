@@ -2,6 +2,7 @@ package com.main;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.Model.Account;
 import com.Model.Administrative;
@@ -16,6 +17,7 @@ import com.Model.Transaction;
 import com.Model.User;
 import com.Model.typeAccount;
 import com.Model.typeMove;
+import com.google.gson.Gson;
 
 public class Utilities {
 
@@ -156,5 +158,13 @@ public class Utilities {
 		fp.setState((byte) 1);
 
 		return fp;
+	}
+	
+	public static String listToJSON(List<?> list) {
+		Gson gson = new Gson();
+		
+		String jsonString = gson.toJson(list);
+		
+		return jsonString;
 	}
 }
