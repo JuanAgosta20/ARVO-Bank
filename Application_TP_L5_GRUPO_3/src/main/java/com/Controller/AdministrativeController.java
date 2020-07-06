@@ -43,6 +43,8 @@ import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
 import com.Services.UserService;
 import com.Services.UserServiceImpl;
+import com.Services.LoanService;
+import com.Services.LoanServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
@@ -58,6 +60,7 @@ public class AdministrativeController {
 	GenreService gs = bf.createGenreServiceImpl();
 	AccountService accs = new AccountServiceImpl();
 	UserService us = new UserServiceImpl();
+	LoanService loanser = new LoanServiceImpl();
 
 	@RequestMapping(value = "admClientsList")
 	public ModelAndView ClientsList(ModelAndView mv,Integer skip, Integer take, Integer page) {
@@ -255,8 +258,27 @@ public class AdministrativeController {
 	}
 
 	@RequestMapping("admLoans")
-	public ModelAndView Loans() {
-		return new ModelAndView("admLoans");
+	public ModelAndView Loans(ModelAndView mv) {
+		if(mv.isEmpty())
+			mv = new ModelAndView("admLoans");
+		mv.addObject("loans", loanser.getAllUnchekedLoans());
+		return mv;
+	}
+	
+	@RequestMapping("checkLoan")
+	public ModelAndView checkLoan(String accept, String reject) {
+		ModelAndView mv = new ModelAndView("admLoans");
+		Boolean result = false;
+		if (accept != null) {
+			result = loanser.acceptLoan(Integer.parseInt(accept), 2);
+			//Hacer la transferencia de plata
+		} else if (reject != null) {
+			result = loanser.deleteLoan(Integer.parseInt(reject));
+		}
+		mv.addObject("result", result); // true bien, false mal
+		mv.addObject("msg", new String[] { "Ha ocurrido un error", "Operacion realizada correctamente" });
+
+		return Loans(mv);
 	}
 
 	@RequestMapping("admReports")
@@ -299,4 +321,5 @@ public class AdministrativeController {
 		 */
 
 	}
+	
 }

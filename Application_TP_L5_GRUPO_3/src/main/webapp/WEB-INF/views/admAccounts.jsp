@@ -28,7 +28,7 @@
 				<!-- Columna vacía izquierda-->
 			</div>
 			<div class="col-10">
-				<h4 class="text-blue">Cuentas pendientes a autorización</h4>
+				<h4 class="text-blue mb-3">Cuentas pendientes a autorización</h4>
 				<table class="table table-hover">
 					<thead>
 						<tr class="table-info">

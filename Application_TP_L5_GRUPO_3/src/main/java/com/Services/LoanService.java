@@ -9,5 +9,5 @@ public interface LoanService {
 	public Boolean deleteLoan(int idLoan);
 	public Boolean acceptLoan(int idL, int newState);
 	public ArrayList<Loan> getLoansFrom(int idClient);
-	public ArrayList<Loan> getAllActiveLoans();
+	public ArrayList<Loan> getAllUnchekedLoans();
 }
