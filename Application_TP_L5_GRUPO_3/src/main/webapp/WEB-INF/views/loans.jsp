@@ -4,6 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@page import="com.Model.Client"%>
+<%@page import="com.Model.Loan"%>
+<%@page import="com.Model.Cmd"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	if (session.getAttribute("user") == null || !(session.getAttribute("user").getClass().equals(Client.class)))
 	response.sendRedirect("redirectIndex.do");
@@ -21,18 +24,21 @@
 
 	<div class="container-fluid mt-3">
 		<div class="row">
-			<div class="col">
+			<div class="col-3">
 				<div class="list-group">
-						<button class="list-group-item list-group-item-action" name="btnPanel" onClick="enableForm(this, 'T2')">
+					<button class="list-group-item list-group-item-action"
+						name="btnPanel" onClick="enableForm(this, 'T2')">
 						<i class="material-icons">local_atm</i> Solicitar Préstamo
 					</button>
-					<button class="list-group-item list-group-item-action" name="btnPanel" onClick="enableForm(this, 'T1')" style="color:white; background-color:#1761a0">
+					<button class="list-group-item list-group-item-action"
+						name="btnPanel" onClick="enableForm(this, 'T1')"
+						style="color: white; background-color: #1761a0">
 						<i class="material-icons">payments</i> Ver Préstamos
 					</button>
 				</div>
 			</div>
 
-			<div class="col-7">
+			<div class="col-8">
 				<div id="Views">
 					<!-- Tabla Prï¿½stamos -->
 					<div class="view" id="formT1">
@@ -42,78 +48,63 @@
 								<tr class="table-warning">
 									<th scope="col">Fecha</th>
 									<th scope="col">Monto Total</th>
+									<th scope="col">Monto Cuota</th>
 									<th scope="col">Cant Cuotas</th>
 									<th scope="col">Estado</th>
-									<th scope="col">Monto Cuota</th>
 									<th scope="col">Pagos</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>02/05/2020</td>
-									<td>$40000</td>
-									<td>20</td>
-									<td>Activo</td>
-									<td>$2000</td>
-									<td>
-										<button onclick="showLoanPayments(this, 1)"
-											class="btn btn-info btn-sm">Ver Pagos</button>
-									</td>
-								</tr>
-								<tr id="loanId1" style="display: none">
-									<td colspan="6">
-										<table class="ml-1">
-											<thead>
-												<tr>
-													<th scope="col">Cuota #</th>
-													<th scope="col">Fecha</th>
-													<th scope="col">Monto</th>
-													<th scope="col">Estado</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>02/05/2020</td>
-													<td>$2000</td>
-													<td class="text-success">Pagado</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>02/06/2020</td>
-													<td>$2000</td>
-													<td><button onclick="payment()"
-															class="btn btn-sm btn-primary">Pagar</button></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>02/07/2020</td>
-													<td>$2000</td>
-													<td><button onclick="payment()"
-															class="btn btn-sm btn-primary">Pagar</button></td>
-												</tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td>05/01/2019</td>
-									<td>$5000</td>
-									<td>10</td>
-									<td class="text-success">Pagado</td>
-									<td>$500</td>
-									<td>
-										<button class="btn btn-info btn-sm">Ver Pagos</button>
-									</td>
-								</tr>
-								<tr>
-									<td>02/02/2019</td>
-									<td>$120000</td>
-									<td>30</td>
-									<td class="text-danger">Rechazado</td>
-									<td>-</td>
-									<td><a>-</a></td>
-								</tr>
+								<c:forEach var="loan" items="${ loans }">
+									<tr>
+										<td>${Cmd.getFormattedDate(loan.getDate(), false)}</td>
+										<td>$ ${loan.getAmmount()  }</td>
+										<td>$ ${loan.getMonthAmmount()}</td>
+										<td>${loan.getFees() }</td>
+										<td>${ Cmd.getLoanNameState(loan.getState()) }</td>
+										<td>
+											<button
+												onclick="showLoanPayments(this, '${loan.getLoanId()}')"
+												class="btn btn-info btn-sm">Ver Pagos</button>
+										</td>
+									</tr>
+									<tr id="loanId${ loan.getLoanId() }" style="display: none">
+										<td colspan="6">
+											<table class="ml-1">
+												<thead>
+													<tr>
+														<th scope="col">Cuota #</th>
+														<th scope="col">Fecha</th>
+														<th scope="col">Monto</th>
+														<th scope="col">Estado</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>1</td>
+														<td>02/05/2020</td>
+														<td>$2000</td>
+														<td class="text-success">Pagado</td>
+													</tr>
+													<tr>
+														<td>2</td>
+														<td>02/06/2020</td>
+														<td>$2000</td>
+														<td><button onclick="payment()"
+																class="btn btn-sm btn-primary">Pagar</button></td>
+													</tr>
+													<tr>
+														<td>2</td>
+														<td>02/07/2020</td>
+														<td>$2000</td>
+														<td><button onclick="payment()"
+																class="btn btn-sm btn-primary">Pagar</button></td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -124,15 +115,15 @@
 						<h4 class="text-blue">Solicitar Préstamo</h4>
 						<form action="" name="frmNewLoan" class="container mt-3">
 							<div class="row mt-3">
-								<div class="col">Monto deseado:</div>
-								<div class="col">
+								<div class="col-3">Monto deseado:</div>
+								<div class="col-5">
 									<input type="number" name="txtAmmount" class="form-control"
 										placeholder="$" />
 								</div>
 							</div>
 							<div class="row mt-3">
-								<div class="col">Cuenta Destino:</div>
-								<div class="col">
+								<div class="col-3">Cuenta Destino:</div>
+								<div class="col-5">
 									<select id="inputAccType" name="cmbAccount"
 										class="form-control">
 										<option selected>Seleccione la cuenta</option>
@@ -141,8 +132,8 @@
 								</div>
 							</div>
 							<div class="row mt-3">
-								<div class="col">Cantidad de cuotas:</div>
-								<div class="col">
+								<div class="col-3">Cantidad de cuotas:</div>
+								<div class="col-5">
 									<input type="number" name="txtConcept" class="form-control" />
 								</div>
 							</div>
@@ -153,10 +144,6 @@
 								</div>
 							</div>
 						</form>
-					</div>
-
-					<div class="view hide" id="page3">
-						<!-- Por si hay que hacer una pag de pagos -->
 					</div>
 
 					<div class="modal fade" id="modalPayments" tabindex="-1"
@@ -195,9 +182,6 @@
 				</div>
 			</div>
 
-			<div class="col">
-				<!-- Columna vacï¿½a derecha -->
-			</div>
 		</div>
 	</div>
 </body>

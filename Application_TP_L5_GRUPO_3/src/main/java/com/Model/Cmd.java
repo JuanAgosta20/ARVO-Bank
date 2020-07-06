@@ -43,6 +43,19 @@ public class Cmd {
 		return date;
 	}
 	
+	public static String getLoanNameState(int state) {
+		
+		String[] states = new String[] {
+				"Denegado",
+				"Pendiente",
+				"Activo",
+				"Pago"
+		};
+		
+		return states[state];
+		
+	}
+	
 	public static Date crearFecha(String sDate) throws ParseException {
 		sDate = sDate.replace("-", "/");
 		Date date = new SimpleDateFormat("yyyy/MM/dd").parse(sDate);

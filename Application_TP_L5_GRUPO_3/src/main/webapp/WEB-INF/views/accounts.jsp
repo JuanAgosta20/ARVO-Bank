@@ -100,7 +100,6 @@
 									solicitud a ARVO BANK S.A. La información proporcionada por el
 									cliente reviste carácter de declaración jurada y el Banco podrá
 									rechazar la solicitud de apertura.</p>
-								<input type="hidden" value="${idClient}" name="idClient">
 							</div>
 							<div class="modal-footer">
 								<button class="btn bkg-orange text-light btn-sm"

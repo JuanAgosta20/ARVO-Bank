@@ -57,7 +57,7 @@ public class LoanDaoImpl implements LoanDao {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
-			String hql = "From Loan l WHERE l.client.idClient = :id AND l.state = 2";
+			String hql = "From Loan l WHERE l.client.idClient = :id";
 			Query query = (Query) session.createQuery(hql);
 			query.setParameter("id", idClient);
 			return (ArrayList<Loan>) query.list();
