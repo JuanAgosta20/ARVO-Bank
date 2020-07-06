@@ -309,7 +309,7 @@ public class App {
 
 			City cities[] = { Utilities.createCity("02000010000", "CIUDAD DE BUENOS AIRES", provs[21]), // 1
 					Utilities.createCity("02007010001", "CONSTITUCION", provs[21]), // 2
-					Utilities.createCity("14014010000", "C�RDOBA", provs[7]), // 3
+					Utilities.createCity("14014010000", "CORDOBA", provs[7]), // 3
 			};
 			//
 
@@ -328,10 +328,10 @@ public class App {
 			User admin = Utilities.createUser("123456", "Juanc", "Admin");
 
 			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos", true);
-			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en D�lares", false);
+			typeAccount ta2 = Utilities.createTypeAccount("Caja de Ahorro en Dolares", false);
 			typeAccount ta3 = Utilities.createTypeAccount("Cuenta Corriente", true);
 			typeAccount ta4 = Utilities.createTypeAccount("Cuenta Corriente Especial en Pesos", true);
-			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en D�lares", false);
+			typeAccount ta5 = Utilities.createTypeAccount("Cuenta Corriente Especial en Dolares", false);
 
 			Genre gen = Utilities.createGenre("Femenino");
 			Genre gen2 = Utilities.createGenre("Masculino");
@@ -369,34 +369,34 @@ public class App {
 
 			// CUENTA
 			Date fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
-			Account acc = Utilities.createAccount(client, "12321323213", fecha, 32323.4F, "Cuenta 1", 0, null, null,
+			Account acc = Utilities.createAccount(client, "1232132321334521675985", fecha, 32323.4F, "Cuenta 1", 0, null, null,
 					ta);
 			fecha = Cmd.crearFechaHora(10, 1, 2019, 10, 22, 12);
-			Account acc2 = Utilities.createAccount(client2, "68686868686545", fecha, 45000F, "Cuenta 2", 1, null, null,
+			Account acc2 = Utilities.createAccount(client2, "6868216868654585463215", fecha, 45000F, "Cuenta 2", 1, null, null,
 					ta3);
 			fecha = Cmd.crearFechaHora(22, 2, 2020, 31, 2, 12);
-			Account acc3 = Utilities.createAccount(client, "5473767373356", fecha, 333.03F, "Cuenta 3", 2, null, null,
+			Account acc3 = Utilities.createAccount(client, "5473767373356578496521", fecha, 333.03F, "Cuenta 3", 2, null, null,
 					ta4);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc4 = Utilities.createAccount(client3, "59598123156651", fecha, 90000.50F, "Cuenta 1", 2, null,
+			Account acc4 = Utilities.createAccount(client3, "59598123156651458756", fecha, 90000.50F, "Cuenta 1", 2, null,
 					null, ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc5 = Utilities.createAccount(client4, "323269444845261", fecha, 10000000F, "Cuenta 2", 2, null,
+			Account acc5 = Utilities.createAccount(client4, "3232694448452615496523", fecha, 10000000F, "Cuenta 2", 2, null,
 					null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc6 = Utilities.createAccount(client5, "2215198431218912", fecha, 51510F, "Cuenta 3", 2, null,
+			Account acc6 = Utilities.createAccount(client5, "2215198431218912485475", fecha, 51510F, "Cuenta 3", 2, null,
 					null, ta2);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc7 = Utilities.createAccount(client6, "454612354984561", fecha, 100000F, "Cuenta 1", 1, null,
+			Account acc7 = Utilities.createAccount(client6, "4546123549845612315464", fecha, 100000F, "Cuenta 1", 1, null,
 					null, ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc8 = Utilities.createAccount(client7, "5954841631566", fecha, 45.5F, "Cuenta 1", 2, null, null,
+			Account acc8 = Utilities.createAccount(client7, "5954841631566159675441", fecha, 45.5F, "Cuenta 1", 2, null, null,
 					ta);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc9 = Utilities.createAccount(client8, "88451231561231", fecha, 102000.3F, "Cuenta 1", 2, null,
+			Account acc9 = Utilities.createAccount(client8, "8845123156123156456117", fecha, 102000.3F, "Cuenta 1", 2, null,
 					null, ta3);
 			fecha = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Account acc10 = Utilities.createAccount(client9, "99218913621", fecha, 5.5F, "Cuenta 1", 2, null, null, ta);
+			Account acc10 = Utilities.createAccount(client9,"9921891362156410043748", fecha, 5.5F, "Cuenta 1", 2, null, null, ta);
 
 			// TIPOS DE MOVIMIENTO
 			typeMove tm = Utilities.createTypeMove("Alta de Cuenta", true);
@@ -497,25 +497,25 @@ public class App {
 			// admin);
 
 			// PRESTAMO
-			Loan loan = Utilities.createLoan(client, 2323F, date, 3, 774.33F);
+			Loan loan = Utilities.createLoan(client8, 2323F, date, 3, 774.33F);
 			date = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Loan loan2 = Utilities.createLoan(client, 200F, date, 1, 200F);
+			Loan loan2 = Utilities.createLoan(client2, 200F, date, 1, 200F);
 			date = Cmd.crearFechaHora(10, 2, 2019, 11, 45, 12);
 			Loan loan3 = Utilities.createLoan(client, 2000F, date, 1, 2000F);
 			date = Cmd.crearFechaHora(12, 1, 2020, 11, 45, 12);
-			Loan loan4 = Utilities.createLoan(client, 4500F, date, 3, 1500F);
+			Loan loan4 = Utilities.createLoan(client3, 4500F, date, 3, 1500F);
 			date = Cmd.crearFechaHora(4, 1, 2020, 13, 25, 12);
-			Loan loan5 = Utilities.createLoan(client, 3000F, date, 3, 1000F);
+			Loan loan5 = Utilities.createLoan(client5, 3000F, date, 3, 1000F);
 			date = Cmd.crearFechaHora(1, 1, 2020, 13, 4, 55);
 			Loan loan6 = Utilities.createLoan(client, 6000F, date, 3, 2000F);
 			date = Cmd.crearFechaHora(10, 3, 2020, 11, 45, 12);
-			Loan loan7 = Utilities.createLoan(client, 10000F, date, 1, 10000F);
+			Loan loan7 = Utilities.createLoan(client6, 10000F, date, 1, 10000F);
 			date = Cmd.crearFechaHora(16, 2, 2020, 12, 45, 12);
-			Loan loan8 = Utilities.createLoan(client, 6000F, date, 1, 6000F);
+			Loan loan8 = Utilities.createLoan(client4, 6000F, date, 1, 6000F);
 			date = Cmd.crearFechaHora(18, 2, 2019, 15, 32, 12);
 			Loan loan9 = Utilities.createLoan(client, 120000F, date, 3, 40000F);
 			date = Cmd.crearFechaHora(9, 2, 2018, 11, 11, 11);
-			Loan loan10 = Utilities.createLoan(client, 60000F, date, 3, 20000F);
+			Loan loan10 = Utilities.createLoan(client9, 60000F, date, 3, 20000F);
 
 			// CUOTAs
 			FeePayment fp = Utilities.creatFeePayment(loan.getMonthAmmount(),

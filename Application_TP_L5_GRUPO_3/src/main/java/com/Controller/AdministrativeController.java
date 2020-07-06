@@ -174,7 +174,7 @@ public class AdministrativeController {
 		mv.addObject("uncheckedAccounts", accs.getAllUnchekedAccounts());
 
 		mv.addObject("result", result); // true bien, false mal
-		mv.addObject("msg", new String[] { "Ha ocurrido un error", "Operación realizada correctamente" });
+		mv.addObject("msg", new String[] { "Ha ocurrido un error", "Operacion realizada correctamente" });
 
 		return mv;
 	}
