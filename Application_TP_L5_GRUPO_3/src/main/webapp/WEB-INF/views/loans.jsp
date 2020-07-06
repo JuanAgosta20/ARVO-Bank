@@ -18,6 +18,7 @@
 <title>ARVO Bank - Préstamos</title>
 <script src="Resources/js/multiViewHandler.js"></script>
 <script src="Resources/js/loansHandler.js"></script>
+<script src="Resources/js/ValidateLoanForm.js"></script>
 </head>
 <body>
 	<jsp:include page="masterMenuClient.jsp"></jsp:include>
@@ -62,48 +63,50 @@
 										<td>$ ${loan.getMonthAmmount()}</td>
 										<td>${loan.getFees() }</td>
 										<td>${ Cmd.getLoanNameState(loan.getState()) }</td>
-										<td>
-											<button
-												onclick="showLoanPayments(this, '${loan.getLoanId()}')"
-												class="btn btn-info btn-sm">Ver Pagos</button>
-										</td>
+										<td><c:if test="${ loan.getState() >= 2 }">
+												<button
+													onclick="showLoanPayments(this, '${loan.getLoanId()}')"
+													class="btn btn-info btn-sm">Ver Pagos</button>
+											</c:if></td>
 									</tr>
-									<tr id="loanId${ loan.getLoanId() }" style="display: none">
-										<td colspan="6">
-											<table class="ml-1">
-												<thead>
-													<tr>
-														<th scope="col">Cuota #</th>
-														<th scope="col">Fecha</th>
-														<th scope="col">Monto</th>
-														<th scope="col">Estado</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td>02/05/2020</td>
-														<td>$2000</td>
-														<td class="text-success">Pagado</td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td>02/06/2020</td>
-														<td>$2000</td>
-														<td><button onclick="payment()"
-																class="btn btn-sm btn-primary">Pagar</button></td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td>02/07/2020</td>
-														<td>$2000</td>
-														<td><button onclick="payment()"
-																class="btn btn-sm btn-primary">Pagar</button></td>
-													</tr>
-												</tbody>
-											</table>
-										</td>
-									</tr>
+									<c:if test="${ loan.getState() >= 2 }">
+										<tr id="loanId${ loan.getLoanId() }" style="display: none">
+											<td colspan="6">
+												<table class="ml-1">
+													<thead>
+														<tr>
+															<th scope="col">Cuota #</th>
+															<th scope="col">Fecha</th>
+															<th scope="col">Monto</th>
+															<th scope="col">Estado</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>1</td>
+															<td>02/05/2020</td>
+															<td>$2000</td>
+															<td class="text-success">Pagado</td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td>02/06/2020</td>
+															<td>$2000</td>
+															<td><button onclick="payment()"
+																	class="btn btn-sm btn-primary">Pagar</button></td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td>02/07/2020</td>
+															<td>$2000</td>
+															<td><button onclick="payment()"
+																	class="btn btn-sm btn-primary">Pagar</button></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -113,28 +116,39 @@
 
 					<div class="view hide" id="formT2">
 						<h4 class="text-blue">Solicitar Préstamo</h4>
-						<form action="" name="frmNewLoan" class="container mt-3">
+						<form action="clRequestLoan.do" method="POST"
+							class="container mt-3" onsubmit=" return requestLoanForm()">
 							<div class="row mt-3">
 								<div class="col-3">Monto deseado:</div>
 								<div class="col-5">
-									<input type="number" name="txtAmmount" class="form-control"
-										placeholder="$" />
+									<input type="number" id="txtAmmount" name="txtAmmount"
+										class="form-control" placeholder="$" />
 								</div>
 							</div>
 							<div class="row mt-3">
 								<div class="col-3">Cuenta Destino:</div>
 								<div class="col-5">
-									<select id="inputAccType" name="cmbAccount"
-										class="form-control">
-										<option selected>Seleccione la cuenta</option>
-										<option>...</option>
+									<select name="cmbAccount" id="cmbAccount" class="form-control">
+										<c:forEach var="acc" items="${accounts }">
+											<option value="${acc.getIdAccount()}" data-toggle="tooltip"
+												title="${acc.getTypeAcc().getDescription()}">${acc.getNameAccount()}
+												- CBU: ${acc.getCBU()}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
 							<div class="row mt-3">
 								<div class="col-3">Cantidad de cuotas:</div>
 								<div class="col-5">
-									<input type="number" name="txtConcept" class="form-control" />
+									<select name="cmbCuotas" class="form-control">
+										<option value="3" selected>3</option>
+										<option value="6">6</option>
+										<option value="9">9</option>
+										<option value="12">12</option>
+										<option value="18">18</option>
+										<option value="24">24</option>
+										<option value="30">30</option>
+									</select>
 								</div>
 							</div>
 							<div class="row mt-4 justify-content-md-center">
@@ -142,6 +156,11 @@
 									<input type="submit" class="btn btn-orange" name="btnSolicitar"
 										value="Solicitar" />
 								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-2"></div>
+								<div id="alertForm" class="alert alert-danger col-6 hide"></div>
+
 							</div>
 						</form>
 					</div>

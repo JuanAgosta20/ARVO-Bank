@@ -41,10 +41,10 @@ public class LoanDaoImpl implements LoanDao {
 	public Boolean acceptLoan(int idL, int newState) {
 		try {
 			sh = new SessionHandler();
-			Loan acc = (Loan)sh.get(Loan.class, idL);
-			acc.setState(newState);
-			
-			sh.update(acc);
+			Loan loan = (Loan)sh.get(Loan.class, idL);
+			loan.setState(newState);
+			loan.setDate(Cmd.crearFecha());
+			sh.update(loan);
 			sh.commit();
 			return true;
 		} catch (Exception e) {

@@ -14,6 +14,7 @@ import com.Model.Account;
 import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.Cmd;
+import com.Model.Loan;
 import com.Services.AccountService;
 import com.Services.AccountServiceImpl;
 import com.Services.LoanService;
@@ -51,6 +52,7 @@ public class ClientsController {
 		HttpSession session = req.getSession();
 		Client client = (Client)session.getAttribute("user");
 		mv.addObject("loans", ls.getLoansFrom(client.getIdClient()));
+		mv.addObject("accounts", as.getAccountsFrom(client.getIdClient()));
 		return mv;
 	}
 	
@@ -64,6 +66,26 @@ public class ClientsController {
 		acc.setTypeAcc(as.getType(cmbAccounts));
 		acc.setCreationDate(Cmd.crearFecha());
 		Boolean result = as.insertAccount(acc);
+		ModelAndView mv = new ModelAndView("accounts");
+		mv.addObject("result", result); //true bien, false mal
+		mv.addObject("msg", new String[]{"Opps... a ocurrido un error", "La petición se ha enviado correctamente"});
+		return Accounts(mv, req);
+	}
+	
+	@RequestMapping(value="clRequestLoan", method=RequestMethod.POST)
+	public ModelAndView RequestNewLoan(String txtAmmount, int cmbCuotas, int cmbAccount , HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Client client = (Client)session.getAttribute("user");
+		Loan loan = new Loan();
+		loan.setState(1);
+		loan.setClient(client);
+		float ammount = Float.parseFloat(txtAmmount);
+		loan.setAmmount(ammount);
+		loan.setFees(cmbCuotas);
+		loan.setMonthAmmount((float)ammount/cmbCuotas);
+		loan.setIdAccount(cmbAccount);
+		loan.setDate(Cmd.crearFecha());
+		Boolean result = ls.insertLoan(loan);
 		ModelAndView mv = new ModelAndView("accounts");
 		mv.addObject("result", result); //true bien, false mal
 		mv.addObject("msg", new String[]{"Opps... a ocurrido un error", "La petición se ha enviado correctamente"});
