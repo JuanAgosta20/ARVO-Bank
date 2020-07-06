@@ -3,6 +3,7 @@ package com.Services;
 
 import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
+import com.Dao.LogInDao;
 import com.Dao.LogInDaoImpl;
 import com.Dao.SessionHandler;
 import com.Dao.UserDao;
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 	public User getUser(String userName, String pass) {
 		User user = bf.createUser();
-		LogInDaoImpl login = bf.createLogInDaoImpl();
+		LogInDao login = bf.createLogInDaoImpl();
 		user = login.loginUser(userName, pass);
 		return user;
 	}
@@ -42,6 +43,11 @@ public class UserServiceImpl implements UserService {
 	public Boolean existUserName(String username) {
 		UserDao ud = new UserDaoImpl();
 		return ud.existUserName(username);
+	}
+
+	public Boolean updatePassword(String pass, int id) {
+		UserDao ud = new UserDaoImpl();
+		return ud.updatePass(pass,id);
 	}
 
 }

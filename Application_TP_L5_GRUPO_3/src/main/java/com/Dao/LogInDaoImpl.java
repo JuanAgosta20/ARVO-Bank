@@ -7,11 +7,12 @@ import com.Model.User;
 
 public class LogInDaoImpl implements LogInDao {
 
-	SessionHandler sHand = new SessionHandler();
+	SessionHandler sHand ;
 	Session session;
 
 	public User loginUser(String userName, String pass) {
 		User user;
+		sHand = new SessionHandler();
 		session = sHand.getSession();
 		String hql = "From User u WHERE u.userName =:userName AND u.password =:pass AND u.state = 1";
 		Query query = (Query) session.createQuery(hql);
@@ -22,7 +23,6 @@ public class LogInDaoImpl implements LogInDao {
 		}catch (Exception e) {
 			return null;
 		}
-		//session.close();
 		return user;
 	}
 

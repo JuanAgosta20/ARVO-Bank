@@ -11,5 +11,6 @@ public interface UserService {
 	public Client getClient(User user);
 	public Administrative getAdmin(User user);
 	public Boolean existUserName(String username);
+	public Boolean updatePassword(String pass, int id);
 	
 }

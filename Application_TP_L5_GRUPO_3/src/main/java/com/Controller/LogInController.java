@@ -56,8 +56,12 @@ public class LogInController {
 			MV.setViewName("admClients");
 		} else if (user.getUserType().equals("Cliente")) {
 			Client client = sClient.readClientByUserId(user);
-			 session.setAttribute("user", client);
-			MV.setViewName("redirect:clAccounts.do");
+			session.setAttribute("user", client);
+			if(client.getDni().equals(client.getUser().getPassword())) {
+				MV.setViewName("NewPass");
+			}else {
+				MV.setViewName("redirect:clAccounts.do");
+			}
 		}
 
 		return MV;
@@ -69,6 +73,14 @@ public class LogInController {
 		HttpSession session = req.getSession();
 		session.setAttribute("user", null);
 		MV.setViewName("index");
+		return MV;
+	}
+	
+	@RequestMapping(value = "clNewPass.do", method = RequestMethod.POST)
+	public ModelAndView redirectNewPass(String pass, int id) {
+		ModelAndView MV = new ModelAndView();
+		us.updatePassword(pass,id);
+		MV.setViewName("redirect:clAccounts.do");
 		return MV;
 	}
 }
