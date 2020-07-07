@@ -51,9 +51,10 @@ public class LoanDaoImpl implements LoanDao {
 			ArrayList<FeePayment> payments = new ArrayList<FeePayment>();
 			for (int i = 1; i <= loan.getFees(); i++) {
 				FeePayment fp = new FeePayment();
+				fp.setnPayment(i);
 				fp.setDate(Cmd.crearFecha(date.plusMonths(i)));
 				fp.setState(0);
-				fp.setAmmount(0f);
+				fp.setAmmount(loan.getMonthAmmount());
 				payments.add(fp);
 			}
 			loan.setPayments(payments);
@@ -87,6 +88,25 @@ public class LoanDaoImpl implements LoanDao {
 			String hql = "From Loan l WHERE l.state = 1";
 			Query query = (Query) session.createQuery(hql);
 			return (ArrayList<Loan>) query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Boolean Payment(int idLoan, int idFeePayment) {
+		try {
+			sh = new SessionHandler();
+			Loan loan = (Loan) sh.get(Loan.class, idLoan);
+			for (FeePayment fp : loan.getPayments()) {
+				if(fp.getFeePaymentId().equals(idFeePayment)) {
+					fp.setState(1);
+					break;
+				}
+			}
+			sh.update(loan);
+			sh.commit();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

@@ -9,8 +9,9 @@ function showLoanPayments(btn, id) {
 	}
 }
 
-function payment(FeePaymentId) {
-	$('#idPaymentLoan').val(FeePaymentId);
+function payment(FeePaymentId, LoanId) {
+	$('#idFeePayment').val(FeePaymentId);
+	$('#idLoan').val(LoanId);
 	$('#modalPayments').modal('show');
 }
 

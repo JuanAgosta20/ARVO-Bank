@@ -10,4 +10,5 @@ public interface LoanService {
 	public Boolean acceptLoan(int idL, int newState);
 	public ArrayList<Loan> getLoansFrom(int idClient);
 	public ArrayList<Loan> getAllUnchekedLoans();
+	public Boolean Payment(int idLoan, int idFeePayment);
 }

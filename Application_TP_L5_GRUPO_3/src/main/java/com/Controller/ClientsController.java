@@ -47,8 +47,9 @@ public class ClientsController {
 	}
 	
 	@RequestMapping("clLoans")
-	public ModelAndView Loans(HttpServletRequest req){
-		ModelAndView mv = new ModelAndView("loans");
+	public ModelAndView Loans(ModelAndView mv, HttpServletRequest req){
+		if(mv.isEmpty())
+		 mv = new ModelAndView("loans");
 		HttpSession session = req.getSession();
 		Client client = (Client)session.getAttribute("user");
 		mv.addObject("loans", ls.getLoansFrom(client.getIdClient()));
@@ -68,7 +69,7 @@ public class ClientsController {
 		Boolean result = as.insertAccount(acc);
 		ModelAndView mv = new ModelAndView("accounts");
 		mv.addObject("result", result); //true bien, false mal
-		mv.addObject("msg", new String[]{"Opps... a ocurrido un error", "La petición se ha enviado correctamente"});
+		mv.addObject("msg", new String[]{"Opps... ha ocurrido un error", "La petición se ha enviado correctamente"});
 		return Accounts(mv, req);
 	}
 	
@@ -88,8 +89,20 @@ public class ClientsController {
 		Boolean result = ls.insertLoan(loan);
 		ModelAndView mv = new ModelAndView("accounts");
 		mv.addObject("result", result); //true bien, false mal
-		mv.addObject("msg", new String[]{"Opps... a ocurrido un error", "La petición se ha enviado correctamente"});
+		mv.addObject("msg", new String[]{"Opps... ha ocurrido un error", "La petición se ha enviado correctamente"});
 		return Accounts(mv, req);
+	}
+	
+	@RequestMapping(value="clPayment", method=RequestMethod.POST)
+	public ModelAndView Payment(int FeePayment, int Loan, int cmbAccPayment, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Client client = (Client)session.getAttribute("user");
+		Boolean result = ls.Payment(Loan, FeePayment);
+		// Aca se hace la transferencia "cmbAccPayment" es el id de la cuenta del cliente
+		ModelAndView mv = new ModelAndView("loans");
+		mv.addObject("result", result); //true bien, false mal
+		mv.addObject("msg", new String[]{"Opps... ha ocurrido un error", "El pago se ha realizado correctamente"});
+		return Loans(mv, req);
 	}
 
 }

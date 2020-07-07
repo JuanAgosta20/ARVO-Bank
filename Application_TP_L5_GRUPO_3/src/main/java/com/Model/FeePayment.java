@@ -17,6 +17,7 @@ public class FeePayment implements Serializable {
 	private Date date;
 	Float ammount;
 	private int state;
+	private int nPayment;
 
 	public FeePayment() {
 		super();
@@ -53,6 +54,13 @@ public class FeePayment implements Serializable {
 	public void setAmmount(Float ammount) {
 		this.ammount = ammount;
 	}
-	
 
+	public int getnPayment() {
+		return nPayment;
+	}
+
+	public void setnPayment(int nPayment) {
+		this.nPayment = nPayment;
+	}
+	
 }

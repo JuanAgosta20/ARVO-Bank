@@ -85,12 +85,12 @@
 													<tbody>
 														<c:forEach var="payment" items="${loan.getPayments() }">
 															<tr>
-																<td>?</td>
+																<td>${ payment.getnPayment() }</td>
 																<td>${Cmd.getFormattedDate(payment.getDate(), false)}</td>
-															<td>$ ${loan.getMonthAmmount()}</td>
+															<td>$ ${payment.getAmmount()}</td>
 																<td>
 																	<c:if test="${payment.getState() == 0 }">
-																		<button onclick="payment(${payment.getFeePaymentId()})"
+																		<button onclick="payment(${payment.getFeePaymentId()}, ${loan.getLoanId()})"
 																			class="btn btn-sm btn-primary">Pagar</button>
 																	</c:if>
 																	<c:if test="${payment.getState() == 1 }">
@@ -175,21 +175,23 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<form action="" onsubmit="return requestPaymentForm()">
-								<div class="modal-body">
+								<form action="clPayment.do" method="POST" onsubmit="return requestPaymentForm()">
+								<div class="modal-body p-0">
 									<div class="row my-3">
-										<div class="col">Seleccione la cuenta:</div>
-										<div class="col">
-											<select name="cmbAccPayment" id="cmbAccPayment">
-												<c:forEach var="acc" items="${accounts }">
+									<div class="form-group text-center">
+										<label for="cmbAccounts" class="m-1 ">Seleccione la cuenta: </label> 
+										<select name="cmbAccPayment" id="cmbAccPayment"
+											class="m-1 p-1">
+											<c:forEach var="acc" items="${accounts }">
 													<option value="${acc.getIdAccount()}" data-toggle="tooltip"
 														title="${acc.getTypeAcc().getDescription()}">${acc.getNameAccount()}
 														- CBU: ${acc.getCBU()}</option>
 												</c:forEach>
-											</select>
-										</div>
+										</select>
 									</div>
-									<input type="hidden" id="idPaymentLoan" />
+									</div>
+									<input type="hidden" name="FeePayment" id="idFeePayment" />
+									<input type="hidden" name="Loan" id="idLoan" />
 									<div class="row mt-1"> 
 									<div class="ml-auto mr-auto mb-0 alert alert-danger hide" id="alertPayment">
 									</div>
