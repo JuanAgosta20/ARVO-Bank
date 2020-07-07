@@ -1,7 +1,7 @@
 package com.Model;
 
 import java.io.Serializable;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -151,5 +151,12 @@ public class Client implements Serializable {
 	public void setCity(City city) {
 		this.city = city;
 	}
+	
+	public String getFormatedBirthDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		String date = sdf.format(new Date());
+		return date;
+	}
+
 
 }

@@ -141,6 +141,17 @@ public class AdministrativeController {
 		return "{\"existe\": false}";
 
 	}
+	
+	@RequestMapping(value = "checkDni", method = RequestMethod.GET)
+	@ResponseBody
+	public String checkDni(String dni) {
+		System.out.println("Entro a check email" + dni);
+		if (cs.dniExist(dni)) {
+			return "{\"existe\": true}";
+		}
+		return "{\"existe\": false}";
+
+	}
 
 	@RequestMapping(value = "checkUserName", method = RequestMethod.GET)
 	@ResponseBody
