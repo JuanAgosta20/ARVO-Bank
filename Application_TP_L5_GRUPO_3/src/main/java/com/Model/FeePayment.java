@@ -16,7 +16,7 @@ public class FeePayment implements Serializable {
 	@Column
 	private Date date;
 	Float ammount;
-	private Byte state;
+	private int state;
 
 	public FeePayment() {
 		super();
@@ -30,11 +30,11 @@ public class FeePayment implements Serializable {
 		this.feePaymentId = feePaymentId;
 	}
 
-	public Byte getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Byte state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 

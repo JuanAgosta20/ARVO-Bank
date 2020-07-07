@@ -11,6 +11,16 @@ import java.util.Random;
 
 public class Cmd {
 
+	public static LocalDate crearFecha(Date date) {
+	    return date.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
+	}
+	
+	public static Date crearFecha(LocalDate ldate) {
+		return Date.from(ldate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	}
+	
 	public static Date crearFecha() {
 		LocalDate ldate = LocalDate.now();
 		return Date.from(ldate.atStartOfDay(ZoneId.systemDefault()).toInstant());

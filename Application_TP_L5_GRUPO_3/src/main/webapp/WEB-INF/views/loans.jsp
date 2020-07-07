@@ -5,6 +5,7 @@
 
 <%@page import="com.Model.Client"%>
 <%@page import="com.Model.Loan"%>
+<%@page import="com.Model.FeePayment"%>
 <%@page import="com.Model.Cmd"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
@@ -82,26 +83,23 @@
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td>1</td>
-															<td>02/05/2020</td>
-															<td>$2000</td>
-															<td class="text-success">Pagado</td>
-														</tr>
-														<tr>
-															<td>2</td>
-															<td>02/06/2020</td>
-															<td>$2000</td>
-															<td><button onclick="payment()"
-																	class="btn btn-sm btn-primary">Pagar</button></td>
-														</tr>
-														<tr>
-															<td>2</td>
-															<td>02/07/2020</td>
-															<td>$2000</td>
-															<td><button onclick="payment()"
-																	class="btn btn-sm btn-primary">Pagar</button></td>
-														</tr>
+														<c:forEach var="payment" items="${loan.getPayments() }">
+															<tr>
+																<td>?</td>
+																<td>${Cmd.getFormattedDate(payment.getDate(), false)}</td>
+															<td>$ ${loan.getMonthAmmount()}</td>
+																<td>
+																	<c:if test="${payment.getState() == 0 }">
+																		<button onclick="payment(${payment.getFeePaymentId()})"
+																			class="btn btn-sm btn-primary">Pagar</button>
+																	</c:if>
+																	<c:if test="${payment.getState() == 1 }">
+																		<button disabled
+																			class="btn btn-sm btn-success">Pago</button>
+																	</c:if>
+																</td>
+															</tr>
+														</c:forEach>
 													</tbody>
 												</table>
 											</td>
@@ -177,24 +175,33 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
+								<form action="" onsubmit="return requestPaymentForm()">
 								<div class="modal-body">
 									<div class="row my-3">
 										<div class="col">Seleccione la cuenta:</div>
 										<div class="col">
-											<select name="cmbAccounts" id="cmbAccounts">
-												<option value="">################</option>
-												<option value="">################</option>
+											<select name="cmbAccPayment" id="cmbAccPayment">
+												<c:forEach var="acc" items="${accounts }">
+													<option value="${acc.getIdAccount()}" data-toggle="tooltip"
+														title="${acc.getTypeAcc().getDescription()}">${acc.getNameAccount()}
+														- CBU: ${acc.getCBU()}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>
-
+									<input type="hidden" id="idPaymentLoan" />
+									<div class="row mt-1"> 
+									<div class="ml-auto mr-auto mb-0 alert alert-danger hide" id="alertPayment">
+									</div>
+									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn bkg-orange text-light btn-sm"
+									<button class="btn bkg-orange text-light btn-sm"
 										name="btnNewAccount">Pagar</button>
 									<button type="button" class="btn btn-secondary btn-sm"
 										data-dismiss="modal" name="btnCancel">Cancelar</button>
 								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -203,5 +210,11 @@
 
 		</div>
 	</div>
+	<script type="text/javascript">
+	$('#modalPayments').on('hidden.bs.modal', function() {
+		let alert = $("#alertPayment")[0];
+		alert.style.display = "none";
+	});
+	</script>
 </body>
 </html>

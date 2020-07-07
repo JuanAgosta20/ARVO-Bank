@@ -84,7 +84,7 @@
 				<li class="nav-item"><a class="nav-link text-light ml-3"
 					href="clTransfers.do">Transferencias </a></li>
 				<li class="nav-item"><a class="nav-link text-light ml-3"
-					href="clLoans.do"<%-- href="loans.jsp?view=pageMyLoans" --%> >Préstamos</a>
+					href="clLoans.do" >Préstamos</a>
 				</li>
 			</ul>
 		</div>
