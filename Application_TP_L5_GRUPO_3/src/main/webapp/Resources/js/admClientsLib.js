@@ -3,13 +3,26 @@
  */
 $(document).ready(function(){
 		var table = $('#tbClients')
-			.DataTable({
-				"paging": "first_last_numbers"
+			.dataTable({
+				"paging": "first_last_numbers",
+				"oLanguage":{
+					"oPaginate":{
+						"sNext":"&raquo;",
+						"sPrevious": "&laquo;"
+					},
+						"sSearch":"Buscar...",
+						"sEmptyTable" : "No se encontraron datos.",
+						"sLengthMenu" : 'Mostrar <select><option value="10">10</option></select>',
+						"sZeroRecords": "No hay nada para mostrar",
+						"sInfo":""
+				
+				}
 			})
 			
+			getCities();
 	});
 	
-	var existMail =true ,checkUser = true;
+	var existMail =true ,checkUser = true,checkDoc = true;
 	function setName(){
 		
 		let dropCities = document.getElementById('cities');
@@ -23,7 +36,7 @@ $(document).ready(function(){
 		if(!checkEmail && !checkUserName) document.getElementById('agregar').disabled = false;
 	}
 	
-	getCities();
+	
 	async function getCities() {
 			console.log('Dentro de get cities')
 			let selCities = document.getElementById('cities');
@@ -69,7 +82,7 @@ $(document).ready(function(){
 				document.getElementById('badmail').style.display = 'none';
 			}
 			
-			if(!existMail && !checkUser) document.getElementById('agregar').disabled = false;
+			if(!existMail && !checkUser && !checkDoc) document.getElementById('agregar').disabled = false;
 		})
 		
 		
@@ -93,7 +106,31 @@ $(document).ready(function(){
 				document.getElementById('badusername').style.display = 'none';
 			}
 			
-			if(!existMail && !checkUser) document.getElementById('agregar').disabled = false;
+			if(!existMail && !checkUser && !checkDoc) document.getElementById('agregar').disabled = false;
+		})
+		
+	}
+	
+	
+	async function checkDni(){
+		let value = document.getElementById('DNI').value;
+		console.log(value);
+		await fetch('checkDni.do?dni=' + value ,
+				{
+					method:'GET'
+				})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data.existe);
+			checkDoc = data.existe;
+			if(data.existe){
+				document.getElementById('baddni').style.display = 'block';
+				document.getElementById('agregar').disabled = true;
+			}else {
+				document.getElementById('baddni').style.display = 'none';
+			}
+			
+			if(!existMail && !checkUser && !checkDoc) document.getElementById('agregar').disabled = false;
 		})
 		
 	}

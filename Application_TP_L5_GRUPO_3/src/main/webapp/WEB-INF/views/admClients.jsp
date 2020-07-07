@@ -26,29 +26,26 @@
 
 	<div class="container-fluid mt-3">
 		<form action="admClientsList.do?" method="POST">
-			<input type="hidden" id="skip" name="skip" value=${skip }></input> <input
-				type="hidden" id="take" name="take" value=${take }></input> <input
-				type="hidden" id="page" name="page" value=${page }></input>
-			<h4 class="text-blue">Clientes</h4>
-			<div class="row my-3 justify-content-between">
-				<div class="col">
-				</div>
-
-				<div class="col-auto">
-					<a class="btn btn-info" data-toggle="modal" href="#modalNewClient">
-						<i class="material-icons">account_circle</i> Nuevo Cliente
-					</a>
+			<div class="container">
+				<h4 class="text-blue">Clientes</h4>
+				<div class="row my-3 justify-content-between">
+					<div class="col"></div>
+	
+					<div class="col-auto">
+						<a class="btn btn-info" data-toggle="modal" href="#modalNewClient">
+							<i class="material-icons">account_circle</i> Nuevo Cliente
+						</a>
+					</div>
 				</div>
 			</div>
 
 			<div class="container">
 				<div class="row">
-
-
 					<div class="col m-auto">
 
 						<!--Table-->
-						<table id="tbClients" class="table table-hover table-striped table-sm">
+						<table id="tbClients"
+							class="table table-hover table-striped table-sm">
 
 							<thead>
 								<tr>
@@ -72,7 +69,7 @@
 										<td>${client.lastName}</td>
 										<td>${client.firstName}</td>
 										<td>${client.dni}</td>
-										<td>${client.birthdate}</td>
+										<td>${client.getFormatedBirthDate()}</td>
 										<td>${client.genre.description}</td>
 										<td>${client.email}</td>
 										<td>${client.nationality.name}</td>
@@ -124,13 +121,17 @@
 										for="lastname">Apellido/s</label> <input class="form-control"
 										type="text" id="lastname" name="lastname" required></input> <label
 										for="DNI">D.N.I</label> <input class="form-control"
-										type="number" id="DNI" name="DNI" placeholder="ej: 40300423"
-										required></input> <label for="birthdate">Fecha de
-										nacimiento</label> <input class="form-control" type="date"
-										id="birthdate" name="birthdate" required></input> <label
-										for="mail">Email</label> <input onblur="checkEmail();"
-										class="form-control" type="email" id="mail" name="mail"
+										type="number" id="DNI" name="DNI" placeholder="ej: 40300423" onblur="checkDni();"
 										required></input>
+									<div class="alert alert-danger" id="baddni"
+										style="display: none;">
+										<p>Ese DNI ya está registrado</p>
+									</div>
+									<label for="birthdate">Fecha de nacimiento</label> <input
+										class="form-control" type="date" id="birthdate"
+										name="birthdate" required></input> <label for="mail">Email</label>
+									<input onblur="checkEmail();" class="form-control" type="email"
+										id="mail" name="mail" required></input>
 									<div class="alert alert-danger" id="badmail"
 										style="display: none;">
 										<p>Ese email ya está registrado</p>
@@ -181,6 +182,6 @@
 		</div>
 	</div>
 	<!--  Fin modal nuevo cliente -->
-	
+
 </body>
 </html>
