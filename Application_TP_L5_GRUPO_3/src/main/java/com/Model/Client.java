@@ -154,7 +154,7 @@ public class Client implements Serializable {
 	
 	public String getFormatedBirthDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		String date = sdf.format(new Date());
+		String date = sdf.format(getBirthdate());
 		return date;
 	}
 
