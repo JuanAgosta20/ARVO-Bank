@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.Model.Account;
 import com.Model.Transaction;
+import com.Model.typeAccount;
 import com.Model.typeMove;
 
 public class TransactionDaoImpl implements TransactionDao {
@@ -88,8 +90,14 @@ public Boolean insertTransaction(Transaction trans) {
 
 
 	public typeMove getType(int idTypeMove) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			sh = new SessionHandler();
+			Session session = sh.getSession();
+			return (typeMove)sh.get(typeMove.class, idTypeMove);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

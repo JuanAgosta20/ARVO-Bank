@@ -314,6 +314,7 @@ public class App {
 			//
 
 			// USUARIOs
+			
 			User user = Utilities.createUser("123456", "Carlos", "Cliente");
 			User user2 = Utilities.createUser("123456", "Pablo", "Cliente");
 			User user3 = Utilities.createUser("123456", "Ellen", "Cliente");
@@ -325,6 +326,7 @@ public class App {
 			User user9 = Utilities.createUser("123456", "Curtis", "Cliente");
 			User user10 = Utilities.createUser("123456", "Kevin", "Cliente");
 
+			User arvobank = Utilities.createUser("111111", "ARVO", "Cliente");
 			User admin = Utilities.createUser("123456", "Juanc", "Admin");
 
 			typeAccount ta = Utilities.createTypeAccount("Caja de Ahorro en Pesos", true);
@@ -338,6 +340,9 @@ public class App {
 			Genre gen3 = Utilities.createGenre("Otro");
 
 			// CLIENTE
+			Client client0 = Utilities.createClient(new Date(), cities[1], "12345678", "ARVO@bank.com", "ARVO",
+					"Bank", countries[11], provs[21], gen3, arvobank);
+			
 			Client client = Utilities.createClient(new Date(), cities[1], "32235422", "carlos@gmail.com", "Carlos",
 					"Rodriguez", countries[11], provs[21], gen3, user);
 			Client client2 = Utilities.createClient(new Date(), cities[2], "23232323", "pablo@gmail.com", "Pablo",
@@ -368,7 +373,12 @@ public class App {
 					"kfeeney@gmail.com", "Kevin", "Feeney", countries[11], provs[11], gen3, user10);
 
 			// CUENTA
-			Date fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
+			Date fecha = Cmd.crearFechaHora(10, 5, 2000, 12, 12, 12);
+			Account masterPesos = Utilities.createAccount(client0, "0000000000000000000001", fecha, 1000000000000F, "Master pesos", 2, null, null,
+					ta);
+			Account masterDolares = Utilities.createAccount(client0, "0000000000000000000002", fecha, 1000000000000F, "Master dolares", 2, null, null,
+					ta2);
+		 fecha = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
 			Account acc = Utilities.createAccount(client, "1232132321334521675985", fecha, 32323.4F, "Cuenta 1", 0, null, null,
 					ta);
 			fecha = Cmd.crearFechaHora(10, 1, 2019, 10, 22, 12);
@@ -407,25 +417,25 @@ public class App {
 
 			// TRANSACCION
 			Date date = Cmd.crearFechaHora(10, 5, 2020, 12, 12, 12);
-			Transaction trans = Utilities.createTransaction(2000F, "Pagos", date, null, null, tm3);
+			Transaction trans = Utilities.createTransaction(2000F, "Pagos", date, null, null, tm3, 2000F);
 			date = Cmd.crearFechaHora(10, 2, 2020, 11, 45, 12);
-			Transaction trans2 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
+			Transaction trans2 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3,2500F);
 			date = Cmd.crearFechaHora(25, 3, 2019, 11, 42, 12);
-			Transaction trans3 = Utilities.createTransaction(2500F, "Alquiler", date, null, null, tm4);
+			Transaction trans3 = Utilities.createTransaction(2500F, "Alquiler", date, null, null, tm4,2500F);
 			date = Cmd.crearFechaHora(15, 4, 2020, 18, 45, 12);
-			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null, tm2);
+			Transaction trans4 = Utilities.createTransaction(45000F, "Pago cuota", date, null, null, tm2, 2500F);
 			date = Cmd.crearFechaHora(30, 1, 2020, 10, 45, 45);
-			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null, tm5);
+			Transaction trans5 = Utilities.createTransaction(10000F, "Otros", date, null, null, tm5, 2500F);
 			date = Cmd.crearFechaHora(18, 5, 2019, 12, 12, 23);
-			Transaction trans6 = Utilities.createTransaction(2666F, "Pago cuota", date, null, null, tm3);
+			Transaction trans6 = Utilities.createTransaction(2666F, "Pago cuota", date, null, null, tm3, 2500F);
 			date = Cmd.crearFechaHora(10, 2, 2020, 19, 46, 22);
-			Transaction trans7 = Utilities.createTransaction(25000F, "Transaccion", date, null, null, tm5);
+			Transaction trans7 = Utilities.createTransaction(25000F, "Transaccion", date, null, null, tm5, 2500F);
 			date = Cmd.crearFechaHora(10, 3, 2020, 11, 45, 12);
-			Transaction trans8 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
+			Transaction trans8 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3, 2500F);
 			date = Cmd.crearFechaHora(10, 4, 2020, 10, 00, 12);
-			Transaction trans9 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
+			Transaction trans9 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3, 2500F);
 			date = Cmd.crearFechaHora(10, 5, 2020, 19, 00, 01);
-			Transaction trans10 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3);
+			Transaction trans10 = Utilities.createTransaction(2500F, "Pago cuota", date, null, null, tm3, 2500F);
 
 			trans.setDestinationAccount(acc);
 			trans.setOriginAccount(acc2);
@@ -591,6 +601,7 @@ public class App {
 			// GUARDAR
 			session.save(trans);
 			// Guardando clientes
+			session.save(client0);
 			session.save(client);
 			session.save(client2);
 			session.save(client3);
@@ -602,6 +613,8 @@ public class App {
 			session.save(client9);
 			session.save(client10);
 			// --
+			session.save(masterPesos);
+			session.save(masterDolares);
 			session.save(acc);
 			session.save(acc2);
 			session.save(acc3);

@@ -10,8 +10,10 @@ public interface AccountDao {
 	public Boolean deleteAccount(int idAccount);
 	public Boolean acceptAccount(int idAcc, int newState);
 	public Boolean updateAccount(Account account);
+	public Boolean updateFunds(int idAcc, float funds);
 	public Boolean checkCompatibility(String CBUFrom, String CBUTo);
 	public Account getAccount(String CBU);
+	public Account getMasterAccount(Boolean ars);
 	public ArrayList<Account> getAccountsFrom(int idClient);
 	public ArrayList<Account> getAllUnchekedAccounts();
 	public int getCountAccounts(int idClient);

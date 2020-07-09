@@ -123,7 +123,7 @@ public class Utilities {
 		return user;
 	}
 
-	public static Transaction createTransaction(Float amm, String concept, Date date, Account oa, Account da, typeMove tm) {
+	public static Transaction createTransaction(Float amm, String concept, Date date, Account oa, Account da, typeMove tm, Float history) {
 		Transaction trans = new Transaction();
 
 		trans.setAmmount(amm);
@@ -133,7 +133,7 @@ public class Utilities {
 		trans.setOriginAccount(oa);
 		trans.setDestinationAccount(da);
 		trans.setTm(tm);
-
+		trans.setHistory(history);
 		return trans;
 	}
 

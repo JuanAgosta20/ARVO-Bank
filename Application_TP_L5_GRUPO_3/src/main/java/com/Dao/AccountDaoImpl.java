@@ -169,5 +169,44 @@ public class AccountDaoImpl implements AccountDao{
 		}
 	}
 
+	
+	public Boolean updateFunds(int idAcc, float funds) {
+		try {
+			sHand = new SessionHandler();
+			Account acc = (Account)sHand.get(Account.class, idAcc);
+			acc.setFunds(funds);
+			sHand.update(acc);
+			sHand.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+	}
+		}
+
+	
+	public Account getMasterAccount(Boolean ars) {
+		try {
+			sHand = new SessionHandler();
+			Session session = sHand.getSession();
+			if(ars) {
+			String hql = "From Account acc WHERE acc.idAccount = 1";
+			Query query = (Query) session.createQuery(hql);
+			
+			return (Account) query.uniqueResult();
+			}
+			else {
+				String hql = "From Account acc WHERE acc.idAccount = 2";
+				Query query = (Query) session.createQuery(hql);
+				
+				return (Account) query.uniqueResult();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}	
+		
+	}
+
 
 }

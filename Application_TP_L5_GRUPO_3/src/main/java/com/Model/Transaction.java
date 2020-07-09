@@ -33,7 +33,9 @@ public class Transaction implements Serializable{
 	@ManyToOne()
 	@JoinColumn(name = "idTypeMove")
 	private typeMove tm;
+private Float history;
 
+	
 	public Transaction() {
 		super();
 	}
@@ -100,6 +102,14 @@ public class Transaction implements Serializable{
 
 	public void setTm(typeMove tm) {
 		this.tm = tm;
+	}
+
+	public Float getHistory() {
+		return history;
+	}
+
+	public void setHistory(Float history) {
+		this.history = history;
 	}
 	
 	

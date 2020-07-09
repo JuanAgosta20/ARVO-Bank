@@ -60,4 +60,16 @@ public class AccountServiceImpl implements AccountService{
 		return ad.updateAccount(account);
 	}
 
+	
+	public Boolean updateFunds(int idAcc, float funds) {
+		
+		return ad.updateFunds(idAcc, funds);
+	}
+
+	
+	public Account getMasterAccount(Boolean ars) {
+		// TODO Auto-generated method stub
+		return ad.getMasterAccount(ars);
+	}
+
 }
