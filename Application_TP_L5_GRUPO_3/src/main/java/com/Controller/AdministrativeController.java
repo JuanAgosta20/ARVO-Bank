@@ -205,13 +205,13 @@ public class AdministrativeController {
 
 		try {
 			Client client = cs.readClient(id);
+			MV.addObject("accounts", accs.getAccountsFrom(client.getIdClient()));
+			MV.addObject("loans", loanser.getLoansFrom(client.getIdClient()));
 			MV.addObject("client", client);
 			MV.addObject("countries", ls.getAllCountries());
 			MV.addObject("genres", gs.getAllGenres());
 			ArrayList<Province> provs = ls.getAllProvince();
 			MV.addObject("provinces", provs);
-			ArrayList<Account> acc = accs.getAccountsFrom(client.getIdClient());
-			MV.addObject("accounts", acc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MV;

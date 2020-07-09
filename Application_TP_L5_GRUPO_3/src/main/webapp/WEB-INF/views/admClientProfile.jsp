@@ -13,9 +13,8 @@
 <!DOCTYPE html>
 
 <%
-	if (session.getAttribute("user") == null
-			|| !(session.getAttribute("user").getClass().equals(Administrative.class)))
-		response.sendRedirect("redirectIndex.do");
+	if (session.getAttribute("user") == null || !(session.getAttribute("user").getClass().equals(Administrative.class)))
+	response.sendRedirect("redirectIndex.do");
 %>
 <html>
 <head>
@@ -31,10 +30,10 @@
 		<div class="row">
 			<div class="col-12">
 				<h4 class="text-blue mb-4 ml-4">Perfil Cliente</h4>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-4">
-								<form action="admUpdateClient.do" method="post">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-4">
+							<form action="admUpdateClient.do" method="post">
 								<table id="tbUserProfile" style="width: 80%">
 									<tr>
 										<td colspan="2" class="text-center"><img id="userAvatar"
@@ -42,12 +41,13 @@
 									</tr>
 									<tr>
 										<td colspan="2" class="text-center"><h4>${client.firstName }
-												${client.lastName}</h4><input type="hidden" name="txtIdClient" value="${client.idClient }"></input></td>
+												${client.lastName}</h4> <input type="hidden" name="txtIdClient"
+											value="${client.idClient }"></input></td>
 									</tr>
 									<tr class="mb-3">
-										<td class="text-right">
-											<a href="admDeleteClient.do?idClient=${client.idClient}&idUser=${client.user.idUser}" class="btn btn-danger">Eliminar</a>
-										</td>
+										<td class="text-right"><a
+											href="admDeleteClient.do?idClient=${client.idClient}&idUser=${client.user.idUser}"
+											class="btn btn-danger">Eliminar</a></td>
 										<td class="text-center"><button name="btnModify"
 												type="button" class="btn btn-success" onclick="Hide()">Modificar</button></td>
 									</tr>
@@ -58,14 +58,16 @@
 									<tr>
 										<td><b>DNI:</b></td>
 										<td><label style="width: 100px;" id="lblDni">${client.dni}</label>
-											<input value="${client.dni}" id="txtDni" name="txtDni" type="text"
-											style="display: none; width: 200px;" onchange="ShowConfirm()" readonly></input></td>
+											<input value="${client.dni}" id="txtDni" name="txtDni"
+											type="text" style="display: none; width: 200px;"
+											onchange="ShowConfirm()" readonly></input></td>
 									</tr>
 									<tr>
 										<td><b>Género:</b></td>
 										<td><label style="width: 100px;" id="lblGenre">${client.genre.description}</label>
-											<select name="drpGenre" id="drpGenre" name="drpGenre" onchange="ShowConfirm()"
-											style="display: none; width: 200px;" required>
+											<select name="drpGenre" id="drpGenre" name="drpGenre"
+											onchange="ShowConfirm()" style="display: none; width: 200px;"
+											required>
 												<c:forEach var="genre" items="${genres}">
 													<c:if test="${genre.idGenre.equals(client.genre.idGenre)}">
 														<option selected value="${genre.idGenre}">
@@ -82,23 +84,27 @@
 									<tr>
 										<td><b>Email:</b></td>
 										<td><label style="width: 100px;" id="lblEmail">${client.email}</label>
-											<input value="${client.email}" id="txtEmail" name="txtEmail" type="email"
-											style="display: none; width: 200px;" onchange="checkEmail()" required></input>
-										</td>
-										<td><div class="alert alert-danger m-0 p-0" style="display: none; margin:0px" id="badmail">&times</div></td>
+											<input value="${client.email}" id="txtEmail" name="txtEmail"
+											type="email" style="display: none; width: 200px;"
+											onchange="checkEmail()" required></input></td>
+										<td><div class="alert alert-danger m-0 p-0"
+												style="display: none; margin: 0px" id="badmail">&times</div></td>
 									</tr>
 									<tr>
 										<td><b>Fecha Nac:</b></td>
 										<td><label style="width: 100px;" id="lblDate"><fmt:formatDate
 													value="${client.birthdate }" pattern="dd-MM-yyyy" /></label> <input
 											value="<fmt:formatDate value="${client.birthdate }" pattern = "yyyy-MM-dd"/>"
-											id="txtDate" name="txtDate" type="date" style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
+											id="txtDate" name="txtDate" type="date"
+											style="display: none; width: 200px;" onchange="ShowConfirm()"
+											required></input></td>
 									</tr>
 									<tr>
 										<td><b>Nacionalidad:</b></td>
 										<td><label style="width: 100px;" id="lblCountry">${client.nationality.name}</label>
-											<select name="drpCountry" id="drpCountry"  onchange="ShowConfirm()"
-											style="display: none; width: 200px;" required>
+											<select name="drpCountry" id="drpCountry"
+											onchange="ShowConfirm()" style="display: none; width: 200px;"
+											required>
 												<c:forEach var="country" items="${countries}">
 													<c:if
 														test="${country.idCountrie.equals(client.nationality.idCountrie)}">
@@ -117,7 +123,8 @@
 										<td><b>Provincia:</b></td>
 										<td><label style="width: 100px;" id="lblProvince">${client.province.name}</label>
 											<select name="drpProvince" id="drpProvince"
-											style="display: none; width: 200px;" onchange="showCitiesandConfirm()" required>
+											style="display: none; width: 200px;"
+											onchange="showCitiesandConfirm()" required>
 												<c:forEach var="p" items="${provinces}">
 													<c:if
 														test="${p.idProvinceApi.equals(client.province.idProvinceApi)}">
@@ -134,23 +141,26 @@
 									<tr>
 										<td><b>Ciudad:</b></td>
 										<td><label style="width: 100px;" id="lblCity">${client.city.name}</label>
-											<select name="drpCity" id="drpCity" onchange="ShowConfirm(); changeTxt();"
+											<select name="drpCity" id="drpCity"
+											onchange="ShowConfirm(); changeTxt();"
 											style="display: none; width: 200px;" required>
 												<option value="${client.city.name}">${client.city.name}</option>
-										</select>
-										<input type="hidden" name="txtIdCity" id="txtIdCity"></input></td>
+										</select> <input type="hidden" name="txtIdCity" id="txtIdCity"></input></td>
 									</tr>
 									<tr>
 										<td><b>Nombre usuario:</b></td>
 										<td><label style="width: 100px;" id="lblUser">${client.user.userName}</label>
-											<input value="${client.user.userName}" id="txtUser" name="txtUser" type="text"
+											<input value="${client.user.userName}" id="txtUser"
+											name="txtUser" type="text"
 											style="display: none; width: 200px;" readonly></input></td>
 									</tr>
 									<tr>
 										<td><b>Contraseña:</b></td>
 										<td><label style="width: 100px;" id="lblPass">*******</label>
-											<input value="${client.user.password}" id="txtPass" name="txtPass" type="password"
-											style="display: none; width: 200px;" onchange="ShowConfirm()" required></input></td>
+											<input value="${client.user.password}" id="txtPass"
+											name="txtPass" type="password"
+											style="display: none; width: 200px;" onchange="ShowConfirm()"
+											required></input></td>
 									</tr>
 									<tr>
 										<td class="text-center"><a
@@ -163,108 +173,95 @@
 										</td>
 									</tr>
 								</table>
-								</form>
+							</form>
+						</div>
+
+
+						<div class="col-8">
+							<nav>
+								<div class="nav nav-tabs" id="nav-tab" role="tablist">
+									<a class="nav-item nav-link active" id="nav-accounts-tab"
+										data-toggle="tab" href="#nav-accounts" role="tab"
+										aria-controls="nav-accounts" aria-selected="true">Cuentas</a>
+									<a class="nav-item nav-link" id="nav-loans-tab"
+										data-toggle="tab" href="#nav-loans" role="tab"
+										aria-controls="nav-loans" aria-selected="false">Préstamos</a>
+
+								</div>
+							</nav>
+							<div class="tab-content" id="nav-tabContent">
+
+								<!-- Lista Cuentas -->
+
+								<div class="tab-pane fade show active" id="nav-accounts"
+									role="tabpanel" aria-labelledby="nav-accounts-tab">
+									<table class="table">
+										<thead class="thead-light">
+											<tr>
+												<th scope="col">F. Creación</th>
+												<th scope="col">CBU</th>
+												<th scope="col">Nombre</th>
+												<th scope="col">Tipo</th>
+												<th scope="col">Fondos</th>
+												<th scope="col">Acción</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="acc" items="${accounts}">
+												<tr>
+													<Form action="admDeleteAccount.do" method="POST">
+														<input type="hidden" value="${acc.getIdAccount()}"
+															name="idAccount"> <input type="hidden"
+															value="${acc.getClient().getIdClient()}" name="idClient">
+														<td>${Cmd.getFormattedDate(acc.getCreationDate(), false)}</td>
+														<td>${ acc.getCBU() }</td>
+														<td>${acc.getNameAccount()}</td>
+														<td>${acc.getTypeAcc().getDescription()}</td>
+														<td>${acc.getFunds()}</td>
+														<td><button class="btn btn-danger btn-sm">Baja</button></td>
+													</Form>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+
+								</div>
+
+								<!-- Lista Préstamos -->
+								<div class="tab-pane fade" id="nav-loans" role="tabpanel"
+									aria-labelledby="nav-loans-tab">
+									<table class="table">
+										<thead class="thead-light">
+											<tr class="table-warning">
+												<th scope="col">Fecha</th>
+												<th scope="col">Monto Total</th>
+												<th scope="col">Cant Cuotas</th>
+												<th scope="col">Monto Cuota</th>
+												<th scope="col">Estado</th>
+												<th scope="col">Pagos</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="loan" items="${ loans }">
+												<tr>
+													<td>${Cmd.getFormattedDate(loan.getDate(), false)}</td>
+													<td>$ ${loan.getAmmount()  }</td>
+													<td>${loan.getFees() }</td>
+													<td>$ ${loan.getMonthAmmount()}</td>
+													<td>${ Cmd.getLoanNameState(loan.getState()) }</td>
+													<td>${ Cmd.countPayments(loan.getPayments()) } / ${ loan.getPayments().size() }</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								<!-- Fin Lista Préstamos -->
 							</div>
-
-
-				<div class="col-8">
-					<nav>
-						<div class="nav nav-tabs" id="nav-tab" role="tablist">
-							<a class="nav-item nav-link active" id="nav-accounts-tab"
-								data-toggle="tab" href="#nav-accounts" role="tab"
-								aria-controls="nav-accounts" aria-selected="true">Cuentas</a> <a
-								class="nav-item nav-link" id="nav-loans-tab" data-toggle="tab"
-								href="#nav-loans" role="tab" aria-controls="nav-loans"
-								aria-selected="false">Préstamos</a>
-
 						</div>
-					</nav>
-					<div class="tab-content" id="nav-tabContent">
-
-						<!-- Lista Cuentas -->
-
-						<div class="tab-pane fade show active" id="nav-accounts"
-							role="tabpanel" aria-labelledby="nav-accounts-tab">
-							<table class="table">
-								<thead class="thead-light">
-									<tr>
-										<th scope="col">F. Creación</th>
-										<th scope="col">CBU</th>
-										<th scope="col">Nombre</th>
-										<th scope="col">Tipo</th>
-										<th scope="col">Fondos</th>
-										<th scope="col">Acción</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach var="acc" items="${accounts}">
-									<tr>
-										<Form action="admDeleteAccount.do" method="POST">
-										<input type="hidden" value="${acc.getIdAccount()}" name="idAccount">
-										<input type="hidden" value="${acc.getClient().getIdClient()}" name="idClient">
-										<td>${Cmd.getFormattedDate(acc.getCreationDate(), false)}</td>
-										<td>${ acc.getCBU() }</td>
-										<td>${acc.getNameAccount()}</td>
-										<td>${acc.getTypeAcc().getDescription()}</td>
-										<td>${acc.getFunds()}</td>
-										<td><button class="btn btn-danger btn-sm">Baja</button></td>
-										</Form>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-
-						</div>
-
-						<!-- Lista Préstamos -->
-						<div class="tab-pane fade" id="nav-loans" role="tabpanel"
-							aria-labelledby="nav-loans-tab">
-							<table class="table">
-								<thead class="thead-light">
-									<tr class="table-warning">
-										<th scope="col">Fecha</th>
-										<th scope="col">Monto Total</th>
-										<th scope="col">Cant Cuotas</th>
-										<th scope="col">Estado</th>
-										<th scope="col">Monto Cuota</th>
-										<th scope="col">Pagos</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>02/05/2020</td>
-										<td>$40000</td>
-										<td>20</td>
-										<td>Activo</td>
-										<td>$2000</td>
-										<td><a>2/20</a></td>
-									</tr>
-									<tr>
-										<td>05/01/2019</td>
-										<td>$5000</td>
-										<td>10</td>
-										<td class="text-success">Pagado</td>
-										<td>$500</td>
-										<td><a>10/10</a></td>
-									</tr>
-									<tr>
-										<td>02/02/2019</td>
-										<td>$120000</td>
-										<td>30</td>
-										<td class="text-danger">Rechazado</td>
-										<td>-</td>
-										<td><a>-</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- Fin Lista Préstamos -->
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 
 </body>
