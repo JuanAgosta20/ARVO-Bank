@@ -42,4 +42,22 @@ public class AccountServiceImpl implements AccountService{
 		return ad.getType(idType);
 	}
 
+
+	public Account getAccount(String CBU) {
+		
+		return ad.getAccount(CBU);
+	}
+
+	
+	public Boolean checkCompatibility(String CBUFrom, String CBUTo) {
+	
+		return ad.checkCompatibility(CBUFrom, CBUTo);
+	}
+
+	
+	public Boolean updateAccount(Account account) {
+		
+		return ad.updateAccount(account);
+	}
+
 }

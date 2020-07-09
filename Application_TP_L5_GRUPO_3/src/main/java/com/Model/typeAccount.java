@@ -19,6 +19,25 @@ public class typeAccount implements Serializable {
 	String description;
 	Boolean ars; // True pesos
 
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		typeAccount other = (typeAccount) obj;
+		if (ars == null) {
+			if (other.ars != null)
+				return false;
+		} else if (!ars.equals(other.ars))
+			return false;
+		return true;
+	}
+
 	public typeAccount() {
 		super();
 	}

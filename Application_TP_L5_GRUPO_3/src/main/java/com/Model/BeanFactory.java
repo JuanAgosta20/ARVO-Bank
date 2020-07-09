@@ -11,10 +11,12 @@ import com.Dao.GenreDaoImpl;
 import com.Dao.LocationDaoImpl;
 import com.Dao.LogInDaoImpl;
 import com.Dao.Paginator;
+import com.Dao.TransactionDaoImpl;
 import com.Services.ClientServiceImpl;
 import com.Services.AccountServiceImpl;
 import com.Services.GenreServiceImpl;
 import com.Services.LocationServiceImpl;
+import com.Services.TransactionServiceImpl;
 import com.Services.UserServiceImpl;
 
 public class BeanFactory{
@@ -68,6 +70,9 @@ public class BeanFactory{
 		return (Paginator) appContext.getBean("Paginator");
 	}
 	
+	public TransactionDaoImpl createTransactionDaoImpl() {
+		return (TransactionDaoImpl) appContext.getBean("TransactionDaoImpl");
+	}
 	
 	//SERVICES
 	
@@ -91,6 +96,8 @@ public class BeanFactory{
 		return (GenreServiceImpl) appContext.getBean("GenreServiceImpl");
 	}
 
-
+	public TransactionServiceImpl createTransactionServiceImpl() {
+		return (TransactionServiceImpl) appContext.getBean("TransactionServiceImpl");
+	}
 	
 }

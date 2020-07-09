@@ -19,6 +19,8 @@
 	</bean>
 	<bean id="GenreDaoImpl" class="com.Dao.GenreDaoImpl">
 	</bean>
+	<bean id="TransactionDaoImpl" class="com.Dao.GenreDaoImpl">
+	</bean>
 	<bean id="LocationDaoImpl" class="com.Dao.LocationDaoImpl">
 	</bean>
 	<bean id="AccountDaoImpl" class="com.Dao.AccountDaoImpl"
@@ -43,6 +45,9 @@
 		class="com.Services.LocationServiceImpl">
 	</bean>
 
+<bean id="TransactionServiceImpl"
+		class="com.Services.LocationServiceImpl">
+	</bean>
 
 	<bean id="AccountServiceImpl" class="com.Services.AccountServiceImpl">
 	</bean>
