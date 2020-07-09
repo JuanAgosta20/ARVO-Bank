@@ -14,3 +14,14 @@ function requestLoanForm() {
 	}
 	return true;
 }
+
+function requestPaymentForm() {
+	let acc = $("#cmbAccPayment")[0];
+	let alert = $("#alertPayment")[0];
+	if (acc.options.length === 0) {
+		alert.textContent = "Debe seleccionar una cuenta";
+		alert.style.display = "block";
+		return false;
+	}
+	return true;
+}

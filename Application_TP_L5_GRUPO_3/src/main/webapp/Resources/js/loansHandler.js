@@ -1,14 +1,17 @@
 
-function showLoanPayments(btn, id){
-	if(btn.textContent.includes("Ver")){
+function showLoanPayments(btn, id) {
+	if (btn.textContent.includes("Ver")) {
 		btn.textContent = "Ocultar Pagos";
-		$('#loanId'+id).show();
-	}else{
+		$('#loanId' + id).show();
+	} else {
 		btn.textContent = "Ver Pagos";
-		$('#loanId'+id).hide();
+		$('#loanId' + id).hide();
 	}
 }
 
-function payment(){
+function payment(FeePaymentId, LoanId) {
+	$('#idFeePayment').val(FeePaymentId);
+	$('#idLoan').val(LoanId);
 	$('#modalPayments').modal('show');
 }
+

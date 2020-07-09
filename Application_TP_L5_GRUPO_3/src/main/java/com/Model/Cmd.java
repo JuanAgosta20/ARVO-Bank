@@ -5,12 +5,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class Cmd {
 
+	public static LocalDate crearFecha(Date date) {
+	    return date.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
+	}
+	
+	public static Date crearFecha(LocalDate ldate) {
+		return Date.from(ldate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	}
+	
 	public static Date crearFecha() {
 		LocalDate ldate = LocalDate.now();
 		return Date.from(ldate.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -49,7 +61,7 @@ public class Cmd {
 				"Denegado",
 				"Pendiente",
 				"Activo",
-				"Pago"
+				"Finalizado"
 		};
 		
 		return states[state];
@@ -62,14 +74,28 @@ public class Cmd {
 		return date;
 	}
 	
-	public static String crearCBU(String dni, int countAcc) {
-		StringBuilder strbuild = new StringBuilder("45072230");
-		Random rng = new Random(Integer.parseInt(dni+countAcc));
-		for (int i = 0; i < 13; i++) {
+	public static int countPayments(List<FeePayment> list) {
+		int count = 0;
+		for (FeePayment fee : list) {
+			if(fee.getState().equals(1))
+				count++;
+		}
+		return count;
+	}
+	
+	public static String crearCBU(String dni) {
+		StringBuilder strbuild = new StringBuilder("4507223");
+		Random rng = new Random(System.nanoTime());
+		for (int i = 0; i < 8; i++) {
 			int num = rng.nextInt(10);
 			strbuild.append(num);
 		}
-		strbuild.append(countAcc + 1);
+		
+		rng = new Random(Integer.parseInt(dni));
+		for (int i = 0; i < 7; i++) {
+			int num = rng.nextInt(10);
+			strbuild.append(num);
+		}
 		return strbuild.toString();
 	}
 	

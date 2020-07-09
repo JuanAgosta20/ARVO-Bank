@@ -15,6 +15,10 @@ public class ClientDaoImpl implements ClientDao {
 	SessionHandler sHand;
 	Session session;
 
+	public void destroy() {
+		sHand.close();
+	}
+	
 	public Boolean insertClient(Client client) {
 		sHand = new SessionHandler();
 		session = sHand.getSession();
@@ -25,6 +29,7 @@ public class ClientDaoImpl implements ClientDao {
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
 			session.getTransaction().rollback();
+			session.close();
 			return false;
 		}
 	}
@@ -34,6 +39,7 @@ public class ClientDaoImpl implements ClientDao {
 		try {
 			sHand.update(client);
 			sHand.commit();
+			sHand.close();
 			return true;
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
@@ -45,6 +51,7 @@ public class ClientDaoImpl implements ClientDao {
 		sHand = new SessionHandler();
 		try {
 			Client client = (Client) sHand.get(Client.class, id);
+			sHand.close();
 			return client;
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
@@ -142,6 +149,16 @@ public class ClientDaoImpl implements ClientDao {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public Boolean dniExist(String dni) {
+		sHand = new SessionHandler();
+		String hql = "From Client c where c.dni = :dni";
+		Query query = sHand.getSession().createQuery(hql);
+		if(query.setParameter("dni", dni).setMaxResults(1).list().size() == 1) {
+			return true;
+		}
+		return false;
 	}
 
 }

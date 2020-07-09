@@ -49,4 +49,8 @@ public class ClientServiceImpl implements ClientService{
 		return cd.getClientByUserId(user);
 	}
 
+	public Boolean dniExist(String dni) {
+		return cd.dniExist(dni);
+	}
+
 }

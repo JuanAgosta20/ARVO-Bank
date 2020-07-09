@@ -28,6 +28,7 @@ public class AccountDaoImpl implements AccountDao{
 			sHand = new SessionHandler();
 			sHand.save(acc);
 			sHand.commit();
+			sHand.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,6 +43,7 @@ public class AccountDaoImpl implements AccountDao{
 			acc.setState(0);
 			sHand.update(acc);
 			sHand.commit();
+			sHand.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,8 +53,12 @@ public class AccountDaoImpl implements AccountDao{
 
 
 	public ArrayList<typeAccount> getAllTypes() {
-		sHand = new SessionHandler();
-		return (ArrayList<typeAccount>)sHand.getAllData(typeAccount.class);
+		try {
+			sHand = new SessionHandler();
+			return (ArrayList<typeAccount>)sHand.getAllData(typeAccount.class);
+		} finally {
+			sHand.close();
+		}	
 	}
 
 	public ArrayList<Account> getAllUnchekedAccounts() {
@@ -66,6 +72,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			sHand.close();
 		}
 	}
 
@@ -77,7 +85,7 @@ public class AccountDaoImpl implements AccountDao{
 			int accCount = getCountAccounts(acc.getClient().getIdClient());
 			if(accCount == -1 || accCount >= 4)
 				throw new Exception();
-			acc.setCBU(Cmd.crearCBU(acc.getClient().getDni(), accCount));
+			acc.setCBU(Cmd.crearCBU(acc.getClient().getDni()));
 			acc.setFunds(0f);
 			acc.setNameAccount("Cuenta Nro " + (accCount + 1));
 			sHand.update(acc);
@@ -86,6 +94,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}finally {
+			sHand.close();
 		}
 		
 	}
@@ -101,6 +111,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			sHand.close();
 		}
 	}
 
@@ -111,6 +123,8 @@ public class AccountDaoImpl implements AccountDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			sHand.close();
 		}
 	}
 
@@ -120,7 +134,7 @@ public class AccountDaoImpl implements AccountDao{
 		Query query = (Query) session.createQuery(hql);
 		query.setParameter("id", idClient);
 		try {
-			return ((Long)query.uniqueResult()).intValue();
+			return ((Number)query.uniqueResult()).intValue();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;

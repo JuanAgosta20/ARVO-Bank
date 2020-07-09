@@ -30,4 +30,8 @@ public class LoanServiceImpl implements LoanService{
 		return ld.getAllUnchekedLoans();
 	}
 
+	public Boolean Payment(int idLoan, int idFeePayment) {
+		return ld.Payment(idLoan, idFeePayment);
+	}
+
 }

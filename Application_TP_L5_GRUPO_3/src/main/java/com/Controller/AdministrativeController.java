@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -62,19 +63,16 @@ public class AdministrativeController {
 	UserService us = new UserServiceImpl();
 	LoanService loanser = new LoanServiceImpl();
 
+	
+	
 	@RequestMapping(value = "admClientsList")
-	public ModelAndView ClientsList(ModelAndView mv,Integer skip, Integer take, Integer page) {
-		Paginator paginator = bf.createPaginator();
+	public ModelAndView ClientsList(ModelAndView mv) {
 		if (mv.isEmpty())
 			mv = new ModelAndView("admClients");
 		
-		mv.addObject("clients", paginator.Paginate(Client.class, take, skip));
+		mv.addObject("clients", cs.readClients());
 		mv.addObject("countries", ls.getAllCountries());
 		mv.addObject("province", ls.getAllProvince());
-		mv.addObject("totalpages",paginator.getTotalPages(Client.class, take));
-		mv.addObject("page",page);
-		mv.addObject("skip",skip);
-		mv.addObject("take",take);
 
 		return mv;
 	}
@@ -130,7 +128,7 @@ public class AdministrativeController {
 		MV.addObject("result", result);
 		MV.addObject("msg", new String[] { "Ha ocurrido un error", "Operación realizada correctamente" });
 
-		return ClientsList(MV,0,10,1);
+		return ClientsList(MV);
 	}
 
 	@RequestMapping(value = "checkEmail", method = RequestMethod.GET)
@@ -138,6 +136,17 @@ public class AdministrativeController {
 	public String checkEmail(String mail) {
 		System.out.println("Entro a check email" + mail);
 		if (cs.emailExist(mail)) {
+			return "{\"existe\": true}";
+		}
+		return "{\"existe\": false}";
+
+	}
+	
+	@RequestMapping(value = "checkDni", method = RequestMethod.GET)
+	@ResponseBody
+	public String checkDni(String dni) {
+		System.out.println("Entro a check email" + dni);
+		if (cs.dniExist(dni)) {
 			return "{\"existe\": true}";
 		}
 		return "{\"existe\": false}";
@@ -196,13 +205,13 @@ public class AdministrativeController {
 
 		try {
 			Client client = cs.readClient(id);
+			MV.addObject("accounts", accs.getAccountsFrom(client.getIdClient()));
+			MV.addObject("loans", loanser.getLoansFrom(client.getIdClient()));
 			MV.addObject("client", client);
 			MV.addObject("countries", ls.getAllCountries());
 			MV.addObject("genres", gs.getAllGenres());
 			ArrayList<Province> provs = ls.getAllProvince();
 			MV.addObject("provinces", provs);
-			ArrayList<Account> acc = accs.getAccountsFrom(client.getIdClient());
-			MV.addObject("accounts", acc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MV;
@@ -254,7 +263,7 @@ public class AdministrativeController {
 		Boolean result = cs.deleteClient(idClient, idUser);
 		MV.addObject("result", result);
 		MV.addObject("msg", new String[] { "Ha ocurrido un error", "La eliminación fue realizada correctamente" });
-		return ClientsList(MV,0,10,1);
+		return ClientsList(MV);
 	}
 
 	@RequestMapping("admLoans")

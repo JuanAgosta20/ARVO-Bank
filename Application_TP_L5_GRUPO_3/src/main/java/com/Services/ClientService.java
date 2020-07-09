@@ -14,4 +14,5 @@ public interface ClientService {
 	public Client readClient(int id);
 	public ArrayList<Client> readClients();
 	public Boolean emailExist(String email);
+	public Boolean dniExist(String dni);
 }
