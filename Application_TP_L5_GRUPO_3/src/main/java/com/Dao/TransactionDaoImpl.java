@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.Model.Account;
 import com.Model.Transaction;
 import com.Model.typeMove;
 
@@ -31,13 +32,23 @@ public Boolean insertTransaction(Transaction trans) {
 
 
 
-	@Override
+	
 	public Boolean verifyTransaction(Transaction trans) {
+		try {
+		sh = new SessionHandler();
+		Account acc = (Account)sh.get(Account.class, trans.getOriginAccount().getIdAccount());
+			
+		if (acc.getFunds() >= trans.getAmmount() && acc.getState()==2) {
+			return true;
+		}
+		else return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			sh.close();
+		}
 		
-		
-		
-		
-		return null;
 	}
 
 

@@ -16,18 +16,17 @@ public class TransactionServiceImpl implements TransactionService {
 		return td.insertTransaction(trans);
 		}
 
-	@Override
+	
 	public Boolean verifyTransaction(Transaction trans) {
-		// TODO Auto-generated method stub
-		return null;
+		return td.verifyTransaction(trans);
 	}
 
-	@Override
+
 	public ArrayList<Transaction> getAllTransactions(int idAccount) {
 		return td.getAllTransactions(idAccount);
 	}
 
-	@Override
+	
 	public ArrayList<Transaction> getTransactionsFrom(int idAccount) {
 		
 		return td.getTransactionsFrom(idAccount);
