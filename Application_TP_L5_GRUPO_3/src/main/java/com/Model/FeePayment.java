@@ -16,7 +16,7 @@ public class FeePayment implements Serializable {
 	@Column
 	private Date date;
 	Float ammount;
-	private int state;
+	private Integer state;
 	private int nPayment;
 
 	public FeePayment() {
@@ -31,11 +31,11 @@ public class FeePayment implements Serializable {
 		this.feePaymentId = feePaymentId;
 	}
 
-	public int getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 

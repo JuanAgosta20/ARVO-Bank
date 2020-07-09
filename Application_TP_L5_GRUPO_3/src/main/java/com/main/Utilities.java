@@ -155,7 +155,7 @@ public class Utilities {
 		FeePayment fp = new FeePayment();
 		fp.setAmmount(ammount);
 		fp.setDate(date);
-		fp.setState((byte) 1);
+		fp.setState(1);
 
 		return fp;
 	}

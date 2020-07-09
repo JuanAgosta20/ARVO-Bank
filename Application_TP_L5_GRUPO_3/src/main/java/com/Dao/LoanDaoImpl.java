@@ -98,11 +98,18 @@ public class LoanDaoImpl implements LoanDao {
 		try {
 			sh = new SessionHandler();
 			Loan loan = (Loan) sh.get(Loan.class, idLoan);
+			Boolean loanFinish = true;
 			for (FeePayment fp : loan.getPayments()) {
 				if(fp.getFeePaymentId().equals(idFeePayment)) {
 					fp.setState(1);
+				}
+				if(fp.getState().equals(0)) {
+					loanFinish = false;
 					break;
 				}
+			}
+			if(loanFinish) {
+				loan.setState(3);
 			}
 			sh.update(loan);
 			sh.commit();

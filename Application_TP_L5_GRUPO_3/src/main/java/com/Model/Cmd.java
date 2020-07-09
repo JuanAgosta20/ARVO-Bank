@@ -59,7 +59,7 @@ public class Cmd {
 				"Denegado",
 				"Pendiente",
 				"Activo",
-				"Pago"
+				"Finalizado"
 		};
 		
 		return states[state];
