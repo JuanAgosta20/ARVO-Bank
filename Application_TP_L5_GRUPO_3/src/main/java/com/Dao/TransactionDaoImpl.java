@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.Model.Account;
 import com.Model.Transaction;
-import com.Model.typeAccount;
 import com.Model.typeMove;
 
 public class TransactionDaoImpl implements TransactionDao {
