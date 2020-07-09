@@ -2,27 +2,47 @@
  * 
  */
 $(document).ready(function(){
-		var table = $('#tbClients')
-			.dataTable({
-				"paging": "first_last_numbers",
-				"oLanguage":{
-					"oPaginate":{
-						"sNext":"&raquo;",
-						"sPrevious": "&laquo;"
-					},
-						"sSearch":"Buscar...",
-						"sEmptyTable" : "No se encontraron datos.",
-						"sLengthMenu" : 'Mostrar <select><option value="10">10</option></select>',
-						"sZeroRecords": "No hay nada para mostrar",
-						"sInfo":""
-				
-				}
-			})
-			
+			tableInit();
 			getCities();
 	});
 	
 	var existMail =true ,checkUser = true,checkDoc = true;
+	
+	function tableInit(){
+		
+		$('#tbClients thead tr').clone(true).appendTo('#tbClients thead');
+		$('#tbClients thead tr:eq(1) th').each(function (i){
+			var title = $(this).text();
+			if(title !== "Perfil")
+				$(this).html('<input style="width: 100px;" type="text" placeholder="Buscar '+title+'"/>');
+			
+			$('input', this).on('keyup change', function(){
+				if(table.column(i).search() !== this.value){
+					table.column(i).search(this.value).draw();
+				}
+			});
+		});
+		
+		var table = $('#tbClients')
+		.DataTable({
+			"paging": "first_last_numbers",
+			"oLanguage":{
+				"oPaginate":{
+					"sNext":"&raquo;",
+					"sPrevious": "&laquo;"
+				},
+					"sSearch":"Buscar...",
+					"sEmptyTable" : "No se encontraron datos.",
+					"sLengthMenu" : 'Mostrar <select><option value="10">10</option></select>',
+					"sZeroRecords": "No hay nada para mostrar",
+					"sInfo":""
+			
+			},
+			fixedHeader: true,
+			orderCellsTop: true
+		})
+	}
+	
 	function setName(){
 		
 		let dropCities = document.getElementById('cities');
