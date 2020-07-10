@@ -1,5 +1,6 @@
 package com.Services;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import com.Dao.TransactionDao;
@@ -41,6 +42,16 @@ public class TransactionServiceImpl implements TransactionService {
 	
 	public typeMove getType(int idTypeMove) {
 		return td.getType(idTypeMove);
+	}
+
+
+	public ArrayList<BigInteger> getTransactionsBetween(String init, String end) {
+		return td.getTransactionsBetween(init,end);
+	}
+
+
+	public ArrayList<String> getTransactionsBetweenName(String init, String end) {
+		return td.getTransactionsBetweenName(init,end);
 	}
 
 	

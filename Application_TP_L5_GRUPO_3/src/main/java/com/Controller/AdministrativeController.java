@@ -42,6 +42,8 @@ import com.Services.GenreService;
 import com.Services.GenreServiceImpl;
 import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
+import com.Services.TransactionService;
+import com.Services.TransactionServiceImpl;
 import com.Services.UserService;
 import com.Services.UserServiceImpl;
 import com.Services.LoanService;
@@ -62,6 +64,7 @@ public class AdministrativeController {
 	AccountService accs = new AccountServiceImpl();
 	UserService us = new UserServiceImpl();
 	LoanService loanser = new LoanServiceImpl();
+	TransactionService ts = new TransactionServiceImpl();
 
 	
 	
@@ -300,15 +303,12 @@ public class AdministrativeController {
 	public String getTransfers(String init, String end) {
 		System.out.println("Entro a check username" + init + end);
 		// Esto se reemplaza y va en dao
-		SessionHandler sHand = new SessionHandler();
-		Session session = sHand.getSession();
-		String hql = "SELECT COUNT(idTrans) as 'quantity' FROM transactions where (date BETWEEN '" + init + "' AND '"
-				+ end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
-		String hql2 = "SELECT DATE_FORMAT(date, '%M') as 'monthName' FROM transactions where (date BETWEEN '" + init
-				+ "' AND '" + end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
+		
+		
+		
 		try {
-			ArrayList<BigInteger> arr = (ArrayList<BigInteger>) session.createSQLQuery(hql).list();
-			ArrayList<String> arr2 = (ArrayList<String>) session.createSQLQuery(hql2).list();
+			ArrayList<BigInteger> arr = ts.getTransactionsBetween(init, end);
+			ArrayList<String> arr2 = ts.getTransactionsBetweenName(init, end);
 			ArrayList<TransactionsPerMonth> arrTrans = new ArrayList<TransactionsPerMonth>();
 			for (int i = 0; i < arr.size(); i++) {
 				TransactionsPerMonth tp = new TransactionsPerMonth();

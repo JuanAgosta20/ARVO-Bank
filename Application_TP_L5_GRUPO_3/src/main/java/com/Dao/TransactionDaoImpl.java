@@ -1,5 +1,6 @@
 package com.Dao;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import org.hibernate.Query;
@@ -10,14 +11,11 @@ import com.Model.Transaction;
 import com.Model.typeMove;
 
 public class TransactionDaoImpl implements TransactionDao {
-	
-	
+
 	SessionHandler sh;
-	
-	
-	
-public Boolean insertTransaction(Transaction trans) {
-		
+
+	public Boolean insertTransaction(Transaction trans) {
+
 		try {
 			sh = new SessionHandler();
 			sh.save(trans);
@@ -29,28 +27,23 @@ public Boolean insertTransaction(Transaction trans) {
 		}
 	}
 
-
-
-
-	
 	public Boolean verifyTransaction(Transaction trans) {
 		try {
-		sh = new SessionHandler();
-		Account acc = (Account)sh.get(Account.class, trans.getOriginAccount().getIdAccount());
-			
-		if (acc.getFunds() >= trans.getAmmount() && acc.getState()==2) {
-			return true;
-		}
-		else return false;
+			sh = new SessionHandler();
+			Account acc = (Account) sh.get(Account.class, trans.getOriginAccount().getIdAccount());
+
+			if (acc.getFunds() >= trans.getAmmount() && acc.getState() == 2) {
+				return true;
+			} else
+				return false;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}finally {
+		} finally {
 			sh.close();
 		}
-		
-	}
 
+	}
 
 	public ArrayList<Transaction> getTransactionsFrom(int originAccount) {
 		try {
@@ -64,10 +57,9 @@ public Boolean insertTransaction(Transaction trans) {
 			e.printStackTrace();
 			return null;
 		}
-	
+
 	}
 
-	
 	public ArrayList<Transaction> getTransactionsTo(int destinationAccount) {
 		try {
 			sh = new SessionHandler();
@@ -96,17 +88,31 @@ public Boolean insertTransaction(Transaction trans) {
 		}
 	}
 
-
-
 	public typeMove getType(int idTypeMove) {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
-			return (typeMove)sh.get(typeMove.class, idTypeMove);
+			return (typeMove) sh.get(typeMove.class, idTypeMove);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public ArrayList<BigInteger> getTransactionsBetween(String init, String end) {
+		sh = new SessionHandler();
+		Session session = sh.getSession();
+		String hql = "SELECT COUNT(idTrans) as 'quantity' FROM transactions where (date BETWEEN '" + init + "' AND '"
+				+ end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
+		return (ArrayList<BigInteger>) session.createSQLQuery(hql).list();
+	}
+
+	public ArrayList<String> getTransactionsBetweenName(String init, String end) {
+		sh = new SessionHandler();
+		Session session = sh.getSession();
+		String hql = "SELECT DATE_FORMAT(date, '%M') as 'monthName' FROM transactions where (date BETWEEN '" + init
+				+ "' AND '" + end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
+		return (ArrayList<String>) session.createSQLQuery(hql).list();
 	}
 
 }

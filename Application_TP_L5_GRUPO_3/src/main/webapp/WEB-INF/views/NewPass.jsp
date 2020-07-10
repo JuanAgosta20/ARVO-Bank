@@ -30,7 +30,8 @@
 			<input type="submit"
 				class="btn btn-primary btn-block font-weight-bold" type="submit"
 				id="btnSubmit" value="Confirmar" disabled>
-			<label id="check" style="display:none">Las constraseñas deben ser iguales.</label>
+			<label id="lenght" style="display:none; color:red;">La constraseña debe tener al menos 10 caracteres.</label>
+			<label id="check" style="display:none; color:red;">Las constraseñas deben ser iguales.</label>
 
 		</div>
 		<input type="hidden" value="${user.user.idUser }" name="id">
@@ -45,16 +46,36 @@ function checkPass() {
 	const pass2 = document.getElementById('pass2').value;
 	const boton = document.getElementById('btnSubmit');
 	const check = document.getElementById('check');
+	const lbl = document.getElementById('lenght');
 	
-	if(pass1 === pass2){
+	if(pass1 === pass2 && pass1.length >= 10){
 		boton.disabled = false;
 		check.style.display = 'none';
-	}else{
+		lbl.style.display = 'none';
+	}else if(pass1.lenght < 10 || pass2.length < 10){
+		lbl.style.display = 'inline-block';
+		boton.disabled = true;
+	}
+	else{
 		boton.disabled = true;
 		check.style.display = 'inline-block';
 	}
 	
 	
 }
+
+/*function checkLenghtPass() {
+	const pass1 = document.getElementById('pass').value;
+	const pass2 = document.getElementById('pass2');
+	const lbl = document.getElementById('lenght');
+	
+	if(pass1.lenght < 14){
+		pass2.disabled = true;
+		lbl.style.display = 'inline-block';
+	}else{
+		lbl.style.display = 'none';
+		pass2.disabled = false;
+	}
+}*/
 </script>
 </html>
