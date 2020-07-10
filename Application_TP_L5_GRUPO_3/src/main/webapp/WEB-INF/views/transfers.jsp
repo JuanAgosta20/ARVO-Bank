@@ -15,7 +15,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<jsp:include page="Include.html"></jsp:include>
 <%@ include file="Include.html"%>
 <script src="Resources/js/multiViewHandler.js"></script>
 </head>
@@ -75,7 +74,7 @@
 						</div>
 					</div>
 					<div class="row mt-3 justify-content-md-center">
-						<div id="alertForm1" class="alert alert-danger text-center col-6">Alerta</div>
+						<div id="alertForm1" class="alert alert-danger text-center col-6 hide">Alerta</div>
 						
 					</div>
 					<div class="row mt-4 justify-content-md-center">

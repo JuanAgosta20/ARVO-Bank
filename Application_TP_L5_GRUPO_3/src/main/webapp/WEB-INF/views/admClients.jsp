@@ -24,7 +24,7 @@
 
 
 
-	<div class="container-fluid mt-3">
+	<div class="container-fluid mt-3 ml-0 pl-0">
 		<form action="admClientsList.do?" method="POST">
 			<div class="container">
 				<h4 class="text-blue">Clientes</h4>
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 
-			<div class="container">
+			<div class="container ml-0">
 				<div class="row">
 					<div class="col m-auto">
 
