@@ -8,7 +8,11 @@ import com.Model.Loan;
 
 public class LoanServiceImpl implements LoanService{
 
-	LoanDao ld = new LoanDaoImpl(); //CAMBIAR POR BEAN
+	LoanDao ld;
+	
+	public LoanServiceImpl(LoanDao ldao) {
+		this.ld = ldao;
+	}
 	
 	public Boolean insertLoan(Loan loan) {
 		return ld.insertLoan(loan);

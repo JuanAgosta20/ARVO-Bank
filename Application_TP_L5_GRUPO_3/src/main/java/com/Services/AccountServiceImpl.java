@@ -3,16 +3,16 @@ package com.Services;
 import java.util.ArrayList;
 
 import com.Dao.AccountDao;
-import com.Dao.AccountDaoImpl;
-import com.Dao.SessionHandler;
 import com.Model.Account;
-import com.Model.BeanFactory;
 import com.Model.typeAccount;
 
 public class AccountServiceImpl implements AccountService{
 
-	BeanFactory bf = new BeanFactory();
-	AccountDao ad = new AccountDaoImpl();
+	AccountDao ad;
+	
+	public AccountServiceImpl(AccountDao adao) {
+		this.ad = adao;
+	}
 	
 	public Boolean insertAccount(Account acc) {
 		return ad.insertAccount(acc);

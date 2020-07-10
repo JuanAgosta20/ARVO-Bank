@@ -4,8 +4,6 @@ package com.Services;
 import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.LogInDao;
-import com.Dao.LogInDaoImpl;
-import com.Dao.SessionHandler;
 import com.Dao.UserDao;
 import com.Dao.UserDaoImpl;
 import com.Model.Administrative;
@@ -15,24 +13,21 @@ import com.Model.User;
 
 public class UserServiceImpl implements UserService {
 
-	BeanFactory bf = new BeanFactory();
-	SessionHandler sHand = new SessionHandler();
-	
 
 	public User getUser(String userName, String pass) {
-		User user = bf.createUser();
-		LogInDao login = bf.createLogInDaoImpl();
+		User user = BeanFactory.createUser();
+		LogInDao login = BeanFactory.createLogInDaoImpl();
 		user = login.loginUser(userName, pass);
 		return user;
 	}
 
 	public Client getClient(User user) {
-		ClientDaoImpl cliDao = bf.createClientDaoImpl();
+		ClientDaoImpl cliDao = BeanFactory.createClientDaoImpl();
 		return cliDao.getClient(user);
 	}
 
 	public Administrative getAdmin(User user) {
-		AdministrativeDao admDao = bf.createAdminDaoImpl();
+		AdministrativeDao admDao = BeanFactory.createAdminDaoImpl();
 		return admDao.getAdministrative(user);
 	}
 

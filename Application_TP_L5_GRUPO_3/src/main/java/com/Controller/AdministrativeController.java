@@ -1,29 +1,16 @@
 package com.Controller;
 
-import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.mapping.Map;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBodyAdvice;
 
-import com.Dao.ClientDao;
-import com.Dao.ClientDaoImpl;
-import com.Dao.Paginator;
-import com.Dao.SessionHandler;
 import com.Model.Account;
 import com.Model.BeanFactory;
 import com.Model.City;
@@ -37,23 +24,13 @@ import com.Model.Transaction;
 import com.Model.TransactionsPerMonth;
 import com.Model.User;
 import com.Services.AccountService;
-import com.Services.AccountServiceImpl;
 import com.Services.ClientService;
-import com.Services.ClientServiceImpl;
 import com.Services.GenreService;
-import com.Services.GenreServiceImpl;
 import com.Services.LocationService;
-import com.Services.LocationServiceImpl;
 import com.Services.TransactionService;
-import com.Services.TransactionServiceImpl;
 import com.Services.UserService;
-import com.Services.UserServiceImpl;
 import com.Services.LoanService;
-import com.Services.LoanServiceImpl;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.reflect.TypeToken;
-import com.main.Utilities;
 
 @Controller
 public class AdministrativeController {
@@ -63,7 +40,7 @@ public class AdministrativeController {
 	GenreService gs = BeanFactory.createGenreServiceImpl();
 	AccountService accs = BeanFactory.createAccountServiceImpl();
 	UserService us = BeanFactory.createUserServiceImpl();
-	LoanService loanser = new LoanServiceImpl();
+	LoanService loanser = BeanFactory.createLoanServiceImpl();
 	TransactionService ts = BeanFactory.createTransactionServiceImpl();
 
 	
@@ -83,12 +60,12 @@ public class AdministrativeController {
 	public ModelAndView Clients(String name, String lastname, String DNI, String birthdate, Integer countries,
 			Integer province, String cities, String mail, Integer genre, String nameCity, String username) {
 		ModelAndView MV = new ModelAndView("admClients");
-		Client client = new Client();
+		Client client = BeanFactory.createClient();
 		Province prov = ls.getProvince(province);
 		Countrie country = ls.getCountrie(countries);
 		City city = ls.getCity(cities);
 		Genre gen = gs.getGenre(genre);
-		User user = new User();
+		User user = BeanFactory.createUser();
 
 		user.setPassword(DNI);
 		user.setUserName(username);
@@ -96,7 +73,7 @@ public class AdministrativeController {
 		user.setUserType("Cliente");
 
 		if (city == null) {
-			city = new City();
+			city = BeanFactory.createCity();
 			city.setIdCity(cities);
 			city.setName(nameCity);
 			city.setProv(prov);
@@ -237,7 +214,7 @@ public class AdministrativeController {
 		Province p = ls.getProvinceApi(drpProvince);
 		City city = ls.getCity(drpCity);
 		if (city == null) {
-			city = new City();
+			city = BeanFactory.createCity();
 			city.setIdCity(drpCity);
 			city.setName(txtIdCity);
 			city.setProv(p);
@@ -286,7 +263,7 @@ public class AdministrativeController {
 				Loan loan = loanser.getLoan(Integer.parseInt(accept));
 				Account acc = accs.getAccount(loan.getCbu());
 				Account accBank = accs.getMasterAccount(true);
-				Transaction t1 = new Transaction();
+				Transaction t1 = BeanFactory.createTransaction();
 				t1.setState((byte) 1);
 				float Saldo = loan.getAmmount();
 				t1.setAmmount(Saldo);
@@ -330,7 +307,7 @@ public class AdministrativeController {
 			ArrayList<String> arr2 = ts.getTransactionsBetweenName(init, end);
 			ArrayList<TransactionsPerMonth> arrTrans = new ArrayList<TransactionsPerMonth>();
 			for (int i = 0; i < arr.size(); i++) {
-				TransactionsPerMonth tp = new TransactionsPerMonth();
+				TransactionsPerMonth tp = BeanFactory.createTransactionsPerMonth();
 				tp.setMonthName(arr2.get(i).toString());
 				tp.setQuantity(arr.get(i));
 				arrTrans.add(tp);
