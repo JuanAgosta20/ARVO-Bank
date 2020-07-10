@@ -34,4 +34,8 @@ public class LoanServiceImpl implements LoanService{
 		return ld.Payment(idLoan, idFeePayment);
 	}
 
+	public Loan getLoan(int idLoan) {
+		return ld.getLoan(idLoan);
+	}
+
 }
