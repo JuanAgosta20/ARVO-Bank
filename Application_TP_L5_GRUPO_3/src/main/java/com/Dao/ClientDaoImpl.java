@@ -6,7 +6,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.Model.Administrative;
 import com.Model.Client;
 import com.Model.User;
 

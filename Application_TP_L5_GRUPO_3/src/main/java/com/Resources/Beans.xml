@@ -15,13 +15,37 @@
 	<bean id="administrative" class="com.Model.Administrative">
 	</bean>
 	
+	<bean id="transaction" class="com.Model.Transaction">
+	</bean>
+	
+	<bean id="transactionspermonth" class="com.Model.TransactionsPerMonth">
+	</bean>
+	
+ 	<bean id="loan" class="com.Model.Loan">
+	</bean>
+	
+	<bean id="city" class="com.Model.City">
+	</bean>
+	
 	<!-- DAO -->
+
+	<bean id="AccountDaoImpl" class="com.Dao.AccountDaoImpl" 
+		destroy-method="Destroy">
+	</bean>
+
+	<bean id="AdministrativeDaoImpl"
+		class="com.Dao.AdministrativeDaoImpl">
+	</bean>
+
+	<bean id="ClientDaoImpl" class="com.Dao.ClientDaoImpl">
+	</bean>
+	
+	<bean id="LoanDaoImpl" class="com.Dao.LoanDaoImpl">
+	</bean>
 	
 	<bean id="LogInDaoImpl" class="com.Dao.LogInDaoImpl">
 	</bean>
 	
-	<bean id="ClientDaoImpl" class="com.Dao.ClientDaoImpl">
-	</bean>
 	
 	<bean id="GenreDaoImpl" class="com.Dao.GenreDaoImpl">
 	</bean>
@@ -30,13 +54,6 @@
 	</bean>
 	
 	<bean id="LocationDaoImpl" class="com.Dao.LocationDaoImpl">
-	</bean>
-	
-	<bean id="AccountDaoImpl" class="com.Dao.AccountDaoImpl">
-	</bean>
-	
-	<bean id="AdministrativeDaoImpl"
-		class="com.Dao.AdministrativeDaoImpl">
 	</bean>
 	
 	<!--SERVICES -->
@@ -51,6 +68,11 @@
 
 	<bean id="LocationServiceImpl"
 		class="com.Services.LocationServiceImpl">
+		<constructor-arg name="ldao" ref="LocationDaoImpl"></constructor-arg>
+	</bean>
+	
+	<bean id="LoanServiceImpl" class="com.Services.LoanServiceImpl">
+		<constructor-arg name="ldao" ref="LoanDaoImpl"></constructor-arg>
 	</bean>
 
 	<bean id="TransactionServiceImpl"
@@ -59,6 +81,7 @@
 	</bean>
 
 	<bean id="AccountServiceImpl" class="com.Services.AccountServiceImpl">
+		<constructor-arg name="adao" ref="AccountDaoImpl"></constructor-arg>
 	</bean>
 
 	<bean id="GenreServiceImpl" class="com.Services.GenreServiceImpl">

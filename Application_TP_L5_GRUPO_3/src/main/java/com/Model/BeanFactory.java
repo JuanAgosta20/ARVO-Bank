@@ -8,6 +8,7 @@ import com.Dao.AccountDaoImpl;
 import com.Dao.AdministrativeDao;
 import com.Dao.ClientDaoImpl;
 import com.Dao.GenreDaoImpl;
+import com.Dao.LoanDaoImpl;
 import com.Dao.LocationDaoImpl;
 import com.Dao.LogInDaoImpl;
 import com.Dao.Paginator;
@@ -15,6 +16,7 @@ import com.Dao.TransactionDaoImpl;
 import com.Services.ClientServiceImpl;
 import com.Services.AccountServiceImpl;
 import com.Services.GenreServiceImpl;
+import com.Services.LoanServiceImpl;
 import com.Services.LocationServiceImpl;
 import com.Services.TransactionServiceImpl;
 import com.Services.UserServiceImpl;
@@ -38,6 +40,22 @@ public class BeanFactory{
 	
 	public static Client createClient() {
 		return (Client) appContext.getBean("client");
+	}
+	
+	public static Transaction createTransaction() {
+		return (Transaction) appContext.getBean("transaction");
+	}
+	
+	public static TransactionsPerMonth createTransactionsPerMonth() {
+		return (TransactionsPerMonth) appContext.getBean("transactionspermonth");
+	}
+	
+	public static Loan createLoan() {
+		return (Loan) appContext.getBean("loan");
+	}
+	
+	public static City createCity() {
+		return (City) appContext.getBean("city");
 	}
 	
 	//DAO
@@ -70,6 +88,10 @@ public class BeanFactory{
 		return (TransactionDaoImpl) appContext.getBean("TransactionDaoImpl");
 	}
 	
+	public static LoanDaoImpl createLoanDaoImpl() {
+		return (LoanDaoImpl) appContext.getBean("LoanDaoImpl");
+	}
+	
 	//SERVICES
 	
 	public static UserServiceImpl createUserServiceImpl() {
@@ -94,6 +116,10 @@ public class BeanFactory{
 
 	public static TransactionServiceImpl createTransactionServiceImpl() {
 		return (TransactionServiceImpl) appContext.getBean("TransactionServiceImpl");
+	}
+	
+	public static LoanServiceImpl createLoanServiceImpl() {
+		return (LoanServiceImpl) appContext.getBean("LoanServiceImpl");
 	}
 	
 }

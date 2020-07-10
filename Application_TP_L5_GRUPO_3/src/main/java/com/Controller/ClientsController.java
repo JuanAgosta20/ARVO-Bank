@@ -3,27 +3,21 @@ package com.Controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.Dao.SessionHandler;
 import com.Model.Account;
 import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.Cmd;
 import com.Model.Loan;
 import com.Model.Transaction;
-import com.Model.typeMove;
 import com.Services.AccountService;
-import com.Services.AccountServiceImpl;
 import com.Services.LoanService;
-import com.Services.LoanServiceImpl;
 import com.Services.TransactionService;
-import com.Services.TransactionServiceImpl;
 import com.Services.UserService;
 import com.google.gson.Gson;
 
@@ -32,7 +26,7 @@ public class ClientsController {
 	
 	UserService us = BeanFactory.createUserServiceImpl();
 	AccountService as = BeanFactory.createAccountServiceImpl();
-	LoanService ls = new LoanServiceImpl();
+	LoanService ls = BeanFactory.createLoanServiceImpl();
 	TransactionService ts = BeanFactory.createTransactionServiceImpl();
 	
 	@RequestMapping("clAccounts")
@@ -72,7 +66,7 @@ public class ClientsController {
 	public ModelAndView RequestNewAccount(int cmbAccounts, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("user");
-		Account acc = new Account();
+		Account acc = BeanFactory.createAccount();
 		acc.setState(1);
 		acc.setClient(client);
 		acc.setTypeAcc(as.getType(cmbAccounts));
@@ -88,7 +82,7 @@ public class ClientsController {
 	public ModelAndView RequestNewLoan(String txtAmmount, int cmbCuotas, String cmbAccount, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Client client = (Client) session.getAttribute("user");
-		Loan loan = new Loan();
+		Loan loan = BeanFactory.createLoan();
 		loan.setState(1);
 		loan.setClient(client);
 		float ammount = Float.parseFloat(txtAmmount);
@@ -109,8 +103,6 @@ public class ClientsController {
 	public ModelAndView RequestNewTransfer(String cmbAccountFrom, String cmbAccountTo, String txtAmmount,
 			String txtConcept, HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView("transfers");
-		HttpSession session = req.getSession();
-		Client client = (Client) session.getAttribute("user");
 
 		if (!as.checkCompatibility(cmbAccountFrom, cmbAccountTo)) {
 
@@ -139,9 +131,9 @@ public class ClientsController {
 		}
 
 		// realizada
-		Transaction t1 = new Transaction();
+		Transaction t1 = BeanFactory.createTransaction();
 		// recibida
-		Transaction t2 = new Transaction();
+		Transaction t2 = BeanFactory.createTransaction();
 
 		t1.setState((byte) 1);
 		t2.setState((byte) 1);
@@ -257,8 +249,7 @@ public class ClientsController {
 
 	@RequestMapping(value = "clPayment", method = RequestMethod.POST)
 	public ModelAndView Payment(int FeePayment, int Loan, String cmbAccPayment, HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		Client client = (Client) session.getAttribute("user");
+		
 		Loan currentLoan = ls.getLoan(Loan);
 		Account acc = as.getAccount(cmbAccPayment);
 		Account accBank = as.getMasterAccount(true);
@@ -270,7 +261,7 @@ public class ClientsController {
 		}
 
 		// realizada
-		Transaction t1 = new Transaction();
+		Transaction t1 = BeanFactory.createTransaction();
 		t1.setState((byte) 1);
 		float Saldo = currentLoan.getMonthAmmount();
 		t1.setAmmount(Saldo);
