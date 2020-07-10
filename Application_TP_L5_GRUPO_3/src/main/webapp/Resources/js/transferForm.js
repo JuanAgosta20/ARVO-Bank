@@ -26,22 +26,19 @@ function requestTransfer() {
 	return true;
 }
 
-alert("Hola");
-
 function requestTransfer3() {
-	
+
 	console.log("entra");
 	let ammount = $('#txtAmmount1')[0];
-	let acc2 = $('txtAccountTo')[0];
+	let acc2 = $('#txtAccountTo')[0];
 	let alert = $("#alertForm1")[0];
 	let concept = $("#txtConcept1")[0];
 	
-	if (acc2.value === "" || acc2.value.lenght != 22){
+	if (acc2.value === "" || acc2.value.length != 22){
 		alert.textContent = "Debe ingresar un CBU válido";
 		alert.style.display = "block";
 		return false;
 	}
-
 	if (ammount.value === "" || ammount.value <= 0) {
 		alert.textContent = "Debe ingresar un monto válido";
 		alert.style.display = "block";

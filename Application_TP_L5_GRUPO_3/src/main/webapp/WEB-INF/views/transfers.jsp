@@ -42,13 +42,13 @@
 
 				<!-- Form nueva transaccion  A TERCEROS-->
 
-				<form class="container mt-3"  method="POST" id="formT2" onsubmit=" return requestTransfer3()" style="display:none">
+				<form class="container mt-3" action="clRequesTransfer3.do"  method="POST" id="formT2" onsubmit=" return requestTransfer3()" style="display:none">
 					<div class="row">
 						<div class="col">Cuenta origen:</div>
 						<div class="col">
 							<select id="cmbAccountFrom1" name="cmbAccountFrom1" class="form-control">
 								<c:forEach var="acc" items="${accounts }">
-										<option value="${acc.getIdAccount()}">${acc.getTypeAcc().getDescription()}
+										<option value="${acc.getCBU()}">${acc.getTypeAcc().getDescription()}
 												 - Saldo $: ${acc.getFunds()}</option>
 										</c:forEach>
 							</select>
