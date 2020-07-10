@@ -118,8 +118,7 @@ public class ClientsController {
 
 		}
 
-		
-		
+			
 		Account accFrom = as.getAccount(cmbAccountFrom);
 		Account accTo = as.getAccount(cmbAccountTo);
 		
@@ -131,11 +130,6 @@ public class ClientsController {
 		
 			if (accFrom.getFunds() <= Float.parseFloat(txtAmmount)) {
 
-
-		Account accFrom = as.getAccount(cmbAccountFrom);
-		Account accTo = as.getAccount(cmbAccountTo);
-
-		if (accFrom.getFunds() <= Float.parseFloat(txtAmmount)) {
 
 			mv.addObject("result", false);
 			mv.addObject("msg", new String[] { "Fondos insuficientes" });

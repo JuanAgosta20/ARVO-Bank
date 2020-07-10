@@ -26,6 +26,8 @@ function requestTransfer() {
 	return true;
 }
 
+alert("Hola");
+
 function requestTransfer3() {
 	
 	console.log("entra");
