@@ -23,80 +23,76 @@ public class BeanFactory{
 	
 	static ApplicationContext appContext = new ClassPathXmlApplicationContext("com/Resources/Beans.xml");
 	
-	//MODEL esto no va
-	public User createUser() {
+	//MODEL
+	public static User createUser() {
 		return (User) appContext.getBean("user");
 	}
 	
-	public Account createAccount() {
+	public static Account createAccount() {
 		return (Account) appContext.getBean("account");
 	}
 	
-	public Administrative createAdministrative() {
+	public static Administrative createAdministrative() {
 		return (Administrative) appContext.getBean("administrative");
 	}
 	
-	public Client createClient() {
+	public static Client createClient() {
 		return (Client) appContext.getBean("client");
 	}
 	
 	//DAO
 
-	public LogInDaoImpl createLogInDaoImpl() {
+	public static LogInDaoImpl createLogInDaoImpl() {
 		return (LogInDaoImpl) appContext.getBean("LogInDaoImpl");
 	}
 	
-	public AdministrativeDao createAdminDaoImpl() {
+	public static AdministrativeDao createAdminDaoImpl() {
 		return (AdministrativeDao) appContext.getBean("AdministrativeDaoImpl");
 	}
 
-	public ClientDaoImpl createClientDaoImpl() {
+	public static ClientDaoImpl createClientDaoImpl() {
 		return (ClientDaoImpl) appContext.getBean("ClientDaoImpl");
 	}
 	
-	public AccountDaoImpl getAccountDaoImpl() {
+	public static AccountDaoImpl getAccountDaoImpl() {
 		return (AccountDaoImpl) appContext.getBean("AccountDaoImpl");
 	}
 	
-	public LocationDaoImpl createLocationDaoImpl() {
+	public static LocationDaoImpl createLocationDaoImpl() {
 		return (LocationDaoImpl) appContext.getBean("LocationDaoImpl");
 	}
 	
-	public GenreDaoImpl createGenreDaoImpl() {
+	public static GenreDaoImpl createGenreDaoImpl() {
 		return (GenreDaoImpl) appContext.getBean("GenreDaoImpl");
 	}
 	
-	public Paginator createPaginator() {
-		return (Paginator) appContext.getBean("Paginator");
-	}
-	
-	public TransactionDaoImpl createTransactionDaoImpl() {
+	public static TransactionDaoImpl createTransactionDaoImpl() {
 		return (TransactionDaoImpl) appContext.getBean("TransactionDaoImpl");
 	}
 	
 	//SERVICES
 	
-	public UserServiceImpl createUserServiceImpl() {
+	public static UserServiceImpl createUserServiceImpl() {
 		return (UserServiceImpl) appContext.getBean("UserServiceImpl");
 	}
 	
 
-	public ClientServiceImpl createClientServiceImpl() {
+	public static ClientServiceImpl createClientServiceImpl() {
 		return (ClientServiceImpl) appContext.getBean("ClientServiceImpl");
 	}
 	
-	public AccountServiceImpl getAccountServiceImpl() {
+	public static AccountServiceImpl createAccountServiceImpl() {
 		return (AccountServiceImpl) appContext.getBean("AccountServiceImpl");
 	}
-	public LocationServiceImpl createLocationServiceImpl() {
+	public static LocationServiceImpl createLocationServiceImpl() {
 		return (LocationServiceImpl) appContext.getBean("LocationServiceImpl");
 	}
 	
-	public GenreServiceImpl createGenreServiceImpl() {
+	public static GenreServiceImpl createGenreServiceImpl() {
 		return (GenreServiceImpl) appContext.getBean("GenreServiceImpl");
 	}
 
-	public TransactionServiceImpl createTransactionServiceImpl() {
+	public static TransactionServiceImpl createTransactionServiceImpl() {
 		return (TransactionServiceImpl) appContext.getBean("TransactionServiceImpl");
 	}
 	

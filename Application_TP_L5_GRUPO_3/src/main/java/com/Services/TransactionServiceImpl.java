@@ -10,8 +10,11 @@ import com.Model.typeMove;
 
 public class TransactionServiceImpl implements TransactionService {
 
-	TransactionDao td = new TransactionDaoImpl();
+	TransactionDao td;
 	
+	public TransactionServiceImpl(TransactionDao tdao) {
+		this.td = tdao;
+	}
 
 	public Boolean insertTransaction(Transaction trans) {
 		return td.insertTransaction(trans);

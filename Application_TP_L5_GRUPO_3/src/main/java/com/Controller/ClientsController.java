@@ -29,11 +29,10 @@ import com.Services.UserService;
 @Controller
 public class ClientsController {
 	
-	BeanFactory bf = new BeanFactory();
-	UserService us = bf.createUserServiceImpl();
-	AccountService as = new AccountServiceImpl();
+	UserService us = BeanFactory.createUserServiceImpl();
+	AccountService as = BeanFactory.createAccountServiceImpl();
 	LoanService ls = new LoanServiceImpl();
-	TransactionService ts = new TransactionServiceImpl();
+	TransactionService ts = BeanFactory.createTransactionServiceImpl();
 	
 	@RequestMapping("clAccounts")
 	public ModelAndView Accounts(ModelAndView mv, HttpServletRequest req){

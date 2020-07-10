@@ -56,17 +56,14 @@ import com.main.Utilities;
 @Controller
 public class AdministrativeController {
 
-	BeanFactory bf = new BeanFactory();
-
-	ClientService cs = bf.createClientServiceImpl();
-	LocationService ls = bf.createLocationServiceImpl();
-	GenreService gs = bf.createGenreServiceImpl();
-	AccountService accs = new AccountServiceImpl();
-	UserService us = new UserServiceImpl();
+	ClientService cs = BeanFactory.createClientServiceImpl();
+	LocationService ls = BeanFactory.createLocationServiceImpl();
+	GenreService gs = BeanFactory.createGenreServiceImpl();
+	AccountService accs = BeanFactory.createAccountServiceImpl();
+	UserService us = BeanFactory.createUserServiceImpl();
 	LoanService loanser = new LoanServiceImpl();
-	TransactionService ts = new TransactionServiceImpl();
+	TransactionService ts = BeanFactory.createTransactionServiceImpl();
 
-	
 	
 	@RequestMapping(value = "admClientsList")
 	public ModelAndView ClientsList(ModelAndView mv) {
