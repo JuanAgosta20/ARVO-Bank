@@ -122,10 +122,18 @@ public class ClientsController {
 			
 		}
 		
+		
+		
 		Account accFrom = as.getAccount(cmbAccountFrom);
 		Account accTo = as.getAccount(cmbAccountTo);
 		
-		if (accFrom.getFunds() <= Float.parseFloat(txtAmmount)) {
+		if (accTo == null || accTo.getState()!=2) {
+			mv.addObject("result", false);
+			mv.addObject("msg", new String[]{"La cuenta destino no existe o esta inactiva"});
+			return Transfers(mv, req);
+		}
+		
+			if (accFrom.getFunds() <= Float.parseFloat(txtAmmount)) {
 			mv.addObject("result", false);
 			mv.addObject("msg", new String[]{"Fondos insuficientes"});
 			return Transfers(mv, req);
@@ -170,7 +178,78 @@ public class ClientsController {
 		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Transacción realizada con éxito"});
 		return Transfers(mv, req);
 	}
-	
+		
+	@RequestMapping(value="clRequesTransfer3", method=RequestMethod.POST)
+	public ModelAndView RequestNewTransfer3(String cmbAccountFrom1, String txtAccountTo,String txtAmmount1,String txtConcept1, HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView("transfers");
+		HttpSession session = req.getSession();
+		Client client = (Client)session.getAttribute("user");
+		
+		if (!as.checkCompatibility(cmbAccountFrom1, txtAccountTo))
+		{
+			
+			mv.addObject("result", false);
+			mv.addObject("msg", new String[]{"Debe transferir a una cuenta con la misma moneda"});
+			return Transfers(mv, req);
+			
+		}
+		
+		Account accFrom = as.getAccount(cmbAccountFrom1);
+		Account accTo = as.getAccount(txtAccountTo);
+		
+		if (accTo == null || accTo.getState()!=2) {
+			mv.addObject("result", false);
+			mv.addObject("msg", new String[]{"La cuenta destino no existe o esta inactiva"});
+			return Transfers(mv, req);
+		}
+		
+		
+		if (accFrom.getFunds() <= Float.parseFloat(txtAmmount1)) {
+			mv.addObject("result", false);
+			mv.addObject("msg", new String[]{"Fondos insuficientes"});
+			return Transfers(mv, req);
+		}
+		
+		//realizada
+		Transaction t1 = new Transaction();
+		//recibida
+		Transaction t2 = new Transaction();
+		
+		t1.setState((byte) 1);
+		t2.setState((byte) 1);
+		float ammount = Float.parseFloat(txtAmmount1);
+		t1.setAmmount(ammount);
+		t2.setAmmount(ammount);
+		t1.setDate(Cmd.crearFecha());
+		t2.setDate(Cmd.crearFecha());
+		t1.setConcept(txtConcept1);
+		t2.setConcept(txtConcept1);
+		
+		t1.setOriginAccount(accFrom);
+		t1.setDestinationAccount(accTo);
+		t2.setOriginAccount(accFrom);
+		t2.setDestinationAccount(accTo);
+		float Saldo = Float.parseFloat(txtAmmount1);
+		t1.setTm(ts.getType(3));
+		t2.setTm(ts.getType(4));
+		
+		float nuevoSaldo = accFrom.getFunds() - Saldo;
+		t1.setHistory(nuevoSaldo);
+		as.updateFunds(accFrom.getIdAccount(), nuevoSaldo);	
+		nuevoSaldo = accTo.getFunds() + Saldo;
+		t2.setHistory(nuevoSaldo);
+		as.updateFunds(accTo.getIdAccount(), nuevoSaldo);
+		Boolean result;
+		if (ts.insertTransaction(t1) && ts.insertTransaction(t2)) {
+			result = true;
+			
+		} else {result = false;}
+		
+		mv.addObject("result", result);
+		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Transacción realizada con éxito a " + accTo.getClient().getFirstName()});
+		return Transfers(mv, req);
+	}
+		
 	
 
 	@RequestMapping(value="clPayment", method=RequestMethod.POST)
