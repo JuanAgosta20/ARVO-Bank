@@ -48,8 +48,9 @@ public class ClientsController {
 	}
 	
 	@RequestMapping("clTransfers")
-	public ModelAndView Transfers(HttpServletRequest req){
-		ModelAndView mv = new ModelAndView("transfers");
+	public ModelAndView Transfers(ModelAndView mv, HttpServletRequest req){
+		if(mv.isEmpty())
+		mv = new ModelAndView("transfers");
 		HttpSession session = req.getSession();
 		Client client = (Client)session.getAttribute("user");
 	    mv.addObject("accounts", as.getAccountsFrom(client.getIdClient()));
@@ -82,7 +83,7 @@ public class ClientsController {
 		Boolean result = as.insertAccount(acc);
 		ModelAndView mv = new ModelAndView("accounts");
 		mv.addObject("result", result); //true bien, false mal
-		mv.addObject("msg", new String[]{"Opps... ha ocurrido un error", "La peticiï¿½n se ha enviado correctamente"});
+		mv.addObject("msg", new String[]{"Opps... ha ocurrido un error", "La petición se ha enviado correctamente"});
 		return Accounts(mv, req);
 	}
 	
@@ -111,11 +112,30 @@ public class ClientsController {
 		ModelAndView mv = new ModelAndView("transfers");
 		HttpSession session = req.getSession();
 		Client client = (Client)session.getAttribute("user");
-	
+		
+		if (!as.checkCompatibility(cmbAccountFrom, cmbAccountTo))
+		{
+			
+			mv.addObject("result", false);
+			mv.addObject("msg", new String[]{"Debe transferir a una cuenta con la misma moneda"});
+			return Transfers(mv, req);
+			
+		}
+		
+		Account accFrom = as.getAccount(cmbAccountFrom);
+		Account accTo = as.getAccount(cmbAccountTo);
+		
+		if (accFrom.getFunds() <= Float.parseFloat(txtAmmount)) {
+			mv.addObject("result", false);
+			mv.addObject("msg", new String[]{"Fondos insuficientes"});
+			return Transfers(mv, req);
+		}
+		
 		//realizada
 		Transaction t1 = new Transaction();
 		//recibida
 		Transaction t2 = new Transaction();
+		
 		t1.setState((byte) 1);
 		t2.setState((byte) 1);
 		float ammount = Float.parseFloat(txtAmmount);
@@ -125,8 +145,7 @@ public class ClientsController {
 		t2.setDate(Cmd.crearFecha());
 		t1.setConcept(txtConcept);
 		t2.setConcept(txtConcept);
-		Account accFrom = as.getAccount(cmbAccountFrom);
-		Account accTo = as.getAccount(cmbAccountTo);
+		
 		t1.setOriginAccount(accFrom);
 		t1.setDestinationAccount(accTo);
 		t2.setOriginAccount(accFrom);
@@ -134,16 +153,22 @@ public class ClientsController {
 		float Saldo = Float.parseFloat(txtAmmount);
 		t1.setTm(ts.getType(3));
 		t2.setTm(ts.getType(4));
+		
 		float nuevoSaldo = accFrom.getFunds() - Saldo;
 		t1.setHistory(nuevoSaldo);
 		as.updateFunds(accFrom.getIdAccount(), nuevoSaldo);	
 		nuevoSaldo = accTo.getFunds() + Saldo;
 		t2.setHistory(nuevoSaldo);
 		as.updateFunds(accTo.getIdAccount(), nuevoSaldo);
-		ts.insertTransaction(t1);
-		ts.insertTransaction(t2);
+		Boolean result;
+		if (ts.insertTransaction(t1) && ts.insertTransaction(t2)) {
+			result = true;
+			
+		} else {result = false;}
 		
-		return mv;
+		mv.addObject("result", result);
+		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Transacción realizada con éxito"});
+		return Transfers(mv, req);
 	}
 	
 	
