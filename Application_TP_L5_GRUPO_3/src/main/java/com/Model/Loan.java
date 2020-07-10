@@ -27,7 +27,7 @@ public class Loan implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idClient")
 	Client client;
-	int idAccount;
+	String cbu;
 	Date date;
 	Float ammount;
 	Integer fees;
@@ -105,12 +105,12 @@ public class Loan implements Serializable{
 		this.payments = payments;
 	}
 
-	public int getIdAccount() {
-		return idAccount;
+	public String getCbu() {
+		return cbu;
 	}
 
-	public void setIdAccount(int idAccount) {
-		this.idAccount = idAccount;
+	public void setCbu(String cbu) {
+		this.cbu = cbu;
 	}
 	
 }

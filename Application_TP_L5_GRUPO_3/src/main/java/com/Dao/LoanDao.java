@@ -12,4 +12,5 @@ public interface LoanDao {
 	public ArrayList<Loan> getLoansFrom(int idClient);
 	public ArrayList<Loan> getAllUnchekedLoans();
 	public Boolean Payment(int idLoan, int idFeePayment);
+	public Loan getLoan(int idLoan);
 }

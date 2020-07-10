@@ -128,8 +128,8 @@
 								<div class="col-5">
 									<select name="cmbAccount" id="cmbAccount" class="form-control">
 										<c:forEach var="acc" items="${accounts }">
-											<option value="${acc.getIdAccount()}" data-toggle="tooltip"
-												title="${acc.getTypeAcc().getDescription()}">${acc.getNameAccount()}
+											<option value="${acc.getCBU()}" data-toggle="tooltip"
+												title="${acc.getTypeAcc().getDescription()}">$ ${acc.getFunds()}
 												- CBU: ${acc.getCBU()}</option>
 										</c:forEach>
 									</select>
@@ -165,7 +165,7 @@
 
 					<div class="modal fade" id="modalPayments" tabindex="-1"
 						role="dialog" aria-labelledby="modalPayments" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-dialog modal-dialog-centered modal-lg w-50"  role="document">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h5 class="modal-title text-blue" id="modalTitle">Pagar
@@ -177,14 +177,14 @@
 								</div>
 								<form action="clPayment.do" method="POST" onsubmit="return requestPaymentForm()">
 								<div class="modal-body p-0">
-									<div class="row my-3">
+									<div class="row my-3 ml-4">
 									<div class="form-group text-center">
 										<label for="cmbAccounts" class="m-1 ">Seleccione la cuenta: </label> 
 										<select name="cmbAccPayment" id="cmbAccPayment"
 											class="m-1 p-1">
 											<c:forEach var="acc" items="${accounts }">
-													<option value="${acc.getIdAccount()}" data-toggle="tooltip"
-														title="${acc.getTypeAcc().getDescription()}">${acc.getNameAccount()}
+													<option value="${acc.getCBU()}" data-toggle="tooltip"
+														title="${acc.getTypeAcc().getDescription()}">$ ${acc.getFunds()}
 														- CBU: ${acc.getCBU()}</option>
 												</c:forEach>
 										</select>

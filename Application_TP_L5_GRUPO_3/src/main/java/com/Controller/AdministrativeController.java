@@ -31,7 +31,9 @@ import com.Model.Client;
 import com.Model.Cmd;
 import com.Model.Countrie;
 import com.Model.Genre;
+import com.Model.Loan;
 import com.Model.Province;
+import com.Model.Transaction;
 import com.Model.TransactionsPerMonth;
 import com.Model.User;
 import com.Services.AccountService;
@@ -283,7 +285,27 @@ public class AdministrativeController {
 		Boolean result = false;
 		if (accept != null) {
 			result = loanser.acceptLoan(Integer.parseInt(accept), 2);
-			//Hacer la transferencia de plata
+			if(result) {
+				Loan loan = loanser.getLoan(Integer.parseInt(accept));
+				Account acc = accs.getAccount(loan.getCbu());
+				Account accBank = accs.getMasterAccount(true);
+				Transaction t1 = new Transaction();
+				t1.setState((byte) 1);
+				float Saldo = loan.getAmmount();
+				t1.setAmmount(Saldo);
+				t1.setDate(Cmd.crearFecha());
+				t1.setConcept("Alta de préstamo");
+				t1.setOriginAccount(accBank);
+				t1.setDestinationAccount(acc);
+				t1.setTm(ts.getType(1));
+
+				float nuevoSaldo = accBank.getFunds() - Saldo;
+				t1.setHistory(nuevoSaldo);
+				accs.updateFunds(accBank.getIdAccount(), nuevoSaldo);
+				nuevoSaldo = acc.getFunds() + Saldo;
+				accs.updateFunds(acc.getIdAccount(), nuevoSaldo);
+				result = ts.insertTransaction(t1);
+			}
 		} else if (reject != null) {
 			result = loanser.deleteLoan(Integer.parseInt(reject));
 		}
