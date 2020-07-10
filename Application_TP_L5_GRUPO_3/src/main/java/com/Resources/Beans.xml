@@ -3,39 +3,47 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
-
 	<bean id="client" class="com.Model.Client">
 	</bean>
+	
 	<bean id="user" class="com.Model.User">
 	</bean>
+	
 	<bean id="account" class="com.Model.Account">
 	</bean>
+	
 	<bean id="administrative" class="com.Model.Administrative">
 	</bean>
+	
 	<!-- DAO -->
+	
 	<bean id="LogInDaoImpl" class="com.Dao.LogInDaoImpl">
 	</bean>
+	
 	<bean id="ClientDaoImpl" class="com.Dao.ClientDaoImpl">
 	</bean>
+	
 	<bean id="GenreDaoImpl" class="com.Dao.GenreDaoImpl">
 	</bean>
-	<bean id="TransactionDaoImpl" class="com.Dao.GenreDaoImpl">
+	
+	<bean id="TransactionDaoImpl" class="com.Dao.TransactionDaoImpl">
 	</bean>
+	
 	<bean id="LocationDaoImpl" class="com.Dao.LocationDaoImpl">
 	</bean>
-	<bean id="AccountDaoImpl" class="com.Dao.AccountDaoImpl"
-		destroy-method="Destroy">
+	
+	<bean id="AccountDaoImpl" class="com.Dao.AccountDaoImpl">
 	</bean>
+	
 	<bean id="AdministrativeDaoImpl"
 		class="com.Dao.AdministrativeDaoImpl">
 	</bean>
-	<bean id="Paginator" class="com.Dao.Paginator">
-	</bean>
-
-
+	
 	<!--SERVICES -->
+	
 	<bean id="UserServiceImpl" class="com.Services.UserServiceImpl">
 	</bean>
+	
 	<bean id="ClientServiceImpl"
 		class="com.Services.ClientServiceImpl">
 		<constructor-arg name="dCli" ref="ClientDaoImpl" />
@@ -45,8 +53,9 @@
 		class="com.Services.LocationServiceImpl">
 	</bean>
 
-<bean id="TransactionServiceImpl"
-		class="com.Services.LocationServiceImpl">
+	<bean id="TransactionServiceImpl"
+		class="com.Services.TransactionServiceImpl">
+		<constructor-arg name="tdao" ref="TransactionDaoImpl"></constructor-arg>
 	</bean>
 
 	<bean id="AccountServiceImpl" class="com.Services.AccountServiceImpl">
@@ -55,6 +64,5 @@
 	<bean id="GenreServiceImpl" class="com.Services.GenreServiceImpl">
 		<constructor-arg name="gdao" ref="GenreDaoImpl" />
 	</bean>
-
 
 </beans>

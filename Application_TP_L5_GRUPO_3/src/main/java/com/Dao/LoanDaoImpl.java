@@ -120,4 +120,16 @@ public class LoanDaoImpl implements LoanDao {
 		}
 	}
 
+	public Loan getLoan(int idLoan) {
+		try {
+			sh = new SessionHandler();
+			return (Loan)sh.get(Loan.class, idLoan);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			sh.close();
+		}
+	}
+
 }

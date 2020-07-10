@@ -87,17 +87,14 @@
 															<tr>
 																<td>${ payment.getnPayment() }</td>
 																<td>${Cmd.getFormattedDate(payment.getDate(), false)}</td>
-															<td>$ ${payment.getAmmount()}</td>
-																<td>
-																	<c:if test="${payment.getState() == 0 }">
-																		<button onclick="payment(${payment.getFeePaymentId()}, ${loan.getLoanId()})"
+																<td>$ ${payment.getAmmount()}</td>
+																<td><c:if test="${payment.getState() == 0 }">
+																		<button
+																			onclick="payment(${payment.getFeePaymentId()}, ${loan.getLoanId()})"
 																			class="btn btn-sm btn-primary">Pagar</button>
-																	</c:if>
-																	<c:if test="${payment.getState() == 1 }">
-																		<button disabled
-																			class="btn btn-sm btn-success">Pago</button>
-																	</c:if>
-																</td>
+																	</c:if> <c:if test="${payment.getState() == 1 }">
+																		<button disabled class="btn btn-sm btn-success">Pago</button>
+																	</c:if></td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -128,9 +125,11 @@
 								<div class="col-5">
 									<select name="cmbAccount" id="cmbAccount" class="form-control">
 										<c:forEach var="acc" items="${accounts }">
-											<option value="${acc.getIdAccount()}" data-toggle="tooltip"
-												title="${acc.getTypeAcc().getDescription()}">${acc.getNameAccount()}
-												- CBU: ${acc.getCBU()}</option>
+											<c:if test="${acc.getTypeAcc().getArs()}">
+												<option value="${acc.getCBU()}" data-toggle="tooltip"
+													title="${acc.getTypeAcc().getDescription()}">$
+													${acc.getFunds()} - CBU: ${acc.getCBU()}</option>
+											</c:if>
 										</c:forEach>
 									</select>
 								</div>
@@ -165,7 +164,8 @@
 
 					<div class="modal fade" id="modalPayments" tabindex="-1"
 						role="dialog" aria-labelledby="modalPayments" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-dialog modal-dialog-centered modal-lg w-50"
+							role="document">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h5 class="modal-title text-blue" id="modalTitle">Pagar
@@ -175,34 +175,37 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<form action="clPayment.do" method="POST" onsubmit="return requestPaymentForm()">
-								<div class="modal-body p-0">
-									<div class="row my-3">
-									<div class="form-group text-center">
-										<label for="cmbAccounts" class="m-1 ">Seleccione la cuenta: </label> 
-										<select name="cmbAccPayment" id="cmbAccPayment"
-											class="m-1 p-1">
-											<c:forEach var="acc" items="${accounts }">
-													<option value="${acc.getIdAccount()}" data-toggle="tooltip"
-														title="${acc.getTypeAcc().getDescription()}">${acc.getNameAccount()}
-														- CBU: ${acc.getCBU()}</option>
-												</c:forEach>
-										</select>
+								<form action="clPayment.do" method="POST"
+									onsubmit="return requestPaymentForm()">
+									<div class="modal-body p-0">
+										<div class="row my-3 ml-4">
+											<div class="form-group text-center">
+												<label for="cmbAccounts" class="m-1 ">Seleccione la
+													cuenta: </label> <select name="cmbAccPayment" id="cmbAccPayment"
+													class="m-1 p-1">
+													<c:forEach var="acc" items="${accounts }">
+														<c:if test="${acc.getTypeAcc().getArs()}">
+															<option value="${acc.getCBU()}" data-toggle="tooltip"
+																title="${acc.getTypeAcc().getDescription()}">$
+																${acc.getFunds()} - CBU: ${acc.getCBU()}</option>
+														</c:if>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+										<input type="hidden" name="FeePayment" id="idFeePayment" /> <input
+											type="hidden" name="Loan" id="idLoan" />
+										<div class="row mt-1">
+											<div class="ml-auto mr-auto mb-0 alert alert-danger hide"
+												id="alertPayment"></div>
+										</div>
 									</div>
+									<div class="modal-footer">
+										<button class="btn bkg-orange text-light btn-sm"
+											name="btnNewAccount">Pagar</button>
+										<button type="button" class="btn btn-secondary btn-sm"
+											data-dismiss="modal" name="btnCancel">Cancelar</button>
 									</div>
-									<input type="hidden" name="FeePayment" id="idFeePayment" />
-									<input type="hidden" name="Loan" id="idLoan" />
-									<div class="row mt-1"> 
-									<div class="ml-auto mr-auto mb-0 alert alert-danger hide" id="alertPayment">
-									</div>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button class="btn bkg-orange text-light btn-sm"
-										name="btnNewAccount">Pagar</button>
-									<button type="button" class="btn btn-secondary btn-sm"
-										data-dismiss="modal" name="btnCancel">Cancelar</button>
-								</div>
 								</form>
 							</div>
 						</div>

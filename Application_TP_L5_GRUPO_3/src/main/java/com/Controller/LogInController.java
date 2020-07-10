@@ -23,11 +23,9 @@ import com.Services.UserService;
 // @SessionAttributes("user")
 public class LogInController {
 
-	BeanFactory bf = new BeanFactory();
-	UserService us = bf.createUserServiceImpl();
-
-	ClientService sClient = bf.createClientServiceImpl();
-	LocationService sLocation = bf.createLocationServiceImpl();
+	UserService us = BeanFactory.createUserServiceImpl();
+	ClientService sClient = BeanFactory.createClientServiceImpl();
+	LocationService sLocation = BeanFactory.createLocationServiceImpl();
 
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public ModelAndView redirectLogIn(String txtUsername, String txtPass, HttpServletRequest req) {

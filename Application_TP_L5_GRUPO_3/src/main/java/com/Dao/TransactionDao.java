@@ -1,5 +1,6 @@
 package com.Dao;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 
@@ -14,4 +15,6 @@ public interface TransactionDao {
 	public ArrayList<Transaction> getTransactionsFrom(int originAccount);
 	public ArrayList<Transaction> getTransactionsTo(int destinationAccount);
 	public typeMove getType(int idTypeMove);
+	public ArrayList<BigInteger> getTransactionsBetween(String init, String end);
+	public ArrayList<String> getTransactionsBetweenName(String init, String end);
 }

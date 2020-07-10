@@ -145,7 +145,7 @@ public class Utilities {
 		loan.setAmmount(ammount);
 		loan.setDate(date);
 		loan.setFees(fees);
-		loan.setState((byte) 1);
+		loan.setState(0);
 		loan.setMonthAmmount(monthAmmount);
 
 		return loan;

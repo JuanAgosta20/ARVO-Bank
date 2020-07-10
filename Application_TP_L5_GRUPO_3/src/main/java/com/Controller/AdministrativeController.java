@@ -31,7 +31,9 @@ import com.Model.Client;
 import com.Model.Cmd;
 import com.Model.Countrie;
 import com.Model.Genre;
+import com.Model.Loan;
 import com.Model.Province;
+import com.Model.Transaction;
 import com.Model.TransactionsPerMonth;
 import com.Model.User;
 import com.Services.AccountService;
@@ -42,6 +44,8 @@ import com.Services.GenreService;
 import com.Services.GenreServiceImpl;
 import com.Services.LocationService;
 import com.Services.LocationServiceImpl;
+import com.Services.TransactionService;
+import com.Services.TransactionServiceImpl;
 import com.Services.UserService;
 import com.Services.UserServiceImpl;
 import com.Services.LoanService;
@@ -54,16 +58,14 @@ import com.main.Utilities;
 @Controller
 public class AdministrativeController {
 
-	BeanFactory bf = new BeanFactory();
-
-	ClientService cs = bf.createClientServiceImpl();
-	LocationService ls = bf.createLocationServiceImpl();
-	GenreService gs = bf.createGenreServiceImpl();
-	AccountService accs = new AccountServiceImpl();
-	UserService us = new UserServiceImpl();
+	ClientService cs = BeanFactory.createClientServiceImpl();
+	LocationService ls = BeanFactory.createLocationServiceImpl();
+	GenreService gs = BeanFactory.createGenreServiceImpl();
+	AccountService accs = BeanFactory.createAccountServiceImpl();
+	UserService us = BeanFactory.createUserServiceImpl();
 	LoanService loanser = new LoanServiceImpl();
+	TransactionService ts = BeanFactory.createTransactionServiceImpl();
 
-	
 	
 	@RequestMapping(value = "admClientsList")
 	public ModelAndView ClientsList(ModelAndView mv) {
@@ -280,7 +282,27 @@ public class AdministrativeController {
 		Boolean result = false;
 		if (accept != null) {
 			result = loanser.acceptLoan(Integer.parseInt(accept), 2);
-			//Hacer la transferencia de plata
+			if(result) {
+				Loan loan = loanser.getLoan(Integer.parseInt(accept));
+				Account acc = accs.getAccount(loan.getCbu());
+				Account accBank = accs.getMasterAccount(true);
+				Transaction t1 = new Transaction();
+				t1.setState((byte) 1);
+				float Saldo = loan.getAmmount();
+				t1.setAmmount(Saldo);
+				t1.setDate(Cmd.crearFecha());
+				t1.setConcept("Alta de préstamo");
+				t1.setOriginAccount(accBank);
+				t1.setDestinationAccount(acc);
+				t1.setTm(ts.getType(1));
+
+				float nuevoSaldo = accBank.getFunds() - Saldo;
+				t1.setHistory(nuevoSaldo);
+				accs.updateFunds(accBank.getIdAccount(), nuevoSaldo);
+				nuevoSaldo = acc.getFunds() + Saldo;
+				accs.updateFunds(acc.getIdAccount(), nuevoSaldo);
+				result = ts.insertTransaction(t1);
+			}
 		} else if (reject != null) {
 			result = loanser.deleteLoan(Integer.parseInt(reject));
 		}
@@ -300,15 +322,12 @@ public class AdministrativeController {
 	public String getTransfers(String init, String end) {
 		System.out.println("Entro a check username" + init + end);
 		// Esto se reemplaza y va en dao
-		SessionHandler sHand = new SessionHandler();
-		Session session = sHand.getSession();
-		String hql = "SELECT COUNT(idTrans) as 'quantity' FROM transactions where (date BETWEEN '" + init + "' AND '"
-				+ end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
-		String hql2 = "SELECT DATE_FORMAT(date, '%M') as 'monthName' FROM transactions where (date BETWEEN '" + init
-				+ "' AND '" + end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
+		
+		
+		
 		try {
-			ArrayList<BigInteger> arr = (ArrayList<BigInteger>) session.createSQLQuery(hql).list();
-			ArrayList<String> arr2 = (ArrayList<String>) session.createSQLQuery(hql2).list();
+			ArrayList<BigInteger> arr = ts.getTransactionsBetween(init, end);
+			ArrayList<String> arr2 = ts.getTransactionsBetweenName(init, end);
 			ArrayList<TransactionsPerMonth> arrTrans = new ArrayList<TransactionsPerMonth>();
 			for (int i = 0; i < arr.size(); i++) {
 				TransactionsPerMonth tp = new TransactionsPerMonth();
