@@ -1,6 +1,5 @@
 package com.Dao;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 import org.hibernate.Query;
@@ -79,7 +78,7 @@ public class TransactionDaoImpl implements TransactionDao {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
-			String hql = "From Transaction t WHERE t.destinationAccount.idAccount = :idAccount or t.originAccount.idAccount = :idAccount";
+			String hql = "From Transaction t WHERE t.destinationAccount.idAccount = :idAccount or (t.originAccount.idAccount = :idAccount and t.tm!=4) ORDER BY t.idTrans desc";
 			Query query = (Query) session.createQuery(hql);
 			query.setParameter("idAccount", idAccount);
 			return (ArrayList<Transaction>) query.list();
@@ -113,6 +112,17 @@ public class TransactionDaoImpl implements TransactionDao {
 		String hql = "SELECT DATE_FORMAT(date, '%M') as 'monthName' FROM transactions where (date BETWEEN '" + init
 				+ "' AND '" + end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
 		return (ArrayList<String>) session.createSQLQuery(hql).list();
+	}
+
+	
+	public ArrayList<typeMove> getAllTypes() {
+		try {
+			sh = new SessionHandler();
+			Session session = sh.getSession();
+			return (ArrayList<typeMove>)sh.getAllData(typeMove.class);
+		} finally {
+			sh.close();
+		}	
 	}
 
 }

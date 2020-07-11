@@ -17,5 +17,5 @@ public interface TransactionService {
 	public typeMove getType(int idTypeMove);
 	public ArrayList<TransactionsPerMonth> getTransactionsBetween(String init, String end);
 	public ArrayList<String> getTransactionsBetweenName(String init, String end);
-	
+	public ArrayList<typeMove>getAllTypes();
 }

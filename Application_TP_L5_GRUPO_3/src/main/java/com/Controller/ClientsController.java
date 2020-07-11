@@ -16,7 +16,6 @@ import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.Cmd;
 import com.Model.Loan;
-import com.Model.Province;
 import com.Model.Transaction;
 import com.Services.AccountService;
 import com.Services.LoanService;
@@ -62,7 +61,8 @@ public class ClientsController {
 		Account account = as.getAccount(CBU);
 		mv.addObject("account",account);
 		Integer id = account.getIdAccount();
-		mv.addObject("transactions",ts.getTransactionsFrom(id));
+		mv.addObject("transactions",ts.getAllTransactions(id));
+		mv.addObject("typemoves", ts.getAllTypes());
 		return mv;
 		
 	}

@@ -44,6 +44,7 @@
   <thead>
     <tr>
       <th scope="col">Fecha</th>
+      <th scope="col">Tipo Movimiento</th>
       <th scope="col">Concepto</th>
       <th scope="col">Monto</th>
       <th scope="col">Saldo</th>
@@ -53,9 +54,10 @@
   <c:forEach var="trans" items="${transactions}">
     <tr>
       <td>${Cmd.getFormattedDate(trans.getDate(), false)}</td>
-      <td>${trans.getConcept()} </td>
-      <td>${trans.getAmmount()}</td>
-      <td>${trans.getHistory()}</td>
+      <td> ${trans.getTm().getDescription()}</td>
+      <td> ${trans.getConcept()} </td>
+      <td>$ ${trans.getAmmount()}</td>
+      <td>$ ${trans.getHistory()}</td>
     </tr>
     </c:forEach>
   </tbody>

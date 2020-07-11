@@ -59,6 +59,12 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	
+	public ArrayList<typeMove> getAllTypes() {
+		
+		return td.getAllTypes();
+	}
+
+	
 	
 	
 }
