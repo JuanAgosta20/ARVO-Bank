@@ -256,7 +256,7 @@ public class ClientsController {
 		} else {result = false;}
 		
 		mv.addObject("result", result);
-		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Transaccion realizada con exito a " + accTo.getClient().getFirstName()});
+		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Transaccion realizada con exito a " + accTo.getClient().getFirstName() +" "+ accTo.getClient().getLastName()});
 		return Transfers(mv, req);
 	}
 		
@@ -282,7 +282,7 @@ public class ClientsController {
 		float Saldo = currentLoan.getMonthAmmount();
 		t1.setAmmount(Saldo);
 		t1.setDate(Cmd.crearFecha());
-		t1.setConcept("Pago de prestamo");
+		t1.setConcept("Pago cuota");
 		t1.setOriginAccount(acc);
 		t1.setDestinationAccount(accBank);
 		t1.setTm(ts.getType(2));
