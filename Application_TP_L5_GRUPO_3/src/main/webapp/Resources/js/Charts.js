@@ -40,11 +40,11 @@
 	.then(data => {
 			console.log(data);
 			data.forEach(e =>{
-				months.push(e.monthName);
-				quantity.push(e.quantity);
+				months.push(e[0]);
+				quantity.push(e[1]);
 			})
-			// console.log(months);
-			// console.log(quantity);
+			//console.log(months);
+			//console.log(quantity);
 			actualizarChart(months, quantity);
 		})
 }

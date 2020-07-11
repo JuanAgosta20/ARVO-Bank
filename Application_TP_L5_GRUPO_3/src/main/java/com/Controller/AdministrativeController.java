@@ -43,12 +43,11 @@ public class AdministrativeController {
 	LoanService loanser = BeanFactory.createLoanServiceImpl();
 	TransactionService ts = BeanFactory.createTransactionServiceImpl();
 
-	
 	@RequestMapping(value = "admClientsList")
 	public ModelAndView ClientsList(ModelAndView mv) {
 		if (mv.isEmpty())
 			mv = new ModelAndView("admClients");
-		
+
 		mv.addObject("clients", cs.readClients());
 		mv.addObject("countries", ls.getAllCountries());
 		mv.addObject("province", ls.getAllProvince());
@@ -120,7 +119,7 @@ public class AdministrativeController {
 		return "{\"existe\": false}";
 
 	}
-	
+
 	@RequestMapping(value = "checkDni", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkDni(String dni) {
@@ -247,19 +246,19 @@ public class AdministrativeController {
 
 	@RequestMapping("admLoans")
 	public ModelAndView Loans(ModelAndView mv) {
-		if(mv.isEmpty())
+		if (mv.isEmpty())
 			mv = new ModelAndView("admLoans");
 		mv.addObject("loans", loanser.getAllUnchekedLoans());
 		return mv;
 	}
-	
+
 	@RequestMapping("checkLoan")
 	public ModelAndView checkLoan(String accept, String reject) {
 		ModelAndView mv = new ModelAndView("admLoans");
 		Boolean result = false;
 		if (accept != null) {
 			result = loanser.acceptLoan(Integer.parseInt(accept), 2);
-			if(result) {
+			if (result) {
 				Loan loan = loanser.getLoan(Integer.parseInt(accept));
 				Account acc = accs.getAccount(loan.getCbu());
 				Account accBank = accs.getMasterAccount(true);
@@ -297,22 +296,21 @@ public class AdministrativeController {
 	@RequestMapping(value = "getTransfers", method = RequestMethod.GET)
 	@ResponseBody
 	public String getTransfers(String init, String end) {
-		System.out.println("Entro a check username" + init + end);
-		// Esto se reemplaza y va en dao
-		
-		
-		
+
 		try {
-			ArrayList<BigInteger> arr = ts.getTransactionsBetween(init, end);
+			/*ArrayList<BigInteger> arr = ts.getTransactionsBetween(init, end);
 			ArrayList<String> arr2 = ts.getTransactionsBetweenName(init, end);
+			// System.out.println(arr);
+			// System.out.println(arr2);
 			ArrayList<TransactionsPerMonth> arrTrans = new ArrayList<TransactionsPerMonth>();
+			TransactionsPerMonth tp = BeanFactory.createTransactionsPerMonth();
 			for (int i = 0; i < arr.size(); i++) {
-				TransactionsPerMonth tp = BeanFactory.createTransactionsPerMonth();
+
 				tp.setMonthName(arr2.get(i).toString());
 				tp.setQuantity(arr.get(i));
-				arrTrans.add(tp);
-			}
-			String json = new Gson().toJson(arrTrans);
+				arrTrans.add(i, tp);
+			}*/
+			String json = new Gson().toJson(ts.getTransactionsBetween(init, end));
 			System.out.println(json);
 			return json;
 		} catch (Exception e) {
@@ -326,5 +324,5 @@ public class AdministrativeController {
 		 */
 
 	}
-	
+
 }
