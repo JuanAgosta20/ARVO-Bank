@@ -36,7 +36,7 @@
 			</div>
 
 			<!-- Lista cuentas -->
-			<div class="col-6">
+			<div class="col-7">
 
 				<c:forEach var="acc" items="${accounts}">
 
@@ -47,19 +47,18 @@
 								<div class="row">
 									<h6 class="card-title">${acc.getNameAccount()}</h6>
 								</div>
-								<div class="row align-items-center">
-									<div class="col">
+								<div class="row">
+									<div class="col-5 mt-2">
 										<b>CBU: </b> ${acc.getCBU()}
 									</div>
-									<div class="col">
-										<b>Monto: </b> ${acc.getFunds()}
+									<div class="col mt-2">
+										<b>Monto: $</b> ${acc.getFunds()}
 									</div>
 									<div class="col">
 									<form action="clTransactions.do" method="POST">
 									<input type="hidden" name="CBU" id="CBU" value="${acc.getCBU()}"/>
 									<button class="btn btn-success mb-3">Ver Movimientos</button></form>
-									<!--	<a role="button"  href="clTransactions.do?id=${acc.getIdAccount()}">Ver
-											Movimientos</a> -->
+									
 										
 									</div>
 								</div>
