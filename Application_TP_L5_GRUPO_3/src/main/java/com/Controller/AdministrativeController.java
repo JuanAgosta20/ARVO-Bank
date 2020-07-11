@@ -61,7 +61,7 @@ public class AdministrativeController {
 			Integer province, String cities, String mail, Integer genre, String nameCity, String username) {
 		ModelAndView MV = new ModelAndView("admClients");
 		Client client = BeanFactory.createClient();
-		Province prov = ls.getProvince(province);
+		Province prov = ls.getProvinceApi(province);
 		Countrie country = ls.getCountrie(countries);
 		City city = ls.getCity(cities);
 		Genre gen = gs.getGenre(genre);

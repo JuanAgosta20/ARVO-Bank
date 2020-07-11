@@ -9,7 +9,7 @@ import com.Model.Province;
 
 public class LocationServiceImpl implements LocationService {
 
-	
+
 	LocationDao ld;
 	
 	public LocationServiceImpl(LocationDao ldao) {

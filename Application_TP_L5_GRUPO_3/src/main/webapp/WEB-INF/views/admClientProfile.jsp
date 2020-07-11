@@ -300,9 +300,10 @@
 		//document.getElementById('btnConfirm').style.display = 'inline-block';
 	}
 
-function showCitiesandConfirm() {
+async function showCitiesandConfirm() {
 	ShowConfirm();
-	getCities();
+	await getCities();
+	changeTxt();
 }
 	
 function ShowConfirm(){
@@ -339,11 +340,11 @@ async function checkEmail(){
 				if(data.existe == true){
 					document.getElementById('badmail').title = 'Ese email ya está registrado'
 					document.getElementById('badmail').style.display = 'block';
+					document.getElementById('btnConfirm').style.display = 'none';
 				}else{
+					document.getElementById('btnConfirm').style.display = 'inline-block';
 					document.getElementById('badmail').style.display = 'none';
 				}
-		
-		showConfirm();
 	})
 	
 	
