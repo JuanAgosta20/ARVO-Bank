@@ -1,6 +1,9 @@
 
 function reset(){
-	document.getElementById('alert-cbu').style.display = "none";
+	let el = document.getElementById('alert-cbu');
+	if(el){
+		el.style.diplay = 'none';
+	}
 	document.getElementById('formT1').style.display = "none";
 	document.getElementById('formT2').style.display = "none";
 	let form = document.getElementsByName("btnPanel");
