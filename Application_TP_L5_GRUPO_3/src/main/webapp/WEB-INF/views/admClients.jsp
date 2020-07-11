@@ -26,7 +26,6 @@
 
 	<div class="container-fluid mt-3 ml-0 pl-0">
 		<form action="admClientsList.do?" method="POST">
-			<div class="container">
 				<h4 class="text-blue">Clientes</h4>
 				<div class="row my-3 justify-content-between">
 					<div class="col"></div>
@@ -37,7 +36,6 @@
 						</a>
 					</div>
 				</div>
-			</div>
 
 			<div class="container ml-0">
 				<div class="row">
@@ -142,9 +140,9 @@
 								<div class="form-group">
 									<label for="genre">Género</label> <select class="form-control"
 										id="genre" name="genre">
-										<option value="1">Hombre</option>
-										<option value="2">Mujer</option>
-										<option value="3">Indefinido</option>
+										<option value="1">Femenino</option>
+										<option value="2">Masculino</option>
+										<option value="3">Otros</option>
 									</select> <label for="countries">Nacionalidad</label> <select
 										class="form-control" id="countries" name="countries">
 										<c:forEach var="country" items="${countries }">
