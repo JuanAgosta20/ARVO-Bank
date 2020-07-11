@@ -61,7 +61,8 @@ public class ClientsController {
 		
 		Account account = as.getAccount(CBU);
 		mv.addObject("account",account);
-		mv.addObject("transactions",ts.getAllTransactions(account.getIdAccount()));
+		Integer id = account.getIdAccount();
+		mv.addObject("transactions",ts.getTransactionsFrom(id));
 		return mv;
 		
 	}

@@ -46,11 +46,11 @@ public class TransactionDaoImpl implements TransactionDao {
 
 	}
 
-	public ArrayList<Transaction> getTransactionsFrom(int originAccount) {
+	public ArrayList<Transaction> getTransactionsFrom(Integer originAccount) {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
-			String hql = "From Transaction t WHERE t.originAccount = :originAccount";
+			String hql = "From Transaction t WHERE t.originAccount.idAccount = :originAccount";
 			Query query = (Query) session.createQuery(hql);
 			query.setParameter("originAccount", originAccount);
 			return (ArrayList<Transaction>) query.list();
@@ -61,11 +61,11 @@ public class TransactionDaoImpl implements TransactionDao {
 
 	}
 
-	public ArrayList<Transaction> getTransactionsTo(int destinationAccount) {
+	public ArrayList<Transaction> getTransactionsTo(Integer destinationAccount) {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
-			String hql = "From Transaction t WHERE t.destinationAccount = :destinationAccount";
+			String hql = "From Transaction t WHERE t.destinationAccount.idAccount = :destinationAccount";
 			Query query = (Query) session.createQuery(hql);
 			query.setParameter("destinationAccount", destinationAccount);
 			return (ArrayList<Transaction>) query.list();
@@ -75,11 +75,11 @@ public class TransactionDaoImpl implements TransactionDao {
 		}
 	}
 
-	public ArrayList<Transaction> getAllTransactions(int idAccount) {
+	public ArrayList<Transaction> getAllTransactions(Integer idAccount) {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
-			String hql = "From Transaction t WHERE t.destinationAccount = :idAccount or t.originAccount = :idAccount";
+			String hql = "From Transaction t WHERE t.destinationAccount.idAccount = :idAccount or t.originAccount.idAccount = :idAccount";
 			Query query = (Query) session.createQuery(hql);
 			query.setParameter("idAccount", idAccount);
 			return (ArrayList<Transaction>) query.list();

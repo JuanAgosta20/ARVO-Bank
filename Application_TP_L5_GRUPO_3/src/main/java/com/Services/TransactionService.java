@@ -11,9 +11,9 @@ public interface TransactionService {
 
 	public Boolean insertTransaction(Transaction trans);
 	public Boolean verifyTransaction (Transaction trans); //verifica que se cumplan los requisitos
-	public ArrayList<Transaction> getAllTransactions(int idAccount);
-	public ArrayList<Transaction> getTransactionsFrom(int idAccount);
-	public ArrayList<Transaction> getTransactionsTo(int destinationAccount);
+	public ArrayList<Transaction> getAllTransactions(Integer idAccount);
+	public ArrayList<Transaction> getTransactionsFrom(Integer idAccount);
+	public ArrayList<Transaction> getTransactionsTo(Integer destinationAccount);
 	public typeMove getType(int idTypeMove);
 	public ArrayList<TransactionsPerMonth> getTransactionsBetween(String init, String end);
 	public ArrayList<String> getTransactionsBetweenName(String init, String end);

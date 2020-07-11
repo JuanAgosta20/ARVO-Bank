@@ -27,18 +27,18 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 
-	public ArrayList<Transaction> getAllTransactions(int idAccount) {
+	public ArrayList<Transaction> getAllTransactions(Integer idAccount) {
 		return td.getAllTransactions(idAccount);
 	}
 
 	
-	public ArrayList<Transaction> getTransactionsFrom(int idAccount) {
+	public ArrayList<Transaction> getTransactionsFrom(Integer idAccount) {
 		
 		return td.getTransactionsFrom(idAccount);
 	}
 
 	
-	public ArrayList<Transaction> getTransactionsTo(int destinationAccount) {
+	public ArrayList<Transaction> getTransactionsTo(Integer destinationAccount) {
 		return td.getTransactionsTo(destinationAccount);
 		
 	}
