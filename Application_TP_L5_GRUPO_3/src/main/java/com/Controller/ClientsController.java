@@ -1,5 +1,7 @@
 package com.Controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +15,7 @@ import com.Model.BeanFactory;
 import com.Model.Client;
 import com.Model.Cmd;
 import com.Model.Loan;
+import com.Model.Province;
 import com.Model.Transaction;
 import com.Services.AccountService;
 import com.Services.LoanService;
@@ -47,6 +50,18 @@ public class ClientsController {
 		Client client = (Client) session.getAttribute("user");
 		mv.addObject("accounts", as.getAccountsFrom(client.getIdClient()));
 		return mv;
+	}
+	
+	@RequestMapping("clTransactions")
+	public ModelAndView Transactions(ModelAndView mv, String CBU) {
+		if (mv.isEmpty())
+			mv = new ModelAndView("transactions");
+		
+		Account account = as.getAccount(CBU);
+		mv.addObject("account",account);
+		mv.addObject("transactions",ts.getAllTransactions(account.getIdAccount()));
+		return mv;
+		
 	}
 
 	@RequestMapping("clLoans")
@@ -109,7 +124,6 @@ public class ClientsController {
 			return Transfers(mv, req);
 
 		}
-
 			
 		Account accFrom = as.getAccount(cmbAccountFrom);
 		Account accTo = as.getAccount(cmbAccountTo);
@@ -202,10 +216,11 @@ public class ClientsController {
 			return Transfers(mv, req);
 		}
 		
-		//realizada
-		Transaction t1 = new Transaction();
-		//recibida
-		Transaction t2 = new Transaction();
+		// realizada
+				Transaction t1 = BeanFactory.createTransaction();
+				// recibida
+				Transaction t2 = BeanFactory.createTransaction();
+
 		
 		t1.setState((byte) 1);
 		t2.setState((byte) 1);

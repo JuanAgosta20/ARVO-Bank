@@ -55,8 +55,12 @@
 										<b>Monto: </b> ${acc.getFunds()}
 									</div>
 									<div class="col">
-										<button type="button" class="btn btn-success mb-3">Ver
-											Movimientos</button>
+									<form action="clTransactions.do" method="POST">
+									<input type="hidden" name="CBU" id="CBU" value="${acc.getCBU()}"/>
+									<button class="btn btn-success mb-3">Ver Movimientos</button></form>
+									<!--	<a role="button"  href="clTransactions.do?id=${acc.getIdAccount()}">Ver
+											Movimientos</a> -->
+										
 									</div>
 								</div>
 							</div>

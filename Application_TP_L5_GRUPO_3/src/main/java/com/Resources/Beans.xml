@@ -3,28 +3,29 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
-	<bean id="client" class="com.Model.Client">
+	<bean id="client" class="com.Model.Client" scope="prototype">
 	</bean>
 	
-	<bean id="user" class="com.Model.User">
+	<bean id="user" class="com.Model.User" scope="prototype">
 	</bean>
 	
-	<bean id="account" class="com.Model.Account">
+	<bean id="account" class="com.Model.Account" scope="prototype">
 	</bean>
 	
-	<bean id="administrative" class="com.Model.Administrative">
+	<bean id="administrative" class="com.Model.Administrative" scope="prototype">
 	</bean>
 	
-	<bean id="transaction" class="com.Model.Transaction">
+	<bean id="transaction" class="com.Model.Transaction" scope="prototype">
+	
 	</bean>
 	
 	<bean id="transactionspermonth" class="com.Model.TransactionsPerMonth">
 	</bean>
 	
- 	<bean id="loan" class="com.Model.Loan">
+ 	<bean id="loan" class="com.Model.Loan" scope="prototype">
 	</bean>
 	
-	<bean id="city" class="com.Model.City">
+	<bean id="city" class="com.Model.City" scope="prototype">
 	</bean>
 	
 	<!-- DAO -->
