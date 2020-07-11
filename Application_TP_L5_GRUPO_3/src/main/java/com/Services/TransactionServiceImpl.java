@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.Dao.TransactionDao;
 import com.Dao.TransactionDaoImpl;
 import com.Model.Transaction;
+import com.Model.TransactionsPerMonth;
 import com.Model.typeMove;
 
 public class TransactionServiceImpl implements TransactionService {
@@ -48,7 +49,7 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 
-	public ArrayList<BigInteger> getTransactionsBetween(String init, String end) {
+	public ArrayList<TransactionsPerMonth> getTransactionsBetween(String init, String end) {
 		return td.getTransactionsBetween(init,end);
 	}
 

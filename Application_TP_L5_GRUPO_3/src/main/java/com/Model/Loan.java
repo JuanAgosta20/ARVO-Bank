@@ -24,7 +24,7 @@ public class Loan implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer loanId;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idClient")
 	Client client;
 	String cbu;
@@ -32,7 +32,7 @@ public class Loan implements Serializable{
 	Float ammount;
 	Integer fees;
 	Float monthAmmount;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "loanId")
 	List<FeePayment> payments = new ArrayList<FeePayment>();
 	private int state;

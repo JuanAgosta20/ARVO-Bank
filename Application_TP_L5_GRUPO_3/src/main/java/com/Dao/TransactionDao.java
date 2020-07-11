@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 import com.Model.Transaction;
+import com.Model.TransactionsPerMonth;
 import com.Model.typeMove;
 
 public interface TransactionDao {
@@ -15,6 +16,6 @@ public interface TransactionDao {
 	public ArrayList<Transaction> getTransactionsFrom(int originAccount);
 	public ArrayList<Transaction> getTransactionsTo(int destinationAccount);
 	public typeMove getType(int idTypeMove);
-	public ArrayList<BigInteger> getTransactionsBetween(String init, String end);
+	public ArrayList<TransactionsPerMonth> getTransactionsBetween(String init, String end);
 	public ArrayList<String> getTransactionsBetweenName(String init, String end);
 }

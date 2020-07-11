@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Model.Account;
@@ -21,6 +22,7 @@ import com.Services.AccountService;
 import com.Services.LoanService;
 import com.Services.TransactionService;
 import com.Services.UserService;
+import com.google.gson.Gson;
 
 @Controller
 public class ClientsController {
@@ -87,7 +89,7 @@ public class ClientsController {
 		Boolean result = as.insertAccount(acc);
 		ModelAndView mv = new ModelAndView("accounts");
 		mv.addObject("result", result); // true bien, false mal
-		mv.addObject("msg", new String[] { "Opps... ha ocurrido un error", "La petici�n se ha enviado correctamente" });
+		mv.addObject("msg", new String[] { "Opps... ha ocurrido un error", "La peticion se ha enviado correctamente" });
 		return Accounts(mv, req);
 	}
 
@@ -108,7 +110,7 @@ public class ClientsController {
 		ModelAndView mv = new ModelAndView("accounts");
 		mv.addObject("result", result); // true bien, false mal
 		mv.addObject("msg",
-				new String[] { "Opps... ha ocurrido un error", "La petici�n se ha enviado correctamente" });
+				new String[] { "Opps... ha ocurrido un error", "La peticion se ha enviado correctamente" });
 		return Accounts(mv, req);
 	}
 
@@ -180,7 +182,7 @@ public class ClientsController {
 		}
 
 		mv.addObject("result", result);
-		mv.addObject("msg", new String[] { "Ha ocurrido un error", "Transacci�n realizada con �xito" });
+		mv.addObject("msg", new String[] { "Ha ocurrido un error", "Transaccion realizada con exito" });
 		return Transfers(mv, req);
 	}
 
@@ -253,7 +255,7 @@ public class ClientsController {
 		} else {result = false;}
 		
 		mv.addObject("result", result);
-		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Transacci�n realizada con �xito a " + accTo.getClient().getFirstName()});
+		mv.addObject("msg", new String[]{"Ha ocurrido un error", "Transaccion realizada con exito a " + accTo.getClient().getFirstName()});
 		return Transfers(mv, req);
 	}
 		
@@ -279,7 +281,7 @@ public class ClientsController {
 		float Saldo = currentLoan.getMonthAmmount();
 		t1.setAmmount(Saldo);
 		t1.setDate(Cmd.crearFecha());
-		t1.setConcept("Pago de pr�stamo");
+		t1.setConcept("Pago de prestamo");
 		t1.setOriginAccount(acc);
 		t1.setDestinationAccount(accBank);
 		t1.setTm(ts.getType(2));
@@ -297,6 +299,18 @@ public class ClientsController {
 		mv.addObject("result", result); // true bien, false mal
 		mv.addObject("msg", new String[] { "Opps... ha ocurrido un error", "El pago se ha realizado correctamente" });
 		return Loans(mv, req);
+	}
+	
+	@RequestMapping(value = "checkCBU", method = RequestMethod.GET)
+	@ResponseBody
+	public String checkDni(String cbu) {
+		Gson json = new Gson();
+		Account acc = as.getAccount(cbu);
+		if (acc != null) {
+			return json.toJson(acc.getClient(), Client.class);
+		}
+		return "{\"existe\": false}";
+
 	}
 
 }

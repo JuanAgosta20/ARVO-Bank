@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import com.Model.Account;
 import com.Model.Transaction;
+import com.Model.TransactionsPerMonth;
 import com.Model.typeMove;
 
 public class TransactionDaoImpl implements TransactionDao {
@@ -99,12 +100,11 @@ public class TransactionDaoImpl implements TransactionDao {
 		}
 	}
 
-	public ArrayList<BigInteger> getTransactionsBetween(String init, String end) {
+	public ArrayList<TransactionsPerMonth> getTransactionsBetween(String init, String end) {
 		sh = new SessionHandler();
 		Session session = sh.getSession();
-		String hql = "SELECT COUNT(idTrans) as 'quantity' FROM transactions where (date BETWEEN '" + init + "' AND '"
-				+ end + "') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m')";
-		return (ArrayList<BigInteger>) session.createSQLQuery(hql).list();
+		String hql = "SELECT DATE_FORMAT(date, '%M') as 'monthName', COUNT(idTrans) as 'quantity' FROM transactions where (date BETWEEN '" + init +"' AND '"+end+"') group by DATE_FORMAT(date, '%m') Order by DATE_FORMAT(date, '%m');";
+		return (ArrayList<TransactionsPerMonth>) session.createSQLQuery(hql).list();
 	}
 
 	public ArrayList<String> getTransactionsBetweenName(String init, String end) {

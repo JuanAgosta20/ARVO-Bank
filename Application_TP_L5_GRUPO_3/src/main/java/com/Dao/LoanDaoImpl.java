@@ -19,6 +19,7 @@ public class LoanDaoImpl implements LoanDao {
 			sh = new SessionHandler();
 			sh.save(loan);
 			sh.commit();
+			sh.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,6 +34,7 @@ public class LoanDaoImpl implements LoanDao {
 			loan.setState(0);
 			sh.update(loan);
 			sh.commit();
+			sh.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,6 +61,7 @@ public class LoanDaoImpl implements LoanDao {
 			loan.setPayments(payments);
 			sh.update(loan);
 			sh.commit();
+			sh.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,6 +80,8 @@ public class LoanDaoImpl implements LoanDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			sh.close();
 		}
 	}
 
@@ -90,6 +95,8 @@ public class LoanDaoImpl implements LoanDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			sh.close();
 		}
 	}
 
@@ -112,6 +119,7 @@ public class LoanDaoImpl implements LoanDao {
 			}
 			sh.update(loan);
 			sh.commit();
+			sh.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

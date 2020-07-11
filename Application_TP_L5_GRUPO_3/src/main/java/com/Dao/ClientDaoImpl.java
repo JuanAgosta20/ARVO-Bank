@@ -17,7 +17,7 @@ public class ClientDaoImpl implements ClientDao {
 	public void destroy() {
 		sHand.close();
 	}
-	
+
 	public Boolean insertClient(Client client) {
 		sHand = new SessionHandler();
 		session = sHand.getSession();

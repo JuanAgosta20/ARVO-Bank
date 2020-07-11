@@ -31,7 +31,7 @@
 					<button class="list-group-item list-group-item-action" name="btnPanel" onClick="enableForm(this, 'T1')" style="color:white; background-color:#1761a0">
 						<i class="material-icons mr-2">work_outline</i>Cuenta propia
 					</button>
-					<button class="list-group-item list-group-item-action" name="btnPanel2" onClick="enableForm(this, 'T2')">
+					<button class="list-group-item list-group-item-action" name="btnPanel" onClick="enableForm(this, 'T2')">
 						<i class="material-icons mr-2">compare_arrows</i> Otras
 					</button>
 				</div>
@@ -56,7 +56,7 @@
 					<div class="row mt-3">
 						<div class="col">CBU Cuenta Destino:</div>
 						<div class="col">
-							<input type="text" id="txtAccountTo" name="txtAccountTo" class="form-control">
+							<input type="text" id="txtAccountTo" name="txtAccountTo" class="form-control" onchange="checkCBU()">
 						</div>
 					</div>
 					<div class="row mt-3">
@@ -118,7 +118,7 @@
 					<div class="row mt-3">
 						<div class="col">Monto a transferir:</div>
 						<div class="col">
-							<input type="number" id="txtAmmount" name="txtAmmount" class="form-control"
+							<input type="number" id="txtAmmount" name="txtAmmount" class="form-control" 
 								placeholder="$">
 						</div>
 					</div>
@@ -147,7 +147,8 @@
 
 
 			<div class="col">
-				<!-- Columna vacía derecha -->
+				<div class="alert alert-primary mt-5 text-center" id="alert-cbu" style="display:none">
+				</div>
 			</div>
 		</div>
 	</div>
