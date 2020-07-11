@@ -106,8 +106,8 @@
 					<div class="row mt-3">
 						<div class="col">Cuenta destino:</div>
 						<div class="col">
-							<select id="cmbAccountTo" name="cmbAccountTo" class="form-control">
-								
+							<select id="cmbAccountTo" name="cmbAccountTo" class="form-control" required>
+							<option value="">Seleccione la cuenta destino</option>
 									<c:forEach var="acc" items="${accounts }">
 											<option value="${acc.getCBU()}">${acc.getTypeAcc().getDescription()}
 												 - Saldo $: ${acc.getFunds()}</option>
