@@ -75,7 +75,7 @@ public class TransactionDaoImpl implements TransactionDao {
 		}
 	}
 
-	public ArrayList<Transaction> getAllTransactions(Integer idAccount) {
+	public ArrayList<Transaction> getAllTransactions(int idAccount) {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
