@@ -78,7 +78,7 @@ public class TransactionDaoImpl implements TransactionDao {
 		try {
 			sh = new SessionHandler();
 			Session session = sh.getSession();
-			String hql = "From Transaction t WHERE t.destinationAccount.idAccount = :idAccount or (t.originAccount.idAccount = :idAccount and t.tm!=4) ORDER BY t.idTrans desc";
+			String hql = "From Transaction t WHERE (t.destinationAccount.idAccount = :idAccount and t.tm.idTypeMove!=3) or (t.originAccount.idAccount = :idAccount and t.tm.idTypeMove!=4) ORDER BY t.idTrans desc";
 			Query query = (Query) session.createQuery(hql);
 			query.setParameter("idAccount", idAccount);
 			return (ArrayList<Transaction>) query.list();
